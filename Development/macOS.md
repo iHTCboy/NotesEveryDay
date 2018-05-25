@@ -1,4 +1,6 @@
+
 ---
+
 
 ### iTerm2技巧 
 https://skyline75489.github.io/post/2014-7-10_iterm-usage.html
@@ -62,4 +64,8 @@ Preferences -> Editor -> General -> Appearance
 ---
 
 
+### QuickTime Player
+
+#### 使用 QuickTime 链接iPhone时, 提示 "这项操作无法完成".
+似乎是在录制 iPhone 时强行拔出数据线导致的，重启 iPhone 就可以啦
 
