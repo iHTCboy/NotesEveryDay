@@ -19,7 +19,7 @@ Perferences -> Editor -> General -> Console -> Use soft wraps in console
 
 ---
 
-#### PyCharm创建.py自动添加文件头注释
+#### PyCharm 创建.py自动添加文件头注释
 设置位置：
 **Windows and Linux**：File -> Settings -> Editor -> File and Code Templates
 **macOS**：PyCharm -> Preferences -> Editor -> File and Code Templates 
@@ -53,6 +53,18 @@ Preferences -> Editor -> General -> Appearance
 口 Show hard wrap guide  (configured in Code Style options)
 
 ---
+
+#### PyCharm 批量查找及替换 
+macOS:
+Common + R 替换
+Common + Shift + F 全局查找
+Common + Shift + R 全局替换
+
+Windows：
+Ctrl + R 替换
+Ctrl + Shift + F 全局查找
+Ctrl + Shift + R 全局替换
+
 
 ### macOS Setting
 
