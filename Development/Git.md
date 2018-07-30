@@ -1,5 +1,5 @@
 ### Github 上传超过100M的大文件
-```
+```git
 Homebrew: brew install git-lfs
 
 git lfs install
@@ -11,7 +11,7 @@ git add .gitattributes
 
 There is no step three. Just commit and push to GitHub as you normally would.
 
-```
+```git
 git add file.psd
 git commit -m "Add design file"
 git push origin master
@@ -22,7 +22,7 @@ git push origin master
 
 配置 Git 使其对文件名大小写敏感
 
-```
+```git
 git config core.ignorecase false
 ```
 
@@ -31,3 +31,10 @@ git config core.ignorecase false
 - [解决 Git 默认不区分文件名大小写的问题 - 简书](https://www.jianshu.com/p/df0b0e8bcf9b)
 
 
+### git 撤销本地所有未提交的更改
+
+```git
+git checkout .
+```
+
+后面有.点，表示全部文件撤销
