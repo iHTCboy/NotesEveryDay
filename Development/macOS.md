@@ -81,3 +81,37 @@ Ctrl + Shift + R 全局替换
 #### 使用 QuickTime 链接iPhone时, 提示 "这项操作无法完成".
 似乎是在录制 iPhone 时强行拔出数据线导致的，重启 iPhone 就可以啦
 
+
+
+### Sublime Text3
+
+#### 安装install package
+- cmd + `
+
+输入:
+```python
+import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())
+```
+
+
+#### sublime text3格式化json
+- 方法1
+打开 Sublime，`command + shift + p` -> `Install package`(简写`pci`也可以)
+搜索 `Pretty JSON`，回车安装
+
+- 方法2：
+
+```git
+cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
+
+git clone https://github.com/dzhibas/SublimePrettyJson.git
+```
+
+- 格式化快捷键 :
+macOS: `command + ctrl + j`
+Windows: `ctrl + alt + j`
+
+ - [dzhibas/SublimePrettyJson](https://github.com/dzhibas/SublimePrettyJson)
+
+ 
+注：安装`HTML-CSS-JS Prettify`也不错！
