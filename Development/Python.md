@@ -32,6 +32,7 @@ if __name__ == '__main__':
 `pip install -r requirements.txt`
 
 
+### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
 
 #多个字段模糊查询， 括号中的下划线是双下划线，双下划线前是字段名，双下划线后可以是icontains或contains,区别是是否大小写敏感，竖线是或的意思
@@ -45,4 +46,33 @@ sciencenews = models.Sciencenews.objects.filter(Q(title__icontains=keyword)\
 - [django学习——如何实现简单的搜索功能](https://blog.csdn.net/geerniya/article/details/79025405)
 - [Django模糊查询 - CSDN博客](https://blog.csdn.net/liuweiyuxiang/article/details/71104613)
 
+#### Django 使用jquery提交post请求
+Django在处理post请求时出现403错误
 
+原文1：http://www.cnblogs.com/xtt-w/p/6232559.html
+
+解决方法：
+ 在settings.py里面的MIDDLEWARE_CLASSES中去掉“‘django.middleware.csrf.CsrfViewMiddleware’,”。
+
+原文2：http://blog.csdn.net/sherry_rui/article/details/50523725
+
+解决方法：
+1.在发送post请求的html页面前加入{% csrf_token %}    如：
+
+```html
+<form action="/login" method="post">
+   {% csrf_token %}
+   <input type="text"  required="required" placeholder="用户名" name="u"/>
+   <input type="password"  required="required" placeholder="密码" name="p"/>
+   <button class="but" type="submit">登录</button>
+</form>
+```
+
+2.在处理post数据的view前加@csrf_exempt装饰符，如：
+
+```python
+from django.views.decorators.csrf import csrf_exempt,csrf_protect
+ 
+@csrf_exempt  
+def profile_delte(request): 
+```
