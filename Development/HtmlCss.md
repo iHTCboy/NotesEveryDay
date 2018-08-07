@@ -21,3 +21,30 @@ text-decoration是文字修饰效果的意思；
 none参数表示超链接文字不显示下划线；
 underline参数表示超链接的文字有下划线
 
+#### HTML DOM confirm()	 、prompt() 方法
+- confirm()	显示带有一段消息以及确认按钮和取消按钮的对话框。
+- prompt()	显示可提示用户输入的对话框。
+
+
+```js
+var r=confirm("Press a button!");
+if (r==true)
+  {
+  alert("You pressed OK!");
+  }
+else
+  {
+  alert("You pressed Cancel!");
+  }
+}
+```
+
+
+```js
+  var name=prompt("请输入您的名字","预设值")
+  if (name!=null && name!="")
+    {
+    document.write("你好，" + name + "！今天过得好吗？")
+    }
+  }
+```
