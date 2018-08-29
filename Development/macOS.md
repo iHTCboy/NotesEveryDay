@@ -86,7 +86,7 @@ Ctrl + Shift + R 全局替换
 ### Sublime Text3
 
 #### 安装install package
-- cmd + `
+- ctrl + ` 快捷键 或者 ```View``` -> ```Show Console``` 菜单打开控制台
 
 输入:
 ```python
@@ -115,13 +115,3 @@ Windows: `ctrl + alt + j`
 
  
 注：安装`HTML-CSS-JS Prettify`也不错！
-
-### epub文件
-
-编辑epub： 
-- [calibre - E-book management](https://calibre-ebook.com/)
-
-Chrome插件：
-- [EpubPress - Read the web offline](https://epub.press/)
-- [GitHub - alexadam/save-as-ebook: Save a web page/selection as an eBook (.epub format) - a Chrome/Firefox/Opera Web Extension](https://github.com/alexadam/save-as-ebook)
-
