@@ -76,3 +76,20 @@ from django.views.decorators.csrf import csrf_exempt,csrf_protect
 @csrf_exempt  
 def profile_delte(request): 
 ```
+
+#### Django下载文件时，中文文件名问题
+
+解决：
+```python
+from django.utils.encoding import escape_uri_path
+from django.http import HttpResponse
+
+def test(request):
+    file_name = '测试.txt'
+    content = ...
+    response = HttpResponse(content, content_type='application/octet-stream')
+    response['Content-Disposition'] = "attachment; filename*=utf-8''{}".format(escape_uri_path(file_name))
+    return response
+```
+
+- [Django中设置Content-Disposition保存中文命名的文件 - ludaming的回答 - SegmentFault 思否](https://segmentfault.com/q/1010000009719860/a-1020000011650312)
