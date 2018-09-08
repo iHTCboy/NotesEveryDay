@@ -1,4 +1,5 @@
 ### Github 上传超过100M的大文件
+官方示例：
 ```git
 Homebrew: brew install git-lfs
 
@@ -11,11 +12,15 @@ git add .gitattributes
 
 There is no step three. Just commit and push to GitHub as you normally would.
 
+使用示例：
 ```git
 git add file.psd
 git commit -m "Add design file"
 git push origin master
 ```
+
+注：`.gitattributes`文件是 git lfs用于记录那些文件要通过lfs上传的配置文件。
+
 - [Git Large File Storage](https://git-lfs.github.com)
 
 ### Git 默认不区分文件名大小写的坑

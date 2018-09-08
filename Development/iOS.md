@@ -6,3 +6,22 @@
 - [漫谈iOS程序的证书和签名机制](https://segmentfault.com/a/1190000004144556)
 
 
+### 从App里用代码读取证书信息
+
+```obj-c
+//取出embedded.mobileprovision这个描述文件的内容进行判断
+    NSString *mobileProvisionPath = [[NSBundle mainBundle] pathForResource:@"embedded" ofType:@"mobileprovision"];
+    NSData *rawData = [NSData dataWithContentsOfFile:mobileProvisionPath];
+    NSString *rawDataString = [[NSString alloc] initWithData:rawData encoding:NSASCIIStringEncoding];
+    NSRange plistStartRange = [rawDataString rangeOfString:@"<plist"];
+    NSRange plistEndRange = [rawDataString rangeOfString:@"</plist>"];
+    if (plistStartRange.location != NSNotFound && plistEndRange.location != NSNotFound) {
+        NSString *tempPlistString = [rawDataString substringWithRange:NSMakeRange(plistStartRange.location, NSMaxRange(plistEndRange))];
+        NSData *tempPlistData = [tempPlistString dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *plistDic =  [NSPropertyListSerialization propertyListWithData:tempPlistData options:NSPropertyListImmutable format:nil error:nil];
+        NSLog(@"plistDic: %@", plistDic);
+    }
+```
+
+- [iOS-如何判断安装的APP被第三方企业证书重新签名](https://www.jianshu.com/p/b1cf329e1ca8)
+- [iOS重签名了解一下](https://www.jianshu.com/p/ad5e3a2ec6d9)
