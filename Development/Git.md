@@ -21,6 +21,13 @@ git push origin master
 
 注：`.gitattributes`文件是 git lfs用于记录那些文件要通过lfs上传的配置文件。
 
+另：
+
+```git
+This repository is over its data quota. Purchase more data packs to restore access.
+```
+意思就是"仓库超出限额，需要配置更多的额度"，这个可以在自己GitHub个人设置里查看，默认只有1G的空间，更多空间需要按月收费。。。
+
 - [Git Large File Storage](https://git-lfs.github.com)
 
 ### Git 默认不区分文件名大小写的坑
