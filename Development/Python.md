@@ -25,11 +25,15 @@ if __name__ == '__main__':
 #### 自动生成和安装requirements.txt依赖
 生成requirements.txt文件
 
-`pip freeze > requirements.txt`
+```python
+    pip freeze > requirements.txt
+```
 
 安装requirements.txt依赖
 
-`pip install -r requirements.txt`
+```python
+    pip install -r requirements.txt
+```
 
 
 ### Django
