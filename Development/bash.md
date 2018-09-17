@@ -30,6 +30,20 @@ read_dir $1
 $ sh traveDir.sh DIR_NAME
 ```
 
+#### 获得当前目录，上级目录，文件夹名
+
+```base
+#当前目录，或用 `pwd`
+$PWD   
+
+#上级目录
+dname=$(dirname "$PWD")
+
+#当前文件(夹)名
+basename '$PWD'  
+```
+
+
 ### vim
 
 #### 撤销和恢复撤销快捷键
