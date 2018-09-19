@@ -126,3 +126,16 @@ Chrome插件：
 - [EpubPress - Read the web offline](https://epub.press/)
 - [GitHub - alexadam/save-as-ebook: Save a web page/selection as an eBook (.epub format) - a Chrome/Firefox/Opera Web Extension](https://github.com/alexadam/save-as-ebook)
 
+
+### PopClip
+
+插件目录：
+
+```bash
+~/Library/Application Support/PopClip/Extensions/
+```
+
+PopClip Extensions：
+
+https://pilotmoon.com/popclip/extensions/
+
