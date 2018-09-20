@@ -25,3 +25,17 @@
 
 - [iOS-如何判断安装的APP被第三方企业证书重新签名](https://www.jianshu.com/p/b1cf329e1ca8)
 - [iOS重签名了解一下](https://www.jianshu.com/p/ad5e3a2ec6d9)
+
+
+### SDWebImage
+
+#### SDWebImage 占位图是GIF处理
+
+```obj-c
+[cell.ImageView sd_setImageWithURL:[NSURL URLWithString:ImageUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (image == nil) {
+            UIImage *img = [UIImage sd_animatedGIFNamed:@"xxx.gif"];
+            cell.goodImgV.image = img;
+        }
+    }];
+```
