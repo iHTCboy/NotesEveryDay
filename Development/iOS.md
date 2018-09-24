@@ -39,3 +39,34 @@
         }
     }];
 ```
+
+### Xcode10：library not found for -lstdc++.6.0.9 临时解决 
+
+Xcode 10中将libstdc++.6.0.9库文件删除，SDK依赖 libstdc++.6.0.9 的会在Xcode 10无法运行，解决方案：
+
+https://blog.csdn.net/ZuoWeiXiaoDuZuoZuo/article/details/82756116?utm_source=copy 
+
+### 真机运行库
+
+在终端输入以下命令打开Xcode的lib库目录（此目录位安装的默认目录）
+
+```
+open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib
+```
+
+把刚刚下载的zip文件解压获取到的 真机的 libstdc++.6.0.9.tbd 文件，扔进去
+
+
+#### 模拟器运行库
+
+在终端输入以下命令打开Xcode的lib库目录（此目录位安装的默认目录）
+
+```
+open  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib
+```
+
+把刚刚下载的zip文件解压获取到的 模拟器的 libstdc++.6.0.9.tbd 文件，扔进去
+
+#### 下一步
+
+重启Xcode
