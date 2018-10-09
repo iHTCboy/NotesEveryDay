@@ -27,6 +27,16 @@
 - [iOS重签名了解一下](https://www.jianshu.com/p/ad5e3a2ec6d9)
 
 
+### Xcode10 打SDK库失败
+解决方法，在脚本增加 -UseModernBuildSystem=NO ，原因是Xcode10使用新build系统，导致 xcodebuild 只会编译一个
+相似的反馈：https://github.com/facebook/react-native/issues/19573
+
+好像新build系统速度提升很好，了解更多新build系统：
+https://medium.com/xcblog/xcode-new-build-system-for-speedy-swift-builds-c39ea6596e17
+
+
+
+
 ### SDWebImage
 
 #### SDWebImage 占位图是GIF处理
