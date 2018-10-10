@@ -50,3 +50,15 @@ git checkout .
 ```
 
 后面有.点，表示全部文件撤销
+
+
+### 一步提交git变更
+
+```git
+function lazygit() {
+    git add .
+    git commit -a -m "$1"
+    git push
+}
+```
+- [git add, commit and push commands in one? - Stack Overflow](https://stackoverflow.com/questions/19595067/git-add-commit-and-push-commands-in-one)
