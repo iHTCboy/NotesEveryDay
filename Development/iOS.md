@@ -80,3 +80,9 @@ open  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platf
 #### 下一步
 
 重启Xcode
+
+
+### 在UILabel的NSAttributedText中创建可点击的“链接”？
+
+- [How to Create Multiple Tappable Links in a UILabel](https://samwize.com/2016/03/04/how-to-create-multiple-tappable-links-in-a-uilabel/)
+- [ios - Create tap-able "links" in the NSAttributedString of a UILabel? - Stack Overflow](http://stackoverflow.com/questions/1256887/create-tap-able-links-in-the-nsattributedtext-of-a-uilabel)
