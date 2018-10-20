@@ -144,6 +144,12 @@ https://pilotmoon.com/popclip/extensions/
 
 #### 在 Finder 标题栏显示完整路径
 
-```shell
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+```bash
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES;killall Finder
+```
+
+- 还原
+
+```bash
+defaults delete com.apple.finder _FXShowPosixPathInTitle;killall Finder
 ```
