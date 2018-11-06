@@ -97,3 +97,51 @@ def test(request):
 ```
 
 - [Django中设置Content-Disposition保存中文命名的文件 - ludaming的回答 - SegmentFault 思否](https://segmentfault.com/q/1010000009719860/a-1020000011650312)
+
+#### python数组list中的字典的某个key排序
+
+
+```python
+from operator import itemgetter
+
+rows = [
+    {'fname': 'Brian', 'lname': 'Jones', 'uid': 1003},
+    {'fname': 'David', 'lname': 'Beazley', 'uid': 1002},
+    {'fname': 'John', 'lname': 'Cleese', 'uid': 1001},
+    {'fname': 'Big', 'lname': 'Jones', 'uid': 1004}
+]
+
+rows_by_fname = sorted(rows, key=itemgetter('fname'))
+
+#Log
+[{'fname': 'Big', 'uid': 1004, 'lname': 'Jones'},
+{'fname': 'Brian', 'uid': 1003, 'lname': 'Jones'},
+{'fname': 'David', 'uid': 1002, 'lname': 'Beazley'},
+{'fname': 'John', 'uid': 1001, 'lname': 'Cleese'}]
+
+```
+
+`itemgetter()`有时候也可以用 `lambda` 表达式代替:
+
+
+```python
+rows_by_fname = sorted(rows, key=lambda r: r['fname'])
+```
+
+但是，使用 `itemgetter()` 方式会运行的稍微快点。因此，如果你对性能要求比较高的话就使用 `itemgetter()` 方式。
+
+- [1.13 通过某个关键字排序一个字典列表 — python3-cookbook 3.0.0 文档](https://python3-cookbook.readthedocs.io/zh_CN/latest/c01/p13_sort_list_of_dicts_by_key.html)
+- [python字典排序、按照list中的字典的某个key排序 - 一步一步 - CSDN博客](python字典排序、按照list中的字典的某个key排序 - 一步一步 - CSDN博客)
+
+
+#### python比较时间大小
+
+
+```Python
+a = '2017-10-18 22:17:46'
+b = '2017-10-19 22:17:40'
+print a > b
+# 结果False
+```
+
+解释：python中字符串的大小比较，是按照字符顺序，从前往后依次比较字符的ASCII数值，例如‘abc’要小于‘abd’。因此，时间字符串也可以直接比大小。
