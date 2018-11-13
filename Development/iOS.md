@@ -86,3 +86,11 @@ open  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platf
 
 - [How to Create Multiple Tappable Links in a UILabel](https://samwize.com/2016/03/04/how-to-create-multiple-tappable-links-in-a-uilabel/)
 - [ios - Create tap-able "links" in the NSAttributedString of a UILabel? - Stack Overflow](http://stackoverflow.com/questions/1256887/create-tap-able-links-in-the-nsattributedtext-of-a-uilabel)
+
+
+###  Link With Standard Libraries > YES
+默认是YES，编译器在链接时会自动使用标准库的链接器；
+看官方的文档，如果设置为NO，需要配置 Other Linker Flags 来指定链接器。
+
+- [Xcode Build System Guide - Apple Developer](https://developer.apple.com/library/archive/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-DontLinkElementID_217)
+
