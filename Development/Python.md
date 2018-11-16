@@ -145,3 +145,24 @@ print a > b
 ```
 
 解释：python中字符串的大小比较，是按照字符顺序，从前往后依次比较字符的ASCII数值，例如‘abc’要小于‘abd’。因此，时间字符串也可以直接比大小。
+
+
+#### Python:os.path.join()产生的斜杠在Windows和Linux下的不同表现和解决方法
+
+
+```python
+import os.path
+from pathlib import Path
+
+result = os.path.join('a', 'b', 'c')
+print(result)
+
+result = Path(result).as_posix()
+print(result)
+
+#or
+result = result.replace('\\', '/')
+print(result)
+```
+
+- [Python:os.path.join()产生的斜杠在Windows和Linux下的不同表现和解决方法 - Penguin](https://www.polarxiong.com/archives/Python-os-path-join-产生的斜杠在Windows和Linux下的不同表现和解决方法.html)
