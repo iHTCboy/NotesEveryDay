@@ -166,3 +166,36 @@ print(result)
 ```
 
 - [Python:os.path.join()产生的斜杠在Windows和Linux下的不同表现和解决方法 - Penguin](https://www.polarxiong.com/archives/Python-os-path-join-产生的斜杠在Windows和Linux下的不同表现和解决方法.html)
+
+
+#### Python-OpenCV
+
+- [给深度学习入门者的Python快速教程 - 番外篇之Python-OpenCV - 知乎](https://zhuanlan.zhihu.com/p/24425116)
+- [opencv python 从摄像头获取视频/从文件获取视频 /保存视频](https://segmentfault.com/a/1190000015575701)
+- [基于Python的OpenCV图像处理3](https://zhaoxuhui.top/blog/2017/05/05/基于Python的OpenCV图像处理3.html#捕获视频保存)
+- [利用MoviePy將影片加入音訊](https://hardliver.blogspot.com/2017/07/moviepy-moviepy.html)
+
+
+#### Django 使用HttpResponse返回图片、使用流响应处理视频
+
+
+```python
+def read_img(request):
+    """
+    : 读取图片
+    :param request:
+    :return:
+    """
+    try:
+        data = request.GET
+        file_name = data.get("file_name")
+        imagepath = os.path.join(settings.BASE_DIR, "static/images/{}".format(file_name))  # 图片路径
+        with open(imagepath, 'rb') as f:
+            image_data = f.read()
+        return HttpResponse(image_data, content_type="image/png")
+    except Exception as e:
+        print(e)
+        return HttpResponse(str(e))
+```
+
+- [Django 中使用流响应处理视频 - 栖迟于一丘](https://www.hongweipeng.com/index.php/archives/1559/)
