@@ -13,13 +13,13 @@ a:hover {
 }
 ```
 
-a:link 指正常的未被访问过的链接；
-a:active 指正在点的链接；
-a:hover 指鼠标在链接上；
-a:visited 指已经访问过的链接；
-text-decoration是文字修饰效果的意思；
-none参数表示超链接文字不显示下划线；
-underline参数表示超链接的文字有下划线
+- a:link 指正常的未被访问过的链接；
+- a:active 指正在点的链接；
+- a:hover 指鼠标在链接上；
+- a:visited 指已经访问过的链接；
+- text-decoration 是文字修饰效果的意思；
+- none 参数表示超链接文字不显示下划线；
+- underline 参数表示超链接的文字有下划线
 
 #### HTML DOM confirm()	 、prompt() 方法
 - confirm()	显示带有一段消息以及确认按钮和取消按钮的对话框。
@@ -48,3 +48,18 @@ else
     }
   }
 ```
+
+#### is(":checked")勾选框判断
+
+一种是DOM节点属性，读取它的方法就是 attr() 方法
+第二种是HTML元素属性，这种属性你看不到，但是确实存在，而且大部分情况和DOM节点属性对应的值一样。
+在jQuery中取得这种值的方法是prop();
+
+```js
+$("#checkbox1").attr("checked") // checked
+$("#checkbox2").attr("checked") // undefined
+$("#checkbox1").is(":checked") // true
+$("#checkbox1").prop("checked") //true
+```
+
+[从is(":checked")说起 - 哎呦大黄 - 博客园](https://www.cnblogs.com/season-huang/p/3360869.html)
