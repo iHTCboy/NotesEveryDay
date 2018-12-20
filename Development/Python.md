@@ -199,3 +199,58 @@ def read_img(request):
 ```
 
 - [Django 中使用流响应处理视频 - 栖迟于一丘](https://www.hongweipeng.com/index.php/archives/1559/)
+
+
+####  Django 数据库查询方法总结
+
+
+```pythobn
+__exact 精确等于 like ‘aaa’
+__iexact 精确等于 忽略大小写 ilike ‘aaa’
+__contains 包含 like ‘%aaa%’
+__icontains 包含 忽略大小写 ilike ‘%aaa%’，但是对于sqlite来说，contains的作用效果等同于icontains。
+__gt 大于
+__gte 大于等于
+__lt 小于
+__lte 小于等于
+__in 存在于一个list范围内
+__startswith 以…开头
+__istartswith 以…开头 忽略大小写
+__endswith 以…结尾
+__iendswith 以…结尾，忽略大小写
+__range 在…范围内
+__year 日期字段的年份
+__month 日期字段的月份
+__day 日期字段的日
+__isnull=True/False
+__isnull=True 与 __exact=None的区别
+```
+
+数据库时间查询：
+```python
+2、gte：大于等于某个时间：
+a=yourobject.objects .filter(youdatetimcolumn__gte=start)
+
+3、lt：小于
+a=yourobject.objects .filter(youdatetimcolumn__lt=start)
+
+4、lte：小于等于
+a=yourobject.objects .filter(youdatetimcolumn__lte=start)
+
+5、range：查询时间段
+start_date = datetime.date(2005, 1, 1)
+end_date = datetime.date(2005, 3, 31)
+Entry.objects.filter(pub_date__range=(start_date, end_date))
+
+6、year：查询某年
+Entry.objects.filter(pub_date__year=2005)
+
+7、month：查询某月
+Entry.objects.filter(pub_date__month=12)
+
+8、day：某天
+Entry.objects.filter(pub_date__day=3)
+
+9、week_day：星期几
+Entry.objects.filter(pub_date__week_day=2)
+```
