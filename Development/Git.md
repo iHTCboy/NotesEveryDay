@@ -62,3 +62,42 @@ function lazygit() {
 }
 ```
 - [git add, commit and push commands in one? - Stack Overflow](https://stackoverflow.com/questions/19595067/git-add-commit-and-push-commands-in-one)
+
+
+### Git仓库完整迁移（含历史记录log）
+
+1). 从原地址克隆一份裸版本库。
+
+```git
+git clone --bare git://github.com/username/project.git
+```
+
+2). 然后到新的 Git 服务器上创建一个新项目。
+
+3). 以镜像推送的方式上传代码到新的 Git 服务器上。
+
+```git
+cd project.git
+
+git push --mirror git@gitcafe.com/username/newproject.git
+
+```
+4). 删除本地代码
+
+```
+cd ..
+
+rm -rf project.git
+```
+
+5). 到新服务器上找到 Clone 地址，直接 Clone 到本地就可以了。
+
+```git
+git clone git@gitcafe.com/username/newproject.git
+```
+
+这种方式可以保留原版本库中的所有内容。
+
+第二种切换remote_url的方法更直接，直接更改.git/conf配置文件里的ip地址就行。但是需要一个一个分支push。
+
+- [Git仓库迁移而不丢失log的方法 - fantaxy的空间_前庭 - ITeye博客](https://fantaxy025025.iteye.com/blog/1966627)
