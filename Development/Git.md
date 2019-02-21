@@ -51,6 +51,25 @@ git checkout .
 
 后面有.点，表示全部文件撤销
 
+### git 撤销本地已提交(commit)但没有提交(push)的更改
+
+如果你只想为之前的commit增加更多的改动，或者改变之前的提交信息，你应该使用：
+```git
+git reset --soft HEAD~
+```
+会将你的改动保留在暂存区内。或类似
+
+```git
+git rest HEAD~
+```
+
+销毁了一个commit，但最后发现仍然需要它？
+
+```git
+git reflog
+```
+
+[](https://www.jianshu.com/p/9f11d398111f)
 
 ### 一步提交git变更
 
