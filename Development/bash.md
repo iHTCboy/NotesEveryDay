@@ -24,7 +24,9 @@ function read_dir(){
         then
             read_dir $1"/"$file
         else
-            echo $1"/"$file   #在此处处理文件即可
+            #在此处处理文件即可
+            file_path="$1/$file"
+            echo ${file_path}
         fi
     done
 }   
@@ -49,6 +51,68 @@ dname=$(dirname "$PWD")
 basename '$PWD'  
 ```
 
+#### 循环计算2-100的偶数和
+- 使用for循环和 let
+
+```bash
+#!/bin/sh 
+SUM=0
+for (( i=0; i<=100; i++  ))
+do
+     if test $((i%2)) -eq 0 ; then
+        let SUM=SUM+i
+     fi
+done
+echo $SUM
+
+```
+注意:使用let命令可以执行一个或者多个算术表达式，其中的变量名无需使用$符号。如果表达式中含有空格或者其他特殊字符，则必须将其引用起来。
+
+- 使用for循环和 $((…))运算
+
+```bash
+#!/bin/sh 
+SUM=0
+for (( i=0; i<=100; i++  ))
+do
+     if test $((i%2)) -eq 0 ; then  
+        SUM=$(( $SUM + i ))
+     fi
+done
+echo $SUM
+```
+
+注意:使用$((…))这种形式进行算术写法比较自由，无需对运算符和括号进行转义处理，可以使用松散或者紧凑的格式来书写。
+
+- 使用带有步长的for循环
+
+```bash
+#!/bin/sh 
+SUM=0
+for i in {0..100..2}
+do
+   SUM=$(( $SUM + i ))  
+done
+echo $SUM 
+```
+
+
+- 使用while循环
+
+```bash
+#!/bin/sh 
+#定义初始化变量
+SUM=0
+i=0
+# 开始while循环
+while [[ "$i" -le 100  ]]
+do
+   SUM=$(( $SUM + i ))
+   i=$((i+2))
+done
+echo $SUM
+```
+- [Shell脚本计算2-100的偶数和 - Learning - CSDN博客](https://blog.csdn.net/zbw18297786698/article/details/77456588)
 
 ### vim
 
