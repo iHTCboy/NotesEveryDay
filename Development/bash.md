@@ -114,6 +114,20 @@ echo $SUM
 ```
 - [Shell脚本计算2-100的偶数和 - Learning - CSDN博客](https://blog.csdn.net/zbw18297786698/article/details/77456588)
 
+#### 判断文件后缀
+
+```bash
+file_suffix=${file_path##*.} 
+
+if [ ${file_suffix} = 'gif' ]
+then
+	echo 'gif'
+else
+	echo 'other'
+fi
+```
+
+
 ### vim
 
 #### 撤销和恢复撤销快捷键
