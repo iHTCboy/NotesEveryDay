@@ -94,3 +94,31 @@ open  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platf
 
 - [Xcode Build System Guide - Apple Developer](https://developer.apple.com/library/archive/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-DontLinkElementID_217)
 
+
+### Xcode 自定义快捷键
+复制文件：
+```bash
+/Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A/Resources/IDETextKeyBindingSet.plist
+```
+增加自定义配置：
+```json
+        <key>Customized</key>
+        <dict>
+            <key>HTC Duplicate Current Line</key>
+            <string>selectLine:, copy:, moveToEndOfLine:, insertNewline:, paste:, deleteBackward:</string>
+            <key>HTC Delete Current Line</key>
+            <string>moveToEndOfLine:, deleteToBeginningOfLine:, deleteBackward:, moveDown:, moveToEndOfLine:</string>
+            <key>HTC Move Current Line Up</key>
+            <string>selectLine:, cut:, moveUp:, moveToBeginningOfLine:, insertNewLine:, paste:, moveBackward:</string>
+            <key>HTC Move Current Line Down</key>
+            <string>selectLine:, cut:, moveDown:, moveToBeginningOfLine:, insertNewLine:, paste:, moveBackward:</string>
+            <key>HTC Insert Line Above</key>
+            <string>moveUp:, moveToEndOfLine:, insertNewline:</string>
+            <key>HTC Insert Line Below</key>
+            <string>moveToEndOfLine:, insertNewline:</string>
+        </dict>
+```
+
+替换原来文件，重新打开Xcode，就可以搜索查看和定义快捷键
+
+- [Xcode 自定义快捷键 - 简书](https://www.jianshu.com/p/65299ebe77d4)
