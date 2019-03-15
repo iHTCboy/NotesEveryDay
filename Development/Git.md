@@ -120,3 +120,18 @@ git clone git@gitcafe.com/username/newproject.git
 第二种切换remote_url的方法更直接，直接更改.git/conf配置文件里的ip地址就行。但是需要一个一个分支push。
 
 - [Git仓库迁移而不丢失log的方法 - fantaxy的空间_前庭 - ITeye博客](https://fantaxy025025.iteye.com/blog/1966627)
+
+
+### Sourcetree 更新git账号密码
+删除Sourcetree 缓存文件(只需要删密码文件)，文件位置： 
+```bash
+Mac： 
+~/Library/Application Support/SourceTree 
+
+Windows： 
+C:\Users\USERNAME\AppData\Local\Atlassian\SourceTree
+```
+
+删除对应账号的文件后，重启Sourcetree，然后push或者pull代码的时候，就会自动弹框让重新输入账号和密码
+
+- [Sourcetree 更新git账号密码 - u011562187的专栏 - CSDN博客](https://blog.csdn.net/u011562187/article/details/79288468)
