@@ -153,3 +153,18 @@ defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES;killall Finder
 ```bash
 defaults delete com.apple.finder _FXShowPosixPathInTitle;killall Finder
 ```
+
+
+### Apple Configurator 2
+
+所有设备->选中当前iPhone->添加->应用，找到您想要ipa的那个应用->添加
+
+```
+command+shift+G
+```
+
+```
+~/Library/Group Containers/K36BKF7T3D.group.com.apple.configurator/Library/Caches/Assets/TemporaryItems/MobileApps/
+```
+
+- [iOS获取App ipa包以及资源文件 - 简书](https://www.jianshu.com/p/fdb50d303ad6)
