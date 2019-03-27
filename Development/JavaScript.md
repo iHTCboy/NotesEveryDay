@@ -1,3 +1,5 @@
+[TOC]
+
 #### GoogleChrome/dialog-polyfill
 polyfill 仿效一个完整的 ES2015+ 环境，并意图运行于一个应用中而不是一个库/工具。
 

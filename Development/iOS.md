@@ -1,4 +1,5 @@
 
+[TOC]
 
 ### iOS证书&签名
 - [iOS App 签名的原理 « bang’s blog](http://blog.cnbang.net/tech/3386/)
@@ -35,7 +36,7 @@
 https://medium.com/xcblog/xcode-new-build-system-for-speedy-swift-builds-c39ea6596e17
 
 
-
+---
 
 ### SDWebImage
 
@@ -49,6 +50,8 @@ https://medium.com/xcblog/xcode-new-build-system-for-speedy-swift-builds-c39ea65
         }
     }];
 ```
+
+---
 
 ### Xcode10：library not found for -lstdc++.6.0.9 临时解决 
 
@@ -81,6 +84,7 @@ open  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platf
 
 重启Xcode
 
+---
 
 ### 在UILabel的NSAttributedText中创建可点击的“链接”？
 

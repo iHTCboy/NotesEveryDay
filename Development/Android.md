@@ -1,5 +1,7 @@
-# Android Studio
+[TOC]
 
+### Android Studio
+#### Android Studio 真机测试
 - 第一步：打开手机USB调试 
   首先，打开手机”设置->>我的设备->>全部参数->>MIUI版本”，连续点击7次，进入开发者模式。 
   其次，”设置->>更多设置->>开发者选项”，打开“USB调试”和“USB安装”.

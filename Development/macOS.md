@@ -1,6 +1,4 @@
-
----
-
+[TOC]
 
 ### iTerm2技巧 
 https://skyline75489.github.io/post/2014-7-10_iterm-usage.html
@@ -65,6 +63,7 @@ Ctrl + R 替换
 Ctrl + Shift + F 全局查找
 Ctrl + Shift + R 全局替换
 
+---
 
 ### macOS Setting
 
@@ -82,6 +81,7 @@ Ctrl + Shift + R 全局替换
 似乎是在录制 iPhone 时强行拔出数据线导致的，重启 iPhone 就可以啦
 
 
+---
 
 ### Sublime Text3
 
@@ -116,6 +116,7 @@ Windows: `ctrl + alt + j`
  
 注：安装`HTML-CSS-JS Prettify`也不错！
 
+---
 
 ### epub文件
 
@@ -126,6 +127,7 @@ Chrome插件：
 - [EpubPress - Read the web offline](https://epub.press/)
 - [GitHub - alexadam/save-as-ebook: Save a web page/selection as an eBook (.epub format) - a Chrome/Firefox/Opera Web Extension](https://github.com/alexadam/save-as-ebook)
 
+---
 
 ### PopClip
 
@@ -139,6 +141,7 @@ PopClip Extensions：
 
 https://pilotmoon.com/popclip/extensions/
 
+---
 
 ### Finder
 
@@ -154,6 +157,7 @@ defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES;killall Finder
 defaults delete com.apple.finder _FXShowPosixPathInTitle;killall Finder
 ```
 
+---
 
 ### Apple Configurator 2
 
@@ -168,6 +172,8 @@ command+shift+G
 ```
 
 - [iOS获取App ipa包以及资源文件 - 简书](https://www.jianshu.com/p/fdb50d303ad6)
+
+---
 
 ### macOS 检查MP3，m4a，音频和视频文件的比特率
 
@@ -199,3 +205,5 @@ Channel layout: Stereo (L R)
 ```
 
 [如何从Mac OS X的命令行检查MP3，m4a，音频文件的比特率 | MOS86](http://mos86.com/24284.html)
+
+---
