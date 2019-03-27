@@ -168,3 +168,34 @@ command+shift+G
 ```
 
 - [iOS获取App ipa包以及资源文件 - 简书](https://www.jianshu.com/p/fdb50d303ad6)
+
+### macOS 检查MP3，m4a，音频和视频文件的比特率
+
+```shell
+afinfo xxx.mp4
+```
+
+示例：
+```shell
+➜  ~ afinfo /Users/HTC/Downloads/1920x886.mp4
+File:           /Users/HTC/Downloads/1920x886.mp4
+File type ID:   mp4f
+Num Tracks:     1
+----
+Data format:     2 ch,  44100 Hz, 'aac ' (0x00000000) 0 bits/channel, 0 bytes/packet, 1024 frames/packet, 0 bytes/frame
+                no channel layout.
+estimated duration: 28.025034 sec
+audio bytes: 889871
+audio packets: 1209
+bit rate: 253588 bits per second
+packet size upper bound: 1019
+maximum packet size: 1019
+audio data file offset: 294288
+optimized
+audio 1235904 valid frames + 2112 priming + 0 remainder = 1238016
+format list:
+[ 0] format:	  2 ch,  44100 Hz, 'aac ' (0x00000000) 0 bits/channel, 0 bytes/packet, 1024 frames/packet, 0 bytes/frame
+Channel layout: Stereo (L R)
+```
+
+[如何从Mac OS X的命令行检查MP3，m4a，音频文件的比特率 | MOS86](http://mos86.com/24284.html)
