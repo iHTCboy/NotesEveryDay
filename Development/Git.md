@@ -1,3 +1,5 @@
+[TOC]
+
 ### Github 上传超过100M的大文件
 官方示例：
 ```git
@@ -135,3 +137,41 @@ C:\Users\USERNAME\AppData\Local\Atlassian\SourceTree
 删除对应账号的文件后，重启Sourcetree，然后push或者pull代码的时候，就会自动弹框让重新输入账号和密码
 
 - [Sourcetree 更新git账号密码 - u011562187的专栏 - CSDN博客](https://blog.csdn.net/u011562187/article/details/79288468)
+
+### git flow
+- install
+```git
+macOS: brew install git-flow-avh
+linux: apt-get install git-flow
+```
+
+- init
+```git
+git flow init
+```
+
+- feature
+```git
+git flow feature help
+git flow feature start xxx
+git flow feature finish xxx
+git flow feature publish xxx
+git flow feature pull origin xxx
+```
+
+- releases
+```git
+git flow release start 1.1.5
+git flow release finish 1.1.5
+git flow release publish 1.1.5
+git flow release pull origin 1.1.5
+```
+
+- hotfix
+```git
+git flow hotfix start xxx
+git flow hotfix finish xxx
+```
+
+- [git-flow 备忘清单](https://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html)
+- [git-flow 的工作流程](https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/git-flow)
