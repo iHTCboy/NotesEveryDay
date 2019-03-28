@@ -232,3 +232,20 @@ console.log(d.toUTCString()); // 转换为世界时间，输出：Mon, 04 Nov 20
 ```
 
 - [js date对象的格式化代码-前端开发博客](http://caibaojian.com/javascript-date-format.html)
+
+#### js快速获取li所有列表内容
+
+```js
+var ulElement = document.getElementsByClassName("c-issue__articles")[0];
+var liElemnts = ulElement.getElementsByClassName('c-issue__article');
+var abc = [];
+for(let liElement of liElemnts) {
+ 	let aElements = liElement.getElementsByTagName("a");
+ 	let href = aElements[0].getAttribute("href");
+ 	let url = 'https://www.objc.io/' + href.slice(0, href.length - 1);
+	abc.push(url);
+}
+
+var s = abc.join("\n");
+console.log(s);
+```
