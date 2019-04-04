@@ -42,7 +42,7 @@ if __name__ == '__main__':
 ### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
 
-#多个字段模糊查询， 括号中的下划线是双下划线，双下划线前是字段名，双下划线后可以是icontains或contains,区别是是否大小写敏感，竖线是或的意思
+##### 多个字段模糊查询， 括号中的下划线是双下划线，双下划线前是字段名，双下划线后可以是icontains或contains,区别是是否大小写敏感，竖线是或的意思
 
 ```
 sciencenews = models.Sciencenews.objects.filter(Q(title__icontains=keyword)\
@@ -256,4 +256,27 @@ Entry.objects.filter(pub_date__day=3)
 
 9、week_day：星期几
 Entry.objects.filter(pub_date__week_day=2)
+```
+
+
+#### python判断字符串是否纯数字
+
+- 通过抛出异常
+```python
+def is_num_by_except(num):
+    try:
+        int(num)
+        return True
+    except ValueError:
+        print("ValueError", num)
+```
+
+- 通过isdigit()
+```python
+string.isdigit()
+```
+
+- 通过正则表达式
+```python
+re.match(r"d+$", a)
 ```
