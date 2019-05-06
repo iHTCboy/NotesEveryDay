@@ -175,3 +175,30 @@ git flow hotfix finish xxx
 
 - [git-flow 备忘清单](https://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html)
 - [git-flow 的工作流程](https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/git-flow)
+
+### Alpha、Beta、RC、GA 版本的区别
+
+- Alpha：Alpha是内部测试版，一般不向外部发布，会有很多Bug，一般只有测试人员使用。除非你也是测试人员，否则不建议使用。alpha 是希腊字母的第一位，表示最初级的版本，alpha 就是`α`，beta 就是`β`，alpha 版就是比 beta 还早的测试版，一般都是内部测试的版本。
+
+- Beta：也是测试版，这个阶段的版本会一直加入新的功能。在Alpha版之后推出，该版本相对于`α`版已有了很大的改进，消除了严重的错误，但还是存在着一些缺陷，需要经过多次测试来进一步修复。
+
+- RC：`Release　Candidate` 顾名思义! `Candidate`是候选人的意思，用在软件上就是候选版本。RC 就是发行候选版本。和Beta版最大的差别在于，Beta阶段会一直加入新的功能，但是到了RC版本，几乎就不会加入新的功能了，而主要着重于除错！RC版本是最终发放给用户的最接近正式版的版本，发行后改正bug就是正式版了，就是正式版之前的最后一个测试版。
+
+- GA：`General Availability`（一般可用性）正式发布的版本，在国外都是用GA来说明release 版本的。比如：`Apache Struts 2 GA` 就是 Apache Struts 2 首次发行稳定的版本，也就是官方开始推荐广泛使用的版本。
+
+- Release: 该版本意味“最终版本”，在前面版本的一系列测试版之后，终归会有一个正式版本，是最终交付用户使用的一个版本。该版本有时也称为标准版。一般情况下，Release不会以单词形式出现在软件封面上，取而代之的是符号(R)。
+
+- RTM：`Release to Manufacture` 是给工厂大量压片的版本，内容跟正式版是一样的，不过 RTM 版也有出限制、评估版的。但是和正式版本的主要程序代码都是一样的。
+
+- OEM：是给计算机厂商随着计算机贩卖的，也就是随机版。只能随机器出货，不能零售。只能全新安装，不能从旧有操作系统升级。包装不像零售版精美，通常只有一面CD和说明书(授权书)。 
+
+- RVL：号称是正式版，其实RVL根本不是版本的名称。它是中文版/英文版文档破解出来的。 
+
+- EVAL：而流通在网络上的EVAL版，与“评估版”类似，功能上和零售版没有区别。 
+
+- RTL：`Retail`(零售版) 是真正的正式版，正式上架零售版。在安装盘的i386文件夹里有一个eula.txt，最后有一行EULAID，就是你的版本。比如简体中文正式版是EULAID:WX.4_PRO_RTL_CN，繁体中文正式版是WX.4_PRO_RTL_TW。其中：如果是WX.开头是正式版，WB.开头是测试版。_PRE，代表家庭版；_PRO，代表专业版。
+
+α、β、λ常用来表示软件测试过程中的三个阶段，α是第一阶段，一般只供内部测试使用；β是第二个阶段，已经消除了软件中大部分的不完善之处，但仍有可能还存在缺陷和漏洞，一般只提供给特定的用户群来测试使用；λ是第三个阶段，此时产品已经相当成熟，只需在个别地方再做进一步的优化处理即可上市发行。
+                  
+- [Alpha、Beta、RC、GA版本的区别 - Rex - BlogJava](http://www.blogjava.net/RomulusW/archive/2008/05/04/197985.html)
+- [关于BETA、RC、ALPHA、Release、GA等版本号的意义 - 我的人生不甘于平庸！ - ITeye博客](https://zwustudy.iteye.com/blog/1711763)
