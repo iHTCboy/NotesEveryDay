@@ -86,7 +86,7 @@ Ctrl + Shift + R 全局替换
 ### Sublime Text3
 
 #### 安装install package
-- ctrl + ` 快捷键 或者 ```View``` -> ```Show Console``` 菜单打开控制台
+-  **ctrl +  快捷键 \`** 或者 ```View``` -> ```Show Console``` 菜单打开控制台
 
 输入:
 ```python
