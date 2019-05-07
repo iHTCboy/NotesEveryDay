@@ -257,3 +257,103 @@ Entry.objects.filter(pub_date__day=3)
 9、week_day：星期几
 Entry.objects.filter(pub_date__week_day=2)
 ```
+
+
+#### python判断字符串是否纯数字
+
+- 通过抛出异常
+```python
+def is_num_by_except(num):
+    try:
+        int(num)
+        return True
+    except ValueError:
+        print("ValueError", num)
+```
+
+- 通过isdigit()
+```python
+string.isdigit()
+```
+
+- 通过正则表达式
+```python
+re.match(r"d+$", a)
+```
+
+#### PIL获取PNG图像的alpha值
+
+
+```python
+# refer: https://www.oschina.net/code/snippet_580365_11452
+def is_png_alpha(path):
+    if os.path.splitext(path)[1] in ['.png', '.PNG']:
+        if Image.open(path, 'r').mode == 'RGBA':
+            try:
+                img = Image.open(path)
+                img.load()
+            except:
+                info = '这不是图片格式: 。' + os.path.basename(path)
+                return (False, info)
+            alpha = img.split()[3]
+            arr = numpy.asarray(alpha)
+            count = 0
+            for i in range(0, img.size[0] - 1):
+                for j in range(0, img.size[1] - 1):
+                    if arr[j][i] < 128:
+                        count += 1
+                        if count > 10:
+                            break
+            if count > 10:
+                info = '有 Alpha 通道，{} 个。'.format(str(count))
+                #print(info)
+                return (True, info)
+            else:
+                #这张图片约等于没有alpha通道
+                info = '有开启 Alpha 通道，但图片没有 Alpha 通道。'
+                return (False, info)
+        else:
+            info = '图片没有 Alpha 通道。'
+            return (False, info)
+    else:
+        info = '文件 {} 不是 png 格式。'.format(os.path.basename(path))
+        return (False, info)
+```
+
+
+```python
+# refer: https://www.jianshu.com/p/26f8c106a20d
+def is_png_transparent(path):
+    if not check_fileMode(path) in ['.png', '.PNG']:
+        info = '文件 {} 不是 png 格式。'.format(os.path.basename(path))
+        return (False, info)
+
+    # Open file
+    im = Image.open(path, 'r')
+    # get image scale
+    width, height = im.size
+    #print('Original image size: %sx%s' % (width, height))
+    # for
+    for w in range(0, width):
+        for h in range(0, height):
+            pixel = im.getpixel((w, h))
+            if (isinstance(pixel , int)):
+                #"It's PNG8
+                info = '是一张 PNG8 图片，包含透明区域。'
+                return (True, info)
+            if (len(pixel) > 3):
+                if (pixel[3] != 255):
+                   info = '图片包含透明区域。'
+                   return (True, info)
+            else:
+                info = '图片没有透明区域(alpha值)。'
+                return (False, info)
+
+    info = '图片没有透明区域。'
+    return (False, info)
+```
+
+- [查看文件的alpha通道](https://www.oschina.net/code/snippet_580365_11452#)
+- [python，使用PIL库对图片进行操作 - 每天1990 - 博客园](https://www.cnblogs.com/meitian/p/3699223.html)
+- [PIL 简明教程 - 基本用法 | 始终](https://liam.page/2015/04/22/pil-tutorial-basic-usage/)
+- [python – 如何使用PIL获取PNG图像的alpha值？ - 程序园](http://www.voidcn.com/article/p-sbwkywdo-btp.html)

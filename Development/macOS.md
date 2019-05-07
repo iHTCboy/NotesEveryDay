@@ -31,8 +31,8 @@ Perferences -> Editor -> General -> Console -> Use soft wraps in console
 ${NAME}.py
 ${PROJECT_NAME}
 
-Created by IHTCBOY@QQ.COM at ${DATE}
-Copyright © ${YEAR} iHTCboy. All rights reserved.
+Created by iHTCboy at ${DATE}
+Copyright © ${YEAR} iHTCboy(ihetiancong@gmail.com). All rights reserved.
 '''
 
 
