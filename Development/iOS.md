@@ -138,3 +138,13 @@ open  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platf
 ### 自定义 iOS Web Clip 图标
 
 - [使用 Apple Configurator 2 自定义 iOS Web Clip 图标 - 少数派](https://sspai.com/post/43352)
+
+
+### Cocoapods 报错问题
+
+```shell
+- ERROR | [iOS] unknown: Encountered an unknown error (Could not find a `ios` simulator (valid values: ). Ensure that Xcode -> Window -> Devices has at least one `ios` simulator listed or otherwise add one.) during validation.
+```
+
+需要在Xcode中创建模板器
+
