@@ -38,69 +38,6 @@ if __name__ == '__main__':
 ```
 
 
-
-### Django
-#### Django: 使用 Q 对象构建复杂的查询语句
-
-多个字段模糊查询， 括号中的下划线是双下划线，双下划线前是字段名，双下划线后可以是icontains或contains,区别是是否大小写敏感，竖线是或的意思
-
-```
-sciencenews = models.Sciencenews.objects.filter(Q(title__icontains=keyword)\
-	|Q(content__icontains=keyword)|Q(author__icontains=keyword))
-
-```
-
-- [django学习——如何实现简单的搜索功能](https://blog.csdn.net/geerniya/article/details/79025405)
-- [Django模糊查询 - CSDN博客](https://blog.csdn.net/liuweiyuxiang/article/details/71104613)
-
-#### Django 使用jquery提交post请求
-Django在处理post请求时出现403错误
-
-原文1：http://www.cnblogs.com/xtt-w/p/6232559.html
-
-解决方法：
- 在settings.py里面的MIDDLEWARE_CLASSES中去掉“‘django.middleware.csrf.CsrfViewMiddleware’,”。
-
-原文2：http://blog.csdn.net/sherry_rui/article/details/50523725
-
-解决方法：
-1.在发送post请求的html页面前加入{% csrf_token %}    如：
-
-```html
-<form action="/login" method="post">
-   {% csrf_token %}
-   <input type="text"  required="required" placeholder="用户名" name="u"/>
-   <input type="password"  required="required" placeholder="密码" name="p"/>
-   <button class="but" type="submit">登录</button>
-</form>
-```
-
-2.在处理post数据的view前加@csrf_exempt装饰符，如：
-
-```python
-from django.views.decorators.csrf import csrf_exempt,csrf_protect
- 
-@csrf_exempt  
-def profile_delte(request): 
-```
-
-#### Django下载文件时，中文文件名问题
-
-解决：
-```python
-from django.utils.encoding import escape_uri_path
-from django.http import HttpResponse
-
-def test(request):
-    file_name = '测试.txt'
-    content = ...
-    response = HttpResponse(content, content_type='application/octet-stream')
-    response['Content-Disposition'] = "attachment; filename*=utf-8''{}".format(escape_uri_path(file_name))
-    return response
-```
-
-- [Django中设置Content-Disposition保存中文命名的文件 - ludaming的回答 - SegmentFault 思否](https://segmentfault.com/q/1010000009719860/a-1020000011650312)
-
 #### python数组list中的字典的某个key排序
 
 
@@ -177,86 +114,6 @@ print(result)
 - [opencv python 从摄像头获取视频/从文件获取视频 /保存视频](https://segmentfault.com/a/1190000015575701)
 - [基于Python的OpenCV图像处理3](https://zhaoxuhui.top/blog/2017/05/05/基于Python的OpenCV图像处理3.html#捕获视频保存)
 - [利用MoviePy將影片加入音訊](https://hardliver.blogspot.com/2017/07/moviepy-moviepy.html)
-
-
-#### Django 使用HttpResponse返回图片、使用流响应处理视频
-
-
-```python
-def read_img(request):
-    """
-    : 读取图片
-    :param request:
-    :return:
-    """
-    try:
-        data = request.GET
-        file_name = data.get("file_name")
-        imagepath = os.path.join(settings.BASE_DIR, "static/images/{}".format(file_name))  # 图片路径
-        with open(imagepath, 'rb') as f:
-            image_data = f.read()
-        return HttpResponse(image_data, content_type="image/png")
-    except Exception as e:
-        print(e)
-        return HttpResponse(str(e))
-```
-
-- [Django 中使用流响应处理视频 - 栖迟于一丘](https://www.hongweipeng.com/index.php/archives/1559/)
-
-
-####  Django 数据库查询方法总结
-
-
-```pythobn
-__exact 精确等于 like ‘aaa’
-__iexact 精确等于 忽略大小写 ilike ‘aaa’
-__contains 包含 like ‘%aaa%’
-__icontains 包含 忽略大小写 ilike ‘%aaa%’，但是对于sqlite来说，contains的作用效果等同于icontains。
-__gt 大于
-__gte 大于等于
-__lt 小于
-__lte 小于等于
-__in 存在于一个list范围内
-__startswith 以…开头
-__istartswith 以…开头 忽略大小写
-__endswith 以…结尾
-__iendswith 以…结尾，忽略大小写
-__range 在…范围内
-__year 日期字段的年份
-__month 日期字段的月份
-__day 日期字段的日
-__isnull=True/False
-__isnull=True 与 __exact=None的区别
-```
-
-数据库时间查询：
-```python
-2、gte：大于等于某个时间：
-a=yourobject.objects .filter(youdatetimcolumn__gte=start)
-
-3、lt：小于
-a=yourobject.objects .filter(youdatetimcolumn__lt=start)
-
-4、lte：小于等于
-a=yourobject.objects .filter(youdatetimcolumn__lte=start)
-
-5、range：查询时间段
-start_date = datetime.date(2005, 1, 1)
-end_date = datetime.date(2005, 3, 31)
-Entry.objects.filter(pub_date__range=(start_date, end_date))
-
-6、year：查询某年
-Entry.objects.filter(pub_date__year=2005)
-
-7、month：查询某月
-Entry.objects.filter(pub_date__month=12)
-
-8、day：某天
-Entry.objects.filter(pub_date__day=3)
-
-9、week_day：星期几
-Entry.objects.filter(pub_date__week_day=2)
-```
 
 
 #### python判断字符串是否纯数字
@@ -357,3 +214,155 @@ def is_png_transparent(path):
 - [python，使用PIL库对图片进行操作 - 每天1990 - 博客园](https://www.cnblogs.com/meitian/p/3699223.html)
 - [PIL 简明教程 - 基本用法 | 始终](https://liam.page/2015/04/22/pil-tutorial-basic-usage/)
 - [python – 如何使用PIL获取PNG图像的alpha值？ - 程序园](http://www.voidcn.com/article/p-sbwkywdo-btp.html)
+
+
+
+### Django
+#### Django: 使用 Q 对象构建复杂的查询语句
+
+多个字段模糊查询， 括号中的下划线是双下划线，双下划线前是字段名，双下划线后可以是icontains或contains,区别是是否大小写敏感，竖线是或的意思
+
+```
+sciencenews = models.Sciencenews.objects.filter(Q(title__icontains=keyword)\
+	|Q(content__icontains=keyword)|Q(author__icontains=keyword))
+
+```
+
+- [django学习——如何实现简单的搜索功能](https://blog.csdn.net/geerniya/article/details/79025405)
+- [Django模糊查询 - CSDN博客](https://blog.csdn.net/liuweiyuxiang/article/details/71104613)
+
+#### Django 使用jquery提交post请求
+Django在处理post请求时出现403错误
+
+原文1：http://www.cnblogs.com/xtt-w/p/6232559.html
+
+解决方法：
+ 在settings.py里面的MIDDLEWARE_CLASSES中去掉“‘django.middleware.csrf.CsrfViewMiddleware’,”。
+
+原文2：http://blog.csdn.net/sherry_rui/article/details/50523725
+
+解决方法：
+1.在发送post请求的html页面前加入{% csrf_token %}    如：
+
+```html
+<form action="/login" method="post">
+   {% csrf_token %}
+   <input type="text"  required="required" placeholder="用户名" name="u"/>
+   <input type="password"  required="required" placeholder="密码" name="p"/>
+   <button class="but" type="submit">登录</button>
+</form>
+```
+
+2.在处理post数据的view前加@csrf_exempt装饰符，如：
+
+```python
+from django.views.decorators.csrf import csrf_exempt,csrf_protect
+ 
+@csrf_exempt  
+def profile_delte(request): 
+```
+
+#### Django下载文件时，中文文件名问题
+
+解决：
+```python
+from django.utils.encoding import escape_uri_path
+from django.http import HttpResponse
+
+def test(request):
+    file_name = '测试.txt'
+    content = ...
+    response = HttpResponse(content, content_type='application/octet-stream')
+    response['Content-Disposition'] = "attachment; filename*=utf-8''{}".format(escape_uri_path(file_name))
+    return response
+```
+
+- [Django中设置Content-Disposition保存中文命名的文件 - ludaming的回答 - SegmentFault 思否](https://segmentfault.com/q/1010000009719860/a-1020000011650312)
+
+
+#### Django 使用HttpResponse返回图片、使用流响应处理视频
+
+
+```python
+def read_img(request):
+    """
+    : 读取图片
+    :param request:
+    :return:
+    """
+    try:
+        data = request.GET
+        file_name = data.get("file_name")
+        imagepath = os.path.join(settings.BASE_DIR, "static/images/{}".format(file_name))  # 图片路径
+        with open(imagepath, 'rb') as f:
+            image_data = f.read()
+        return HttpResponse(image_data, content_type="image/png")
+    except Exception as e:
+        print(e)
+        return HttpResponse(str(e))
+```
+
+- [Django 中使用流响应处理视频 - 栖迟于一丘](https://www.hongweipeng.com/index.php/archives/1559/)
+
+
+####  Django 数据库查询方法总结
+
+
+```pythobn
+__exact 精确等于 like ‘aaa’
+__iexact 精确等于 忽略大小写 ilike ‘aaa’
+__contains 包含 like ‘%aaa%’
+__icontains 包含 忽略大小写 ilike ‘%aaa%’，但是对于sqlite来说，contains的作用效果等同于icontains。
+__gt 大于
+__gte 大于等于
+__lt 小于
+__lte 小于等于
+__in 存在于一个list范围内
+__startswith 以…开头
+__istartswith 以…开头 忽略大小写
+__endswith 以…结尾
+__iendswith 以…结尾，忽略大小写
+__range 在…范围内
+__year 日期字段的年份
+__month 日期字段的月份
+__day 日期字段的日
+__isnull=True/False
+__isnull=True 与 __exact=None的区别
+```
+
+数据库时间查询：
+```python
+2、gte：大于等于某个时间：
+a=yourobject.objects .filter(youdatetimcolumn__gte=start)
+
+3、lt：小于
+a=yourobject.objects .filter(youdatetimcolumn__lt=start)
+
+4、lte：小于等于
+a=yourobject.objects .filter(youdatetimcolumn__lte=start)
+
+5、range：查询时间段
+start_date = datetime.date(2005, 1, 1)
+end_date = datetime.date(2005, 3, 31)
+Entry.objects.filter(pub_date__range=(start_date, end_date))
+
+6、year：查询某年
+Entry.objects.filter(pub_date__year=2005)
+
+7、month：查询某月
+Entry.objects.filter(pub_date__month=12)
+
+8、day：某天
+Entry.objects.filter(pub_date__day=3)
+
+9、week_day：星期几
+Entry.objects.filter(pub_date__week_day=2)
+```
+
+
+#### django log日志的配置
+
+- [django开发-log日志的配置 - wyzane - SegmentFault 思否](https://segmentfault.com/a/1190000016497135)
+- [django 日志logging的配置以及处理-David-51CTO博客](https://blog.51cto.com/davidbj/1433741)
+- [在Django使用Logging製作紀錄檔 - Carson's Tech save@note.youdao.com](https://carsonwah.github.io/django-logging.html)
+- [Logging | Django documentation | Django](https://docs.djangoproject.com/en/2.2/topics/logging/)
