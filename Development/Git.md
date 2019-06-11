@@ -202,3 +202,18 @@ git flow hotfix finish xxx
                   
 - [Alpha、Beta、RC、GA版本的区别 - Rex - BlogJava](http://www.blogjava.net/RomulusW/archive/2008/05/04/197985.html)
 - [关于BETA、RC、ALPHA、Release、GA等版本号的意义 - 我的人生不甘于平庸！ - ITeye博客](https://zwustudy.iteye.com/blog/1711763)
+
+### git cherry-pick 使用
+
+
+```git
+git cherry-pick <commit id>:单独合并一个提交
+git cherry-pick  -x <commit id>：同上，不同点：保留原提交者信息。
+
+Git从1.7.2版本开始支持批量cherry-pick，就是一次可以cherry-pick一个区间的commit。
+
+git cherry-pick <start-commit-id>..<end-commit-id>
+git cherry-pick <start-commit-id>^..<end-commit-id>
+```
+
+- [git cherry-pick 使用指南 - 简书](https://www.jianshu.com/p/08c3f1804b36)
