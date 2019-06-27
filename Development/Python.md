@@ -216,6 +216,16 @@ def is_png_transparent(path):
 - [python – 如何使用PIL获取PNG图像的alpha值？ - 程序园](http://www.voidcn.com/article/p-sbwkywdo-btp.html)
 
 
+### Python json dumps 非标准类型
+
+- [Python 优雅地 dumps 非标准类型 - 掘金](https://juejin.im/post/5a06d4776fb9a04515435afe)
+
+
+### Python 解析iOS的 p12、mobileprovision文件内容
+
+- [Python查看ipa UDID和其他基本信息 - 简书](https://www.jianshu.com/p/7b84f95bdf6f)
+- [cryptography - Python: reading a pkcs12 certificate with pyOpenSSL.crypto - Stack Overflow](https://stackoverflow.com/questions/6345786/python-reading-a-pkcs12-certificate-with-pyopenssl-crypto/6346268#6346268)
+- [Python：用pyOpenSSL.crypto读取pkcs12证书 - 代码日志](https://codeday.me/bug/20181207/432700.html)
 
 ### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
@@ -366,3 +376,80 @@ Entry.objects.filter(pub_date__week_day=2)
 - [django 日志logging的配置以及处理-David-51CTO博客](https://blog.51cto.com/davidbj/1433741)
 - [在Django使用Logging製作紀錄檔 - Carson's Tech save@note.youdao.com](https://carsonwah.github.io/django-logging.html)
 - [Logging | Django documentation | Django](https://docs.djangoproject.com/en/2.2/topics/logging/)
+
+
+#### Django 国际化和本地化
+> 国际化一般简称 `i18n`，代表 Internationalization 中 i 和 n 有 18 个字母；本地化简称 `L10n`，表示 Localization 中 l 和 n 中有 10 个字母。
+
+通过`_()`或`ugettext()`函数，指定某个变量需要翻译
+```python
+from django.utils.translation import ugettext as _
+from django.http import HttpResponse
+
+def my_view(request):
+    output = _("Welcome to my site.")
+    return HttpResponse(output)
+```
+
+首先你要在模版的顶部加载`{% load i18n %}`, 使用`{% trans %}`模板标签
+
+```python
+{% load i18n %}
+<title>{% trans "This is the title." %}</title>
+<title>{% trans myvar %}</title>
+
+#提前翻译字符串但是不显示出来
+{% trans "This is the title" as the_title %}
+
+<title>{{ the_title }}</title>
+<meta name="description" content="{{ the_title }}">
+```
+
+`blocktrans`标签允许你通过使用占位符来标记由文字和可变内容组成的复杂句子进行翻译
+
+
+```python
+{% blocktrans %}This string will have {{ value }} inside.{% endblocktrans %}
+
+{% blocktrans with amount=article.price %}
+That will cost $ {{ amount }}.
+{% endblocktrans %}
+
+{% blocktrans with myvar=value|filter %}
+This will have {{ myvar }} inside.
+{% endblocktrans %}
+```
+
+使用 `makemessages` 命令生成 po 语言文件
+
+```python
+python manage.py makemessages -l zh-cn  //中文简体
+python manage.py makemessages -l en    //英文
+```
+
+> 注：执行命令后，Django会在根目录及其子目录下搜集所有需要翻译的字符串，默认情况下它会搜索`.html`、`.txt`和`.py`文件，然后在根目录的`locale/LANG/LC_MESSAGES`目录下创建一个django.po文件。
+> 
+> 在执行这一步之前，请先通过 `xgettext --version` 确认自己是否安装了 GNU gettext。GNU gettext 是一个标准 i18n L10n 库，Django 和很多其他语言和库的多语言模块都调用了 GNU gettext。
+
+macOS:
+```python
+$ brew install gettext
+$ brew link --force gettext
+```
+
+ubuntu:
+```python
+$ apt update
+$ apt install gettext
+```
+
+编译 `compilemessages` 命令编译 mo 文件，将其编译成对应的`*.mo`文件，Django在运行时将使用`*.mo`文件对网站进行国际化翻译
+
+```python
+django-admin compilemessages
+```
+> Django将自动搜索所有的`.po`文件，将它们都翻译成`.mo`文件。
+
+
+- [django Django 国际化和本地化 - 刘江的django教程](http://www.liujiangblog.com/course/django/180)
+- [Django 多语言教程 (i18n) - 掘金](https://juejin.im/post/5b3efc36e51d45197136eb09)
