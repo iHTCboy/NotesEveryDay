@@ -226,6 +226,7 @@ def is_png_transparent(path):
 - [Python查看ipa UDID和其他基本信息 - 简书](https://www.jianshu.com/p/7b84f95bdf6f)
 - [cryptography - Python: reading a pkcs12 certificate with pyOpenSSL.crypto - Stack Overflow](https://stackoverflow.com/questions/6345786/python-reading-a-pkcs12-certificate-with-pyopenssl-crypto/6346268#6346268)
 - [Python：用pyOpenSSL.crypto读取pkcs12证书 - 代码日志](https://codeday.me/bug/20181207/432700.html)
+- [那些证书相关的玩意儿(SSL,X.509,PEM,DER,CRT,CER,KEY,CSR,P12等) - guogangj - 博客园](https://www.cnblogs.com/guogangj/p/4118605.html)
 
 ### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
@@ -453,3 +454,12 @@ django-admin compilemessages
 
 - [django Django 国际化和本地化 - 刘江的django教程](http://www.liujiangblog.com/course/django/180)
 - [Django 多语言教程 (i18n) - 掘金](https://juejin.im/post/5b3efc36e51d45197136eb09)
+
+
+#### Django Server Error: port is already in use
+
+```shell
+sudo lsof -t -i tcp:8000 | xargs kill -9
+```
+
+- [python - Django Server Error: port is already in use - Stack Overflow](https://stackoverflow.com/questions/20239232/django-server-error-port-is-already-in-use)
