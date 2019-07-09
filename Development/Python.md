@@ -1,5 +1,6 @@
 [TOC]
 
+### Python
 #### Python实现Zip文件的暴力破解
 
 
@@ -216,12 +217,12 @@ def is_png_transparent(path):
 - [python – 如何使用PIL获取PNG图像的alpha值？ - 程序园](http://www.voidcn.com/article/p-sbwkywdo-btp.html)
 
 
-### Python json dumps 非标准类型
+#### Python json dumps 非标准类型
 
 - [Python 优雅地 dumps 非标准类型 - 掘金](https://juejin.im/post/5a06d4776fb9a04515435afe)
 
 
-### Python 解析iOS的 p12、mobileprovision文件内容
+#### Python 解析iOS的 p12、mobileprovision文件内容
 
 - [Python查看ipa UDID和其他基本信息 - 简书](https://www.jianshu.com/p/7b84f95bdf6f)
 - [cryptography - Python: reading a pkcs12 certificate with pyOpenSSL.crypto - Stack Overflow](https://stackoverflow.com/questions/6345786/python-reading-a-pkcs12-certificate-with-pyopenssl-crypto/6346268#6346268)
