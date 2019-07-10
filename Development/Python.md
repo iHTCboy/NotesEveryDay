@@ -229,6 +229,204 @@ def is_png_transparent(path):
 - [Python：用pyOpenSSL.crypto读取pkcs12证书 - 代码日志](https://codeday.me/bug/20181207/432700.html)
 - [那些证书相关的玩意儿(SSL,X.509,PEM,DER,CRT,CER,KEY,CSR,P12等) - guogangj - 博客园](https://www.cnblogs.com/guogangj/p/4118605.html)
 
+
+#### Python异常之后输出异常信息（行号）
+
+python2.x捕获异常语法：
+
+```python
+try:
+    ...some functions...
+except Exception, e:
+    print(e)
+```
+
+python3.x捕获异常语法：
+
+
+```python
+try:
+    ...some functions...
+except Exception as e:
+    print(e)
+```
+注意这里 Exception, e 变成了 Exception as e
+
+
+Untitled.py示例代码：
+
+```python
+import traceback
+	
+try:
+	form = None
+	form['user'] = 'iHTCboy'
+except Exception as e:
+	print('str(e):\t', str(e))
+	print('repr(e):\t', repr(e))
+	print('e.message:\t', e.message)
+	print('traceback.print_exc():'); traceback.print_exc()
+	print ('traceback.format_exc():\n{}'.format(traceback.format_exc()))
+```
+
+1、str(e)
+> 返回字符串类型，只给出异常信息，不包括异常信息的类型，如TypeError的异常信息：`'NoneType' object does not support item assignment`
+
+2、repr(e)
+> 给出较全的异常信息，包括异常信息的类型，如TypeError的异常信息：`TypeError("'NoneType' object does not support item assignment")`
+
+3、e.message
+> `Python2` 获得的信息同str(e)，但 `Python3` 则异常报错：
+
+```python
+Traceback (most recent call last):
+  File "Untitled.py", line 6, in <module>
+    form['user'] = 'iHTCboy'
+TypeError: 'NoneType' object does not support item assignment
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "Untitled.py", line 10, in <module>
+    print('e.message:\t', e.message)
+AttributeError: 'TypeError' object has no attribute 'message'
+```
+
+4、采用traceback模块
+> 需要导入traceback模块，此时获取的信息最全，与python命令行运行程序出现错误信息一致。使用`traceback.print_exc()`打印异常信息到标准错误，使用`traceback.format_exc()`将同样的输出获取为字符串。你可以向这些函数传递各种各样的参数来限制输出，或者重新打印到像文件类型的对象。
+
+```python
+Traceback (most recent call last):
+  File "Untitled.py", line 6, in <module>
+    form['user'] = 'iHTCboy'
+TypeError: 'NoneType' object does not support item assignment
+```
+
+#### Python常见的异常类型
+1. NameError：尝试访问一个未申明的变量
+
+```python
+>>> v
+NameError: name 'v' is not defined
+```
+
+2. ZeroDivisionError：除数为0
+
+```python
+>>> v = 1/0
+ZeroDivisionError: int division or modulo by zero
+```
+
+3. SyntaxError：语法错误
+
+```python
+int int
+SyntaxError: invalid syntax (<pyshell#14>, line 1)
+```
+
+4. IndexError：索引超出范围
+
+```python
+List = [2]
+>>> List[3]
+Traceback (most recent call last):
+  File "<pyshell#18>", line 1, in <module>
+    List[3]
+IndexError: list index out of range
+```
+
+5. KeyError：字典关键字不存在
+
+```python
+Dic = {'1':'yes', '2':'no'}
+>>> Dic['3']
+Traceback (most recent call last):
+  File "<pyshell#20>", line 1, in <module>
+    Dic['3']
+KeyError: '3'
+```
+
+6. IOError：输入输出错误
+
+```python
+>>> f = open('abc')
+IOError: [Errno 2] No such file or directory: 'abc'
+```
+
+7. AttributeError：访问未知对象属性
+
+```python
+>>> class Worker:
+ def Work():
+  print("I am working")
+
+>>> w = Worker()
+>>> w.a
+Traceback (most recent call last):
+  File "<pyshell#51>", line 1, in <module>
+    w.a
+AttributeError: 'Worker' object has no attribute 'a'
+```
+
+8.ValueError：数值错误
+
+```python
+>>> int('d')
+Traceback (most recent call last):
+  File "<pyshell#54>", line 1, in <module>
+    int('d')
+ValueError: invalid literal for int() with base 10: 'd'
+```
+
+9. TypeError：类型错误
+
+```python
+>>> iStr = '22'
+>>> iVal = 22
+>>> obj = iStr + iVal;
+Traceback (most recent call last):
+  File "<pyshell#68>", line 1, in <module>
+    obj = iStr + iVal;
+TypeError: Can't convert 'int' object to str implicitly
+```
+
+10. AssertionError：断言错误
+
+```python
+>>> assert 1 != 1
+Traceback (most recent call last):
+  File "<pyshell#70>", line 1, in <module>
+    assert 1 != 1
+AssertionError
+```
+
+11.MemoryError:内存耗尽异常
+
+
+12. NotImplementedError：方法没实现引起的异常
+
+```python
+class Base(object):
+    def __init__(self):
+        pass
+
+    def action(self):
+        #抛出异常，说明该接口方法未实现
+        raise NotImplementedError
+```
+
+13. LookupError：键、值不存在引发的异常
+
+> LookupError异常是IndexError、KeyError的基类， 如果你不确定数据类型是字典还是列表时，可以用LookupError捕获此异常
+
+14. StandardError 标准异常
+
+> 除StopIteration, GeneratorExit, KeyboardInterrupt 和SystemExit外，其他异常都是StandarError的子类。
+
+错误检测与异常处理区别在于：错误检测是在正常的程序流中，处理不可预见问题的代码，例如一个调用操作未能成功结束。
+
+- [Python异常处理和异常类型 - Monica的专栏 - CSDN博客](https://blog.csdn.net/TskyFree/article/details/48630817)
+
 ### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
 
