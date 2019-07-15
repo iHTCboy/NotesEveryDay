@@ -668,3 +668,13 @@ sudo lsof -t -i tcp:8000 | xargs kill -9
 ```
 
 - [python - Django Server Error: port is already in use - Stack Overflow](https://stackoverflow.com/questions/20239232/django-server-error-port-is-already-in-use)
+
+#### DateTime compare in django template
+
+```python
+{% if pub_date|date:"YmdHis" != mod_date|date:"YmdHis" %}
+        <span>文章已于 {{ topic.mod_date }} 修改</span>
+{% endif %} 
+```
+
+- [DateTime compare in django template - Stack Overflow](https://stackoverflow.com/questions/15675764/datetime-compare-in-django-template/57036650#57036650)
