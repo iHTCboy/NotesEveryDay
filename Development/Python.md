@@ -427,6 +427,21 @@ class Base(object):
 
 - [Python异常处理和异常类型 - Monica的专栏 - CSDN博客](https://blog.csdn.net/TskyFree/article/details/48630817)
 
+#### openpyxl怎么将文本单元格变成超链接？
+
+
+```python
+from openpyxl import load_workbook
+
+wb = load_workbook('/user/HTC/boy.xlsx') 
+s = wb.get_sheet_by_name('Sheet') 
+s['B4'].hyperlink = 'https://iHTCboy.com' 
+s['B4'].style = 'Hyperlink' 
+wb.save('trial.xlsx')
+```
+
+
+
 ### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
 
