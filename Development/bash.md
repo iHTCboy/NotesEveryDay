@@ -134,7 +134,38 @@ fi
 #### cmd命令里的路径包含空格的解决方法
 解决方法很简单：将路径加上双引号
 
+`"/user/iHTC boy/bash/"`
 ---
+
+#### 在一行执行多条命令
+
+分三种情况：
+
+1、&&
+
+举例：
+```bash
+lpr /tmp/t2 && rm /tmp/t2
+```
+第2条命令只有在第1条命令成功执行之后才执行。当 `&&` 前的命令 `lpr /tmp/t2` 成功执行后 `rm /tmp/t2` 才执行，根据命令产生的退出码判断是否执行成功（0成功，非0失败）。
+
+2、||
+
+举例：
+```bash
+cp /tmp/t2 /tmp/t2.bak || rm /tmp/t2
+```
+只有`||`前的命令`cp /tmp/t2 /tmp/t2.bak`执行不成功（产生了一个非0的退出码）时，才执行后面的命令。
+
+3、;
+
+举例：
+```bash
+cp /tmp/t2 /tmp/t2.bak; echo "hello world"
+```
+顺序执行多条命令，当`;`号前的命令执行完（不管是否执行成功），才执行`;`后的命令。
+
+[shell学习笔记（1）Linux下在一行执行多条命令 - KoreaSeal - 博客园](https://www.cnblogs.com/koreaseal/archive/2012/05/28/2522178.html)
 
 ### vim
 
