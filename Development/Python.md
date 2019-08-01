@@ -701,3 +701,18 @@ sudo lsof -t -i tcp:8000 | xargs kill -9
 - [如何扩展 Django User 模型 - 后端 - 掘金](https://juejin.im/entry/598ad78f51882548981919ac)
 - [DjangoWeb开发--增加用户字段 - 简书](https://www.jianshu.com/p/414df6b1cb29)
 - [Django不区分大小写的登录，混合大小写用户名 - VoidCC](http://cn.voidcc.com/question/p-rnblylwy-bke.html)
+
+
+### 爬虫
+#### Python Selenium 元素text获取不到内容
+
+```python
+li_list = browser.find_elements_by_class_name('myli')
+for article in li_list:
+    text = article.text
+    text1 = article.get_attribute('innerHTML')
+    text2 = article.get_attribute('innerText')
+    text3 = article.get_attribute('textContent')
+```
+
+第一个 `.text` 获取有些为空，所以要用下面的3种方法。
