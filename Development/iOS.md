@@ -148,3 +148,27 @@ open  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platf
 
 需要在Xcode中创建模板器
 
+
+### iOS 处理器指令集架构 
+
+2018 A12芯片arm64e ： iphone XS、 iphone XS Max、 iphoneXR
+2017 A11芯片arm64： iPhone 8, iPhone 8 Plus, and iPhone X
+2016 A10芯片arm64：iPhone 7 , 7 Plus, iPad (2018)
+2015 A9芯片arm64： iPhone 6S , 6S Plus 
+2014 A8芯片arm64： iPhone 6 , iPhone 6 Plus
+2013 A7芯片arm64： iPhone 5S
+armv7s：iPhone5｜iPhone5C｜iPad4(iPad with Retina Display)
+armv7：iPhone4｜iPhone4S｜iPad｜iPad2｜iPad3(The New iPad)｜iPad mini｜iPod Touch 3G｜iPod Touch4 | iPod Touch5
+ARMv6：iPhone, iPhone 3G, iPod 1G/2G
+
+模拟器32位处理器测试需要i386架构，
+模拟器64位处理器测试需要x86_64架构，
+真机32位处理器需要armv7,或者armv7s架构，
+真机64位处理器需要arm64架构。
+
+
+- [iPhone CPU架构 - 掘金](https://juejin.im/post/5c1234cde51d4524a923f83e)
+- [iOS 指令集架构 armv6、armv7、armv7s、arm64、arm64e、x86_64、i386 - Belinda_sl - 博客园](https://www.cnblogs.com/lulushen/p/8135269.html)
+- [关于Xcode “Build Setting”中的Architectures详解 - 崩月姐姐之家](http://bengyuejiejie.github.io/blog/2015/03/09/first-blog/)
+- [ios - Xcode arm64 Vs arm64e - Stack Overflow](https://stackoverflow.com/questions/52624308/xcode-arm64-vs-arm64e)
+- [Armv8-A: 2016 additions - Processors blog - Processors - Arm Community](https://community.arm.com/developer/ip-products/processors/b/processors-ip-blog/posts/armv8-a-architecture-2016-additions)
