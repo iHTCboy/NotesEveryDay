@@ -249,3 +249,59 @@ for(let liElement of liElemnts) {
 var s = abc.join("\n");
 console.log(s);
 ```
+
+#### jquery 查找全部某种id元素
+
+包含字符：
+```js
+    $("*[id*='DiscountType']").each(function (i, el) {
+         //It'll be an array of elements
+     });
+```
+
+以字符开关：
+```js
+    $("*[id^='DiscountType']").each(function (i, el) {
+         //It'll be an array of elements
+     });
+```
+
+
+以字符结尾：
+```js
+    $("*[id$='DiscountType']").each(function (i, el) {
+         //It'll be an array of elements
+     });
+```
+
+如果要选择id不是给定字符串的元素：
+```js
+    $("*[id!='DiscountType']").each(function (i, el) {
+         //It'll be an array of elements
+     });
+```
+
+如果要选择id包含给定单词的元素，则用空格分隔：
+```js
+    $("*[id~='DiscountType']").each(function (i, el) {
+         //It'll be an array of elements
+     });
+```
+
+如果要选择id等于给定字符串或以该字符串后跟连字符开头的元素：
+```js
+    $("*[id|='DiscountType']").each(function (i, el) {
+         //It'll be an array of elements
+     });
+```
+
+- [search - Find all elements on a page whose element ID contains a certain text using jQuery - Stack Overflow](https://stackoverflow.com/questions/1206739/find-all-elements-on-a-page-whose-element-id-contains-a-certain-text-using-jquer)
+
+
+#### JS正则表达式
+
+
+
+- [JS正则表达式完整教程（略长） - 掘金](https://juejin.im/post/5965943ff265da6c30653879)
+- [JavaScript正则，看这篇就够了 - 掘金](https://juejin.im/post/5acb4d3f6fb9a028c813295e)
+- [你真的懂JavaScript的正则吗？ - 掘金](https://juejin.im/post/59096d2161ff4b0066ef2017)

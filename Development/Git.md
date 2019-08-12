@@ -53,25 +53,26 @@ git checkout .
 
 后面有.点，表示全部文件撤销
 
-### git 撤销本地已提交(commit)但没有提交(push)的更改
+### git 撤销本地已提交(commit)，可能提交(push)的更改
 
 如果你只想为之前的commit增加更多的改动，或者改变之前的提交信息，你应该使用：
 ```git
 git reset --soft HEAD~
 ```
-会将你的改动保留在暂存区内。或类似
+会将你的改动保留在暂存区内(只是改变了HEAD的指向，本地代码不会变化)。或使用
 
 ```git
-git rest HEAD~
+git reset HEAD~
 ```
 
-销毁了一个commit，但最后发现仍然需要它？
+如果已经提交到远程，就需要用本地覆盖远程，通过：
 
 ```git
-git reflog
+git push origin master --force
 ```
+强制提交当前版本号，以达到撤销版本号的目的。必须添加参数force进行强制提交，否则会提交失败，并报错（原因：本地项目版本号低于远端仓库版本号。）。
 
-[](https://www.jianshu.com/p/9f11d398111f)
+- [[译] 在Git中如何撤销上一次的commit(s)？ - 简书](https://www.jianshu.com/p/9f11d398111f)
 
 ### 一步提交git变更
 
@@ -205,6 +206,7 @@ git flow hotfix finish xxx
 
 ### git cherry-pick 使用
 
+选择某一个分支中的一个或几个commit(s)来进行操作。
 
 ```git
 git cherry-pick <commit id>:单独合并一个提交
