@@ -297,6 +297,11 @@ console.log(s);
 
 - [search - Find all elements on a page whose element ID contains a certain text using jQuery - Stack Overflow](https://stackoverflow.com/questions/1206739/find-all-elements-on-a-page-whose-element-id-contains-a-certain-text-using-jquer)
 
+#### js生成二维码
+
+- [davidshimjs/qrcodejs: Cross-browser QRCode generator for javascript](https://github.com/davidshimjs/qrcodejs)
+- [jeromeetienne/jquery-qrcode: qrcode generation standalone (doesn't depend on external services)](https://github.com/jeromeetienne/jquery-qrcode)
+
 
 #### JS正则表达式
 
