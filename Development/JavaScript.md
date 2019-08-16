@@ -303,9 +303,35 @@ console.log(s);
 - [jeromeetienne/jquery-qrcode: qrcode generation standalone (doesn't depend on external services)](https://github.com/jeromeetienne/jquery-qrcode)
 
 
+#### 获取当前页面url及url参数的方法
+
+window.location 属性
+
+以`https://www.ihtcboy.com:1024/n/2/?order=pub_date#comment`示例:
+
+| 属性  | 作用  | 示例结果  |
+| ------------ | ------------ | ------------ |
+| hash | 设置或获取 href 属性中在井号“#”后面的分段。 | #comment|
+| host | 设置或获取 location 或 URL 的 hostname 和 port 号码。（如果是默认80端口的链接，:1024是没有的） |  www.ihtcboy.com:1024|
+| hostname | 设置或获取 location 或 URL 的主机名称部分。 | www.ihtcboy.com  |
+| href | 设置或获取整个 URL 为字符串。 | https://www.ihtcboy.com:1024/n/2/?order=pub_date |
+| origin | 协议+域名。ie中获取为undefined | https://www.ihtcboy.com:1024 |
+| pathname | 设置或获取对象指定的文件名或路径。 | /n/2/ |
+| port | 设置或获取与 URL 关联的端口号码。 | 1024 |
+| protocol | 设置或获取 URL 的协议部分。 | https: |
+| search | 设置或获取 href 属性中跟在问号后面的部分。 | ?order=pub_date |
+
+`window.location.origin` polyfill:
+
+```js
+if (!window.location.origin) {
+  window.location.origin = window.location.protocol + "//" 
+    + window.location.hostname 
+    + (window.location.port ? ':' + window.location.port : '');
+}
+```
+
 #### JS正则表达式
-
-
 
 - [JS正则表达式完整教程（略长） - 掘金](https://juejin.im/post/5965943ff265da6c30653879)
 - [JavaScript正则，看这篇就够了 - 掘金](https://juejin.im/post/5acb4d3f6fb9a028c813295e)
