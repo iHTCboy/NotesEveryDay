@@ -723,6 +723,21 @@ sudo lsof -t -i tcp:8000 | xargs kill -9
 - [DateTime compare in django template - Stack Overflow](https://stackoverflow.com/questions/15675764/datetime-compare-in-django-template/57036650#57036650)
 
 
+#### Django User 模型
+- username
+- password
+- email
+- first_name
+- last_name
+- groups
+- user_permissions
+- is_active 表示用户是否是活跃的
+- is_staff 可以登录django的admin后台
+- is_superuser 能够登录admin后台，并拥有所有注册模型的管理权限。
+- last_login
+- date_joined
+
+
 #### 扩展 Django User 模型
 
 ```python
@@ -752,6 +767,14 @@ def save_user_profile(sender, instance, created, **kwargs):
 - [DjangoWeb开发--增加用户字段 - 简书](https://www.jianshu.com/p/414df6b1cb29)
 - [Django不区分大小写的登录，混合大小写用户名 - VoidCC](http://cn.voidcc.com/question/p-rnblylwy-bke.html)
 
+
+#### Django 不区分大小写的用户名允许登录
+
+Django 支持不区分大小写筛选运算符`iexact`：
+
+```python
+user = User.objects.get(username__iexact=name) 
+```
 
 #### 设置 Django ModelAdmin 为只读
 
