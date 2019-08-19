@@ -725,11 +725,62 @@ sudo lsof -t -i tcp:8000 | xargs kill -9
 
 #### 扩展 Django User 模型
 
+```python
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    icon = models.CharField(max_length=1000, blank=True)
+    email = models.CharField(max_length=60, blank=True)
+    mobile = models.CharField(max_length=60, blank=True)
+
+    def __str__(self):
+        return 'Profile for user {}'.format(self.user.username)
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, created, **kwargs):
+    if not instance.is_superuser:
+        instance.profile.save()
+    # if created:
+    #     instance.profile.save()
+```
 
 - [如何扩展 Django User 模型 - 后端 - 掘金](https://juejin.im/entry/598ad78f51882548981919ac)
 - [DjangoWeb开发--增加用户字段 - 简书](https://www.jianshu.com/p/414df6b1cb29)
 - [Django不区分大小写的登录，混合大小写用户名 - VoidCC](http://cn.voidcc.com/question/p-rnblylwy-bke.html)
 
+
+#### 设置 Django ModelAdmin 为只读
+
+1. 重写 `get_readonly_fields` 方法：
+
+```python
+
+class PostAdmin(admin.ModelAdmin):
+   
+   ...
+   
+    def get_readonly_fields(self, request, obj=None):
+        return ['user']
+```
+
+2. 定义 readonly_fields 属性
+
+```python
+class PostAdmin(admin.ModelAdmin):
+   
+   ...
+   
+    readonly_fields = [field.name for field in ModelName._meta.fields]
+```
+
+其它的属性有，禁用添加操作 `has_add_permission`，禁用修改操作 `has_change_permission`，禁用删除操作，`has_delete_permission`
+
+- [如何在 django admin site 中设置某个 model 只读 - Huang Huang 的博客](https://mozillazg.com/2015/09/django-setup-readonly-model-on-admin.html)
+- [The Django admin site | Django documentation | Django](https://docs.djangoproject.com/en/1.8/ref/contrib/admin/#django.contrib.admin.ModelAdmin.readonly_fields)
 
 ### 爬虫
 #### Python Selenium 元素text获取不到内容
