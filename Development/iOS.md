@@ -172,3 +172,18 @@ ARMv6：iPhone, iPhone 3G, iPod 1G/2G
 - [关于Xcode “Build Setting”中的Architectures详解 - 崩月姐姐之家](http://bengyuejiejie.github.io/blog/2015/03/09/first-blog/)
 - [ios - Xcode arm64 Vs arm64e - Stack Overflow](https://stackoverflow.com/questions/52624308/xcode-arm64-vs-arm64e)
 - [Armv8-A: 2016 additions - Processors blog - Processors - Arm Community](https://community.arm.com/developer/ip-products/processors/b/processors-ip-blog/posts/armv8-a-architecture-2016-additions)
+
+### WKWebView如何清除缓存
+
+```obj-c
+- (void)deleteWebCache {
+    //allWebsiteDataTypes清除所有缓存
+    if (@available(iOS 9.0, *)) {
+        NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+        NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+                NSLog(@"[Web log]: deleteWebCache completion~");
+        }];
+    }
+}
+```
