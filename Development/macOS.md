@@ -12,6 +12,14 @@ https://skyline75489.github.io/post/2014-7-10_iterm-usage.html
 Editor区域：
 Perferences -> Editor -> General -> Soft Wraps -> Use soft wraps in editor
 
+- 2019 更新为：
+Perferences -> Editor -> General -> Soft Wraps -> Soft wraps files:
+
+```python
+*.*;*.md; *.txt; *.rst; *.adoc
+```
+可选选择要换行的文件类型。
+
 Console区域：
 Perferences -> Editor -> General -> Console -> Use soft wraps in console
 
