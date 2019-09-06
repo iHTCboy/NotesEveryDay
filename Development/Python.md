@@ -805,6 +805,12 @@ class PostAdmin(admin.ModelAdmin):
 - [如何在 django admin site 中设置某个 model 只读 - Huang Huang 的博客](https://mozillazg.com/2015/09/django-setup-readonly-model-on-admin.html)
 - [The Django admin site | Django documentation | Django](https://docs.djangoproject.com/en/1.8/ref/contrib/admin/#django.contrib.admin.ModelAdmin.readonly_fields)
 
+#### Django REST framework
+
+- [Serializers - Django REST framework中文站点](https://q1mi.github.io/Django-REST-framework-documentation/api-guide/serializers_zh/)
+- [Django REST framework API 指南 - 掘金](https://juejin.im/post/5a9520dc6fb9a0634f40c2db)
+
+
 ### 爬虫
 #### Python Selenium 元素text获取不到内容
 
