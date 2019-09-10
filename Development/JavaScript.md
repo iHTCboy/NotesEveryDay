@@ -345,3 +345,15 @@ http://img.suoniao.com/FkVlSRujvfQyXe0X65sa_qbaDZds
 - [JS正则表达式完整教程（略长） - 掘金](https://juejin.im/post/5965943ff265da6c30653879)
 - [JavaScript正则，看这篇就够了 - 掘金](https://juejin.im/post/5acb4d3f6fb9a028c813295e)
 - [你真的懂JavaScript的正则吗？ - 掘金](https://juejin.im/post/59096d2161ff4b0066ef2017)
+
+
+#### 向页面注入JS文件
+
+```js
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "http://libs.baidu.com/jquery/2.0.0/jquery.min.js";
+  var s = document.getElementsByTagName("title")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+```
