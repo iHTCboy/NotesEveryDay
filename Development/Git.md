@@ -219,3 +219,70 @@ git cherry-pick <start-commit-id>^..<end-commit-id>
 ```
 
 - [git cherry-pick 使用指南 - 简书](https://www.jianshu.com/p/08c3f1804b36)
+
+### Adding an SSH key to your GitLab account
+
+- Generate ssh key
+use RSA:
+```sh
+ssh-keygen -o -t rsa -b 4096 -C "email@example.com"
+```
+
+注：此命令会提示您输入存储密钥的位置和文件名。只需按enter使用默认值就可以。
+
+成功后：
+```
+The key's randomart image is:
++---[RSA 4096]----+
+| .o+             |
+|. +.o            |
+| + = .           |
+|o + *            |
+|+. + o .S        |
+|.+ o  o.o        |
+|  * *.oo .       |
+| o %oO .o        |
+|..*+%*E=         |
++----[SHA256]-----+
+```
+
+- Copy ssh public key
+macOS:
+```sh
+pbcopy < ~/.ssh/id_rsa.pub
+```
+
+WSL / GNU/Linux (requires the xclip package):
+```sh
+xclip -sel clip < ~/.ssh/id_rsa.pub
+```
+
+Git Bash on Windows:
+```sh
+cat ~/.ssh/id_rsa.pub | clip
+```
+
+- Q&A
+拉取代码时，报错：
+```sh
+Cloning into 'htcproject'...
+/Users/iHTCboy/.ssh/config line 4: garbage at end of line; "Enterprise".
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+```
+
+原因是 `config` 中包含非法的字符，可能是之前配置或者多个账号配置，Sourcetree生成等，可以直接清空内容或者删除文件即可。
+
+
+```sh
+➜ git clone git@172.16.1.88:ios/iHTCboy/ftproject.git
+Cloning into 'ftproject'...
+The authenticity of host '172.16.1.88 (172.16.1.88)' can't be established.
+RSA key fingerprint is SHA256:aRCcbTE77qYN9jWV9vns6BG1yUs.
+Are you sure you want to continue connecting (yes/no)?
+```
+在第一次使用 SSH 连接 GitLab 的时候会有一个RSA密码指纹确认，输入yes接受即可，以后再连接也不会出现确认提示了。
+
+
