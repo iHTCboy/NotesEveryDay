@@ -187,3 +187,9 @@ ARMv6：iPhone, iPhone 3G, iPod 1G/2G
     }
 }
 ```
+
+
+### Home Indicator 问题
+
+- [iPhoneX适配之Home-Indicator | 凌云的博客](http://lingyuncxb.com/2018/01/28/iPhoneX%E9%80%82%E9%85%8D%E4%B9%8BHome-Indicator/)
+- [关于iPhone X下Home键的隐藏和延迟响应 - 掘金](https://juejin.im/post/5a7c1a66f265da4e9b590126)
