@@ -53,7 +53,7 @@ git checkout .
 
 后面有.点，表示全部文件撤销
 
-### git 撤销本地已提交(commit)，可能提交(push)的更改
+### git 撤销本地已提交(commit)，或已推送远端(push)的更改
 
 如果你只想为之前的commit增加更多的改动，或者改变之前的提交信息，你应该使用：
 ```git
@@ -63,6 +63,11 @@ git reset --soft HEAD~
 
 ```git
 git reset HEAD~
+```
+
+回退上一次提交前，并且强制清除修改的内容：
+```git
+git reset --hard HEAD^
 ```
 
 如果已经提交到远程，就需要用本地覆盖远程，通过：
