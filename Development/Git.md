@@ -346,3 +346,66 @@ fd1/*
 说明：忽略全部内容，但是不忽略 .gitignore 文件、根目录下的 /fw/bin/ 和 /fw/sf/ 目录；注意要先对bin/的父目录使用!规则，使其不被排除。
 ```
 
+
+### git子模块
+
+* 添加子模块
+```git
+$ git submodule add https://github.com/ihtcboy/submodule.git submodule
+```
+
+* 查看子模块
+```git
+$ git submodule (status)
+```
+
+* 更新项目内子模块到最新版本
+```git
+$ git submodule update
+```
+
+* 更新子模块为远程项目的最新版本
+```
+$ git submodule update --remote
+```
+
+* 克隆包含子模块的项目
+```shell
+//初始化子模块
+$ git submodule init
+
+//更新子模块
+$ git submodule update
+```
+
+* 递归克隆整个项目
+* 
+```git
+git clone https://github.com/ihtcboy/submodule.git submodule --recursive 
+```
+
+* 删除子模块
+
+删除子模块文件夹：
+```git
+$ git rm --cached submodule
+$ rm -rf submodule
+```
+
+删除.gitmodules文件中相关子模块信息：
+```
+[submodule "submodule"]
+  path = submodule
+  url = https://github.com/ihtcboy/submodule.git
+```
+
+删除.git/config中的相关子模块信息：
+```
+[submodule "submodule"]：
+  url = https://github.com/ihtcboy/submodule.git
+```
+
+删除.git文件夹中的相关子模块文件：
+```git
+$ rm -rf .git/modules/submodule
+```
