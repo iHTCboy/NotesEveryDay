@@ -357,3 +357,25 @@ http://img.suoniao.com/FkVlSRujvfQyXe0X65sa_qbaDZds
   s.parentNode.insertBefore(hm, s);
 })();
 ```
+
+
+#### js浏览器返回上一个页面（刷新）
+
+```js
+window.history.go(-1);  //返回上一页
+window.history.back();  //返回上一页，强行刷新
+
+window.location.reload(); //刷新当前页
+window.location.go(-1); //刷新上一页
+
+```
+
+
+返回上一页并刷新:
+```js
+$(function(){
+  $("#back").click(function(
+  window.location.href =document.referrer;//返回上一页并刷新  
+ ))
+});
+```
