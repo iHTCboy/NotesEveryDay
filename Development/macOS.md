@@ -215,3 +215,15 @@ Channel layout: Stereo (L R)
 [如何从Mac OS X的命令行检查MP3，m4a，音频文件的比特率 | MOS86](http://mos86.com/24284.html)
 
 ---
+
+
+#### macOS 代码打开文件和文件夹
+```
+打开文件
+
+[[NSWorkspace sharedWorkspace] openFile:文件路径];
+
+打开文件夹
+
+[[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:文件夹路径];
+```
