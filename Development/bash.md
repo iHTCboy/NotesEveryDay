@@ -135,6 +135,7 @@ fi
 解决方法很简单：将路径加上双引号
 
 `"/user/iHTC boy/bash/"`
+
 ---
 
 #### 在一行执行多条命令
@@ -166,6 +167,24 @@ cp /tmp/t2 /tmp/t2.bak; echo "hello world"
 顺序执行多条命令，当`;`号前的命令执行完（不管是否执行成功），才执行`;`后的命令。
 
 [shell学习笔记（1）Linux下在一行执行多条命令 - KoreaSeal - 博客园](https://www.cnblogs.com/koreaseal/archive/2012/05/28/2522178.html)
+
+
+#### 使用sed替换字符串中的多个字符
+
+```bsdh
+// 管道：
+sed 's/a/A/g' test.txt | sed 's/1/23/g' > test2.txt 
+// -e选项:
+sed -e 's/a/A/g' -e 's/l/23/g' test.txt > test2.txt 
+// ;分号：
+sed 's/a/A/g; s/1/23/g' test.txt > test2.txt 
+```
+
+如果想在原文件直接替换字符，则需要用 `-i` 参数辅助：
+
+```basdh
+sed -i '' 's/a/A/g; s/1/23/g' test.txt > test2.txt 
+```
 
 ### vim
 
