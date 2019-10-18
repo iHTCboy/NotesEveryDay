@@ -4,6 +4,11 @@
 
 [更容易入门的Rails 教程](https://legacy.gitbook.com/book/sg552/happy_book_rails/details)
 
+#### Ruby执行shell命令的六种方法
+
+- [Calling shell commands from Ruby](https://stackoverflow.com/questions/2232/calling-shell-commands-from-ruby)
+- [Ruby执行shell命令的六种方法 - 技术小黑屋](https://droidyue.com/blog/2014/11/18/six-ways-to-run-shell-in-ruby/)
+
 #### ruby 属性和方法打印
 
 ```ruby
