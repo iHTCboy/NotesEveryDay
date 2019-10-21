@@ -409,3 +409,21 @@ $ rm -rf submodule
 ```git
 $ rm -rf .git/modules/submodule
 ```
+
+#### fork后如何同步源的新更新内容？
+
+
+```git
+1. 首先将别人的仓库添加到你的上游远程，通常命名为upstream.
+ 
+git remote add upstream url(表示原作者仓库)
+ 
+ 
+2. 用 git remote -v 可以看到一个origin是自己的，另外一个upstream原作者。
+ 
+ 
+1. 更新代码：
+git fetch upstream //去拉去原作者的仓库更新
+git checkout master //切换到自己的master
+git merge upstream/master //merge或者rebase到你的master
+```
