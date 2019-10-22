@@ -236,6 +236,44 @@ xargs是实现“将标准输入作为命令的参数”
 
 - [将Linux命令的结果作为下一个命令的参数 - permike的专栏 - CSDN博客](https://blog.csdn.net/permike/article/details/51957003)
 
+
+#### SSH 连接、远程上传下载文件
+
+* 安装 SSH(Secure Shell) 服务以提供远程管理服务：
+```bash
+sudo apt-get install ssh
+```
+
+* SSH 远程登入 Ubuntu 机 ：
+```bash
+$ssh username@192.168.0.1
+```
+
+* 将 文件/文件夹 从远程 Ubuntu 机拷至本地(scp) ：
+
+```bash
+scp <用户名>@<ssh服务器地址>:<文件路径> <本地文件名> 
+```
+
+```bash
+$scp root@127.0.0.1:~/test.txt ~/Desktop/test.txt
+```
+
+* 将 文件/文件夹 从本地拷至远程 Ubuntu 机(scp) ：
+
+```bash
+scp <本地文件名> <用户名>@<ssh服务器地址>:<上传保存路径即文件名> 
+```
+
+```bash
+$scp -r localfile.txt username@192.168.0.1:/home/username/
+```
+
+注：文件夹操作 
+上传/下载文件夹操作与文件操作类似，只需加入参数 `-r`。
+
+- [使用SSH传输文件/文件夹 - bedisdover的博客 - CSDN博客](https://blog.csdn.net/bedisdover/article/details/51622133)
+
 ### vim
 
 #### 撤销和恢复撤销快捷键
