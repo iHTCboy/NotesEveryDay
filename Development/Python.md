@@ -824,3 +824,9 @@ for article in li_list:
 ```
 
 第一个 `.text` 获取有些为空，所以要用下面的3种方法。
+
+
+### 项目部署
+
+- [部署python项目到linux服务器 | 蓝士钦](https://www.lanshiqin.com/d8d0505b/)
+- 
