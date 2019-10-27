@@ -1,5 +1,13 @@
 [TOC]
 
+### macOS
+#### macOS Catalina 10.15 第三方软件文件提示已损坏解决办法
+
+```
+sudo xattr -r -d com.apple.quarantine xxx.app
+```
+
+
 ### iTerm2技巧 
 https://skyline75489.github.io/post/2014-7-10_iterm-usage.html
 
