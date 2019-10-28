@@ -805,6 +805,19 @@ class PostAdmin(admin.ModelAdmin):
 - [如何在 django admin site 中设置某个 model 只读 - Huang Huang 的博客](https://mozillazg.com/2015/09/django-setup-readonly-model-on-admin.html)
 - [The Django admin site | Django documentation | Django](https://docs.djangoproject.com/en/1.8/ref/contrib/admin/#django.contrib.admin.ModelAdmin.readonly_fields)
 
+#### Django version
+
+```
+>>> import django
+>>> django.VERSION
+```
+or
+
+```
+python -c "import django; print(django.get_version())"
+```
+- [python - How to check Django version - Stack Overflow](https://stackoverflow.com/questions/6468397/how-to-check-django-version)
+
 #### Django REST framework
 
 - [Serializers - Django REST framework中文站点](https://q1mi.github.io/Django-REST-framework-documentation/api-guide/serializers_zh/)
@@ -828,20 +841,21 @@ for article in li_list:
 
 ### 项目部署
 
+- [Python/WSGI 应用快速入门 — uWSGI 2.0 文档](https://uwsgi-docs-cn.readthedocs.io/zh_CN/latest/WSGIquickstart.html#django)
+- [使用uWSGI和nginx来设置Django和你的web服务器 — uWSGI 2.0 文档](https://uwsgi-docs-zh.readthedocs.io/zh_CN/latest/tutorials/Django_and_nginx.html)
+- [Linux檔案權限](http://s2.naes.tn.edu.tw/~kv/file.htm)
 - [部署python项目到linux服务器 | 蓝士钦](https://www.lanshiqin.com/d8d0505b/)
 - [使用 uWSGI 和 Nginx 部署 Django 项目 - 掘金](https://juejin.im/post/5cb95a0ef265da03502b34f3)
-- [基于nginx和uWSGI在Ubuntu上部署Django - 简书](https://www.jianshu.com/p/e6ff4a28ab5a)
-- [](https://www.wolfcstech.com/2016/11/14/nginx_uWSGI_deply_django_on_ubuntu/#1-nginx)
-- [使用uWSGI和nginx来设置Django和你的web服务器 — uWSGI 2.0 文档](https://uwsgi-docs-zh.readthedocs.io/zh_CN/latest/tutorials/Django_and_nginx.html)
+- [基于nginx和uWSGI在Ubuntu上部署Django | WolfcsTech](https://www.wolfcstech.com/2016/11/14/nginx_uWSGI_deply_django_on_ubuntu/#1-nginx)
 - [用Nginx+uwsgi部署Django | 🍃(yuchanns (Atelier))](https://www.yuchanns.xyz/posts/2018/08/24/deploy-django.html)
 - [Django 二级域名配置 - 简书](https://www.jianshu.com/p/d340d0645f05)
-- [Django前后端分离之域名配置 - qq_38521321的博客 - CSDN博客](https://blog.csdn.net/qq_38521321/article/details/82778156)
 - [域名管理 · Python（Django）环境部署与使用指南 · 看云](https://www.kancloud.cn/websoft9/python-guide/613040)
 - [Django 教程 11: 部署 Django 到生产环境 - 学习 Web 开发 | MDN](https://developer.mozilla.org/zh-CN/docs/learn/Server-side/Django/Deployment)
 - [Centos7 + Django + Nginx +Uwsgi - 简书](https://www.jianshu.com/p/0bb254029579)
 - [Day 15 - 部署Web App - 廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/1016959663602400/1018491264935776)
-- [Python项目自动化部署最佳实践@搜狐 | the5fire的技术博客](https://www.the5fire.com/auto-deploy-tool-for-python-app.html)
 - [Python Web部署方式总结 - 简书](https://www.jianshu.com/p/0aece015976f)
+- [基于nginx和uWSGI在Ubuntu上部署Django - 简书](https://www.jianshu.com/p/e6ff4a28ab5a)
+- [Python项目自动化部署最佳实践@搜狐 | the5fire的技术博客](https://www.the5fire.com/auto-deploy-tool-for-python-app.html)
 - [以正确的方式开源 Python 项目 - OSCHINA](https://www.oschina.net/translate/open-sourcing-a-python-project-the-right-way)
 - [Systemd 入门教程：命令篇 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 - [部署python项目到linux服务器 | 蓝士钦](https://www.lanshiqin.com/d8d0505b/)

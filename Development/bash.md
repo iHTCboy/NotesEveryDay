@@ -236,6 +236,22 @@ xargs是实现“将标准输入作为命令的参数”
 
 - [将Linux命令的结果作为下一个命令的参数 - permike的专栏 - CSDN博客](https://blog.csdn.net/permike/article/details/51957003)
 
+#### find 命令使用技巧
+
+利用 find 命令找到当前目录下所有`.m`文件，并且把文件名作为参数，使用`genstrings`生成本地化语言内容
+```
+find . -name \*.m | xargs genstrings -o en.lproj
+```
+
+查找`/Users/iHTCboy/Documents`目录下所有 `.md` 文件内容含有 `https://ihtcboy.com` 的文件输出文件的全路径：
+```
+find /Users/iHTCboy/Documents -type f -name "*.md" -exec grep -l "https://ihtcboy.com" {}  \;
+```
+
+因为单行命令中-exec参数中无法使用多个命令，以下方法可以实现在-exec之后接受多条命令
+`-exec ./text.sh {} \;`
+
+- [find命令_Linux find 命令用法详解：在指定目录下查找文件](https://man.linuxde.net/find)
 
 #### SSH 连接、远程上传下载文件
 

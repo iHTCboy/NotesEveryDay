@@ -136,7 +136,8 @@ root@htc:~#
 root：代表的当前用户的用户名
 htc：是主机的名称（这个也是可以改的）
 ～：代表当前目录
-$：是普通用户的意思（若是root用户就显示＃）
+$：是普通用户的意思
+＃：root用户
 
 #### linux修改用户名
 假设旧用户名为 parallers，想要修改为新用户名 ihtcboy
@@ -173,73 +174,53 @@ $ sudo systemctl disable clamd@scan.service
 
 - [Systemd 入门教程：命令篇 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 
-#### 命令操作
+#### 服务器命令操作
 
-killall -9 nginx   #停止nginx
-killall -9 uwsgi   #停止uwsgi
-uwsgi --ini /data/www/script/uwsgi9090.ini  #启动uwsgi脚本
-/usr/local/nginx-1.5.6/sbin/nginx #启动nginx
-
-/etc/init.d/nginx start
-/etc/init.d/nginx stop
-
-service nginx start
-service nginx stop
+##### nginx 命令
 
 启动、停止和重启
+```
+service nginx start
+service nginx stop
+service nginx restart
+```
+
+或
+```
 $ nginx
 $ nginx -s stop
 $ nginx -s reload
-
-
-#### 错误处理
-创建软链接。
-
-ln -s /usr/local/python3/bin/python3 /usr/bin/python
-
-第二个参数是目标地址，链到该地址上
-
-如果遇到下面的bug
-
-ln: failed to create symbolic link '/usr/bin/python': File exists
-
-
-说明已经有链接链到 /usr/bin/python上了，删除即可，使用命令
-
-rm -rf /usr/bin/python
-
-
-测试 uwsgi 是否正常 ，在终端执行uwsgi --http :8001 --wsgi-file /data/test.py#### 执行报错，报错内容如下
-```bash
-uwsgi: option '--http' is ambiguous; possibilities: '--http-socket' '--https-socket-modifier2' '--https-socket-modifier1' '--https-socket' '--http11-socket' '--http-socket-modifier2' '--http-socket-modifier1'getopt_long() error
-```查看uwsgi安装位置,终端执行 ：
 ```
-whereis uwsgi
-```执行结果为：
-```
-uwsgi: /usr/sbin/uwsgi /usr/lib64/uwsgi /etc/uwsgi.d /etc/uwsgi.ini
-```定位原因为：上面两个uwsgi文件均缺失plugin插件,所以需要自行安装plugin插件：`uwsgi-plugin-python`安装 uwsgi-plugin-python提示：安装之前需要先安装 uwsgi-plugin-common 安装步骤如下：
-```
-apt install uwsgi-plugin-common
-```再次执行`uwsgi --http :8001 --wsgi-file test.py` 依旧报同样错误修改命令为：`uwsgi --http-socket :8001 --wsgi-file test.py`执行结果如下：
-```bash
-uwsgi: unrecognized option ‘–wsgi-file’getopt_long() error
-```
-这是因为： 需要在上面那些未识别选项前加上 `--plugin python` 来告诉 uWSGI 我在使用 python 插件，对于后面那些选项你要用python 插件去解析再次修改命令为：`uwsgi --http-socket :8001 --plugin python --wsgi-file test.py`
 
-执行成功！
+init.d目录包含许多系统各种服务的启动和停止脚本：
+```
+sudo /etc/init.d/nginx start
+sudo /etc/init.d/nginx stop
+sudo /etc/init.d/nginx restart
+```
+
+
+killall -9 nginx   #停止nginx
+killall -9 uwsgi   #停止uwsgi
+
+uwsgi --ini /data/www/script/uwsgi9090.ini  #启动uwsgi脚本
+
+
+
+
 
 #### 部署指令
 
 ##### 基于uWSGI和nginx部署Django
 
 1.原理
-
-the web client <-> the web server(nginx) <-> the socket <-> uwsgi <-> Django
+```
+Web Client <===> Web Server(nginx) <===> The Socket <===> uWSGI <===> Django
+```
 
 2.部署
 
-不安装这个，后面的命令安装可能会失败。（Debian 及衍生系统，如 Ubuntu，需要先安装 python-dev 或 python3-dev。否则不能正常安装 uwsgi。）
+不安装下面的库，后面的一些安装命令可能会失败。（Debian 及衍生系统，如 Ubuntu，需要先安装 python-dev 或 python3-dev。否则不能正常安装 uwsgi。原因：`uWSGI` 是一个(巨大的) C 应用，所以你需要一个 C 编译器(比如 gcc 或者 clang)和 Python 开发版头文件。）
 ```
 sudo apt-get install python-dev
 ```
@@ -260,12 +241,22 @@ uwsgi --http :8000 --wsgi-file /python/test.py
 ```
 
 参数含义:
-http :8000: 使用http协议，8000端口
-wsgi-file test.py: 加载指定文件 test.py
+* http :8000: 使用http协议，8000端口
+* wsgi-file test.py: 加载指定文件 test.py
 
-在浏览器访问ip: 8000（例如192.168.199.202:8001），可以看到浏览器输出"Hello World"。至此，uwsgi安装完成。
+在浏览器访问ip: 8000（本机 ip + 端口:8000），可以看到浏览器输出"Hello World"。至此，uwsgi安装完成。
 
-配置uwsgi： 每次都运行上面命令拉起 django application 实在麻烦，使用.ini文件能简化工作。所以可以创建ini配置文件来保存启动命令。在你喜欢的位置创建ini文件。我是在 `/python/uwsgi.ini.d` 下创建的 `uwsgi9001.ini`，内容如下：
+test.py：
+```
+# test.py
+def application(env, start_response):
+    start_response('200 OK', [('Content-Type','text/html')])
+    return ["Hello World"] # python2
+    #return [b"Hello World"] # python3
+```
+
+配置uwsgi： 
+如果每次都运行上面命令拉起 django application 确实是麻烦，并且` uwsgi`有很多参数选项，一条命令就可以很长，例如`uwsgi --http 127.0.0.1:8000 --chdir /path/to/project/ --wsgi-file /path/to/wsgi.py --processes 4 --threads 2 --stats 127.0.0.1:8080`。所以方法是使用.ini文件能简化工作。创建xxx.ini配置文件来保存启动命令。在你喜欢的位置创建ini文件。我是在 `/python/uwsgi.ini.d` 下创建的 `uwsgi9001.ini`，内容如下：
 
 ```
 # /python/uwsgi.ini.d/uwsgi9001.ini
@@ -276,40 +267,56 @@ vhosts = true #多站模式
 no-site = true #多站模式时不设置入口模块和文件
 workers = 2 #子进程数
 reload-mercy = 10
-vacuum = true #退出、重启时清理文件
+vacuum = true #退出、重启时清理文件和环境
 max-requests = 1000  #respawn processes after serving 1000 requests
 limit-as = 512 # limit the project to 512 MB
 buffer-size = 30000
-//用来启动停止进程
-pidfile = /var/run/uwsgi9001.pid
-//用来记录启动日志 
-daemonize = /python/uwsgi.ini.d/uwsgi9001.log
-//python的包环境
-pythonpath = /usr/local/lib/python2.7/dist-packages
+pidfile = /var/run/uwsgi9001.pid #用来启动/停止进程
+daemonize = /python/uwsgi.ini.d/uwsgi9001.log #进程后台运行并将日志输到文件
+pythonpath = /usr/local/lib/python2.7/dist-packages #python的包环境
 ```
 
-**注意：**如果端口被占用，可以使用uwsgi配置文件中设置的pidfile来进行停止
+参数说明:
+- `master = true`：除了配置中设置的进程数，还将另外启动一个 master 进程，用来管理其他进程。kill master 进程的 pid，master 将自动重启；kill uWSGI 的其他进程，master 将自动重新启动一个进程。
+- `pythonpath`：可用命令查看路径`pip show django | grep -i location`。1.4 以下 Django 才需要设置。但是使用 python2 环境测试时报错`Internal Server Error`，需要添加路径才能识别Django（v1.11.25）的正确路径。
+
 
 ```
-uwsgi --stop /var/run/uwsgi9001.pid  
-```
-或者杀死全部uwsgi进程
-
-```
-killall -9 uwsgi 
+wsgi-file     = /data/mysite/myapp/wsgi.py  # wsgi.py目录
+home          = /data/mysite/env             # python虚拟环境目录
+chdir         = /data/mysite   #项目目录,即你上传的Django程序目录
 ```
 
-安装Nginx： 我使用Ubuntu的软件包管理器进行安装，安装完毕之后Nginx的配置文件在`/etc/nginx/nginx.conf`。
+**注意：**
+1、考虑到安全性，[uWSGI 文档](http://uwsgi-docs-cn.readthedocs.io/zh_CN/latest/WSGIquickstart.html#id2)中提到，不要使用 root 权限来运行 uWSGI，添加 uid 和 gid 选项指定用户和组来降低权限。
 
+2、如果端口被占用，可以使用uwsgi配置文件中设置的pidfile来进行停止
+```
+sudo uwsgi --stop /var/run/uwsgi9001.pid  
+```
+
+重启 uWSGI：
+```
+sudo uwsgi --reload /var/run/uwsgi9001.pid  
+```
+
+或者杀死全部uwsgi进程：
+```
+sudo killall -9 uwsgi 
+```
+
+安装Nginx： 
 ```
 apt-get install nginx 
 ```
+使用Ubuntu的软件包管理器进行安装，安装完毕之后Nginx的配置文件在`/etc/nginx/nginx.conf`。
 
 验证安装是否成功：
 在浏览器访问当前ip: 例如 192.168.199.202，可以看到浏览器显示"Welcome to nginx!"。至此，Nginx安装完成。
 
 
-配置Nginx： 打开nginx的配置文件 `/etc/nginx/nginx.conf`，查阅http{}模块，很容易发现服务器配置文件应写在 `/etc/nginx/conf.d` 下，以.conf为后缀：
+配置Nginx： 
+打开nginx的配置文件 `/etc/nginx/nginx.conf`，查阅http{}模块，很容易发现服务器配置文件应写在 `/etc/nginx/conf.d` 下，以.conf为后缀：
 
 ```
 http {
@@ -346,10 +353,11 @@ server {
 ```
 
 其中：
-`server_name` 是你的服务器ip（实际生产环境中是域名），
-`uwsgi_pass` 是nginx接收请求后转交给uwsgi处理经过的端口，需要与 `uwsgi.ini.d` 内设置的端口一致，
-`UWSGI_CHDIR` 是项目的根目录，
-`UWSGI_SCRIPT` 是项目入口文件相对于项目的路径（'.'表示一个层级）。设置完成之后，在
+* `server_name` 是你的服务器ip（实际生产环境中是域名）
+* `uwsgi_params` 文件在 `/etc/nginx/` 目录中。如果没有，可以从 [GitHub](https://github.com/nginx/nginx/blob/master/conf/uwsgi_params) 获取，是 nginx 传递给 uwsgi 的对应参数转换。
+* `uwsgi_pass` 是nginx接收请求后转交给uwsgi处理经过的端口（nginx把每个请求传递到服务器绑定的端口 9001，并且使用 uwsgi 协议通信。），需要与 `uwsgi.ini.d` 内设置的端口一致。
+* `UWSGI_CHDIR` 是项目的根目录，就是项目所在的全路径目录
+* `UWSGI_SCRIPT` 是项目入口文件相对于项目的路径（'.'表示一个层级）。设置完成之后，在
 
 终端重启nginx以及运行uwsgi：
 ```
@@ -357,7 +365,7 @@ service nginx reload & uwsgi --ini /python/uwsgi.ini.d/uwsgi9001.ini
 ```
 
 扩展：
-nginx.conf 也可能这样的形式：
+1、nginx.conf 也可能这样的形式：
 ```
 # mysite_nginx.conf
 
@@ -393,22 +401,128 @@ server {
     }
 }
 ```
+相当于本来直接设置 `uwsgi_pass` 的值，现在改成了先把值赋给变量 `django`，再把变量 `django` 设置到 `uwsgi_pass` 上。`upstream` 常用于需要做负载均衡的场景，一个 upstream 里可以配置多个 server。
 
-也可以用 `UNIX socket` 取代 `TCP port`，对 nginx.conf 做如下修改：
+
+2、可以用 `UNIX socket` 取代 `TCP port`， Nginx 中需要使用 `proxy_pass` 对 uWSGI 这个地址进行反向代理，是使用 TCP Socket 的运行方式。使用 Unix Sockets 的方式好处是**开销低，效率高**。
+
+对 nginx.conf 做如下修改：
 ```
 server unix:///path/to/your/mysite/mysite.sock; # for a file socket
 # server 127.0.0.1:8001; # for a web port socket (we'll use this first)
 ```
+注：注意，有三条斜线，由 `unix://` 和 `/path/to/sock.sock` 两部分组成。
 
-重启nginx，并在此运行uWSGI
+对 uwsgi.ini 修改：
+
+```
+[uwsgi]
+socket = /path/to/sock.sock
+chmod-socket = 666
+...
+```
+注：生成的 sock 文件可能会缺少执行权限，可以通过设置 `chmod-socket = 666` 解决。
+
+重启nginx，并在次运行uWSGI：
 ```
 uwsgi --socket mysite.sock --wsgi-file test.py
 ```
 
-- 注： nginx error log(/var/log/nginx/error.log)。如果错误可以查看`cat /var/log/nginx/error.log`
 
+3、查看 nginx 错误日志文件： nginx error log(/var/log/nginx/error.log)。如果错误可以查看`cat /var/log/nginx/error.log`
+
+4、配置 SSL 证书
+如果要配置 SSL 证书，只要修改 Nginx 的配置即可：
+```
+server{
+  ssl_certificate      crt;
+  ssl_certificate_key  key;
+  ...
+}
+```
+
+更详细的配置可以参考 [StackOverflow](https://stackoverflow.com/questions/29827299/django-uwsgi-nginx-ssl-request-for-working-configuration-emphasis-on-ss)。可以使用 Let's Encrypt 生成免费的 SSL 证书。欲知使用方法点击这篇文章：[《你的网站还没用上 HTTPS 吗》](https://juejin.im/post/5c910884f265da60f771bdfa)。
+
+5、每次 uWSGI 是不会在系统启动时，自动执行启动，可以添加自定义系统服务。
+方法有很多种：
+
+- `rc.local`
+
+编辑文件`/etc/rc.local`, 添加下面内容到这行代码之前exit 0:
+
+```
+uwsgi --ini /python/uwsgi.ini.d/uwsgi9001.ini
+```
+
+注：ubuntu 16.x 不再使用 `inited` 管理系统服务，所以去掉了 `/etc/rc.local`，改用 `systemd` 
+
+- `systemd`
+
+（1）创建一个自己的系统服务（`rc-local.service`）
+```
+sudo vim /etc/systemd/system/rc-local.service
+```
+
+填写内容：
+```
+[Unit]
+Description=/etc/rc.local Compatibility
+ConditionPathExists=/etc/rc.local
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=0
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+
+说明
+- `ConditionPathExists`：为服务启动时执行的命令，不能用相对路径， 一定要全路径。也可以将命令写到任意的.sh文件。
+
+（2）创建`rc.local`文件：
+```
+sudo touch /etc/rc.local
+sudo vim /etc/rc.local
+```
+记得在首先添加`#!/bin/bash`，然后添加执行权限：
+```
+chmod +x /etc/rc.local
+```
+
+（3）启动和关闭服务
+启用：
+```
+sudo systemctl enable rc-local.service
+```
+启动服务：
+```
+sudo systemctl start rc-local.service
+```
+可以查看进程，确认一下服务是否启动：
+```
+ps aux|grep rc-local
+```
 
 3. 如果是 python3 则，需要做一些操作
+
+创建python3软连接:
+```
+ln -s /usr/local/python3/bin/python3 /usr/bin/python
+```
+
+注：由于执行CentOS的yum命令需要使用自带的python2的版本，所以将`/usr/bin/yum`文件的` #! /usr/bin/python` 修改为 `#! /usr/bin/python2`
+```
+vim /usr/bin/yum
+```
+
+安装虚拟环境：
+```
+pip3 install virtualenv
+```
 
 部署static文件:
 
@@ -422,3 +536,43 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 python manage.py collectstatic
 ```
 
+
+#### 错误处理
+创建软链接：
+```
+ln -s /usr/local/python3/bin/python3 /usr/bin/python
+```
+第二个参数是目标地址，链到该地址上
+
+如果遇到下面的报错：
+```
+ln: failed to create symbolic link '/usr/bin/python': File exists
+```
+
+说明已经有链接链到 /usr/bin/python上了，删除即可，使用命令
+```
+rm -rf /usr/bin/python
+```
+
+测试 uwsgi 是否正常 ，在终端执行
+```
+uwsgi --http :8001 --wsgi-file /data/test.py
+```#### 执行报错，报错内容如下
+```bash
+uwsgi: option '--http' is ambiguous; possibilities: '--http-socket' '--https-socket-modifier2' '--https-socket-modifier1' '--https-socket' '--http11-socket' '--http-socket-modifier2' '--http-socket-modifier1'getopt_long() error
+```查看uwsgi安装位置,终端执行 ：
+```
+whereis uwsgi
+```执行结果为：
+```
+uwsgi: /usr/sbin/uwsgi /usr/lib64/uwsgi /etc/uwsgi.d /etc/uwsgi.ini
+```定位原因为：上面两个uwsgi文件均缺失plugin插件,所以需要自行安装plugin插件：`uwsgi-plugin-python`安装 uwsgi-plugin-python提示：安装之前需要先安装 uwsgi-plugin-common 安装步骤如下：
+```
+apt install uwsgi-plugin-common
+```再次执行`uwsgi --http :8001 --wsgi-file test.py` 依旧报同样错误修改命令为：`uwsgi --http-socket :8001 --wsgi-file test.py`执行结果如下：
+```bash
+uwsgi: unrecognized option ‘–wsgi-file’getopt_long() error
+```
+这是因为： 需要在上面那些未识别选项前加上 `--plugin python` 来告诉 uWSGI 我在使用 python 插件，对于后面那些选项你要用python 插件去解析再次修改命令为：`uwsgi --http-socket :8001 --plugin python --wsgi-file test.py`
+
+执行成功！

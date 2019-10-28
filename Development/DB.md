@@ -25,15 +25,17 @@ pong #说明服务器运作正常。
 
 关闭redis：
 
-方法1
+* 方法1
 ```
 $ redis-cli ping
 Could not connect to Redis at 127.0.0.1:6379: Connection refused
 #说明确实已关闭
 ```
 
-方法2
-
+* 方法2
 ```
 $ redis-cli shutdown
 ```
+
+### mysql
+
