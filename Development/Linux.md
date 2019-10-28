@@ -108,7 +108,7 @@ $ su
 或者
 
 ```
-$ su  root 
+$ su root 
 ```
 
 或者
@@ -175,6 +175,50 @@ $ sudo systemctl disable clamd@scan.service
 - [Systemd 入门教程：命令篇 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 
 #### 服务器命令操作
+##### 常用命令
+基本命令
+```
+//进入网站根目录
+cd /data/wwwroot/default  
+
+//重启服务器
+reboot 
+
+//下载url对应的文件
+wget url  
+
+//解压xx.zip文件到当前目录
+unzip xx.zip
+```
+
+修改文件权限
+```
+//LAMP环境下修改用户和用户组
+chown -R apache.apache /data/wwwroot/default
+
+//分别修改文件和文件夹的读、写、执行权限
+find /data/wwwroot/default -type f -exec chmod 640 {} \;
+find /data/wwwroot/default -type d -exec chmod 750 {} \;
+```
+
+Web服务启停
+修改环境后，需要运行如下命令进行服务重启后方可生效
+Apache：
+```
+systemctl restart httpd
+```
+
+Nginx：
+```
+systemctl restart nginx //重启nginx
+systemctl restart php-fpm //重启php-fpm
+```
+
+升级
+```
+~# yum update -y //升级所有包同时也升级软件和系统内核,-y当安装过程提示选择全部为"yes"
+~# yum upgrade -y //只升级所有包，不升级软件和系统内核,-y当安装过程提示选择全部为"yes"
+```
 
 ##### nginx 命令
 
@@ -218,21 +262,51 @@ uwsgi --ini /data/www/script/uwsgi9090.ini  #启动uwsgi脚本
 Web Client <===> Web Server(nginx) <===> The Socket <===> uWSGI <===> Django
 ```
 
-2.部署
+2.安装环境&部署
 
 不安装下面的库，后面的一些安装命令可能会失败。（Debian 及衍生系统，如 Ubuntu，需要先安装 python-dev 或 python3-dev。否则不能正常安装 uwsgi。原因：`uWSGI` 是一个(巨大的) C 应用，所以你需要一个 C 编译器(比如 gcc 或者 clang)和 Python 开发版头文件。）
 ```
 sudo apt-get install python-dev
 ```
 
+安装python3：
+```
+sudo apt-get install python3
+```
+
 安装pip：
 ```
+#python2
 sudo apt-get install python-pip 
+
+#python3
+sudo apt-get install python3-pip
+```
+
+安装虚拟环境：
+```
+pip3 install virtualenv
+```
+
+安装 Django：
+```
+pip3 install django
+```
+
+**如果是 python3 作为主环境**
+创建python3软连接:
+```
+sudo ln -s /usr/local/python3/bin/python3 /usr/bin/python
+```
+
+注：由于执行CentOS的yum命令需要使用自带的python2的版本，所以将`/usr/bin/yum`文件的` #! /usr/bin/python` 修改为 `#! /usr/bin/python2`
+```
+vim /usr/bin/yum
 ```
 
 安装uwsgi：
 ```
-sudo pip install uwsgi --upgrade
+sudo pip3 install uwsgi --upgrade
 ```
 
 验证安装是否成功：
@@ -280,7 +354,7 @@ pythonpath = /usr/local/lib/python2.7/dist-packages #python的包环境
 - `master = true`：除了配置中设置的进程数，还将另外启动一个 master 进程，用来管理其他进程。kill master 进程的 pid，master 将自动重启；kill uWSGI 的其他进程，master 将自动重新启动一个进程。
 - `pythonpath`：可用命令查看路径`pip show django | grep -i location`。1.4 以下 Django 才需要设置。但是使用 python2 环境测试时报错`Internal Server Error`，需要添加路径才能识别Django（v1.11.25）的正确路径。
 
-
+另一个方式：
 ```
 wsgi-file     = /data/mysite/myapp/wsgi.py  # wsgi.py目录
 home          = /data/mysite/env             # python虚拟环境目录
@@ -488,10 +562,13 @@ WantedBy=multi-user.target
 sudo touch /etc/rc.local
 sudo vim /etc/rc.local
 ```
-记得在首先添加`#!/bin/bash`，然后添加执行权限：
+
+首先第一次添加`#!/bin/bash`，添加需要启动执行的代码：
 ```
-chmod +x /etc/rc.local
+uwsgi --ini /python/uwsgi.ini.d/uwsgi9001.ini
 ```
+
+最后，然后添加执行权限：`sudo chmod +x /etc/rc.local`
 
 （3）启动和关闭服务
 启用：
@@ -507,22 +584,13 @@ sudo systemctl start rc-local.service
 ps aux|grep rc-local
 ```
 
+最后，可以试试重启服务器看看是不是真生效:`sudo reboot`
+
+注意：也可以通过 `systemctl status rc-local.service` and `journalctl -xe` 查看详细日志
+
+
 3. 如果是 python3 则，需要做一些操作
 
-创建python3软连接:
-```
-ln -s /usr/local/python3/bin/python3 /usr/bin/python
-```
-
-注：由于执行CentOS的yum命令需要使用自带的python2的版本，所以将`/usr/bin/yum`文件的` #! /usr/bin/python` 修改为 `#! /usr/bin/python2`
-```
-vim /usr/bin/yum
-```
-
-安装虚拟环境：
-```
-pip3 install virtualenv
-```
 
 部署static文件:
 
