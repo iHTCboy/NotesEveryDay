@@ -220,6 +220,54 @@ systemctl restart php-fpm //重启php-fpm
 ~# yum upgrade -y //只升级所有包，不升级软件和系统内核,-y当安装过程提示选择全部为"yes"
 ```
 
+ctrl + z
+可以将一个正在前台执行的命令放到后台，并且处于暂停状态。
+
+ctrl+c
+  终止前台命令。
+
+##### 进程相关
+查看运行的后台进程
+（1）jobs -l
+jobs命令只看当前终端生效的，关闭终端后，在另一个终端jobs已经无法看到后台跑得程序了，此时利用ps（进程查看命令）
+
+（2）ps -ef 或 ps -aux
+ a:显示所有程序 
+ u:以用户为主的格式来显示 
+ x:显示所有程序，不以终端机来区分
+
+注：
+　　用ps -def | grep 查找进程很方便，最后一行总是会grep自己
+　　用grep -v参数可以将grep命令排除掉
+　```　
+    ps -aux|grep chat.js| grep -v grep
+    ```
+    
+再用awk提取一下进程ID　
+```
+ps -aux|grep chat.js| grep -v grep | awk '{print $2}'
+```
+
+如果某个进程起不来，可能是某个端口被占用
+查看使用某端口的进程
+```
+lsof -i:8090
+```
+
+netstat -ap|grep 8090
+查看到进程id之后，使用netstat命令查看其占用的端口
+```
+netstat -nap|grep 7779
+```
+
+终止后台运行的进程
+使用kill杀掉进程
+```
+kill -9  进程号
+```
+
+- [nohup和&后台运行，进程查看及终止 - jenyzhang的专栏 - CSDN博客](https://blog.csdn.net/jenyzhang/article/details/76210920)
+
 ##### nginx 命令
 
 启动、停止和重启

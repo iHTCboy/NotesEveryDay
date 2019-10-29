@@ -7,6 +7,10 @@
 sudo xattr -r -d com.apple.quarantine xxx.app
 ```
 
+`quarantine` 这个单字就是隔离、封锁的意思。
+而`com.apple.quarantine`这个EA代表的也是差不多意思，表示有此属性的档案是需要使用这确认才可以执行的。一但使用者确认后，此属性就会被取消掉。
+
+- [What should I do about com.apple.quarantine?](https://superuser.com/questions/28384/what-should-i-do-about-com-apple-quarantine)
 
 ### iTerm2技巧 
 https://skyline75489.github.io/post/2014-7-10_iterm-usage.html
