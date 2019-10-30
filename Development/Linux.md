@@ -341,6 +341,10 @@ pip3 install virtualenv
 pip3 install django
 ```
 
+注：
+1. 非必需安装，可以在虚拟环境中再安装
+2. 如果安装后找不到` django admin`命令，可以安装：`apt install python-django-common`
+
 **如果是 python3 作为主环境**
 创建python3软连接:
 ```
@@ -402,11 +406,16 @@ pythonpath = /usr/local/lib/python2.7/dist-packages #python的包环境
 - `master = true`：除了配置中设置的进程数，还将另外启动一个 master 进程，用来管理其他进程。kill master 进程的 pid，master 将自动重启；kill uWSGI 的其他进程，master 将自动重新启动一个进程。
 - `pythonpath`：可用命令查看路径`pip show django | grep -i location`。1.4 以下 Django 才需要设置。但是使用 python2 环境测试时报错`Internal Server Error`，需要添加路径才能识别Django（v1.11.25）的正确路径。
 
-另一个方式：
+新的方式：
 ```
-wsgi-file     = /data/mysite/myapp/wsgi.py  # wsgi.py目录
-home          = /data/mysite/env             # python虚拟环境目录
-chdir         = /data/mysite   #项目目录,即你上传的Django程序目录
+[uwsgi]
+http = 127.0.0.1:9001
+chdir = /var/www/myapp  #项目目录,即Django程序目录
+wsgi-file = myapp/wsgi.py # wsgi.py目录
+env = DJANGO_SETTINGS_MODULE=myapp.settings # python虚拟环境目录
+processes = 4
+threads = 2
+stats = 127.0.0.1:9191
 ```
 
 **注意：**
@@ -504,6 +513,9 @@ server {
     server_name .example.com; # substitute your machine's IP address or FQDN
     charset     utf-8;
 
+    access_log /var/log/nginx/www.test.com.access.log;
+    error_log /var/log/nginx/www.test.com.error.log;
+    
     # max upload size
     client_max_body_size 75M;   # adjust to taste
 
