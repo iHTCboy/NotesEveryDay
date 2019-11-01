@@ -291,7 +291,6 @@ sudo /etc/init.d/nginx stop
 sudo /etc/init.d/nginx restart
 ```
 
-
 killall -9 nginx   #停止nginx
 killall -9 uwsgi   #停止uwsgi
 
@@ -305,12 +304,12 @@ uwsgi --ini /data/www/script/uwsgi9090.ini  #启动uwsgi脚本
 
 ##### 基于uWSGI和nginx部署Django
 
-1.原理
+1、原理
 ```
 Web Client <===> Web Server(nginx) <===> The Socket <===> uWSGI <===> Django
 ```
 
-2.安装环境&部署
+2、安装环境&部署
 
 不安装下面的库，后面的一些安装命令可能会失败。（Debian 及衍生系统，如 Ubuntu，需要先安装 python-dev 或 python3-dev。否则不能正常安装 uwsgi。原因：`uWSGI` 是一个(巨大的) C 应用，所以你需要一个 C 编译器(比如 gcc 或者 clang)和 Python 开发版头文件。）
 ```
@@ -344,6 +343,10 @@ pip3 install django
 注：
 1. 非必需安装，可以在虚拟环境中再安装
 2. 如果安装后找不到` django admin`命令，可以安装：`apt install python-django-common`
+3. 部署static文件: 在django的setting文件中，添加下面一行内容，然后运行`python manage.py collectstatic`：
+    ```
+    STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+    ```
 
 **如果是 python3 作为主环境**
 创建python3软连接:
@@ -356,7 +359,7 @@ sudo ln -s /usr/local/python3/bin/python3 /usr/bin/python
 vim /usr/bin/yum
 ```
 
-安装uwsgi：
+3、安装uwsgi
 ```
 sudo pip3 install uwsgi --upgrade
 ```
@@ -390,7 +393,6 @@ def application(env, start_response):
 socket = 127.0.0.1:9001
 master = true #主进程
 vhosts = true #多站模式
-no-site = true #多站模式时不设置入口模块和文件
 workers = 2 #子进程数
 reload-mercy = 10
 vacuum = true #退出、重启时清理文件和环境
@@ -400,28 +402,29 @@ buffer-size = 30000
 pidfile = /var/run/uwsgi9001.pid #用来启动/停止进程
 daemonize = /python/uwsgi.ini.d/uwsgi9001.log #进程后台运行并将日志输到文件
 pythonpath = /usr/local/lib/python2.7/dist-packages #python的包环境
+stats = 127.0.0.1:9191 #在指定的地址上启用统计信息服务器
 ```
 
 参数说明:
 - `master = true`：除了配置中设置的进程数，还将另外启动一个 master 进程，用来管理其他进程。kill master 进程的 pid，master 将自动重启；kill uWSGI 的其他进程，master 将自动重新启动一个进程。
+- `daemonize`：使进程在后台运行，并将日志打到指定的日志文件或者udp服务器。而`logto` 将日志打到一个指定的文件或者udp服务器。
 - `pythonpath`：可用命令查看路径`pip show django | grep -i location`。1.4 以下 Django 才需要设置。但是使用 python2 环境测试时报错`Internal Server Error`，需要添加路径才能识别Django（v1.11.25）的正确路径。
 
-新的方式：
+最新的最简方式：
 ```
 [uwsgi]
-http = 127.0.0.1:9001
+socket = 127.0.0.1:9001 #如果是直接访问此 ip 测试，改为 `http`
 chdir = /var/www/myapp  #项目目录,即Django程序目录
 wsgi-file = myapp/wsgi.py # wsgi.py目录
 env = DJANGO_SETTINGS_MODULE=myapp.settings # python虚拟环境目录
-processes = 4
-threads = 2
-stats = 127.0.0.1:9191
+processes = 4 #指定数目的worker/进程
+threads = 2 #指定数目的线程
 ```
 
 **注意：**
-1、考虑到安全性，[uWSGI 文档](http://uwsgi-docs-cn.readthedocs.io/zh_CN/latest/WSGIquickstart.html#id2)中提到，不要使用 root 权限来运行 uWSGI，添加 uid 和 gid 选项指定用户和组来降低权限。
+1.考虑到安全性，[uWSGI 文档](http://uwsgi-docs-cn.readthedocs.io/zh_CN/latest/WSGIquickstart.html#id2)中提到，不要使用 root 权限来运行 uWSGI，添加 uid 和 gid 选项指定用户和组来降低权限。
 
-2、如果端口被占用，可以使用uwsgi配置文件中设置的pidfile来进行停止
+2.如果端口被占用，可以使用uwsgi配置文件中设置的pidfile来进行停止
 ```
 sudo uwsgi --stop /var/run/uwsgi9001.pid  
 ```
@@ -436,7 +439,10 @@ sudo uwsgi --reload /var/run/uwsgi9001.pid
 sudo killall -9 uwsgi 
 ```
 
-安装Nginx： 
+3.配置后的#注释，在使用中记得去掉，否则报错！！`No such file or directory`
+
+
+4、安装 Nginx
 ```
 apt-get install nginx 
 ```
@@ -445,10 +451,8 @@ apt-get install nginx
 验证安装是否成功：
 在浏览器访问当前ip: 例如 192.168.199.202，可以看到浏览器显示"Welcome to nginx!"。至此，Nginx安装完成。
 
-
 配置Nginx： 
 打开nginx的配置文件 `/etc/nginx/nginx.conf`，查阅http{}模块，很容易发现服务器配置文件应写在 `/etc/nginx/conf.d` 下，以.conf为后缀：
-
 ```
 http {
     ##
@@ -489,14 +493,15 @@ server {
 * `uwsgi_pass` 是nginx接收请求后转交给uwsgi处理经过的端口（nginx把每个请求传递到服务器绑定的端口 9001，并且使用 uwsgi 协议通信。），需要与 `uwsgi.ini.d` 内设置的端口一致。
 * `UWSGI_CHDIR` 是项目的根目录，就是项目所在的全路径目录
 * `UWSGI_SCRIPT` 是项目入口文件相对于项目的路径（'.'表示一个层级）。设置完成之后，在
+* `client_max_body_size` 最大上传大小。
 
 终端重启nginx以及运行uwsgi：
 ```
-service nginx reload & uwsgi --ini /python/uwsgi.ini.d/uwsgi9001.ini
+sudo service nginx reload & uwsgi --ini /python/uwsgi.ini.d/uwsgi9001.ini
 ```
 
 扩展：
-1、nginx.conf 也可能这样的形式：
+1.nginx.conf 也可能这样的完整形式：
 ```
 # mysite_nginx.conf
 
@@ -538,7 +543,7 @@ server {
 相当于本来直接设置 `uwsgi_pass` 的值，现在改成了先把值赋给变量 `django`，再把变量 `django` 设置到 `uwsgi_pass` 上。`upstream` 常用于需要做负载均衡的场景，一个 upstream 里可以配置多个 server。
 
 
-2、可以用 `UNIX socket` 取代 `TCP port`， Nginx 中需要使用 `proxy_pass` 对 uWSGI 这个地址进行反向代理，是使用 TCP Socket 的运行方式。使用 Unix Sockets 的方式好处是**开销低，效率高**。
+2.可以用 `UNIX socket` 取代 `TCP port`， Nginx 中需要使用 `proxy_pass` 对 uWSGI 这个地址进行反向代理，是使用 TCP Socket 的运行方式。使用 Unix Sockets 的方式好处是**开销低，效率高**。
 
 对 nginx.conf 做如下修改：
 ```
@@ -563,9 +568,14 @@ uwsgi --socket mysite.sock --wsgi-file test.py
 ```
 
 
-3、查看 nginx 错误日志文件： nginx error log(/var/log/nginx/error.log)。如果错误可以查看`cat /var/log/nginx/error.log`
+3.查看 nginx 错误日志文件，默认的错误日志目录： nginx error log(/var/log/nginx/error.log)。如果错误可以查看`cat /var/log/nginx/error.log`
+也可以指定日志文件：
+```
+    access_log /var/log/nginx/www.test.com.access.log;
+    error_log /var/log/nginx/www.test.com.error.log;
+```
 
-4、配置 SSL 证书
+4.配置 SSL 证书
 如果要配置 SSL 证书，只要修改 Nginx 的配置即可：
 ```
 server{
@@ -577,7 +587,7 @@ server{
 
 更详细的配置可以参考 [StackOverflow](https://stackoverflow.com/questions/29827299/django-uwsgi-nginx-ssl-request-for-working-configuration-emphasis-on-ss)。可以使用 Let's Encrypt 生成免费的 SSL 证书。欲知使用方法点击这篇文章：[《你的网站还没用上 HTTPS 吗》](https://juejin.im/post/5c910884f265da60f771bdfa)。
 
-5、每次 uWSGI 是不会在系统启动时，自动执行启动，可以添加自定义系统服务。
+5.每次 uWSGI 是不会在系统启动时自动启动的，所以可以添加自定义系统服务启动。
 方法有很多种：
 
 - `rc.local`
@@ -592,7 +602,7 @@ uwsgi --ini /python/uwsgi.ini.d/uwsgi9001.ini
 
 - `systemd`
 
-（1）创建一个自己的系统服务（`rc-local.service`）
+（1）创建一个自己的系统服务（`rc-local.service` 或 `uwsgi.service`都可以）
 ```
 sudo vim /etc/systemd/system/rc-local.service
 ```
@@ -649,20 +659,6 @@ ps aux|grep rc-local
 注意：也可以通过 `systemctl status rc-local.service` and `journalctl -xe` 查看详细日志
 
 
-3. 如果是 python3 则，需要做一些操作
-
-
-部署static文件:
-
-在django的setting文件中，添加下面一行内容：
-```
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-```
-
-然后运行：
-```
-python manage.py collectstatic
-```
 
 
 #### 错误处理
@@ -685,7 +681,7 @@ rm -rf /usr/bin/python
 测试 uwsgi 是否正常 ，在终端执行
 ```
 uwsgi --http :8001 --wsgi-file /data/test.py
-```#### 执行报错，报错内容如下
+```##### 执行报错，报错内容如下
 ```bash
 uwsgi: option '--http' is ambiguous; possibilities: '--http-socket' '--https-socket-modifier2' '--https-socket-modifier1' '--https-socket' '--http11-socket' '--http-socket-modifier2' '--http-socket-modifier1'getopt_long() error
 ```查看uwsgi安装位置,终端执行 ：
@@ -704,3 +700,86 @@ uwsgi: unrecognized option ‘–wsgi-file’getopt_long() error
 这是因为： 需要在上面那些未识别选项前加上 `--plugin python` 来告诉 uWSGI 我在使用 python 插件，对于后面那些选项你要用python 插件去解析再次修改命令为：`uwsgi --http-socket :8001 --plugin python --wsgi-file test.py`
 
 执行成功！
+
+
+2、运行 `uwsgi --ini xxx`时报错：
+```
+chdir() to /var/www/EfunForum_Python/EfunForumSite  #项目目录,即Django程序目录
+chdir(): No such file or directory [core/uwsgi.c line 2623]
+```
+
+把 `#项目目录,即Django程序` 这个注释去掉就可以了！！！
+
+3、Could not get lock /var/lib/dpkg/lock 解决
+```
+E: Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
+```
+出现这个问题可能是有另外一个程序正在运行，导致资源被锁不可用。而导致资源被锁的原因可能是上次运行安装或更新时没有正常完成，进而出现此状况，解决的办法其实很简单：
+
+在终端中执行：
+```
+sudo rm /var/cache/apt/archives/lock
+
+sudo rm /var/lib/dpkg/lock
+```
+
+#### linux 文件夹作用
+
+|  目录  |  说明 |
+|---|---|
+|  /bin |  二进制可执行命令   |
+|  /dev |  设备特殊文件   |
+|  /etc |  系统管理和配置文件   |
+|  /etc/rc.d |  启动的配置文件和脚本  | 
+|  /home |  用户主目录的基点，比如用户user的主目录就是/home/user，可以用~user表示   |
+|  /lib |  标准程序设计库，又叫动态链接共享库，作用类似windows里的.dll文件   |
+|  /sbin |  系统管理命令，这里存放的是系统管理员使用的管理程序   |
+|  /tmp |  公用的临时文件存储点   |
+|  /root |  系统管理员的主目录（呵呵，特权阶级）   |
+|  /mnt |  系统提供这个目录是让用户临时挂载其他的文件系统。   |
+|  /lost+found |  这个目录平时是空的，系统非正常关机而留下“无家可归”的文件（windows下叫什么.chk）就在这里   |
+|  /proc |  虚拟的目录，是系统内存的映射。可直接访问这个目录来获取系统信息。   |
+|  /var |  某些大文件的溢出区，比方说各种服务的日志文件   |
+|  /usr |  最庞大的目录，要用到的应用程序和文件几乎都在这个目录。其中包含以下子目录：   |
+|  /usr/x11r6 |  存放x window的目录   |
+|  /usr/bin |  众多的应用程序   |  |
+|  /usr/sbin |  超级用户的一些管理程序   |
+|  /usr/doc |  linux文档   |
+|  /usr/include |  linux下开发和编译应用程序所需要的头文件   |
+|  /usr/lib |  常用的动态链接库和软件包的配置文件   |
+|  /usr/man |  帮助文档   |
+|  /usr/src |  源代码，linux内核的源代码就放在/usr/src/linux里   |
+|  /usr/local/bin |  本地增加的命令   |
+|  /usr/local/lib |  本地增加的库  |
+
+
+1. /bin目录 
+`/bin`目录包含了引导启动所需的命令或普通用户可能用的命令(可能在引导启动后)。这些 
+命令都是二进制文件的可执行程序(bin是 binary —— 二进制的简称)，多是系统中重要的系统文件。 
+2. /sbin目录 
+`/sbin`目录类似 /bin，也用于存储二进制文件。因为其中的大部分文件多是系统管理员使 
+用的基本的系统程序，所以虽然普通用户必要且允许时可以使用，但一般不给普通用户使用。 
+3. /etc目录 
+`/etc`目录存放着各种系统配置文件，其中包括了用户信息文件 /etc/passwd，系统初始化文 
+件 /etc/rc 等。linux 正是这些文件才得以正常地运行。 
+4. /root目录 
+/root 目录是超级用户的目录。 
+5. /lib目录 
+/lib目录是根文件系统上的程序所需的共享库，存放了根文件系统程序运行所需的共享文 
+件。这些文件包含了可被许多程序共享的代码，以避免每个程序都包含有相同的子程序的副 
+本，故可以使得可执行文件变得更小，节省空间。 
+6. /lib/modules 目录 
+/lib/modules 目录包含系统核心可加载各种模块，尤其是那些在恢复损坏的系统时重新引 
+导系统所需的模块(例如网络和文件系统驱动)。 
+7. /dev目录 
+/dev目录存放了设备文件，即设备驱动程序，用户通过这些文件访问外部设备。比如，用 
+户可以通过访问 /dev/mouse 来访问鼠标的输入，就像访问其他文件一样。 
+8. /tmp目录 
+/tmp 目录存放程序在运行时产生的信息和数据。但在引导启动后，运行的程序最好使用 
+ /var/tmp 来代替 /tmp ，因为前者可能拥有一个更大的磁盘空间。 
+9. /boot目录 
+/boot目录存放引导加载器(bootstrap loader)使用的文件，如 lilo，核心映像也经常放在这里， 而不是放在根目录中。但是如果有许多核心映像，这个目录就可能变得很大，这时使用单独的文件系统会更好一些。还有一点要注意的是，要确保核心映像必须在ide硬盘的前1024柱面内。 
+10. /mnt目录 
+/mnt目录是系统管理员临时安装(mount)文件系统的安装点。程序并不自动支持安装到 /mnt。/mnt 下面可以分为许多子目录，例如 /mnt/dosa 可能是使用msdos文件系统的软驱， 
+而 /mnt/exta 可能是使用ext2文件系统的软驱，/mnt/cdrom 光驱等等。 

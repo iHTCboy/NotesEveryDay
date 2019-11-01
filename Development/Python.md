@@ -851,21 +851,29 @@ for article in li_list:
 - [Django 二级域名配置 - 简书](https://www.jianshu.com/p/d340d0645f05)
 - [域名管理 · Python（Django）环境部署与使用指南 · 看云](https://www.kancloud.cn/websoft9/python-guide/613040)
 - [Django 教程 11: 部署 Django 到生产环境 - 学习 Web 开发 | MDN](https://developer.mozilla.org/zh-CN/docs/learn/Server-side/Django/Deployment)
-- [Centos7 + Django + Nginx +Uwsgi - 简书](https://www.jianshu.com/p/0bb254029579)
 - [Day 15 - 部署Web App - 廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/1016959663602400/1018491264935776)
 - [Python Web部署方式总结 - 简书](https://www.jianshu.com/p/0aece015976f)
 - [基于nginx和uWSGI在Ubuntu上部署Django - 简书](https://www.jianshu.com/p/e6ff4a28ab5a)
 - [Python项目自动化部署最佳实践@搜狐 | the5fire的技术博客](https://www.the5fire.com/auto-deploy-tool-for-python-app.html)
 - [以正确的方式开源 Python 项目 - OSCHINA](https://www.oschina.net/translate/open-sourcing-a-python-project-the-right-way)
 - [Systemd 入门教程：命令篇 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
-- [部署python项目到linux服务器 | 蓝士钦](https://www.lanshiqin.com/d8d0505b/)
 - [Jenkins部署Python项目实战 - 掘金](https://juejin.im/post/5ca5b886f265da30a07d2a48)
+- [CentOS 环境下基于 Nginx uwsgi 搭建 Django 站点 - restran - 博客园](https://www.cnblogs.com/restran/p/4412708.html)
 - [阿里云部署Flask+WSGI+Nginx详解-云栖社区-阿里云](https://yq.aliyun.com/articles/657026)
 - [第二期 · 阿里云Python+Flask环境搭建 - 知乎](https://zhuanlan.zhihu.com/p/22126999)
 - [一.阿里云服务器安装部署及第一个Python爬虫代码实现 - 杨秀璋的专栏 - CSDN博客](https://blog.csdn.net/eastmount/article/details/79321822)
 - [阿里云上部署 Flask 最小的应用 - 勰门歪道 | Shane Talk](http://www.shanetalk.com/2017/06/16/How-to-deploy-Flask-on-the-Aliyun/)
 - [如何在阿里云上部署 Django 应用程序 - 阿里云新手学堂](https://www.alibabacloud.com/zh/getting-started/projects/how-to-deploy-django-application-on-alibaba-cloud)
+
+
+Fabric：官方Fabric，兼容 Python 2 & Python 3，但不兼容Fabric 1.x的fabfile；
+fabric2： 与Fabric相同，仅作为平滑迁移（使用Fabric包安装1.x 版本，使用Fabric2包安装2.x版本，来实现1.x和2.x的共存）；
+Fabric3：是一个基于Fabric 1.x 的fork，兼容Python2 & Python3，兼容 Fabric1.x 的 fabfile；
+
 - [Welcome to Fabric! — Fabric documentation](https://www.fabfile.org/)
 - [欢迎访问 Fabric 中文文档 — Fabric 文档](https://fabric-chs.readthedocs.io/zh_CN/chs/index.html)
-- [远程部署神器 Fabric，支持 Python3 - FooFish-Python之禅](https://foofish.net/fabric.html)
+- [Python - Fabric简介 - Anliven - 博客园](https://www.cnblogs.com/anliven/p/9186994.html)
 - [远程部署神器 Fabric，支持 Python3 - Python之禅 - CSDN博客](https://blog.csdn.net/zV3e189oS5c0tSknrBCL/article/details/85271219)
+- [python模块fabric踩坑记录 | 淦](https://tankeryang.github.io/posts/python%E6%A8%A1%E5%9D%97fabric%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/)
+- [python三大神器之fabric（2.0新特性） - 三只松鼠 - 博客园](https://www.cnblogs.com/shenh/p/10060149.html)
+- [Fabric 让 Linux 系统部署变得简单](https://www.ibm.com/developerworks/cn/linux/simplyfy-linux-deployment-with-fabric/index.html)
