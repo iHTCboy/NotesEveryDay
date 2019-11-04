@@ -316,6 +316,14 @@ Web Client <===> Web Server(nginx) <===> The Socket <===> uWSGI <===> Django
 sudo apt-get install python-dev
 ```
 
+注：CentOS 使用 `yum`命令：
+```
+yum groupinstall "Development Tools"
+yum install python-devel
+yum install uwsgi-plugin-python #yum安装的uwsgi，缺少python的plugin
+```
+
+
 安装python3：
 ```
 sudo apt-get install python3
@@ -351,10 +359,10 @@ pip3 install django
 **如果是 python3 作为主环境**
 创建python3软连接:
 ```
-sudo ln -s /usr/local/python3/bin/python3 /usr/bin/python
+sudo ln -s /usr/bin/python3 /usr/bin/python
 ```
 
-注：由于执行CentOS的yum命令需要使用自带的python2的版本，所以将`/usr/bin/yum`文件的` #! /usr/bin/python` 修改为 `#! /usr/bin/python2`
+注：由于执行CentOS 7的yum命令需要使用自带的python2的版本，所以将`/usr/bin/yum` 和 `/usr/libexec/urlgrabber-ext-down` 文件的` #! /usr/bin/python` 修改为 `#! /usr/bin/python2`
 ```
 vim /usr/bin/yum
 ```
@@ -380,8 +388,8 @@ test.py：
 # test.py
 def application(env, start_response):
     start_response('200 OK', [('Content-Type','text/html')])
-    return ["Hello World"] # python2
-    #return [b"Hello World"] # python3
+    #return ["Hello World"] # python2
+    return [b"Hello World"] # python3
 ```
 
 配置uwsgi： 
@@ -627,7 +635,7 @@ WantedBy=multi-user.target
 说明
 - `ConditionPathExists`：为服务启动时执行的命令，不能用相对路径， 一定要全路径。也可以将命令写到任意的.sh文件。
 
-（2）创建`rc.local`文件：
+（2）创建`rc.local`文件(如果没有的话)：
 ```
 sudo touch /etc/rc.local
 sudo vim /etc/rc.local
@@ -693,7 +701,10 @@ uwsgi: /usr/sbin/uwsgi /usr/lib64/uwsgi /etc/uwsgi.d /etc/uwsgi.ini
 ```定位原因为：上面两个uwsgi文件均缺失plugin插件,所以需要自行安装plugin插件：`uwsgi-plugin-python`安装 uwsgi-plugin-python提示：安装之前需要先安装 uwsgi-plugin-common 安装步骤如下：
 ```
 apt install uwsgi-plugin-common
-```再次执行`uwsgi --http :8001 --wsgi-file test.py` 依旧报同样错误修改命令为：`uwsgi --http-socket :8001 --wsgi-file test.py`执行结果如下：
+```centos安装：
+```
+yum install -y uwsgi-plugin-python34.x86_64
+```再次执行`uwsgi --http :8001 --wsgi-file test.py` 依旧报同样错误修改命令为：`uwsgi --http-socket :8001 --wsgi-file test.py`执行结果如下：
 ```bash
 uwsgi: unrecognized option ‘–wsgi-file’getopt_long() error
 ```
