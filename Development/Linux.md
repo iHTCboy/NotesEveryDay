@@ -319,13 +319,12 @@ sudo apt-get install python-dev
 注：CentOS 使用 `yum`命令：
 ```
 yum groupinstall "Development Tools"
-yum install python-devel
 yum install uwsgi-plugin-python #yum安装的uwsgi，缺少python的plugin
 ```
 
 
 安装python3：
-```
+``` 
 sudo apt-get install python3
 ```
 
@@ -474,7 +473,7 @@ http {
 于是我们在`/etc/nginx/conf.d`创建一个 mysite.conf 文件，写入如下内容：
 也可以用软链接到 `/etc/nginx/conf.d`：
 ```
-sudo ln mysite.conf /etc/nginx/conf.d/mysite.conf
+sudo i
 ```
 
 注：`/etc/nginx/conf.d/` 和 `/etc/nginx/sites-enabled/` 都可以
@@ -595,6 +594,7 @@ server{
 
 更详细的配置可以参考 [StackOverflow](https://stackoverflow.com/questions/29827299/django-uwsgi-nginx-ssl-request-for-working-configuration-emphasis-on-ss)。可以使用 Let's Encrypt 生成免费的 SSL 证书。欲知使用方法点击这篇文章：[《你的网站还没用上 HTTPS 吗》](https://juejin.im/post/5c910884f265da60f771bdfa)。
 
+
 5.每次 uWSGI 是不会在系统启动时自动启动的，所以可以添加自定义系统服务启动。
 方法有很多种：
 
@@ -689,7 +689,7 @@ rm -rf /usr/bin/python
 测试 uwsgi 是否正常 ，在终端执行
 ```
 uwsgi --http :8001 --wsgi-file /data/test.py
-```##### 执行报错，报错内容如下
+```##### uwsgi 执行报错，报错内容如下
 ```bash
 uwsgi: option '--http' is ambiguous; possibilities: '--http-socket' '--https-socket-modifier2' '--https-socket-modifier1' '--https-socket' '--http11-socket' '--http-socket-modifier2' '--http-socket-modifier1'getopt_long() error
 ```查看uwsgi安装位置,终端执行 ：
@@ -698,17 +698,18 @@ whereis uwsgi
 ```执行结果为：
 ```
 uwsgi: /usr/sbin/uwsgi /usr/lib64/uwsgi /etc/uwsgi.d /etc/uwsgi.ini
-```定位原因为：上面两个uwsgi文件均缺失plugin插件,所以需要自行安装plugin插件：`uwsgi-plugin-python`安装 uwsgi-plugin-python提示：安装之前需要先安装 uwsgi-plugin-common 安装步骤如下：
+```定位原因为：上面两个uwsgi文件均缺失plugin插件，所以需要自行安装plugin插件：`uwsgi-plugin-python`安装 uwsgi-plugin-python提示：安装之前需要先安装 uwsgi-plugin-common 安装步骤如下：
 ```
 apt install uwsgi-plugin-common
-```centos安装：
+```centos安装，需要先搜索 `yum search vim uwsgi-plugin-python`
+找到对应版本的 uwsgi-plugin-python，然后在 yum install 一下：
 ```
-yum install -y uwsgi-plugin-python34.x86_64
-```再次执行`uwsgi --http :8001 --wsgi-file test.py` 依旧报同样错误修改命令为：`uwsgi --http-socket :8001 --wsgi-file test.py`执行结果如下：
+yum install -y uwsgi-plugin-pythonXXX
+```再次执行`uwsgi --http :8001 --wsgi-file test.py` 依旧报同样错误修改命令为：`uwsgi --http-socket :8001 --wsgi-file test.py`执行结果如下：
 ```bash
 uwsgi: unrecognized option ‘–wsgi-file’getopt_long() error
 ```
-这是因为： 需要在上面那些未识别选项前加上 `--plugin python` 来告诉 uWSGI 我在使用 python 插件，对于后面那些选项你要用python 插件去解析再次修改命令为：`uwsgi --http-socket :8001 --plugin python --wsgi-file test.py`
+这是因为： 需要在上面那些未识别选项前加上 `--plugin python` 来告诉 uWSGI 在使用 python 插件，对于后面那些选项要用 python 插件去解析再次修改命令为：`uwsgi --http-socket :8001 --plugin python --wsgi-file test.py`
 
 执行成功！
 
@@ -719,9 +720,28 @@ chdir() to /var/www/EfunForum_Python/EfunForumSite  #项目目录,即Django程�
 chdir(): No such file or directory [core/uwsgi.c line 2623]
 ```
 
-把 `#项目目录,即Django程序` 这个注释去掉就可以了！！！
+把 `#项目目录，即Django程序` 这个注释去掉就可以了！！！
 
-3、Could not get lock /var/lib/dpkg/lock 解决
+3、uwsgi -- unavailable modifier requested: 0 --
+说明是uwsgi出了问题，启动文件需要增加一个配置项，`python36`表示当前安装的 python 版本为 3.6：
+```
+plugins = python36
+```
+如果是命令行，则用：
+```
+--plugin python36
+```
+
+4、uwsgi: unrecognized option '--wsgi-file'
+```
+open("/usr/lib64/uwsgi/python_plugin.so"): No such file or directory [core/utils.c line 3721]
+!!! UNABLE to load uWSGI plugin: /usr/lib64/uwsgi/python_plugin.so: cannot open shared object file: No such file or directory !!!
+uwsgi: unrecognized option '--wsgi-file'
+```
+说明 python 插件路径错误！确认 `yum install -y uwsgi-plugin-pythonXXX` 指定的 python 版本，需要明确当前使用的 python 版本，比如 `--plugin python36`
+
+
+5、Could not get lock /var/lib/dpkg/lock 解决
 ```
 E: Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)
 E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
@@ -775,22 +795,22 @@ sudo rm /var/lib/dpkg/lock
 `/etc`目录存放着各种系统配置文件，其中包括了用户信息文件 /etc/passwd，系统初始化文 
 件 /etc/rc 等。linux 正是这些文件才得以正常地运行。 
 4. /root目录 
-/root 目录是超级用户的目录。 
+`/root` 目录是超级用户的目录。 
 5. /lib目录 
-/lib目录是根文件系统上的程序所需的共享库，存放了根文件系统程序运行所需的共享文 
+`/lib` 目录是根文件系统上的程序所需的共享库，存放了根文件系统程序运行所需的共享文 
 件。这些文件包含了可被许多程序共享的代码，以避免每个程序都包含有相同的子程序的副 
 本，故可以使得可执行文件变得更小，节省空间。 
 6. /lib/modules 目录 
-/lib/modules 目录包含系统核心可加载各种模块，尤其是那些在恢复损坏的系统时重新引 
+`/lib/modules` 目录包含系统核心可加载各种模块，尤其是那些在恢复损坏的系统时重新引 
 导系统所需的模块(例如网络和文件系统驱动)。 
 7. /dev目录 
-/dev目录存放了设备文件，即设备驱动程序，用户通过这些文件访问外部设备。比如，用 
+`/dev` 目录存放了设备文件，即设备驱动程序，用户通过这些文件访问外部设备。比如，用 
 户可以通过访问 /dev/mouse 来访问鼠标的输入，就像访问其他文件一样。 
 8. /tmp目录 
-/tmp 目录存放程序在运行时产生的信息和数据。但在引导启动后，运行的程序最好使用 
+`/tmp` 目录存放程序在运行时产生的信息和数据。但在引导启动后，运行的程序最好使用 
  /var/tmp 来代替 /tmp ，因为前者可能拥有一个更大的磁盘空间。 
 9. /boot目录 
-/boot目录存放引导加载器(bootstrap loader)使用的文件，如 lilo，核心映像也经常放在这里， 而不是放在根目录中。但是如果有许多核心映像，这个目录就可能变得很大，这时使用单独的文件系统会更好一些。还有一点要注意的是，要确保核心映像必须在ide硬盘的前1024柱面内。 
+`/boot` 目录存放引导加载器(bootstrap loader)使用的文件，如 lilo，核心映像也经常放在这里，而不是放在根目录中。但是如果有许多核心映像，这个目录就可能变得很大，这时使用单独的文件系统会更好一些。还有一点要注意的是，要确保核心映像必须在ide硬盘的前1024柱面内。 
 10. /mnt目录 
-/mnt目录是系统管理员临时安装(mount)文件系统的安装点。程序并不自动支持安装到 /mnt。/mnt 下面可以分为许多子目录，例如 /mnt/dosa 可能是使用msdos文件系统的软驱， 
+`/mnt` 目录是系统管理员临时安装(mount)文件系统的安装点。程序并不自动支持安装到 /mnt。/mnt 下面可以分为许多子目录，例如 /mnt/dosa 可能是使用msdos文件系统的软驱， 
 而 /mnt/exta 可能是使用ext2文件系统的软驱，/mnt/cdrom 光驱等等。 

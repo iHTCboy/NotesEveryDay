@@ -1,3 +1,5 @@
+[TOC]
+
 ### nginx
 
 #### nginx location if 的匹配规则
@@ -180,7 +182,7 @@ sudo ufw allow | deny smtp
 ```
 
 ### linux命令后台运行
-   有两种方式：
+有两种方式：
    1. command & ： 后台运行，你关掉终端会停止运行
    2. nohup command & ： 后台运行，你关掉终端也会继续运行
 
@@ -203,8 +205,8 @@ nohup python -u flush.py > flush.log 2>&1 &
 
 - [python nohup linux 后台运行输出 - SoWhat1412 - CSDN博客](https://blog.csdn.net/qq_31821675/article/details/78246808)
    
-   ### systemctl命令
 
+### systemctl命令
 
 ```
 #开机运行服务：
@@ -299,3 +301,56 @@ sudo fuser -k 80/tcp
 # hdparm -i /dev/hda     # 查看磁盘参数(仅适用于IDE设备)
 # dmesg | grep IDE       # 查看启动时IDE设备检测状况
 ```
+
+### 查看文件内容(cat/head/tail/more/less/sed/grep)
+
+* cat（是一次性显示整个文件的内容）、head（查看前几行）、tail（查看末尾几行）
+
+`cat filename`：打印文件所有内容
+`tail -n 1000`：显示最后1000行
+`tail -n +1000`：从1000行开始显示，显示1000行以后的
+`head -n 1000`：显示前面1000行
+
+结合使用示例：
+```
+查看/etc/profile的前10行内容：
+# head -n 10 /etc/profile
+
+查看/etc/profile的最后5行内容：
+# tail  -n 5 /etc/profile
+
+查看最后1000行的内容：:
+# cat filename | tail -n 1000
+
+从第3000行开始，显示1000行。即显示3000~3999行内容：
+# cat filename | tail -n +3000 | head -n 1000
+
+显示1000行到3000行内容：
+# cat filename| head -n 3000 | tail -n +1000 
+```
+
+注：如果想显示行号，用 `-n` 参数
+
+
+* more、less命令
+`more` 命令和cat的功能一样都是查看文件里的内容，但有所不同的是 more 可以按页来查看文件的内容， 会以一页一页的显示方便使用者逐页阅读，还支持直接跳转行等功能。
+
+`less` 与 more 类似，但使用 less 可以随意浏览文件，而 more 仅能向前移动，却不能向后移动，而且 less 在查看之前不会加载整个文件。
+
+注：如果想显示行号，用 `-num` 参数
+
+
+* 用sed命令
+```
+显示1000到300行的内容：
+# sed -n '1000,3000p' filename
+```
+ 
+* 用grep命令
+```
+grep -C 5 foo file 显示file文件里匹配foo字串那行以及上下5行
+grep -B 5 foo file 显示foo及前5行
+grep -A 5 foo file 显示foo及后5行
+```
+
+
