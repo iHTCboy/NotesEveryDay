@@ -822,6 +822,13 @@ python -c "import django; print(django.get_version())"
 
 - [Serializers - Django REST framework中文站点](https://q1mi.github.io/Django-REST-framework-documentation/api-guide/serializers_zh/)
 - [Django REST framework API 指南 - 掘金](https://juejin.im/post/5a9520dc6fb9a0634f40c2db)
+- [Django Rest Framework - 安装，配置 与 新建 Serialization - LABELNET - CSDN博客](https://blog.csdn.net/lablenet/article/details/53491756)
+- [Django Rest Framework API指南 - Fighting蔚 - 博客园](https://www.cnblogs.com/victorwu/p/7418368.html)
+- [python 全栈开发，Day95(RESTful API介绍,基于Django实现RESTful API,DRF 序列化) - 肖祥 - 博客园](https://www.cnblogs.com/xiao987334176/p/9401486.html)
+- [python 全栈开发，Day96(Django REST framework 视图,django logging配置,django-debug-toolbar使用指南) - 肖祥 - 博客园](https://www.cnblogs.com/xiao987334176/p/9408378.html)
+
+#### 关闭 Debug 后，静态资源无法显示问题
+Django 关闭 Debug 后无法访问静态资源图片等，可以配置nginx做反向代理, 但是对于调试来说操作比较麻烦, 我们只需在命令 `python manage.py runserver 0.0.0.0:8000` 后加一个参数 `--insecure` 就可以啦~~
 
 
 ### 爬虫
@@ -853,17 +860,17 @@ for article in li_list:
 - [Django 教程 11: 部署 Django 到生产环境 - 学习 Web 开发 | MDN](https://developer.mozilla.org/zh-CN/docs/learn/Server-side/Django/Deployment)
 - [Day 15 - 部署Web App - 廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/1016959663602400/1018491264935776)
 - [Python Web部署方式总结 - 简书](https://www.jianshu.com/p/0aece015976f)
+- [Nginx, WSGI, Flask之间的关系 - 勰门歪道 | Shane Talk](http://www.shanetalk.com/2017/08/20/Nginx-WSGI-Flask/)
 - [基于nginx和uWSGI在Ubuntu上部署Django - 简书](https://www.jianshu.com/p/e6ff4a28ab5a)
 - [Python项目自动化部署最佳实践@搜狐 | the5fire的技术博客](https://www.the5fire.com/auto-deploy-tool-for-python-app.html)
 - [以正确的方式开源 Python 项目 - OSCHINA](https://www.oschina.net/translate/open-sourcing-a-python-project-the-right-way)
 - [Systemd 入门教程：命令篇 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 - [Jenkins部署Python项目实战 - 掘金](https://juejin.im/post/5ca5b886f265da30a07d2a48)
 - [CentOS 环境下基于 Nginx uwsgi 搭建 Django 站点 - restran - 博客园](https://www.cnblogs.com/restran/p/4412708.html)
-- [阿里云部署Flask+WSGI+Nginx详解-云栖社区-阿里云](https://yq.aliyun.com/articles/657026)
 - [第二期 · 阿里云Python+Flask环境搭建 - 知乎](https://zhuanlan.zhihu.com/p/22126999)
 - [一.阿里云服务器安装部署及第一个Python爬虫代码实现 - 杨秀璋的专栏 - CSDN博客](https://blog.csdn.net/eastmount/article/details/79321822)
-- [阿里云上部署 Flask 最小的应用 - 勰门歪道 | Shane Talk](http://www.shanetalk.com/2017/06/16/How-to-deploy-Flask-on-the-Aliyun/)
 - [如何在阿里云上部署 Django 应用程序 - 阿里云新手学堂](https://www.alibabacloud.com/zh/getting-started/projects/how-to-deploy-django-application-on-alibaba-cloud)
+- [Django + Apache 部署 - - SegmentFault 思否](https://segmentfault.com/a/1190000017150991)
 
 
 Fabric：官方Fabric，兼容 Python 2 & Python 3，但不兼容Fabric 1.x的fabfile；
@@ -877,3 +884,10 @@ Fabric3：是一个基于Fabric 1.x 的fork，兼容Python2 & Python3，兼容 F
 - [python模块fabric踩坑记录 | 淦](https://tankeryang.github.io/posts/python%E6%A8%A1%E5%9D%97fabric%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/)
 - [python三大神器之fabric（2.0新特性） - 三只松鼠 - 博客园](https://www.cnblogs.com/shenh/p/10060149.html)
 - [Fabric 让 Linux 系统部署变得简单](https://www.ibm.com/developerworks/cn/linux/simplyfy-linux-deployment-with-fabric/index.html)
+
+
+[CentOS设定SFTP用户只能访问家目录 - Adairs的个人空间 - OSCHINA](https://my.oschina.net/adairs/blog/847093)
+[Linux 限制SFTP用户只能访问某个目录 - 经验在于积累而不在于年限---dreamboycx - CSDN博客](https://blog.csdn.net/dreamboycx/article/details/78672925)
+[Linux创建用户只能访问某个目录 - 做点儿扯谈的事儿 - CSDN博客](https://blog.csdn.net/u010073893/article/details/52953911)
+[BasicChroot - Community Help Wiki](https://help.ubuntu.com/community/BasicChroot)
+[CentOS 7部署chroot ssh和sftp监牢 - 大别阿郎的个人空间 - OSCHINA](https://my.oschina.net/u/589241/blog/3067416)

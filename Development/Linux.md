@@ -318,6 +318,7 @@ sudo apt-get install python-dev
 
 注：CentOS 使用 `yum`命令：
 ```
+yum install gcc python-devel 
 yum groupinstall "Development Tools"
 yum install uwsgi-plugin-python #yum安装的uwsgi，缺少python的plugin
 ```
@@ -666,6 +667,60 @@ ps aux|grep rc-local
 
 注意：也可以通过 `systemctl status rc-local.service` and `journalctl -xe` 查看详细日志
 
+
+- 其它，如 进程监控`Supervisor`、`crontab`等
+
+```
+sudo apt-get install supervisor
+```
+配置Supervisor。
+
+转到Supervisor的配置文件目录：
+```
+cd /etc/supervisor/conf.d/
+```
+
+新建并打开一个名为blog.conf的配置文件：
+```
+touch blog.conf
+vim blog.conf
+```
+
+配置内容：
+
+```
+# 进程的名字，取一个以后自己一眼知道是什么的名字。
+[program:blog] 
+# 定义命令。你只要注意后面的目录对就行。特别注意「run:app」的run，这个名字是你网站应用的文件名。我的是run.py，就写run。
+command=/home/www/blog/venv/bin/gunicorn run:app -c /home/www/blog/gunicorn.conf
+# 网站目录
+directory=/home/www/blog
+# 进程所属用户。之前为博客建立过一个小号www，你还记得？
+user=www
+# 自动重启设置。
+autostart=true
+autorestart=true
+# 日志存放位置。
+
+stdout_logfile=/home/www/blog/logs/gunicorn_supervisor.log 
+# 设置环境变量。这里这行的意思是：设置环境变量MODE的值为UAT。请根据自己的需要配置，如没有需要这行可以删除。
+
+environment = MODE="UAT"
+保存文件。
+```
+
+加载并生效Supervisor配置：
+```
+sudo supervisorctl reread
+supervisorctl update
+sudo supervisorctl start blog
+```
+
+重启Supervisor：
+```
+sudo service supervisor stop
+sudo service supervisor start
+```
 
 
 

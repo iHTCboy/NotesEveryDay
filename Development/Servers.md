@@ -1,5 +1,49 @@
 [TOC]
 
+
+### MySQL 安装与配置
+安装
+> MariaDB is shipped in the CentOS repo as of CentOS 7 instead of mysql.
+> if you still want to install mysql you need to add mysql rpm dependency into your yum repo.
+
+
+```
+sudo yum -y install mariadb-server mariadb-devel mariadb
+sudo systemctl start mariadb.service
+sudo systemctl enable mariadb.service
+```
+
+配置
+
+登录
+```
+mysql -u root -p
+```
+
+创建用户
+```
+CREATE USER ocean_monitor IDENTIFIED BY 'ocean_monitor_pwd';
+```
+
+上面建立的用户可以在任何地方登陆。如果要限制在固定地址登陆，比如 localhost 登陆：
+CREATE USER ocean_monitor@localhost IDENTIFIED BY 'ocean_monitor_pwd';
+
+创建数据库
+```
+# 使用utf8编码，否则中文会有问题
+CREATE DATABASE ocean_monitor character set utf8;
+```
+
+授权 ocean_monitor 用户拥有 ocean_monitor 数据库的所有权限
+```
+grant all on ocean_monitor.* to ocean_monitor identified by 'ocean_monitor_pwd';
+```
+
+如果是限制在 localhost 登录的，则使用
+```
+grant all on ocean_monitor.* to ocean_monitor@localhost identified by 'ocean_monitor_pwd';
+```
+
 ### nginx
 
 #### nginx location if 的匹配规则
@@ -353,4 +397,5 @@ grep -B 5 foo file 显示foo及前5行
 grep -A 5 foo file 显示foo及后5行
 ```
 
+以上命令，更新使用说明，请使用 `h`、`--help` 命令了解更多。
 
