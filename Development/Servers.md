@@ -2,7 +2,7 @@
 
 
 ### MySQL 安装与配置
-安装
+**安装**
 > MariaDB is shipped in the CentOS repo as of CentOS 7 instead of mysql.
 > if you still want to install mysql you need to add mysql rpm dependency into your yum repo.
 
@@ -13,7 +13,7 @@ sudo systemctl start mariadb.service
 sudo systemctl enable mariadb.service
 ```
 
-配置
+**配置**
 
 登录
 ```
@@ -43,6 +43,10 @@ grant all on ocean_monitor.* to ocean_monitor identified by 'ocean_monitor_pwd';
 ```
 grant all on ocean_monitor.* to ocean_monitor@localhost identified by 'ocean_monitor_pwd';
 ```
+
+### Redis
+
+todo
 
 ### nginx
 
