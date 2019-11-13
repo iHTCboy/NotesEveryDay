@@ -403,3 +403,24 @@ grep -A 5 foo file 显示foo及后5行
 
 以上命令，更新使用说明，请使用 `h`、`--help` 命令了解更多。
 
+### 文件解压缩
+
+压缩：
+```
+tar -zcvf archive-name.tar.gz directory-name
+
+#多个目录合并压缩
+tar -zcvf my-compressed.tar.gz /path/to/dir1/ /path/to/dir2/
+
+# 使用bzip2压缩：
+tar -jcvf my-compressed.tar.bz2 /path/to/dir1/
+```
+
+解压：
+```
+#当前目录解压
+ tar -zxvf prog-1-jan-2005.tar.gz
+ 
+ #指定目录
+ tar -zxvf prog-1-jan-2005.tar.gz -C /tmp
+```
