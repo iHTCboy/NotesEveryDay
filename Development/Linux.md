@@ -446,6 +446,10 @@ sudo uwsgi --reload /var/run/uwsgi9001.pid
 ```
 sudo killall -9 uwsgi 
 ```
+或
+```
+pkill -f uwsgi
+```
 
 3.配置后的#注释，在使用中记得去掉，否则报错！！`No such file or directory`
 
