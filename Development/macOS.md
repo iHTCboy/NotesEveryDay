@@ -8,9 +8,68 @@ sudo xattr -r -d com.apple.quarantine xxx.app
 ```
 
 `quarantine` 这个单字就是隔离、封锁的意思。
-而`com.apple.quarantine`这个EA代表的也是差不多意思，表示有此属性的档案是需要使用这确认才可以执行的。一但使用者确认后，此属性就会被取消掉。
+而`com.apple.quarantine`这个EA代表的也是差不多意思，表示有此属性的档案是需要确认才可以执行的。一但使用者确认后，此属性就会被取消掉。（跟在系统偏好设置-安全性与隐私-通用-允许从以下位置下载的App:，应该是一样的命令操作。）
 
 - [What should I do about com.apple.quarantine?](https://superuser.com/questions/28384/what-should-i-do-about-com-apple-quarantine)
+
+
+#### macOS 终端操作剪切版的内容
+`pbcopy`  : 表示复制到剪切版
+`pbpaste` ：表示粘贴剪切版
+
+统计剪贴板中文本的行数
+```
+pbpaste | wc -l 
+```
+
+统计剪贴板中文本的单词数
+```
+pbpaste | wc -w 
+```
+
+对剪贴板中的文本行进行排序后重新写回剪贴板
+```
+pbpaste | sort | pbcopy 
+```
+
+对剪贴板中的文本行进行倒序后放回剪贴板
+```
+pbpaste | rev | pbcopy 
+```
+
+移除剪贴板中重复的文本行，然后写回剪贴板
+```
+pbpaste | sort | uniq | pbcopy 
+```
+找出剪贴板中文本中存在的重复行，并复制后写回剪贴板（包含重复行的一行）
+```
+pbpaste | sort | uniq -d | pbcopy 
+```
+
+找出剪贴板中文本中存在的重复行，并复制后写回剪贴板（不包含重复行）
+```
+pbpaste | sort | uniq -u | pbcopy 
+```
+
+对剪贴板中的 HTML 文本进行清理后写回剪贴板
+```
+pbpaste | tidy | pbcopy 
+```
+
+显示剪贴板中文本的前 5 行
+```
+pbpaste | head -n 5 
+```
+
+显示剪贴板中文本的最后 5 行
+```
+pbpaste | tail -n 5 
+```
+
+将剪贴板中文本里存在的 Tab 跳格符号转成空格
+```
+pbpaste | expand | pbcopy
+```
 
 ### iTerm2技巧 
 https://skyline75489.github.io/post/2014-7-10_iterm-usage.html
