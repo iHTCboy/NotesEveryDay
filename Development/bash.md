@@ -251,6 +251,13 @@ find /Users/iHTCboy/Documents -type f -name "*.md" -exec grep -l "https://ihtcbo
 因为单行命令中-exec参数中无法使用多个命令，以下方法可以实现在-exec之后接受多条命令
 `-exec ./text.sh {} \;`
 
+
+搜索文件夹下文件并替换字符串：
+```
+find /Users/iHTCboy/Documents -type f -name "*.md" -exec sed -i '' 's/htc/iHTCboy/g; s/ihtc.cc/iHTCboy.com/g' {}  \;
+```
+
+
 - [find命令_Linux find 命令用法详解：在指定目录下查找文件](https://man.linuxde.net/find)
 
 #### SSH 连接、远程上传下载文件
