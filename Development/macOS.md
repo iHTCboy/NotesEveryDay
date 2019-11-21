@@ -172,6 +172,12 @@ Ctrl + Shift + R 全局替换
 import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())
 ```
 
+手动安装：
+
+1. Click the `Preferences` > `Browse Packages…` menu
+2. Browse up a folder and then into the `Installed Packages/` folder
+3. Download [Package Control.sublime-package](https://packagecontrol.io/Package%20Control.sublime-package) and copy it into the `Installed Packages/` directory
+4. Restart Sublime Text
 
 #### sublime text3格式化json
 - 方法1
