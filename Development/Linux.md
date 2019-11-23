@@ -710,13 +710,24 @@ stdout_logfile=/home/www/blog/logs/gunicorn_supervisor.log
 # 设置环境变量。这里这行的意思是：设置环境变量MODE的值为UAT。请根据自己的需要配置，如没有需要这行可以删除。
 
 environment = MODE="UAT"
-保存文件。
+```
+
+简单配置：
+
+```
+[program:blog]
+command=vapor run --env=production
+directory=/root/blog        # 修改vapor项目目录
+autorestart=true
+user=root                      # vapor项目所属用户用户名
+stdout_logfile=/var/log/supervisor/%(program_name)-stdout.log
+stderr_logfile=/var/log/supervisor/%(program_name)-stderr.log
 ```
 
 加载并生效Supervisor配置：
 ```
 sudo supervisorctl reread
-supervisorctl update
+sudo supervisorctl update  或  sudo supervisorctl add blog
 sudo supervisorctl start blog
 ```
 
