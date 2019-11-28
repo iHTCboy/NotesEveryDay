@@ -13,6 +13,11 @@
 需要在Xcode中创建模板器
 
 
+#### Cocoapods 配置问题
+
+- [Xcode 编辑器之关于Other Linker Flags相关问题 - 梁飞宇 - 博客园](https://www.cnblogs.com/lxlx1798/p/11219101.html)
+- [细聊 Cocoapods 与 Xcode 工程配置](https://bestswifter.com/cocoapods/)
+
 ### SDWebImage
 
 #### SDWebImage 占位图是GIF处理
