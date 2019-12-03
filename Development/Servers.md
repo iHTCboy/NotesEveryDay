@@ -895,3 +895,24 @@ h. 其他
 
 
 [Linux如何查看进程、杀死进程、启动进程等常用命令 - wojiaopanpan - CSDN博客](https://blog.csdn.net/wojiaopanpan/article/details/7286430)
+
+
+#### 查看 .gz 文件
+
+```
+zcat logfile.gz
+zcat -f logfile.gz //强制查看
+
+zcat logfile.gz | less
+zcat logfile.gz | more
+
+zless logfile.gz
+zmore logfile.gz
+
+zgrep -i keyword_search logfile.gz
+
+
+zdiff logfile1.gz logfile2.gz﻿
+```
+
+- [How To Read And Work On Gzip Compressed Log Files In Linux - It's FOSS](https://itsfoss.com/read-compressed-log-files-linux/)
