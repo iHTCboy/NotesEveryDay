@@ -297,6 +297,81 @@ $scp -r localfile.txt username@192.168.0.1:/home/username/
 
 - [使用SSH传输文件/文件夹 - bedisdover的博客 - CSDN博客](https://blog.csdn.net/bedisdover/article/details/51622133)
 
+#### Shell中切换Linux用户环境
+
+- 切换用户只执行一条命令:
+```
+su - oracle -c "command"
+```
+
+- 切换用户执行一个shell文件:
+```
+su - oracle -s /bin/bash shell.sh
+```
+
+- 切换用户执行多条命令:
+```bash
+su 用户名 <<EOF命令集EOF
+```
+
+Shell中通常将 EOF 与 << 结合使用，表示后续的输入作为子命令或子Shell的输入，直到遇到EOF为止，再返回到主调Shell。
+
+示例：
+```bash
+#!/bin/bash
+
+su - ihtcboy <<EOF
+pwd;
+exit;
+EOF
+```
+
+关于 << EOF （文件结尾 (End-of-file)）
+> `<< tag`	: 将开始标记 tag 和结束标记 tag 之间的内容作为输入。
+> Here Document 是 Shell 中的一种特殊的重定向方式，用来将输入重定向到一个交互式 Shell 脚本或程序。
+
+它的基本的形式如下：
+```
+command << EOF
+    document
+EOF
+```
+它的作用是将两个 EOF 之间的内容(document) 作为输入传递给 command。
+注意：
+> 结尾的EOF 一定要顶格写，前面不能有任何字符，后面也不能有任何字符，包括空格和 tab 缩进。
+> 开始的EOF前后的空格会被忽略掉。
+
+
+- [shell脚本中使用其他用户执行脚本 - Bigben](https://www.cnblogs.com/bigben0123/archive/2013/05/07/3064843.html)
+- [Shell中关于切换用户的问题整理](http://www.3mu.me/shell%E4%B8%AD%E5%85%B3%E4%BA%8E%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7%E7%9A%84%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/)
+- [Shell 输入/输出重定向 | 菜鸟教程](https://www.runoob.com/linux/linux-shell-io-redirections.html)
+
+#### 获取 Shell 全局参数
+
+$0: 获取当前脚本的名称
+$#: 传递给脚本的参数个数
+$$: shell脚本的进程号
+$1, $2, $3...：脚本程序的参数 
+
+
+#### Shell 执行命令但不输出内容
+如果希望执行某个命令，但又不希望在屏幕上显示输出结果，那么可以将输出重定向到 `/dev/null`：
+
+```
+$ command > /dev/null
+```
+
+`/dev/null` 是一个特殊的文件，写入到它的内容都会被丢弃；如果尝试从该文件读取内容，那么什么也读不到。但是 `/dev/null` 文件非常有用，将命令的输出重定向到它，会起到"禁止输出"的效果。
+如果希望屏蔽 `stdout` 和 `stderr`，可以这样写：
+
+```
+$ command > /dev/null 2>&1
+```
+> 注意：0 是标准输入（STDIN），1 是标准输出（STDOUT），2 是标准错误输出（STDERR）。
+
+- [Shell 输入/输出重定向 | 菜鸟教程](https://www.runoob.com/linux/linux-shell-io-redirections.html)
+
+
 ### vim
 
 #### 撤销和恢复撤销快捷键
