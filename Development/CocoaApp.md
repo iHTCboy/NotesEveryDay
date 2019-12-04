@@ -23,3 +23,12 @@ AirDrop:
 - [macOS Development - NSSharingService & NSSharingServicePicker - 简书](https://www.jianshu.com/p/c9fd1811b96f)
 - [JustinFincher/WebDrop: 💻 Share your Mac's current chrome tab via airdrop](https://github.com/JustinFincher/WebDrop)
 - [airshare with swift | FaiChou's Blog](https://faichou.space/air-share-with-swift/)
+
+
+#### macOS App notarize 公证
+
+- [macOS app 实现自动化 notarize 脚本 | 落格博客](https://www.logcg.com/archives/3222.html)
+- [Notarizing macOS Software Before Distribution | Apple Developer Documentation](https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution)
+- [Resolving Common Notarization Issues | Apple Developer Documentation](https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution/resolving_common_notarization_issues)
+- [Signing Mac Software with Developer ID - Apple Developer](https://developer.apple.com/developer-id/)
+- [Upload a macOS app to be notarized - Xcode Help](https://help.apple.com/xcode/mac/current/#/dev88332a81e)
