@@ -410,20 +410,53 @@ $ rm -rf submodule
 $ rm -rf .git/modules/submodule
 ```
 
-#### fork后如何同步源的新更新内容？
-
+### fork后如何同步源的新更新内容？
 
 ```git
-1. 首先将别人的仓库添加到你的上游远程，通常命名为upstream.
+1.首先将别人的仓库添加到你的上游远程，通常命名为upstream（这个名字可以随意改，不要使用 `origin`）.
  
+```git
 git remote add upstream url(表示原作者仓库)
+```
  
+2.用 `git remote -v` 可以看到一个origin是自己的，另外一个upstream原作者。
  
-2. 用 git remote -v 可以看到一个origin是自己的，另外一个upstream原作者。
- 
- 
-1. 更新代码：
+3.更新代码：
+
+```git
 git fetch upstream //去拉去原作者的仓库更新
 git checkout master //切换到自己的master
 git merge upstream/master //merge或者rebase到你的master
 ```
+
+### Git 只获取部分目录或文件的内容（稀疏检出）
+
+```git
+$ git init <project>
+$ cd <project>
+$ git remote add origin ssh://<user>@<repository's url>
+$ git config core.sparsecheckout true
+$ echo "path1/" >> .git/info/sparse-checkout
+$ echo "path2/" >> .git/info/sparse-checkout
+$ git pull origin master
+```
+
+- sparse-checkout 文件设置
+* **子目录的匹配**：如果目录名称前带斜杠，如/docs/，将只匹配项目根目录下的docs目录，如果目录名称前不带斜杠，如docs/，其他目录下如果也有这个名称的目录，如test/docs/也能被匹配。而如果写了多级目录，如docs/01/，则不管前面是否带有斜杠，都只匹配项目根目录下的目录，如test/docs/01/不能被匹配。
+* **通配符** “*“ (星号)，在 sparse-checkout 文件中，支持通配符 “*“
+* **排除项** “!” (感叹号)在 sparse-checkout 文件中，也支持排除项 “!”
+
+- 增加或删除 sparse-checkout 配置
+
+```
+$ git checkout master
+```
+
+或执行以下命令：
+```
+$ git read-tree -mu HEAD
+```
+
+注：如果想关闭 sparse checkout，需要用一个”*“号替代其中的内容，然后执行 checkout 或 read-tree 命令。
+
+- [Git只获取部分目录的内容（稀疏检出）](https://zhgcao.github.io/2016/05/11/git-sparse-checkout/)
