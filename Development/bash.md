@@ -405,6 +405,22 @@ fi
 
 - [shell提取文件后缀名，并判断其是否为特定字符串 - Hellovictoria的专栏](https://blog.csdn.net/hellovictoria/article/details/40378907)
 
+#### shell获取时间字符串
+
+In bash (<4.2):
+```bash
+# put current date as yyyy-mm-dd in $date
+date=$(date '+%Y-%m-%d')
+
+# put current date as yyyy-mm-dd HH:MM:SS in $date
+date=$(date '+%Y-%m-%d %H:%M:%S')
+
+# print current date directly
+echo $(date '+%Y-%m-%d')
+```
+
+- [bash - YYYY-MM-DD format date in shell script - Stack Overflow](https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script)
+
 ### vim
 
 #### 撤销和恢复撤销快捷键
