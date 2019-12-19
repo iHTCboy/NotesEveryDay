@@ -963,6 +963,15 @@ python -c "import django; print(django.get_version())"
 #### 关闭 Debug 后，静态资源无法显示问题
 Django 关闭 Debug 后无法访问静态资源图片等，可以配置nginx做反向代理, 但是对于调试来说操作比较麻烦, 我们只需在命令 `python manage.py runserver 0.0.0.0:8000` 后加一个参数 `--insecure` 就可以啦~~
 
+### Excel
+#### openpyxl获取excel中函数公式的结果值
+
+```ptyhon
+import openpyxl
+wb= openpyxl.load_workbook('ihtcboy.xlsx',data_only=True)
+```
+
+创建对象时增加 `data_only=True` 参数就可以读取值。
 
 ### 爬虫
 #### Python Selenium 元素text获取不到内容
