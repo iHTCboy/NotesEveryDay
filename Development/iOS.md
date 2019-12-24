@@ -255,3 +255,11 @@ NSLocalizedString(@"key", @"My comment");
 NSLocalizedStringFromTable(@"key", @"Localizable", @"My comment");
 NSLocalizedStringFromTable(@"key", nil, @"My comment");
 ```
+
+#### Deferred Deep Linking in iOS
+- [iOS Deferred Deep Link 延遲深度連結實作(Swift) - ZRealm Dev. - Medium](https://medium.com/zrealm-ios-dev/ios-deferred-deep-link-%E5%BB%B6%E9%81%B2%E6%B7%B1%E5%BA%A6%E9%80%A3%E7%B5%90%E5%AF%A6%E4%BD%9C-swift-b08ef940c196)
+- [iOS App与浏览器深度链接 - 简书](https://www.jianshu.com/p/fa48387d56ea)
+- [Deferred Deep Linking in iOS Swift 3.0 with Universal Link | InnovationM Blog](http://blogs.innovationm.com/deferred-deep-linking-in-ios-with-universal-link/)
+- [Deferred Deep Linking in iOS](https://stackoverflow.com/questions/25855618/deferred-deep-linking-in-ios)
+- [Promoting Apps with Smart App Banners](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html)
+- [iOS10 SFSafariViewController not working when alpha is set to 0](https://stackoverflow.com/questions/39019352/ios10-sfsafariviewcontroller-not-working-when-alpha-is-set-to-0)
