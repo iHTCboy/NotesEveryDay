@@ -244,7 +244,16 @@ def is_png_transparent(path):
 - [PIL 简明教程 - 基本用法 | 始终](https://liam.page/2015/04/22/pil-tutorial-basic-usage/)
 - [python – 如何使用PIL获取PNG图像的alpha值？ - 程序园](http://www.voidcn.com/article/p-sbwkywdo-btp.html)
 
+#### Python json
+`json.dumps()` 将一个Python数据结构转换为一个JSON编码的字符串
+`json.loads()` 将一个JSON编码的字符串转换为一个Python数据结构
 
+json无空格：
+```
+json.dumps(dict, separators=(',', ':'))
+```
+
+- [Python - json without whitespaces - Stack Overflow](https://stackoverflow.com/questions/16311562/python-json-without-whitespaces)
 #### Python json dumps 非标准类型
 
 - [Python 优雅地 dumps 非标准类型 - 掘金](https://juejin.im/post/5a06d4776fb9a04515435afe)
