@@ -249,8 +249,15 @@ def is_png_transparent(path):
 `json.loads()` 将一个JSON编码的字符串转换为一个Python数据结构
 
 json无空格：
-```
+```python
+dict = {}
 json.dumps(dict, separators=(',', ':'))
+```
+
+要输出中文需要指定`ensure_ascii`参数为`False`：
+```python
+dict = {}
+json.dumps(dict, ensure_ascii=False)
 ```
 
 - [Python - json without whitespaces - Stack Overflow](https://stackoverflow.com/questions/16311562/python-json-without-whitespaces)
