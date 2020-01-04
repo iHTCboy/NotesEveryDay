@@ -1,4 +1,18 @@
-### mac上安装使用redis
+
+### mysql
+
+
+### SQLite
+
+#### 修改sqlite 表的某个列名
+```
+ALTER TABLE "MyTable" RENAME COLUMN "OldColumn" TO "NewColumn";
+```
+
+- [How do I rename a column in a SQLite database table? - Stack Overflow](https://stackoverflow.com/questions/805363/how-do-i-rename-a-column-in-a-sqlite-database-table)
+
+### redis
+#### mac上安装使用redis
 通过homebrew安装redis:
 ```
 $ brew install redis
@@ -37,5 +51,4 @@ Could not connect to Redis at 127.0.0.1:6379: Connection refused
 $ redis-cli shutdown
 ```
 
-### mysql
 
