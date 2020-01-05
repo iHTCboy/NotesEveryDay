@@ -460,3 +460,36 @@ $ git read-tree -mu HEAD
 注：如果想关闭 sparse checkout，需要用一个”*“号替代其中的内容，然后执行 checkout 或 read-tree 命令。
 
 - [Git只获取部分目录的内容（稀疏检出）](https://zhgcao.github.io/2016/05/11/git-sparse-checkout/)
+
+
+### git push 时出现错误：“remote: fatal: early EOF”
+
+修改 .git 的本地 `config` 文件，在 `core` 中加入：
+
+```
+compression = -1
+```
+
+或者直接执行：
+
+```
+git config --add core.compression -1
+```
+
+> core.compression
+> 
+> An integer -1..9, indicating a default compression level. -1 is the zlib default. 0 means no compression, and 1..9 are various speed/size tradeoffs, 9 being slowest. If set, this provides a default to other compression variables, such as core.loosecompression and pack.compression. - From Git Manpage
+
+`compression` 是压缩的意思，从 clone 的终端输出就知道，服务器会压缩目标文件，然后传输到客户端，客户端再解压。取值为 [-1, 9]，-1 以 zlib 为默认压缩库，0 表示不进行压缩，1..9 是压缩速度与最终获得文件大小的不同程度的权衡，数字越大，压缩越慢，当然得到的文件会越小。
+
+- [git-config(1)](https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-config.html)
+
+### git错误：fatal: The remote end hung up unexpectedly
+
+`fatal: The remote end hung up unexpectedly`
+
+提交多文件或大文件导致`http postbuffer`溢出，将`postbuffer`改大就可以了
+
+```
+git config http.postBuffer 524288000
+```
