@@ -979,6 +979,17 @@ python -c "import django; print(django.get_version())"
 #### 关闭 Debug 后，静态资源无法显示问题
 Django 关闭 Debug 后无法访问静态资源图片等，可以配置nginx做反向代理, 但是对于调试来说操作比较麻烦, 我们只需在命令 `python manage.py runserver 0.0.0.0:8000` 后加一个参数 `--insecure` 就可以啦~~
 
+#### Django设置时区USE_TZ问题
+
+如果要设为中国时间，也就是北京时间，请赋值：`TIME_ZONE = 'Asia/Shanghai'`。注意是上海，不是北京，囧！
+
+当`USE_TZ`为`False`时，`TIME_ZONE`将成为Django存储所有日期和时间数据时，使用的时区。 当`USE_TZ`为`True` 时，它是Django显示模板中的时间，解释表单中的日期，使用的时区。所以，通常我们都将`USE_TZ`同时设置为`False`！
+
+- [为什么Django设置时区为TIME_ZONE = Asia/Shanghai USE_TZ = True后，存入mysql中的时间只能是UTC时间_qq_27361945的博客-CSDN博客](https://blog.csdn.net/qq_27361945/article/details/80580795)
+- [django 中的USE_TZ设置为true有何影响? - SegmentFault 思否](https://segmentfault.com/q/1010000000405911)
+- [django时区问题时间差8小时 - 简书](https://www.jianshu.com/p/c1dee7d3cbb9)
+- [django 核心配置项 - 刘江的django教程](https://www.liujiangblog.com/course/django/164)
+
 ### Excel
 #### openpyxl获取excel中函数公式的结果值
 
