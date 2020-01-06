@@ -619,6 +619,56 @@ def guess_charset(msg):
 
 - [POP3收取邮件 · Python 3零起点教程 · 看云](https://www.kancloud.cn/thinkphp/python-guide/39542)
 
+#### python 时间对象多加一天、一小时、一分钟
+首先看下，datetime的使用
+
+```
+import datetime
+
+>>> print datetime.datetime.now()
+2017-07-15 15:01:24.619000
+```
+
+- 格式化时间
+```
+>>> print datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+2017-07-15 15:01:35
+
+>>> print datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+2017-07-15 15:01
+
+>>> print datetime.datetime.now().strftime("%Y%m%d")
+20170715
+```
+
+- 多加一天
+
+
+```
+>>> print (datetime.datetime.now()+datetime.timedelta(days=1)).strftime("%Y-%m-%
+d %H:%M:%S")
+2017-07-16 15:12:42
+>>>
+```
+
+- 多加一小时
+```
+>>> print (datetime.datetime.now()+datetime.timedelta(hours=1)).strftime("%Y-%m-
+%d %H:%M:%S")
+2017-07-15 16:10:43
+>>>
+```
+
+- 多加一分钟
+```
+>>> print (datetime.datetime.now()+datetime.timedelta(minutes=1)).strftime("%Y-%
+m-%d %H:%M:%S")
+2017-07-15 15:12:56
+>>>
+```
+
+- [python 当前时间多加一天、一小时、一分钟_翔云-CSDN博客](https://blog.csdn.net/lanyang123456/article/details/75169752)
+
 ### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
 
