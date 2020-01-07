@@ -618,6 +618,22 @@ def guess_charset(msg):
 ```
 
 - [POP3收取邮件 · Python 3零起点教程 · 看云](https://www.kancloud.cn/thinkphp/python-guide/39542)
+- [Python3读取邮件内容-卫莨-51CTO博客](https://blog.51cto.com/acevi/2442415)
+- [8.6 Python使用poplib模块收取邮件](https://www.okcode.net/article/43551)
+
+#### python 获取邮件的所有收件人
+
+```
+from email.utils import getaddresses
+
+tos = msg.get_all('to', [])
+ccs = msg.get_all('cc', [])
+resent_tos = msg.get_all('resent-to', [])
+resent_ccs = msg.get_all('resent-cc', [])
+all_recipients = getaddresses(tos + ccs + resent_tos + resent_ccs)
+```
+
+- [18.1.9. email.utils: Miscellaneous utilities — Python 2.7.17 documentation](https://docs.python.org/2/library/email.utils.html)
 
 #### python 时间对象多加一天、一小时、一分钟
 首先看下，datetime的使用
