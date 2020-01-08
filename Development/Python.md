@@ -1056,6 +1056,49 @@ Django 关闭 Debug 后无法访问静态资源图片等，可以配置nginx做�
 - [django时区问题时间差8小时 - 简书](https://www.jianshu.com/p/c1dee7d3cbb9)
 - [django 核心配置项 - 刘江的django教程](https://www.liujiangblog.com/course/django/164)
 
+#### Django外键（ForeignKey）related_name 的作用
+django 默认每个主表的对象都有一个是外键的属性，可以通过它来查询到所有属于主表的子表的信息。这个属性的名称默认是以子表的名称小写加上`_set()`来表示，默认返回的是一个querydict对象，可以继续的根据情况来查询等操作。
+
+使用最多的还是 `related_name`，上面的`_set()`定义比较麻烦的话，你也可以在定义主表的外键的时候，给这个外键用`related_name`定义好一个名称.
+
+示例：一个老师对应多个学生
+```
+class Teacher(models.Model):
+    name = models.CharField(max_length=50)
+    
+class Student(models.Modle):
+    name = models.CharField(max_length=50)
+    teacher = models.Foreignkey(Teacher, related_name='student_teacher', on_delete=models.CASCADE, default='')
+```
+
+现在想查询一个老师对应的学生有那些？
+
+方法一`_set()`：
+```
+teacher = Teacher.objects.get(id=1)
+teacher.student_set.all()
+```
+
+方法二`related_name`：
+```
+teacher = Teacher.objects.get(id=1)
+teacher.student_teacher.all()
+```
+
+查询一个学生所对应的老师的信息？
+
+```
+student = Student.objects.get(id=1)
+student.teacher
+student.teacher.name
+```
+
+#### Django 数据库查询结果去重
+
+QuerySet 增加方法 `.distinct()`
+
+当使用distinct()函数的时候，如果不使用order_by()函数做跟随，那么该函数会自动把当前表中的默认排序字段作为DISTINCT的一个列
+
 ### Excel
 #### openpyxl获取excel中函数公式的结果值
 
