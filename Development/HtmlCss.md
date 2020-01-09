@@ -64,3 +64,15 @@ $("#checkbox1").prop("checked") //true
 ```
 
 [从is(":checked")说起 - 哎呦大黄 - 博客园](https://www.cnblogs.com/season-huang/p/3360869.html)
+
+#### pre 标签 自动换行
+<pre> 元素可定义预格式化的文本。被包围在 pre 元素中的文本通常会保留空格和换行符。而文本也会呈现为等宽字体。
+
+```
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+```
+
+- [【CSS】Pre 标签 自动换行 - 简书](https://www.jianshu.com/p/4ae0b011dcde)
