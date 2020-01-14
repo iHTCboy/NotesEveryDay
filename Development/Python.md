@@ -1099,6 +1099,22 @@ QuerySet 增加方法 `.distinct()`
 
 当使用distinct()函数的时候，如果不使用order_by()函数做跟随，那么该函数会自动把当前表中的默认排序字段作为DISTINCT的一个列
 
+#### Django 数据模型 ForeignKey 的 on_delete 属性
+假如有一个订单模型，定义了关联用户模型
+```
+class Order(models.Model):
+    user= models.ForeignKey(User, on_delete=models.CASCADE)
+```
+
+* `CASCADE`：级联删除，当你删除user记录时，与之关联的所有 order 都会被删除。
+* `PROTECT`: 保护模式，如果采用该选项，删除的时候，会抛出`ProtectedError`错误，也就是说，如果有外键关联，就不允许删除，除非先把关联了外键的记录删除掉。举个例子就是想要删除user，那你要把所有关联了该user的order全部删除才可能删user。
+* `SET_NULL`: 置空模式，删除的时候，外键字段被设置为空，前提就是要设置为 `blank=True, null=True`。删除user后，order 记录里面的user_id 就置为null了。
+* `SET_DEFAULT`: 置默认值，删除的时候，外键字段设置为默认值，所以定义外键的时候注意加上一个默认值。
+* `SET()`: 自定义一个值，该值只能是对应的实体
+* `DO_NOTHING`: Django啥事也不做，你要删就删吧，你的外键值我依然给你保留，但是你要是去做关联查询肯定是查不到了，比如 删除 user后，order 里面的 user_id 依然在，只是再也找不到 user_id 对应的是哪个user了，因为你把他删掉了。
+
+- [Django 数据模型 ForeignKey 的 on_delete 属性的可选值 - FooFish-Python之禅](https://foofish.net/django-foreignkey-on-delete.html)
+
 ### Excel
 #### openpyxl获取excel中函数公式的结果值
 
