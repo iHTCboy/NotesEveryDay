@@ -264,6 +264,8 @@ NSLocalizedStringFromTable(@"key", nil, @"My comment");
 - [Promoting Apps with Smart App Banners](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html)
 - [iOS10 SFSafariViewController not working when alpha is set to 0](https://stackoverflow.com/questions/39019352/ios10-sfsafariviewcontroller-not-working-when-alpha-is-set-to-0)
 
+#### App Groups 和 Keychain Access Groups
+- [在多个app之间共享钥匙串项（Sharing Access to Keychain Items Among a Collection of Apps）](https://www.heminghui.top/fanyi/45.html)
 
 ### 黑科技
 

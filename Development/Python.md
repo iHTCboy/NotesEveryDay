@@ -1115,6 +1115,36 @@ class Order(models.Model):
 
 - [Django 数据模型 ForeignKey 的 on_delete 属性的可选值 - FooFish-Python之禅](https://foofish.net/django-foreignkey-on-delete.html)
 
+
+#### Django 模板
+- [Django 模板 | 菜鸟教程](https://www.runoob.com/django/django-template.html)
+- [Django 模板进阶 - Django 教程 - 自强学堂](https://code.ziqiangxuetang.com/django/django-template2.html)
+
+#### Django 重定向
+
+```
+from django.urls import reverse
+from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
+
+#投票结果查看
+def results(request,question_id=1):
+    return HttpResponse(r"you're looking  at the results of question %s." % question_id )
+
+
+#投票功能
+def vote(request,question_id):
+        '''
+        投票逻辑
+        '''
+        #投票完后跳转到结果页面，如下
+        return redirect(reverse('polls:results', args=[question_id]))
+```
+
+- [url带参数重定向 - 我只是一只小小鸟的个人页面 - OSCHINA](https://my.oschina.net/RabbitXiao/blog/1808871)
+- [Django 几种重定向的方式_orangleliu 笔记本-CSDN博客](https://blog.csdn.net/orangleliu/article/details/38347863)
+- [Django URL重定向的3种方法详解 - 知乎](https://zhuanlan.zhihu.com/p/41547331)
+
 ### Excel
 #### openpyxl获取excel中函数公式的结果值
 
