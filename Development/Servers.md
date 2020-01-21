@@ -932,3 +932,6 @@ GMT + 8 = UTC + 8 = CST
 
 * DST
 夏令时(Daylight Saving Time) 指在夏天太阳升起的比较早时，将时间拨快一小时，以提早日光的使用。（中国不使用）
+
+- [centos7之关于时间和日期以及时间同步的应用 - Charles.L - 博客园](https://www.cnblogs.com/lei0213/p/8723106.html)
+
