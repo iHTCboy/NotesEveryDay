@@ -257,6 +257,7 @@ find /Users/iHTCboy/Documents -type f -name "*.md" -exec grep -l "https://ihtcbo
 find /Users/iHTCboy/Documents -type f -name "*.md" -exec sed -i '' 's/htc/iHTCboy/g; s/ihtc.cc/iHTCboy.com/g' {}  \;
 ```
 
+注：sed 替换如果含反斜杠（/），可以改为冒号（:）是分隔符，而不是使用默认的反斜杠（/）。示例：`'s:htc:iHTCboy:g; s:ihtc.cc:iHTCboy.com:g' `
 
 - [find命令_Linux find 命令用法详解：在指定目录下查找文件](https://man.linuxde.net/find)
 
