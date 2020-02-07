@@ -263,3 +263,13 @@ NSLocalizedStringFromTable(@"key", nil, @"My comment");
 - [Deferred Deep Linking in iOS](https://stackoverflow.com/questions/25855618/deferred-deep-linking-in-ios)
 - [Promoting Apps with Smart App Banners](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html)
 - [iOS10 SFSafariViewController not working when alpha is set to 0](https://stackoverflow.com/questions/39019352/ios10-sfsafariviewcontroller-not-working-when-alpha-is-set-to-0)
+
+#### App Groups 和 Keychain Access Groups
+- [在多个app之间共享钥匙串项（Sharing Access to Keychain Items Among a Collection of Apps）](https://www.heminghui.top/fanyi/45.html)
+
+### 黑科技
+
+#### 虚拟定位功能
+- [苹果iPhone不越狱虚拟定位（多种方式，驱动更新至13.0） – Aneeo Blog](https://aneeo.com/1525.html)
+- [iOS实现虚拟定位的多种玩法 - 掘金](https://juejin.im/post/5dae99306fb9a04e366a4889)
+- [iOS虚拟定位：无需越狱，支持iPhone XS Max，支持12.2 - Flyzy's Blog](https://flyzyblog.com/ios-fake-gps/)

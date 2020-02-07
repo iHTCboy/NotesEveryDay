@@ -1099,6 +1099,52 @@ QuerySet 增加方法 `.distinct()`
 
 当使用distinct()函数的时候，如果不使用order_by()函数做跟随，那么该函数会自动把当前表中的默认排序字段作为DISTINCT的一个列
 
+#### Django 数据模型 ForeignKey 的 on_delete 属性
+假如有一个订单模型，定义了关联用户模型
+```
+class Order(models.Model):
+    user= models.ForeignKey(User, on_delete=models.CASCADE)
+```
+
+* `CASCADE`：级联删除，当你删除user记录时，与之关联的所有 order 都会被删除。
+* `PROTECT`: 保护模式，如果采用该选项，删除的时候，会抛出`ProtectedError`错误，也就是说，如果有外键关联，就不允许删除，除非先把关联了外键的记录删除掉。举个例子就是想要删除user，那你要把所有关联了该user的order全部删除才可能删user。
+* `SET_NULL`: 置空模式，删除的时候，外键字段被设置为空，前提就是要设置为 `blank=True, null=True`。删除user后，order 记录里面的user_id 就置为null了。
+* `SET_DEFAULT`: 置默认值，删除的时候，外键字段设置为默认值，所以定义外键的时候注意加上一个默认值。
+* `SET()`: 自定义一个值，该值只能是对应的实体
+* `DO_NOTHING`: Django啥事也不做，你要删就删吧，你的外键值我依然给你保留，但是你要是去做关联查询肯定是查不到了，比如 删除 user后，order 里面的 user_id 依然在，只是再也找不到 user_id 对应的是哪个user了，因为你把他删掉了。
+
+- [Django 数据模型 ForeignKey 的 on_delete 属性的可选值 - FooFish-Python之禅](https://foofish.net/django-foreignkey-on-delete.html)
+
+
+#### Django 模板
+- [Django 模板 | 菜鸟教程](https://www.runoob.com/django/django-template.html)
+- [Django 模板进阶 - Django 教程 - 自强学堂](https://code.ziqiangxuetang.com/django/django-template2.html)
+
+#### Django 重定向
+
+```
+from django.urls import reverse
+from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
+
+#投票结果查看
+def results(request,question_id=1):
+    return HttpResponse(r"you're looking  at the results of question %s." % question_id )
+
+
+#投票功能
+def vote(request,question_id):
+        '''
+        投票逻辑
+        '''
+        #投票完后跳转到结果页面，如下
+        return redirect(reverse('polls:results', args=[question_id]))
+```
+
+- [url带参数重定向 - 我只是一只小小鸟的个人页面 - OSCHINA](https://my.oschina.net/RabbitXiao/blog/1808871)
+- [Django 几种重定向的方式_orangleliu 笔记本-CSDN博客](https://blog.csdn.net/orangleliu/article/details/38347863)
+- [Django URL重定向的3种方法详解 - 知乎](https://zhuanlan.zhihu.com/p/41547331)
+
 ### Excel
 #### openpyxl获取excel中函数公式的结果值
 
