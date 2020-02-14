@@ -2,7 +2,7 @@
 ### mysql
 
 #### macOS 终端执行 mysql 命令时，提示 command not found
-由于 macOS 默认只能识别处在 `/usr/local/bin` 路径中的mysql命令。而安装的 mysql 在 macOS 安装的mysql的命令路径是在 `/usr/local/mysql/bin/` 里面，所以 mysql 相关的命令，默认只能在 `/usr/local/mysql/bin/` 路径下生效。
+由于 macOS 默认只能识别处在 `/usr/local/bin` 路径中的mysql命令。而安装的 mysql 在 macOS 安装的mysql的命令路径是在 `/usr/local/mysql/bin/` 里面（可以使用命令查看某个命令所在路径，例如：`which mysql`），所以 mysql 相关的命令，默认只能在 `/usr/local/mysql/bin/` 路径下生效。
 
 如果直接使用连接mysql数据库的命令 `mysql -u root -p`，就会报： `mysql: command not found`的错误；或者想直接使用导出数据库的命令 `mysqldump xxx`的话，就会报`mysqldump: command not found` 的错误。
 

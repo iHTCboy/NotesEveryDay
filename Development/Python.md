@@ -1145,6 +1145,14 @@ def vote(request,question_id):
 - [Django 几种重定向的方式_orangleliu 笔记本-CSDN博客](https://blog.csdn.net/orangleliu/article/details/38347863)
 - [Django URL重定向的3种方法详解 - 知乎](https://zhuanlan.zhihu.com/p/41547331)
 
+
+#### Django 模型多个属性设置为唯一
+
+```
+    class Meta:
+        unique_together = ("title", "category")
+```
+
 ### Excel
 #### openpyxl获取excel中函数公式的结果值
 
