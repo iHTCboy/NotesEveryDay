@@ -8,7 +8,7 @@ polyfill 仿效一个完整的 ES2015+ 环境，并意图运行于一个应用�
 - [一起来看 HTML 5.2 中新的原生元素 <dialog>](https://segmentfault.com/a/1190000012894864)
 
 
-#### jq获取元素内文本，但不包括其子元素内的文本值的方法
+#### jQuery 获取元素内文本，但不包括其子元素内的文本值的方法
 
 例子：
 ```html
@@ -250,7 +250,7 @@ var s = abc.join("\n");
 console.log(s);
 ```
 
-#### jquery 查找全部某种id元素
+#### jQuery 查找全部某种id元素
 
 包含字符：
 ```js
@@ -440,3 +440,17 @@ console.log(utc2beijing(utc_datetime));
 #### JS 中 Json 
 
 - [有意思的JSON.parse（）、JSON.stringify（） - 掘金](https://juejin.im/post/5be5b9f8518825512f58ba0e)
+
+#### jQuery 获取页面所有的 Input 勾选框的状态，或未勾选的数量
+
+```js
+var numberOfChecked = $('input:checkbox:checked').length;
+var totalCheckboxes = $('input:checkbox').length;
+var numberNotChecked = totalCheckboxes - numberOfChecked;
+```
+
+```js
+var numberNotChecked = $('input:checkbox:not(":checked")').length;
+```
+
+- [checkbox - How to count check-boxes using jQuery? - Stack Overflow](https://stackoverflow.com/questions/8011556/how-to-count-check-boxes-using-jquery)
