@@ -436,3 +436,7 @@ console.log(utc2beijing(utc_datetime));
 #### JS 中按地址（引用）传递和按值传递问题
 
 - [JS 中没有按地址（引用）传递，只有按值传递 - youxin - 博客园](https://www.cnblogs.com/youxin/p/3354903.html)
+
+#### JS 中 Json 
+
+- [有意思的JSON.parse（）、JSON.stringify（） - 掘金](https://juejin.im/post/5be5b9f8518825512f58ba0e)
