@@ -76,3 +76,19 @@ pre {
 ```
 
 - [【CSS】Pre 标签 自动换行 - 简书](https://www.jianshu.com/p/4ae0b011dcde)
+
+
+### Bootstrap
+#### Remove default list-style in Bootstrap
+To remove the list styles in Bootstrap, use the `.list-unstyled` class.
+
+
+```css
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+```
+
+- [html - unordered is not removing the style on using class unstyled - Stack Overflow](https://stackoverflow.com/questions/17002128/unordered-is-not-removing-the-style-on-using-class-unstyled)
+
