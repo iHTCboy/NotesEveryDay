@@ -1153,6 +1153,38 @@ def vote(request,question_id):
         unique_together = ("title", "category")
 ```
 
+#### Django class view 增加权限判断
+
+1/定义一个基类，包含一个 as_view 方法，在 as_view 方法中判断用户权限。然后其他 class view 继承这个基类
+
+```python
+from django.contrib.auth.decorators import login_required
+
+class LoginRequiredMixin(object):
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
+        return login_required(view)
+```
+
+2、定义一个基类，包含一个 dispatch 方法，给这个方法加个权限判断的装饰器。然后其他 class view 继承这个基类
+
+
+```python
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views.generic import TemplateView
+
+class ProtectedView(TemplateView):
+    template_name = 'secret.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProtectedView, self).dispatch(*args, **kwargs)
+```
+
+- [怎么给 django class view 增加权限判断 - Huang Huang 的博客](https://mozillazg.com/2015/11/django-check-user-permission-for-class-generic-view.html)
+
 ### Excel
 #### openpyxl获取excel中函数公式的结果值
 
