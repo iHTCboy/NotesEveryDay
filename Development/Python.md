@@ -685,6 +685,13 @@ m-%d %H:%M:%S")
 
 - [python 当前时间多加一天、一小时、一分钟_翔云-CSDN博客](https://blog.csdn.net/lanyang123456/article/details/75169752)
 
+
+#### Python 保存web页面的方法
+
+- [Python保存.mht格式网页 | X小Mickey'Blog](https://jxbuaa.github.io/2019/01/Python%E4%BF%9D%E5%AD%98-mht%E6%A0%BC%E5%BC%8F%E7%BD%91%E9%A1%B5/)
+- [利用selenium保存静态网页 - 简书](https://www.jianshu.com/p/29a0adc044d5)
+- [竟用python作出这样的事！定时自动发 QQ 信息 - 知乎](https://zhuanlan.zhihu.com/p/106375472)
+
 ### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
 
@@ -1184,6 +1191,47 @@ class ProtectedView(TemplateView):
 ```
 
 - [怎么给 django class view 增加权限判断 - Huang Huang 的博客](https://mozillazg.com/2015/11/django-check-user-permission-for-class-generic-view.html)
+
+#### Django 中 ur l和 path 的区别
+
+urls.py 在1.x的时候都是采用的url方式。如下
+
+```python
+url(r'^', include("test1.urls")),
+```
+
+在2.0中，它推荐使用的是path模块。需要引入包 `from django.urls import path`
+
+```python
+path('', include("test1.urls")),
+```
+
+这里要注意的是，如果要使用正则，则要引入re_path，`from django.urls import path, re_path`。
+
+
+1.x里面的写法是：
+```python
+url(r’^page=(\d+)&key=(\w+)$’, views.detail, name=”detail”), 
+```
+
+现在的写法
+```python
+re_path('page=(?P<page>\d+)&key=(?P<key>\w+)', views.detail, name="detail"),
+```
+
+关于系统的urls.py里的namespace的问题，1.x中写法
+```python
+ url(r'^', include("test1.urls", namespace='test1')),
+```
+
+2.0 这么写，在项目urls.py中加上
+
+```python
+app_name = 'test1'
+```
+
+- [URL调度器 | Django 3.0 文档 | Django](https://docs.djangoproject.com/zh-hans/3.0/topics/http/urls/)
+- [django2笔记:路由path语法 | 程序员Barnes的博客](https://kinegratii.github.io/2017/09/25/django2-url-path/)
 
 ### Excel
 #### openpyxl获取excel中函数公式的结果值
