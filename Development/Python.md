@@ -780,8 +780,7 @@ def read_img(request):
 - [Django 中使用流响应处理视频 - 栖迟于一丘](https://www.hongweipeng.com/index.php/archives/1559/)
 
 
-####  Django 数据库查询方法总结
-
+####  Django 数据库 ORM 常用查询筛选方法总结
 
 ```pythobn
 __exact 精确等于 like ‘aaa’
@@ -834,6 +833,13 @@ Entry.objects.filter(pub_date__day=3)
 Entry.objects.filter(pub_date__week_day=2)
 ```
 
+- 不等于/不包含于
+```python
+User.objects.filter().exclude(age=10)    # 查询年龄不为10的用户
+User.objects.filter().exclude(age__in=[10, 20])  # 查询年龄不为在 [10, 20] 的用户
+```
+
+- [Making queries 执行查询 | Django 文档 | Django](https://docs.djangoproject.com/zh-hans/3.0/topics/db/queries/)
 
 #### django log日志的配置
 
