@@ -267,6 +267,60 @@ NSLocalizedStringFromTable(@"key", nil, @"My comment");
 #### App Groups 和 Keychain Access Groups
 - [在多个app之间共享钥匙串项（Sharing Access to Keychain Items Among a Collection of Apps）](https://www.heminghui.top/fanyi/45.html)
 
+#### copy 和 mutableCopy 返回的对象是执行的深拷贝还是浅拷贝呢？
+
+* 系统的非容器类对象，如: NSString、NSMutableString、NSNumber 等。
+* 系统的容器类对象，如: NSArray、NSMutableArray、NSDictionary、NSMutableDictionary 等。
+
+1. 对于系统的非容器类对象，如果对一不可变对象(如 NSString)复制，copy 是指针复制(浅拷贝)和 mutableCopy 就是对象复制(深拷贝); 如果是对可变对象(如 NSMutableString)复制，copy 和 mutableCopy 都是深拷贝，但是 copy 返回的对象是不可变的。
+2. 对于系统的容器类对象，对不可变对象(如 NSArray)进行复制，copy 是指针复制(浅拷贝)， mutableCopy 是对象复制(深拷贝), 但是不管是 copy 还是 mutableCopy, 且不论容器内对象是可变还是不可变，返回的容器内对象都是指针复制(浅拷贝)。
+3. 对于系统的容器类对象，对可变对象(如 NSMutableArray)进行复制时，copy 和 mutableCopy 都是对象复制(深拷贝)，但是不管是 copy 还是 mutableCopy，且不论容器内对象是可变还是不可变，返回的容器内对象都是指针复制(浅拷贝)。
+
+- [iOS理解NSCopying协议 - 刘茂华的博客](http://liumh.com/2015/12/12/ios-understand-copy/)
+
+#### “const”和“static” 符号区别与联系
+
+```ObjC
+static NSString const * kUserName = @"iHTCboy";
+static const NSString * kUserName = @"iHTCboy";
+static NSString * const kUserName = @"iHTCboy";
+```
+
+const 修饰的是他右边的部分，也就是说：
+
+```ObjC
+static NSString const * kUserName = static NSString const (* kUserName )
+
+static NSString * const kUserName = static NSString * const (kUserName)
+```
+
+当const修饰的是(userName)的时候，不可变的是userName；星号在C语言中表示
+指针指向符，也就是说这个时候userName指向的内存块地址不可变，而内存保存的内容是可变的。
+
+**一定要同时使用static和const来定义你的变量**
+上面已经说了const是用来定义一个常量。而static在C语言中（OC中延用）则表明此变量只在改变量的输出文件中可用(.m文件)，如果你不加“static”符号，那么编译器就会对该变量创建一个“外部符号”，后果是什么呢？
+
+两个目标文件(.0文件是.m文件编译后的输出文件)有一个重复的符号。(OC中没有类似C++中的名字空间的概念)，所以当你在你自己的.m文件中需要声明一个只有你自己可见的局部变量(k开头)的变量的时候一定要同时使用“static”和“const”两个符号。
+
+**定义工程中的全局变量**
+
+在”constants.h”文件中，声明常量：
+
+```ObjC
+extern NSString *const XUserName;
+```
+
+然后在“constants.m”中定义他：
+
+```ObjC
+NSString *const XUserName = @"iHTCboy";
+```
+
+这样做的优势是保持常量绝对不会被修改，并且一定初始化还带有类型信息。
+
+- [iOS 不要用宏来定义你的常量 - 简书](https://www.jianshu.com/p/038b268d1518)
+- [ios - static NSString usage vs. inline NSString constants - Stack Overflow](https://stackoverflow.com/questions/1937685/static-nsstring-usage-vs-inline-nsstring-constants)
+
 ### 黑科技
 
 #### 虚拟定位功能
