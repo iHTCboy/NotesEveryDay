@@ -926,7 +926,7 @@ django-admin compilemessages
 - [Django 多语言教程 (i18n) - 掘金](https://juejin.im/post/5b3efc36e51d45197136eb09)
 
 
-#### Django Server Error: port is already in use
+#### Django Server Error: port is already in use（Django 启动服务失败，端口已被占用）
 
 A more simple solution just type `sudo fuser -k 8000/tcp`. This should kill all the processes associated with port 8000.
 

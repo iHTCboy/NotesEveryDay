@@ -321,6 +321,16 @@ NSString *const XUserName = @"iHTCboy";
 - [iOS 不要用宏来定义你的常量 - 简书](https://www.jianshu.com/p/038b268d1518)
 - [ios - static NSString usage vs. inline NSString constants - Stack Overflow](https://stackoverflow.com/questions/1937685/static-nsstring-usage-vs-inline-nsstring-constants)
 
+
+#### 获取 iOS 设备上安装的应用列表(非越狱)
+
+- [私有API的使用 | Mark Miao](https://markmiao.com/2016/12/28/%E7%A7%81%E6%9C%89API%E7%9A%84%E4%BD%BF%E7%94%A8/)
+- [获取 iOS 设备上安装的应用列表 - Octree](http://octree.me/2016/08/01/get-installed-apps/)
+- [Retriever: 在未越狱的 iOS 设备上查看 app 的 InfoPlist - 知乎](https://zhuanlan.zhihu.com/p/23880229)
+- [IOS 获取安装的app_骑着蜗牛找马儿-CSDN博客](https://blog.csdn.net/skylin19840101/article/details/41805995?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
+- [iOS11/iOS12上通过LSApplicationWorkspace获取应用列表(只能获取带有 plugin 的app) - Blog | 干货分享 - iOSRE](http://iosre.com/t/ios11-ios12-lsapplicationworkspace-plugin-app/13534)
+
+
 ### 黑科技
 
 #### 虚拟定位功能
