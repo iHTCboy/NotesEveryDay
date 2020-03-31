@@ -337,3 +337,9 @@ NSString *const XUserName = @"iHTCboy";
 - [苹果iPhone不越狱虚拟定位（多种方式，驱动更新至13.0） – Aneeo Blog](https://aneeo.com/1525.html)
 - [iOS实现虚拟定位的多种玩法 - 掘金](https://juejin.im/post/5dae99306fb9a04e366a4889)
 - [iOS虚拟定位：无需越狱，支持iPhone XS Max，支持12.2 - Flyzy's Blog](https://flyzyblog.com/ios-fake-gps/)
+
+#### 黄金比例，黄金螺旋线(即斐波那契螺旋线)
+
+- [iOS 7 的圆角图标是怎样一个图形？ - 知乎](https://www.zhihu.com/question/21191767)
+- [黄金比例在设计中的运用 | 设计驱动力](http://www.wenliku.com/sheji/25086.html)
+- [苹果产品设计中的黄金比例运用 - Anzhongliu - 博客园](https://www.cnblogs.com/Anzhongliu/p/6091814.html)
