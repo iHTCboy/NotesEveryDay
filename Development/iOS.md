@@ -333,6 +333,10 @@ NSString *const XUserName = @"iHTCboy";
 
 ### 黑科技
 
+#### 刷单、苹果36技术
+- [蘋果充值常見的刷單手段和防范方法 - 开发者知识库](https://www.itdaan.com/tw/d5f0ba2de17b3d14b5f5b1fc33d2f728)
+- [苹果支付漏洞纵容“免费”充值？-新华网](http://www.xinhuanet.com/tech/2017-02/20/c_1120494989.htm)
+
 #### 虚拟定位功能
 - [苹果iPhone不越狱虚拟定位（多种方式，驱动更新至13.0） – Aneeo Blog](https://aneeo.com/1525.html)
 - [iOS实现虚拟定位的多种玩法 - 掘金](https://juejin.im/post/5dae99306fb9a04e366a4889)
