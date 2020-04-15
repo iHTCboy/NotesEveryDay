@@ -305,3 +305,15 @@ command+shift+G
 
 ---
 
+### Mac 、iPad、 iPhone 
+
+#### 电池和充电器问题
+- [为 Mac 笔记本电脑找到正确的电源适配器和电源线 - Apple 支持](https://support.apple.com/zh-cn/HT201700)
+- [如果 USB-C 电源适配器无法为 Mac 笔记本电脑充电 - Apple 支持](https://support.apple.com/zh-cn/HT204652)
+- [为 iPhone 快速充电 - Apple 支持](https://support.apple.com/zh-cn/HT208137)
+- [用 iPad 或 Mac 笔记本电脑电源适配器为 iPhone 充电 - Apple 支持](https://support.apple.com/zh-cn/HT202105)
+- [关于 Apple USB-C 至闪电连接线 - Apple 支持](https://support.apple.com/zh-cn/HT205807)
+- [确定 Mac 笔记本电脑的电池循环计数 - Apple 支持](https://support.apple.com/zh-cn/HT201585)
+- [电池 - Apple (中国大陆)](https://www.apple.com.cn/batteries/)
+- [关于 Mac 笔记本电脑电池 - Apple 支持](https://support.apple.com/zh-cn/HT204054)
+- [iPhone 电池更换 - 官方 Apple 支持](https://support.apple.com/zh-cn/iphone/repair/service/battery-power)
