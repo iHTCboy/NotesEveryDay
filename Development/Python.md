@@ -692,6 +692,50 @@ m-%d %H:%M:%S")
 - [利用selenium保存静态网页 - 简书](https://www.jianshu.com/p/29a0adc044d5)
 - [竟用python作出这样的事！定时自动发 QQ 信息 - 知乎](https://zhuanlan.zhihu.com/p/106375472)
 
+
+#### Python中保留两位小数的方法
+
+##### 保留两位小数，并做四舍五入处理
+方法一: 使用字符串格式化
+```python
+>>> a = 12.345
+>>> print("%.2f" % a)
+12.35
+```
+
+方法二: 使用`round`内置函数
+```python
+>>> a = 12.345
+>>> round(a, 2)            
+12.35
+```
+
+方法三: 使用`decimal`模块
+```python
+>>> from decimal import Decimal
+>>> a = 12.345
+>>> Decimal(a).quantize(Decimal("0.00"))
+Decimal('12.35')
+```
+
+##### 仅保留两位小数，无需四舍五入
+方法一: 使用序列中切片
+```python
+>>> a = 12.345
+>>> str(a).split('.')[0] + '.' + str(a).split('.')[1][:2]
+'12.34'
+```
+
+方法二: 使用re模块
+```python
+>>> import re
+>>> a = 12.345
+>>> re.findall(r"\d{1,}?\.\d{2}", str(a))
+['12.34']
+```
+ 
+ - [Python中保留两位小数的几种方法_Python_杰瑞的专栏-CSDN博客](https://blog.csdn.net/Jerry_1126/article/details/85009810)
+
 ### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
 
