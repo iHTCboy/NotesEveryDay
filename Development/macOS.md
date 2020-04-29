@@ -13,6 +13,12 @@ sudo xattr -r -d com.apple.quarantine xxx.app
 - [What should I do about com.apple.quarantine?](https://superuser.com/questions/28384/what-should-i-do-about-com-apple-quarantine)
 
 
+无效证书的 App，可能强制自行签名：
+```
+codesign --force --deep --sign - /Applications/xxx.app
+```
+
+
 #### macOS 终端操作剪切版的内容
 `pbcopy`  : 表示复制到剪切版
 `pbpaste` ：表示粘贴剪切版
