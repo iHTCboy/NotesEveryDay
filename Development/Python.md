@@ -1039,6 +1039,14 @@ def save_user_profile(sender, instance, created, **kwargs):
 - [DjangoWeb开发--增加用户字段 - 简书](https://www.jianshu.com/p/414df6b1cb29)
 - [Django不区分大小写的登录，混合大小写用户名 - VoidCC](http://cn.voidcc.com/question/p-rnblylwy-bke.html)
 
+#### Django Model set Null or None
+
+* `blank=True` allows you to input nothing (i.e `""`, `None`) and keep it empty.
+* `null=True` means the database row is allowed to be `NULL`.
+* `default=None` sets the field to `None` if no other value is given.
+
+- [Django Model Field Default to Null](https://stackoverflow.com/questions/4604814/django-model-field-default-to-null)
+
 
 #### Django 不区分大小写的用户名允许登录
 
