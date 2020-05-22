@@ -330,6 +330,12 @@ NSString *const XUserName = @"iHTCboy";
 - [IOS 获取安装的app_骑着蜗牛找马儿-CSDN博客](https://blog.csdn.net/skylin19840101/article/details/41805995?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
 - [iOS11/iOS12上通过LSApplicationWorkspace获取应用列表(只能获取带有 plugin 的app) - Blog | 干货分享 - iOSRE](http://iosre.com/t/ios11-ios12-lsapplicationworkspace-plugin-app/13534)
 
+#### Umbrella Framework
+
+- [Introduction to Framework Programming Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html#//apple_ref/doc/uid/10000183-SW1)
+- [iOS - Umbrella Header在framework中的应用 | Startry Blog](http://blog.startry.com/2015/08/25/Renaming-umbrella-header-for-iOS-framework/)
+- [OC和Swift混编Frameowork优雅指南 - 简书](https://www.jianshu.com/p/0258462f5c80)
+- [用.modulemap实现模块化 - 简书](https://www.jianshu.com/p/12a9565241e8)
 
 ### 黑科技
 
