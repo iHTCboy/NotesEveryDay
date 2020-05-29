@@ -337,6 +337,26 @@ NSString *const XUserName = @"iHTCboy";
 - [OC和Swift混编Frameowork优雅指南 - 简书](https://www.jianshu.com/p/0258462f5c80)
 - [用.modulemap实现模块化 - 简书](https://www.jianshu.com/p/12a9565241e8)
 
+#### CFAbsoluteTimeGetCurrent() 和 CACurrentMediaTime() 区别
+
+```
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+
+		CFTimeInterval currentTime = CACurrentMediaTime();
+		CFAbsoluteTime absoluteTime = CFAbsoluteTimeGetCurrent();
+		
+		NSLog(@"currentTime: %f, absoluteTime: %f", currentTime, absoluteTime);
+```
+
+```
+currentTime: 697112.258945, absoluteTime: 612415143.769868
+```
+
+* `CACurrentMediaTime()` 方法是QuartzCore框架里的，相对来说比较原子量，比较精确，可以用来测量程序的时间效率。获取到的时间是手机开机后的秒数，在模拟器上运行数值不必计较，算时间差就好。
+* `CACurrentMediaTime()` 方法是 CoreFoundation框架中的，是获取2001年1月1日 00:00开始的秒数。相当于上面的NSDate方法 `[NSDate timeIntervalSinceReferenceDate]` 一样。
+
+
 ### 黑科技
 
 #### 刷单、苹果36技术
