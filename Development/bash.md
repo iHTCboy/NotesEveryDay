@@ -422,6 +422,56 @@ echo $(date '+%Y-%m-%d')
 
 - [bash - YYYY-MM-DD format date in shell script - Stack Overflow](https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script)
 
+### curl
+#### 获取请求链接的 code
+获取 header：
+```
+# -I, --head          Show document info only
+curl -I https://www.iHTCboy.com
+
+# -i, --include       Include protocol response headers in the output
+curl -i https://www.iHTCboy.com
+```
+
+示例：
+```
+➜  ~ curl -I https://www.iHTCboy.com
+HTTP/2 301
+server: GitHub.com
+content-type: text/html
+location: https://ihtcboy.com/
+x-github-request-id: 3DC6:4F98:13138DC:178B238:5F1AB9DF
+accept-ranges: bytes
+date: Fri, 24 Jul 2020 10:37:38 GMT
+via: 1.1 varnish
+age: 19
+x-served-by: cache-hkg17929-HKG
+x-cache: HIT
+x-cache-hits: 1
+x-timer: S1595587059.754877,VS0,VE0
+vary: Accept-Encoding
+x-fastly-request-id: a08a1f5dfc941ccebbe9e3fe05497c34d91470c0
+content-length: 162
+```
+
+只获取 code：
+```
+#  -L, --location      Follow redirects
+
+curl -s -o /dev/null -LI -w "%{http_code}\n" http://www.iHTCboy.com
+
+curl -LI http://www.iHTCboy.com -o /dev/null -w '%{http_code}\n' -s
+```
+
+示例：
+
+```
+➜  ~ curl -s -o /dev/null -LI -w "%{http_code}\n" http://www.iHTCboy.com
+200
+```
+
+- [Getting curl to output HTTP status code? - Super User](https://superuser.com/questions/272265/getting-curl-to-output-http-status-code)
+
 ### vim
 
 #### 撤销和恢复撤销快捷键

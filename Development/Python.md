@@ -736,6 +736,34 @@ Decimal('12.35')
  
  - [Python中保留两位小数的几种方法_Python_杰瑞的专栏-CSDN博客](https://blog.csdn.net/Jerry_1126/article/details/85009810)
 
+
+#### python下载文件
+
+一次性下载:
+```
+import requests
+image_url = "https://www.iHTCboy.com/ihtc.png"
+r = requests.get(image_url) 
+with open("python_logo.png",'wb') as f:
+    f.write(r.content)
+```
+
+大文件下载：
+```
+import requests
+file_url = "https://www.iHTCboy.com/ihtc.mp4"
+r = requests.get(file_url, stream=True)
+with open("python.pdf", "wb") as file:
+    for chunk in r.iter_content(chunk_size=1024):
+        if chunk:
+            file.write(chunk)
+```
+
+注：如果文件比较大的话，那么下载下来的文件先放在内存中，内存还是比较有压力的。所以为了防止内存不够用的现象出现，我们要想办法把下载的文件分块写到磁盘中
+
+
+- [python下载文件 ---- requests](https://zhuanlan.zhihu.com/p/37824910)
+
 ### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
 
