@@ -30,13 +30,49 @@
 ### TCP/IP
 > TCP/IP（Transmission Control Protocol/Internet Protocol，传输控制协议/网际协议）是一个网络通信模型，以及一整个网络传输协议家族，为网际网络的基础通信架构。
 
+### HTTP/HTTPS
 
+HTTP 请求分为三个部分：
+
+* 请求行
+* 请求头
+* 消息主体
+
+```html
+<method> <request-URL> <version>
+<headers>
+
+<entity-body>
+```
+
+HTTP 请求方法:
+ 
+*  GET
+*  POST
+*  HEAD
+*  OPTIONS
+*  PUT
+*  DELETE
+*  TRACE
+*  CONNECT
+
+Content-Type:
+
+* application/x-www-form-urlencoded
+* multipart/form-data
+* application/json
+* text/xml
+* text/html
+* text/plain
+
+
+- [四种常见的 POST 提交数据方式 | JerryQu 的小站](https://imququ.com/post/four-ways-to-post-data-in-http.html)
 
 
 ### VPN
 > VPN （Virtual Private Network, 虚拟专用网）发展至今已经不在是一个单纯的经过加密的访问隧道，它已经融合了访问控制、传输管理、加密、路由选择、可用性管理等多种功能，并在全球的信息安全体系中发挥着重要的作用。
 
-主流的VPN协议有PPTP、L2TP、IPSec、OpenVPN和SSTP
+主流的VPN协议有 PPTP、L2TP、IPSec、OpenVPN 和 SSTP 等。
 
-- [PPTP、L2TP、IPSec、OpenVPN和SSTP的区别 – 乔大海个人网站](https://qiaodahai.com/pptp-l2tp-ipsec-openvpn-sstp.html)
+- [PPTP、L2TP、IPSec、OpenVPN和SSTP的区别](https://qiaodahai.com/pptp-l2tp-ipsec-openvpn-sstp.html)
 
