@@ -33,3 +33,29 @@ __attribute__((destructor(PRIORITY)))
 
 - [函数属性__attribute__((constructor))和__attribute__((destructor)) - tianmo2010的专栏](https://blog.csdn.net/tianmohust/article/details/45310349)
 
+
+#### DBL_EPSILON 和 FLT_EPSILON
+
+主要用于单精度和双精度的比较当中：
+```c
+    double a = 0.5;
+    if (a == 0.5) { //正确
+        x++;
+    }
+    
+    double b = sin(M_PI / 6.0);
+    if (b == 0.5) { //可能错误
+        x++;
+    }
+```
+第一个比较正确，第二个可能正确也可能错误，b==0.5的结果取决于处理器、编译器的版本和设置。比如 Visual C++ 2010 编译器编译后运行b的值为0.49999999999999994
+
+一种正确的比较方法应该是这样的：
+```c
+    double b = sin(M_PI / 6.0);
+    if (fabs(b - 0.5) < DBL_EPSILON) {
+        x++;
+    }
+```
+
+EPSILON 是最小误差。如果整数值减去浮点数值误差低于DBL_EPSILON，则说明该数可以近似看成整数，否则则是浮点数。（ `fabs()`函数是一个求绝对值的函数）

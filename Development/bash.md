@@ -422,6 +422,79 @@ echo $(date '+%Y-%m-%d')
 
 - [bash - YYYY-MM-DD format date in shell script - Stack Overflow](https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script)
 
+#### EOF 的用法
+EOF是（END Of File）的缩写，表示自定义终止符。既然自定义，那么EOF就不是固定的，可以随意设置别名。
+
+用法：
+```bash
+<<EOF       #开始
+
+....        #输入内容
+
+EOF         #结束
+```
+
+几个特殊符号:
+
+* `<` ：输入重定向
+* `>` ：输出重定向
+* `>>` ：输出重定向,进行追加,不会覆盖之前内容
+* `<<` ：标准输入来自命令行的一对分隔号的中间内容
+
+
+macOS 终端：
+```bash
+➜  ~ cat << EOF #开始输入
+heredoc> test
+heredoc> hello
+heredoc> EOF
+test
+hello
+```
+
+`<< EOF EOF` 的作用是在命令执行过程中用户自定义输入，它类似于起到一个临时文件的作用，只是比使用文件更方便灵活。
+
+<<EOF 与 <<-EOF 的区别
+
+<<EOF：如果结束分解符EOF前有制表符或者空格，则EOF不会被当做结束分界符，只会继续被当做stdin来输入。
+<<-EOF：分界符（EOF）所在行的开头部分的制表符（Tab）都将被去除。这可以解决由于脚本中的自然缩进产生的制表符。
+
+示例：
+```bash
+#!/bin/bash
+
+cat <<-EOF
+
+Hello，EOF！
+
+      EOF
+```
+
+
+- [shell基础之EOF的用法_weixin_30666943的博客-CSDN博客_警告:立即文档在第 3 行被文件结束符分隔 (需要 `-eof](https://blog.csdn.net/weixin_30666943/article/details/101436966)
+
+#### tee 命令
+tee命令用于将数据重定向到文件，另一方面还可以提供一份重定向数据的副本作为后续命令的stdin。简单的说就是把数据重定向到给定文件和屏幕上。
+
+```
+tee (选项)(参数)
+
+-a：向文件中重定向时使用追加模式；
+-i：忽略中断（interrupt）信号。
+```
+
+注：存在缓存机制，每1024个字节将输出一次。若从管道接收输入数据，应该是缓冲区满，才将数据转存到指定的文件中。若文件内容不到1024个字节，则接收完从标准输入设备读入的数据后，将刷新一次缓冲区，并转存数据到指定文件。
+
+示例：
+```
+# ls | tee out.txt | cat -n
+     1  1.sh
+     2  1.txt
+     3  2.txt
+```
+
+
+
 ### curl
 #### 获取请求链接的 code
 获取 header：

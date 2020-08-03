@@ -356,6 +356,10 @@ currentTime: 697112.258945, absoluteTime: 612415143.769868
 * `CACurrentMediaTime()` 方法是QuartzCore框架里的，相对来说比较原子量，比较精确，可以用来测量程序的时间效率。获取到的时间是手机开机后的秒数，在模拟器上运行数值不必计较，算时间差就好。
 * `CACurrentMediaTime()` 方法是 CoreFoundation框架中的，是获取2001年1月1日 00:00开始的秒数。相当于上面的NSDate方法 `[NSDate timeIntervalSinceReferenceDate]` 一样。
 
+#### 宏定义
+
+- [宏定义的黑魔法 - 宏菜鸟起飞手册](https://onevcat.com/2014/01/black-magic-in-macro/)
+- 
 
 ### 黑科技
 
