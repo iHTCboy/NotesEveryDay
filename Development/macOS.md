@@ -1,6 +1,7 @@
 [TOC]
 
 ### macOS
+
 #### macOS Catalina 10.15 第三方软件文件提示已损坏解决办法
 
 ```
@@ -17,6 +18,13 @@ sudo xattr -r -d com.apple.quarantine xxx.app
 ```
 codesign --force --deep --sign - /Applications/xxx.app
 ```
+
+#### mac安全来源
+
+允许任何来源：`sudo spctl --master-disable`
+禁止任何来源：`sudo spctl --master-enable`
+
+---
 
 
 #### macOS 终端操作剪切版的内容
@@ -192,15 +200,6 @@ Windows：
 Ctrl + R 替换
 Ctrl + Shift + F 全局查找
 Ctrl + Shift + R 全局替换
-
----
-
-### macOS Setting
-
-#### mac安全来源
-
-允许任何来源：`sudo spctl --master-disable`
-禁止任何来源：`sudo spctl --master-enable`
 
 ---
 
