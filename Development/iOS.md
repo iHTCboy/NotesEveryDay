@@ -361,6 +361,59 @@ currentTime: 697112.258945, absoluteTime: 612415143.769868
 - [宏定义的黑魔法 - 宏菜鸟起飞手册](https://onevcat.com/2014/01/black-magic-in-macro/)
 - 
 
+#### 逻辑分辨率和物理分辨率（Physical Resolution vs Logical Resolution）
+**分辨率（Resolution）**
+> 分辨率又称显示分辨率、屏幕分率。确定手机屏幕上显示多少信息的设置，以水平和垂直像素（pixel）来衡量。
+
+**inch（英寸）**
+> 1 inch= 2.54cm = 25.4mm
+
+**屏幕尺寸**
+> 屏幕大小的物理尺寸，以屏幕对角线的长度（diagonal）来衡量
+
+**PPI（像素密度，Pixels Per Inch）**
+> 表示沿着设备的对角线，每英寸所拥有的像素（pixel）数目，PPI的数值越高，代表显示屏能够以越高的密度显示图像，即通常所说的分辨率越高，颗粒感越弱，图像更清晰。
+> 一个像素一个格子，“每英寸像素”，表示一英寸的长度有几个格子。
+
+**PPI的计算值**
+以 iPhone 8 为例，屏幕分辨率：750px X 1334px，屏幕尺寸：4.7 英寸
+
+$$ PPI = \frac{\sqrt{750^{2}+1334^{2}}}{4.7} = 325.6 ≈ 326 $$
+
+**DPI（每英寸点数，Dots Per Inch）**
+用于打印机，“每英寸墨点”。
+
+
+**为什么不用宽高（width/height）各能容纳下多少颗像素？**
+因为用每英寸能容纳下多少颗像素，就可以在不同尺寸的屏幕用 PPI 来比较了。
+
+13寸的屏幕，屏幕的分辨率是1280\*720，如果物理分辨率改成了2560\*1440的分辨率，相当于每个像素点的尺寸减少了4倍，原来在1280\*720的一个像素内容，在2560\*1440上则填充了4个像素，因此虽然内容显示还是一样多，但是屏幕精细度高了2倍，像素倍率是2，这下再也看不出颗粒感了
+
+**一粒像素有多大？**
+**像素在脱离了屏幕尺寸之后是没有大小可言的**
+你可以将 1920 * 1080 颗像素放到一台 40 寸的电视里面，也可以将同样多的像素全部塞到一台 5.5 寸的 iPhone7 Plus 手机里面去，那么对于 40 寸的电视而言，每个像素颗粒当然会大于 5.5 寸的手机的像素。
+
+所以光看屏幕的分辨率对于设计师来说是不具备多少实际意义的，通过分辨率计算得出的像素密度（PPI）才是设计师要关心的问题，我们通过屏幕分辨率和屏幕尺寸就能计算出屏幕的像素密度的。
+
+**Scale Factor（缩放因子）**
+为了方便开发人员开发，iOS 中统一使用点（Point）对界面元素的大小进行描述。
+早期的iPhone3GS的屏幕屏幕分辨率是320 * 480,iOS绘制图形（CGPoint/CGSize/CGRect）均已point为单位。
+
+`1 point = scale*pixel`
+注：在iPhone4~6中，缩放因子scale=2；在iPhone6 plus中，缩放因子scale=3
+
+
+- [Designer's guide to DPI](https://www.sebastien-gabriel.com/designers-guide-to-dpi/)
+- [The Ultimate Guide To iPhone Resolutions](https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions)
+- [iPhone 6 Screens Demystified](https://www.paintcodeapp.com/news/iphone-6-screens-demystified)
+- [逻辑分辨率和物理分辨率到底是什么呀？ - 知乎](https://www.zhihu.com/question/40506180)
+- [DPI 和 PPI 的区别是什么？ - 知乎](https://www.zhihu.com/question/23770739)
+- [iOS UI设计 - 分辨率 屏幕尺寸 与 像素密度](https://blog.csdn.net/jiaxin_1105/article/details/71603601)
+- [iPhone屏幕尺寸、分辨率及适配](https://blog.csdn.net/phunxm/article/details/42174937)
+- [iOS 屏幕尺寸、逻辑分辨率、物理分辨率之间的相互关系](https://blog.csdn.net/Tongseng/article/details/52788598)
+
+
+
 ### 黑科技
 
 #### 刷单、苹果36技术
