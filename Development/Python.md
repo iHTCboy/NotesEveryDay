@@ -764,6 +764,39 @@ with open("python.pdf", "wb") as file:
 
 - [python下载文件 ---- requests](https://zhuanlan.zhihu.com/p/37824910)
 
+
+#### python 更新 requirements.txt 版本号
+
+
+```python
+# 安装
+pip install pur
+
+# 运行pur会将软件包更新为当前最新版本
+pur -r requirements.txt
+```
+
+`Pur` 不会修改你的环境或者安装的软件包，它只修改你的requirements.txt 文件。
+
+**命令行选项**
+
+| 命令 | 全命令 | 命令作用 |
+|---|---|---|
+| -r | --requirement 路径 | 要更新的requirements.txt 文件；默认情况下，如果存在当前目录，则使用当前目录中的requirements.txt。|
+| -o | --output 路径 | 将更新的软件包输出到这里文件；默认值为覆盖输入 requirements.txt 文件。 |
+| -i | --interactive | 在更新每个软件包之前交互式提示。 |
+| -f | --force | 即使在输入 requirements.txt 文件中没有指定任何版本，也强制更新软件包。 |
+| -d | --dry-run | 输出更改为 STDOUT，而不是覆盖 requirements.txt 文件。 |
+| -n | --no-recursive | 阻止更新嵌套的要求文件。 |
+| -s | --skip 文本 | 逗号分隔的软件包列表以跳过更新。 |
+| x | --only 文本 | 逗号分隔的软件包列表。仅更新这些软件包。 |
+| x | --pre 文本 | 逗号分隔的软件包列表，以允许更新到预发行版本。使用 "*" 可将所有软件包更新为预发行版本。默认情况下，软件包仅更新为稳定版本。 |
+| -z | --nonzero-exit-code | 当所有软件包up-to-date时退出，当某些软件包更新时，11退出。 默认值为成功时退出状态零，而失败为非零。 |
+| x | --version | 显示版本和退出。 |
+| x | --help | 显示这里消息并退出。 |
+
+- [alanhamlett/pip-update-requirements](https://github.com/alanhamlett/pip-update-requirements)
+
 ### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
 
