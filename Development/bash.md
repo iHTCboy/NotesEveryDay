@@ -244,12 +244,20 @@ find . -name \*.m | xargs genstrings -o en.lproj
 ```
 
 查找`/Users/iHTCboy/Documents`目录下所有 `.md` 文件内容含有 `https://ihtcboy.com` 的文件输出文件的全路径：
+
 ```
 find /Users/iHTCboy/Documents -type f -name "*.md" -exec grep -l "https://ihtcboy.com" {}  \;
 ```
 
 因为单行命令中-exec参数中无法使用多个命令，以下方法可以实现在-exec之后接受多条命令
 `-exec ./text.sh {} \;`
+
+
+当然，也可以用 xargs 命令并接：
+
+```
+find /Users/iHTCboy/Documents -type f -name "*.md" | xargs grep -l "https://ihtcboy.com"
+```
 
 
 搜索文件夹下文件并替换字符串：
@@ -493,6 +501,52 @@ tee (选项)(参数)
      3  2.txt
 ```
 
+#### grep 和 find 忽略大小写
+
+`grep` 使用 -i 参数来忽略大小写
+```bash
+grep -i 'xxxXXX' filePath
+```
+
+`find` 使用 -iname参数来忽略大小写：
+
+```bash
+find filesPath -iname 'xxxXXX' 
+```
+
+
+#### grep 命令
+
+从文件内容查找匹配指定字符串的行： 
+```
+$ grep "查找的字符串" 文件名 
+```
+
+从文件内容查找与正则表达式匹配的行：
+```
+$ grep –e "正则表达式" 文件名
+```
+
+查找时不区分大小写： 
+```
+$ grep –i "查找的字符串" 文件名
+```
+
+查找匹配的行数： 
+```
+$ grep -c "查找的字符串" 文件名
+```
+
+从文件内容查找不匹配指定字符串的行： 
+```
+$ grep –v "查找的字符串" 文件名
+```
+
+查找所有扩展名为.md的文本文件，并找出包含"iHTCboy"的行 
+```
+find / -type f -name "*.md" | xargs grep "iHTCboy" 
+```
+
 
 
 ### curl
@@ -551,3 +605,20 @@ curl -LI http://www.iHTCboy.com -o /dev/null -w '%{http_code}\n' -s
 
 `u` 是撤销刚才做的动作
 `ctrl+r` 是恢复刚才撤销的动作
+
+
+
+### figlet
+
+
+```
+brew instal figlet
+```
+
+or
+
+```
+npm install -g figlet-cli
+```
+
+- [FIGlet初识 | Aotu.io「凹凸实验室」](https://aotu.io/notes/2016/11/22/figlet/index.html)
