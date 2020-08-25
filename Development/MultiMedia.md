@@ -7,5 +7,5 @@
  简单来说，基于 HLS 的视频流，会将完整的视频，切割成一个个比较小的视频片段（ts 文件），然后根据协议组合成一个 m3u8 文件。这些比较小的 ts 文件，是可以单独播放的。而视频播放器，拿到 m3u8 文件之后，根据对其内 ts 片段的索引，连续播放不同的视频片段，来达到流畅的播放效果。
  
  - [论如何下载一个在线的m3u8文件到本地成为一个mp4! - 51CTO.COM](http://zhuanlan.51cto.com/art/201711/558658.htm)
- - [FFMPEG mp4 from http live streaming m3u8 file? [closed]](https://stackoverflow.com/questions/32528595/ffmpeg-mp4-from-http-live-streaming-m3u8-file)
+ - [FFMPEG mp4 from http live streaming m3u8 file?](https://stackoverflow.com/questions/32528595/ffmpeg-mp4-from-http-live-streaming-m3u8-file)
  - [解密HLS中的AES加密 - newnewfeng的专栏 - CSDN博客](https://blog.csdn.net/newnewfeng/article/details/52275650)

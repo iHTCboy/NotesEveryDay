@@ -206,7 +206,9 @@ systemctl disable firewalld
 systemctl start firewalld
 ```
 
-### 防火墙操作
+
+### Linux 命令
+#### 防火墙操作
 ```
 #1、安装
 sudo apt-get install ufw
@@ -229,7 +231,7 @@ sudo ufw allow | deny smtp
 ## 所以建议统一使用ufw enable | disbale来开关防火墙
 ```
 
-### linux命令后台运行
+#### linux命令后台运行
 有两种方式：
    1. command & ： 后台运行，你关掉终端会停止运行
    2. nohup command & ： 后台运行，你关掉终端也会继续运行
@@ -254,7 +256,7 @@ nohup python -u flush.py > flush.log 2>&1 &
 - [python nohup linux 后台运行输出 - SoWhat1412 - CSDN博客](https://blog.csdn.net/qq_31821675/article/details/78246808)
    
 
-### systemctl命令
+#### systemctl命令
 
 ```
 #开机运行服务：
@@ -275,7 +277,7 @@ systemctl status *.service
 systemctl --failed
 ```
 
-### 网络相关命令
+#### 网络相关命令
 ```
 # ifconfig               # 查看所有网络接口的属性
 # iptables -L            # 查看防火墙设置
@@ -302,7 +304,7 @@ sudo fuser -k 80/tcp
 ```
 
 
-### 进程
+#### 进程
 ```
 # ps -ef                 # 查看所有进程
 # top                    # 实时显示进程状态
@@ -366,7 +368,7 @@ kill -9 $(ps aux | grep 'process' | grep -v 'grep' | awk '{print $2}')
 - [怎样在 Linux 命令行下杀死一个进程](https://linux.cn/article-8541-1.html)
 - [精通Linux的“kill”命令](https://linux.cn/article-2116-1.html)
 
-###  用户
+####  用户
 ```
 # w                      # 查看活动用户
 # id <用户名>            # 查看指定用户信息
@@ -376,7 +378,7 @@ kill -9 $(ps aux | grep 'process' | grep -v 'grep' | awk '{print $2}')
 # crontab -l             # 查看当前用户的计划任务
 ```
 
-### 系统
+#### 系统
 ```
 # uname -a               # 查看内核/操作系统/CPU信息
 # head -n 1 /etc/issue   # 查看操作系统版本
@@ -389,7 +391,7 @@ kill -9 $(ps aux | grep 'process' | grep -v 'grep' | awk '{print $2}')
 
 ```
 
-### 资源
+#### 资源
 ```
 # free -m                # 查看内存使用量和交换区使用量
 # df -h                  # 查看各分区使用情况
@@ -400,7 +402,7 @@ kill -9 $(ps aux | grep 'process' | grep -v 'grep' | awk '{print $2}')
 # cat /proc/loadavg      # 查看系统负载
 ```
 
-### 磁盘和分区
+#### 磁盘和分区
 ```
 # mount | column -t      # 查看挂接的分区状态
 # fdisk -l               # 查看所有分区
@@ -409,7 +411,7 @@ kill -9 $(ps aux | grep 'process' | grep -v 'grep' | awk '{print $2}')
 # dmesg | grep IDE       # 查看启动时IDE设备检测状况
 ```
 
-### 查看文件内容(cat/head/tail/more/less/sed/grep)
+#### 查看文件内容(cat/head/tail/more/less/sed/grep)
 
 * cat（是一次性显示整个文件的内容）、head（查看前几行）、tail（查看末尾几行）
 
@@ -462,7 +464,7 @@ grep -A 5 foo file 显示foo及后5行
 
 以上命令，更新使用说明，请使用 `h`、`--help` 命令了解更多。
 
-### 文件解压缩
+#### 文件解压缩
 
 压缩：
 ```
@@ -499,9 +501,11 @@ tar -jcvf my-compressed.tar.bz2 /path/to/dir1/
       更改目录拥有者为oracle
 
 2. 修改权限
-    命令：chmod (change mode)
+    命令：`chmod (change mode)`
     功能：改变文件的读写和执行权限。有符号法和八进制数字法。
-    选项：(1)符号法：
+
+选项：(1)符号法：
+```
   命令格式：chmod {u|g|o|a}{+|-|=}{r|w|x} filename
           u (user)   表示用户本人。
           g (group)  表示同组用户。
@@ -513,6 +517,7 @@ tar -jcvf my-compressed.tar.bz2 /path/to/dir1/
           r (read)   读许可，表示可以拷贝该文件或目录的内容。
           w (write)  写许可，表示可以修改该文件或目录的内容。
           x (execute)执行许可，表示可以执行该文件或进入目录。
+```
  
           (2)八进制数字法：  
   命令格式：chmod abc file
@@ -707,7 +712,9 @@ sort 的参数 -nr 表示要以数字排序法进行反向排序。
     格式：ftp hostname
     功能：网络文件传输及远程操作。
     选项：ftp命令：
-           cd [dirname]  进入远程机的目录
+ 
+```
+          cd [dirname]  进入远程机的目录
            lcd [dirname] 设置本地机的目录
            dir/ls        显示远程的目录文件
            bin           以二进制方式进行传输
@@ -717,6 +724,7 @@ sort 的参数 -nr 表示要以数字排序法进行反向排序。
            prompt        打开或关闭多个文件传送时的交互提示
            close         关闭与远程机的连接
            quit          退出ftp
+```
    !/exit ftp登陆状态下，!表示暂时退出ftp状态回到本地目录，exit表示返回ftp状态
     注释：
     例如：% ftp hostname
@@ -725,10 +733,13 @@ sort 的参数 -nr 表示要以数字排序法进行反向排序。
     命令：mailx
     格式：mailx
     选项：
-delete  删除
-next    下一个
-quit    退出
-         reply   回复   
+
+```
+    delete  删除
+    next    下一个
+    quit    退出
+    reply   回复  
+``` 
 
 25. 回忆命令
     命令：history
@@ -769,8 +780,9 @@ quit    退出
 例如： groupadd oinstall    创建群组名为oinstall的组
 groupadd -g 344 dba 
 创建组号是344的组，此时在/etc/passwd文件中产生一个组ID（GID）是344的项目。
+    
     b. 修改群组：
-groupmod:该命令用于改变用户组帐号的属性
+groupmod: 该命令用于改变用户组帐号的属性
 groupmod –g 新的GID 用户组帐号名
 groupmod –n 新组名 原组名：此命令由于改变用户组的名称
 
@@ -778,9 +790,11 @@ groupmod –n 新组名 原组名：此命令由于改变用户组的名称
 groupdel 组名：该命令用于删除指定的组帐号
 
     d. 新建用户：
-命令： useradd [－d home] [－s shell] [－c comment] [－m [－k template]]
-[－f inactive] [－e expire ] [－p passwd] [－r] name
-主要参数
+命令： `useradd [－d home] [－s shell] [－c comment] [－m [－k template]]
+[－f inactive] [－e expire ] [－p passwd] [－r] name`
+
+主要参数：
+```
 -c：加上备注文字，备注文字保存在passwd的备注栏中。　
 -d：指定用户登入时的启始目录。
 -D：变更预设值。
@@ -794,60 +808,77 @@ groupdel 组名：该命令用于删除指定的组帐号
 -r：建立系统账号。
 -s：指定用户登入后所使用的shell。
 -u：指定用户ID号。
-
+```
 举例： # useradd -g oinstall -G dba oracle  创建Oracle用户
    
     e. 删除用户
-命令： userdel 用户名
+命令： `userdel 用户名`
 删除指定的用户帐号
+```
 userdel –r 用户名(userdel 用户名;rm 用户名)：删除指定的用户帐号及宿主目录
+```
 例：#useradd -g root kkk //把kkk用户加入root组里
 
     f. 修改用户
-命令： usermod
+命令： `usermod`
 修改已有用户的信息
+
+```
 usermod –l 旧用户名 新用户名： 修改用户名
 usermod –L 用户名： 用于锁定指定用户账号，使其不能登陆系统
 usermod –U 用户名： 对锁定的用户帐号进行解锁
 passwd –d 用户名： 使帐号无口令，即用户不需要口令就能登录系统
+```
+
 例：#usermod -l user2 user1 //把用户user2改名为user1
 
 30. 启动、关闭防火墙
+
+```
 永久打开或则关闭
 chkconfig iptables on
 chkconfig iptables off
 即时生效：重启后还原
 service iptables start
 service iptables stop
-     或者：
+
+或者：
 /etc/init.d/iptables start
 /etc/init.d/iptables stop
+```
 
-31. 启动VSFTP服务
+1. 启动VSFTP服务
+```
 即时启动： /etc/init.d/vsftpd start
 即时停止： /etc/init.d/vsftpd stop
+```
 
 开机默认VSFTP服务自动启动:
 方法一:(常用\方便)
+```
 [root@localhost etc]# chkconfig --list|grep vsftpd ( 查看情况)
 vsftpd          0:off   1:off   2:off   3:off   4:off   5:off   6:off
 [root@localhost etc]# chkconfig vsftpd on  (执行ON设置)
-或者:方法二:
+```
+
+方法二:
 修改文件 /etc/rc.local , 把行/usr/local/sbin/vsftpd & 插入文件中，以实现开机自动启动。
 
 32. vi技巧
+
 a. 进入输入模式
-新增 (append)
+**新增 (append)**
 a ：从光标所在位置後面开始新增资料，光标後的资料随新增资料向後移动。
 A：从光标所在列最後面的地方开始新增资料。
 
-插入 (insert)
+**插入 (insert)**
 i：从光标所在位置前面开始插入资料，光标後的资料随新增资料向後移动。
 I ：从光标所在列的第一个非空白字元前面开始插入资料。
 
-开始 (open)
+**开始 (open)**
 o ：在光标所在列下新增一列并进入输入模式。
 O: 在光标所在列上方新增一列并进入输入模式。
+
 b. 退出vi
 在指令模式下键入:q,:q!,:wq或:x(注意:号），就会退出vi。其中:wq和:x是存盘退出，而:q是直接退出，如果文件已有新的变化，vi会提示你保存文件而:q命令也会失效，这时你可以用:w命令保存文件后再用:q 退出，或用:wq或:x命令退出，如果你不想保存改变后的文件，你就需要用:q!命令，这个命令将不保存文件而直接退出vi。
 
@@ -875,6 +906,8 @@ x或X: 删除一个字符，x删除光标后的，而X删除光标前的
 Ctrl+u: 删除输入方式下所输入的文本
 
 f. 搜索及替换命令
+
+```
 /pattern: 从光标开始处向文件尾搜索pattern
 ?pattern: 从光标开始处向文件首搜索pattern
 n: 在同一方向重复上一次搜索命令
@@ -882,6 +915,7 @@ N: 在反方向上重复上一次搜索命令
 :s/p1/p2/g: 将当前行中所有p1均用p2替代
 :n1,n2s/p1/p2/g: 将第n1至n2行中所有p1均用p2替代
 :g/p1/s//p2/g: 将文件中所有p1均用p2替换
+```
 
 g. 复制，黏贴
 (1) 选定文本块，使用v进入可视模式；移动光标键选定内容
@@ -917,6 +951,8 @@ zdiff logfile1.gz logfile2.gz﻿
 
 - [How To Read And Work On Gzip Compressed Log Files In Linux - It's FOSS](https://itsfoss.com/read-compressed-log-files-linux/)
 
+
+### Linux 知识点
 #### GMT、UTC、CST、DST 时间
 * UTC
 整个地球分为二十四时区，每个时区都有自己的本地时间。在国际无线电通信场合，为了统一起见，使用一个统一的时间，称为通用协调时（UTC, Universal Time Coordinated）。
@@ -937,3 +973,42 @@ GMT + 8 = UTC + 8 = CST
 
 ### Jenkins
 
+### 阿里云（Aliyun）
+#### 阿里云CentOS安装了Nginx但是外网访问不到问题处理方法
+
+安装nginx
+
+```
+首先更新系统软件
+# yum update
+安装nginx
+1.安装nginx源
+ 
+# yum localinstall http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+2.安装nginx
+ 
+# yum install nginx
+3.启动nginx
+ 
+# service nginx start
+Redirecting to /bin/systemctl start  nginx.service
+ 
+4.访问http://你的ip/
+```
+
+
+```
+第一步。在服务器上面看一下nginx的状态
+/bin/systemctl status  nginx.service
+结果状态正常。
+ 
+第二步。curl在服务器上面 尝试你的访问
+curl 127.0.0.1  #正常
+curl localhost  #正常
+curl 本机外网IP  #不正常（防火墙等等都关闭）  
+ 
+第三步。查阅文档，去阿里云后台查看，原来是新购的服务器都加入和实例安全组。
+（OMG）立即去配置。加入你的80端口，立即就能开启了。
+```
+
+- [安全组应用案例_安全组_安全_云服务器 ECS-阿里云](https://help.aliyun.com/document_detail/25475.html?spm=5176.2020520101.121.1.1eab540fge5K2W)
