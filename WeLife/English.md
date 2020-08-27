@@ -2,6 +2,29 @@
 
 ### 缩写
 
+#### 办公室里各部门的缩写
+
+**HR Department（人资部门）**
+HR 是 human resources 的缩写，字面上是“人力资源”，那掌管人力资源的一些资料、管理等的部门当然就是“人资部”啰！
+ 
+**IT Department（资讯科技部门）**
+IT 是 information technology 的缩写，这个部门涵盖范围很广，内部人员的工作可能涵盖与资讯有关的多层面。
+ 
+**RD Department（研发部）**
+RD 是 research and development 的缩写，负责的是许多软体的改良与开发。
+ 
+**PR Department（公关部门）**
+PR 是 public relations 的缩写，也就是“公共关系”。
+ 
+**其它常见各部门**
+* Customer Service Department 客服部
+* Marketing Department 行销部
+* Training Department 培训部
+* Sales Department 销售部
+* Administration Department 行政部门
+* Purchasing Department 采购部门
+* Accounting Department 会计部门
+
 #### 公司名后缀（如 &Co.、Inc.）的含义？
 * `Corporation` ：法人、集团公司、股份有限公司；
 * `Inc.` ：股份有限公司 (Incorporated）；
