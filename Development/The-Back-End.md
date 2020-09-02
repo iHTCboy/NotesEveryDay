@@ -206,6 +206,23 @@ systemctl disable firewalld
 systemctl start firewalld
 ```
 
+#### Nginx 开启 debug 模式
+
+开启debug模式
+```
+ vim /etc/nginx/nginx.conf
+```
+ 
+注释掉原来的 error_log /var/log/nginx/error.log;，新增下面的配置：
+```
+ # error_log /var/log/nginx/error.log;
+ error_log /var/log/nginx/error.log debug;
+```
+ 
+实时监控错误日志
+```
+ clear && tail -f /var/log/nginx/error.log
+```
 
 ### Linux 命令
 #### 防火墙操作

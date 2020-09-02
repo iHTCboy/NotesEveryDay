@@ -412,6 +412,50 @@ $$ PPI = \frac{\sqrt{750^{2}+1334^{2}}}{4.7} = 325.6 ≈ 326 $$
 - [iPhone屏幕尺寸、分辨率及适配](https://blog.csdn.net/phunxm/article/details/42174937)
 - [iOS 屏幕尺寸、逻辑分辨率、物理分辨率之间的相互关系](https://blog.csdn.net/Tongseng/article/details/52788598)
 
+#### SDK 库相关命令
+
+查看.a库文件所包含的架构库命令:
+```
+lipo -info XXXXX.a
+```
+
+合并多个架构：
+```
+lipo -create 真机路径 模拟器路径 -output 真机路径
+```
+
+从fat文件里面分离出来各个架构的库：
+```
+lipo -thin armv7 XXXXX.a -output XXXXX-armv7.a
+```
+
+查看库中所包含的文件列表：
+```
+ar -t armv7.a
+```
+
+从每个架构的.a文件中删除与其他sdk冲突的.o文件：
+```
+ar -d -sv XXXXX-armv7.a XXXX.o
+```
+> 注意：把每个架构的.a文件单独放一个文件夹进行解压命令,因为同一个sdk的不同架构库解压出来的.o文件同名会覆盖掉
+
+目录下所有.o文件(用*.o)打包成.a文件：
+```
+ar -r *.o libxxx.a
+```
+
+
+使用 Xcode libtool 合并多个静态库:
+```
+xcrun -r libtool -no_warning_for_no_symbols -static -o output.a 1.a 2.a 3.a 4.a
+```
+
+* -no_warning_for_no_symbols    不输出 has no symbols 的警告
+* -static    链接的类型为静态库
+* -o    指定合并后的文件路径
+
+`xcrun -r libtool`： 使用 Xcode Toolchain 里的 libtool，直接运行 libtool 会使用 $PATH 的路径的
 
 
 ### 黑科技
