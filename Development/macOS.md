@@ -362,3 +362,17 @@ command+shift+G
 - [电池 - Apple (中国大陆)](https://www.apple.com.cn/batteries/)
 - [关于 Mac 笔记本电脑电池 - Apple 支持](https://support.apple.com/zh-cn/HT204054)
 - [iPhone 电池更换 - 官方 Apple 支持](https://support.apple.com/zh-cn/iphone/repair/service/battery-power)
+
+
+### Visual Studio Code (VSCode)
+
+#### 快捷键
+根据您的当前上下文访问所有可用命令：`⇧⌘P`
+
+快速打开文件：`⌘P`
+
+更改语言模式：`⌘KM`
+
+切换侧边栏：`⌘B`
+
+- [Visual Studio Code Tips and Tricks](https://code.visualstudio.com/docs/getstarted/tips-and-tricks)

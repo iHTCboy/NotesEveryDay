@@ -51,7 +51,6 @@ brew cask install android-platform-tools
 ```
 
 
-
 **注意：**
 > flutter 工具使用了 Google Analytics 来对基本使用情况和 崩溃报告 进行匿名的统计。这些数据用来帮助改善 Flutter 工具。
 >  
@@ -73,7 +72,6 @@ $ which flutter dart
 - [Upgrading Flutter - Flutter](https://flutter.dev/docs/development/tools/sdk/upgrading)
 - [升级你的 Flutter 版本](https://flutter.cn/docs/development/tools/sdk/upgrading)
 
-
 ```
  flutter upgrade
 ```
@@ -88,6 +86,21 @@ flutter create myApp
 ```
 flutter run
 ```
+
+#### 常见错误
+
+问题： Dart Error: Can't load Kernel binary: Invalid kernel binary format version.
+
+原因: flutter 和 engine 版本不一致
+
+解决方案: 
+  1. 删除 flutter 目录下的 `bin/cache` 文件夹
+  2. 然后运行 `flutter doctor` 或 `flutter upgrade` 运行后在重启
+
+问题：cp: flutter/bin/cache/artifacts/engine/ios/Flutter.podspec: No such file or directory
+
+解决方案：`flutter build ios`
+
 
 ### Dart
 
