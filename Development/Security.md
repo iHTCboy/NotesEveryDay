@@ -1,5 +1,6 @@
 [TOC]
 
+
 ### 认证
 
 - [JSON Web Token 入门教程 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)
@@ -67,3 +68,14 @@ A 将原始数据使用 A 的私钥进行 RSA 签名得到 Sign，原始数据�
 - [The Illustrated TLS Connection: Every Byte Explained](https://tls.ulfheim.net/)
 - [RSA的公钥和私钥到底哪个才是用来加密和哪个用来解密？ - 知乎](https://www.zhihu.com/question/25912483)
 - [Java使用RSA加密解密签名及校验 - CSDN博客](https://blog.csdn.net/wangqiuyun/article/details/42143957)
+
+
+
+### 实践
+
+#### 网易云音乐ncm格式分析
+
+- [anonymous5l/ncmdump: netease cloud music copyright protection file dump](https://github.com/anonymous5l/ncmdump)
+- [网易云音乐ncm格式分析以及ncm与mp3格式转换 - chuyaoxin - 博客园](https://www.cnblogs.com/cyx-b/p/13443003.html)
+- [网易云音乐ncm编解码探究记录 - 简书](https://www.jianshu.com/p/ec5977ef383a)
+- [网易云音乐ncm文件格式解析 | 文章 | BEWINDOWEB](http://www.bewindoweb.com/228.html)
