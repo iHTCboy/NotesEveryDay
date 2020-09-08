@@ -1,8 +1,16 @@
-# Introduction
+# Introduction - 简介
 
-## NotesEveryDay
-Record daily notes and knowledge, for dev and life ，every something...
-记录每天学习笔记和知识，主要是开发和生活，每一件的某事...
+## NotesEveryDay（每日学习笔记）
+> Record daily notes and knowledge, for dev and life ，every something...
+>   
+> 记录每天学习笔记和知识，主要是开发和生活，每一件的某事...
+
+每天开发学习工作生活中，都会遇到形形色色各种各样的问题，当问题解决后，一般情况下就不了了之，往后余生，某一天，可能就直接踩坑啦！或者，想起之前遇到过某个问题，但是想不起是什么事情了！
+
+**好记性不如烂笔头！**
+
+这正是本书的初心~
+
 
 ### Development（开发）
 记录了某个知识点，可以快速的了解，还希望能扩展的学习。
