@@ -493,3 +493,10 @@ git config --add core.compression -1
 ```
 git config http.postBuffer 524288000
 ```
+
+
+### Git --force & --force-with-lease
+- `--force` : 使用本地分支的提交覆盖远端推送分支的提交。也就是说，如果其他人在相同的分支推送了新的提交，你的这一举动将“删除”他的那些提交！就算在强制推送之前先 `fetch` 并且 `merge` 或 `rebase` 了也是不安全的，因为这些操作到推送之间**依然存在时间差**，别人的提交可能发生在这个时间差之内。
+ - `--force-with-lease` : 如果远端有其他人推送了新的提交，那么推送将被拒绝，这种拒绝和没有加 --force 参数时的拒绝是一样的。
+ 
+ - [Git 更安全的强制推送，--force-with-lease_walterlv - 吕毅-CSDN博客](https://blog.csdn.net/WPwalter/article/details/80371264)
