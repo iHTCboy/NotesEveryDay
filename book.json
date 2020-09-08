@@ -82,8 +82,8 @@
       "elements": [".gitbook-link", ".treeview__container-title"]
     },
     "tbfed-pagefooter": {
-      "copyright":"Copyright &copy iHTCboy.com 2020",
-      "modify_label": "该文章修订时间：",
+      "copyright":"Copyright &copy iHTCboy.com",
+      "modify_label": "最后更新：",
       "modify_format": "YYYY-MM-DD HH:mm:ss"
     },
     "page-treeview": {
