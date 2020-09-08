@@ -822,7 +822,7 @@ Django在处理post请求时出现403错误
 原文2：http://blog.csdn.net/sherry_rui/article/details/50523725
 
 解决方法：
-1.在发送post请求的html页面前加入{% csrf_token %}    如：
+1.在发送post请求的html页面前加入 `{% csrf_token %}` 如：
 
 ```html
 <form action="/login" method="post">
@@ -833,7 +833,7 @@ Django在处理post请求时出现403错误
 </form>
 ```
 
-2.在处理post数据的view前加@csrf_exempt装饰符，如：
+2.在处理post数据的view前加 `@csrf_exempt` 装饰符，如：
 
 ```python
 from django.views.decorators.csrf import csrf_exempt,csrf_protect

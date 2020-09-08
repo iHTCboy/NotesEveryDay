@@ -1,0 +1,35 @@
+{
+  "gitbook": ">=3.2.0",
+  "description": "iHTCboy学习笔记",
+  "language": "zh-hans",
+  "author": "iHTCboy",
+  "extension": null,
+  "generator": "site",
+  "links" : {
+    "sidebar" : {
+        "iHTCboy的博客": "https://iHTCboy.com"
+    }
+  },
+  "structure" : {
+    },
+  "plugins": [
+    "-search",
+    "-sharing",
+    "edit-link",
+    "github-buttons@2.1.0"
+  ],
+  "pluginsConfig": {
+    "edit-link": {
+        "base": "https://github.com/iHTCboy/NotesEveryDay/edit/master",
+        "label": "Edit"
+    },
+    "github-buttons": {
+        "repo": "iHTCboy/NotesEveryDay",
+        "types": ["star"],
+        "size": "small"
+    }
+  },
+  "title": "iHTCboy学习笔记",
+  "variables": {
+  }
+}
