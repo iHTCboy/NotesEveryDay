@@ -1,22 +1,43 @@
 {
   "gitbook": ">=3.2.0",
-  "description": "iHTCboy学习笔记",
-  "language": "zh-hans",
+  "title": "iHTCboy学习笔记",
   "author": "iHTCboy",
-  "extension": null,
-  "generator": "site",
+  "description": "学习知识笔记",
+  "language": "zh-hans",
+  "keywords": "iOS,Android,Swift,Flutter,macOS,Python",
   "links" : {
     "sidebar" : {
-        "iHTCboy的博客": "https://iHTCboy.com"
+        "iHTCboy's blog": "https://iHTCboy.com"
+    },
+    "sharing": {
+      "google": true,
+      "facebook": true,
+      "twitter": true,
+      "weibo": true,
+      "qrcode": true
     }
   },
-  "structure" : {
-    },
   "plugins": [
-    "-search",
-    "-sharing",
     "edit-link",
-    "github-buttons@2.1.0"
+    "github-buttons@2.1.0",
+    "splitter",
+    "mathjax",
+    "ga",
+    "disqus",
+    "-lunr",
+    "-search",
+    "search-pro",
+    "sitemap",
+    "localized-footer",
+    "image-captions",
+    "expandable-chapters-small",
+    "code",
+    "page-treeview",
+    "hide-element",
+    "back-to-top-button",
+    "pageview-count",
+    "tbfed-pagefooter",
+    "lightbox"
   ],
   "pluginsConfig": {
     "edit-link": {
@@ -27,9 +48,50 @@
         "repo": "iHTCboy/NotesEveryDay",
         "types": ["star"],
         "size": "small"
+    },
+    "theme-default": {
+      "showLevel": true
+    },
+    "fontSettings": {
+      "theme": "white",
+      "family": "serif",
+      "size": 2
+    },
+    "image-captions": {
+      "caption": "Image - _CAPTION_",
+      "align": "center"
+    },
+    "expandable-chapters-small": {},
+    "ga": {
+      "token": "UA-67136970-2"
+    },
+    "disqus": {
+      "shortName": "iHTCboy"
+    },
+    "search-pro": {
+      "cutWordLib": "nodejieba"
+    },
+    "sitemap": {
+      "hostname": "https://iHTCboy.com/"
+    },
+    "localized-footer": {
+      "hline": true,
+      "filename": "./FOOTER.md"
+    },
+    "hide-element": {
+      "elements": [".gitbook-link", ".treeview__container-title"]
+    },
+    "tbfed-pagefooter": {
+      "copyright":"Copyright &copy iHTCboy.com 2020",
+      "modify_label": "该文章修订时间：",
+      "modify_format": "YYYY-MM-DD HH:mm:ss"
+    },
+    "page-treeview": {
+      "copyright": "Copyright &copy iHTCboy",
+      "minHeaderCount": "2",
+      "minHeaderDeep": "2"
     }
   },
-  "title": "iHTCboy学习笔记",
   "variables": {
   }
 }

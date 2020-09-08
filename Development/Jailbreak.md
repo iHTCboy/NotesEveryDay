@@ -32,19 +32,16 @@ Cydia可以理解为越狱之后的AppStore，在Cydia里面可以通过添加�
 * https://repo.hackyouriphone.org （国外知名插件破解网站，一些收费插件可以在这找破解版）
 * http://pulandres.me/repo/ （P佬源，同为国外知名破解资源集散地）
 * http://apt.cydiabc.top/ （国内小苹果源，未爆出过安全问题，使用放心）
-* 
-HackYouriPhone http://repo.hackyouriphone.org
-kiiimo http://cydia.kiiimo.org/
+* HackYouriPhone http://repo.hackyouriphone.org
+* kiiimo http://cydia.kiiimo.org/
 
 #### Flex
 Flex是John Coates的作品，从推出就被大家视为越狱iOS必装插件之一，至今已经更新到Flex3，支持至最新的系统。通过此插件，你无需太多编程知识，也可以很容易地“操作”系统或App函数，以此来达到修改UI界面和程序功能的目的。
 
 在Flex中你几乎可以修改任何app和自带的系统软件。比如可以修改微信步数、系统UI颜色、修改游戏金币等等。不过免费版的Flex每天只能下载他人分享的脚本两次。
 
-#### AppSync Unified
-
+#### AppSync Unified
 安装无签名软件，装修改版软件必备神器。
-
 
 
 ### OpenSSH

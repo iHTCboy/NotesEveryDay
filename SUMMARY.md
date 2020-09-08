@@ -5,10 +5,11 @@
 ----
 
 * [Development（开发）](Development/README.md)
+    * [iOS](Development/iOS.md)
     * [Android](Development/Android.md)
-    * [bash](Development/bash.md)
+    * [Bash](Development/Bash.md)
     * [C_C++](Development/C_C++.md)
-    * [C#](Development/C#.md)
+    * [C#](Development/C-Sharp.md)
     * [Cross-Platform](Development/Cross-Platform.md)
     * [DataBase](Development/DataBase.md)
     * [DataStructure](Development/DataStructure.md)
@@ -17,7 +18,6 @@
     * [Game](Development/Game.md)
     * [Git](Development/Git.md)
     * [Go](Development/Go.md)
-    * [iOS](Development/iOS.md)
     * [Jailbreak](Development/Jailbreak.md)
     * [Java](Development/Java.md)
     * [JavaScript](Development/JavaScript.md)
