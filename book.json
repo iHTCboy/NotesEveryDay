@@ -7,19 +7,18 @@
   "keywords": "iOS,Android,Swift,Flutter,macOS,Python",
   "links" : {
     "sidebar" : {
-        "iHTCboy's blog": "https://iHTCboy.com"
+        "作者博客": "https://iHTCboy.com"
     },
     "sharing": {
       "google": true,
-      "facebook": true,
-      "twitter": true,
+      "facebook": false,
+      "twitter": false,
       "weibo": true,
       "qrcode": true
     }
   },
   "plugins": [
     "edit-link",
-    "github-buttons@2.1.0",
     "splitter",
     "mathjax",
     "ga",
@@ -37,17 +36,13 @@
     "back-to-top-button",
     "pageview-count",
     "tbfed-pagefooter",
-    "lightbox"
+    "lightbox",
+    "add-js-css"
   ],
   "pluginsConfig": {
     "edit-link": {
         "base": "https://github.com/iHTCboy/NotesEveryDay/edit/master",
-        "label": "Edit"
-    },
-    "github-buttons": {
-        "repo": "iHTCboy/NotesEveryDay",
-        "types": ["star"],
-        "size": "small"
+        "label": ""
     },
     "theme-default": {
       "showLevel": true
@@ -83,13 +78,18 @@
     },
     "tbfed-pagefooter": {
       "copyright":"Copyright &copy iHTCboy.com",
-      "modify_label": "最后更新：",
-      "modify_format": "YYYY-MM-DD HH:mm:ss"
+      "modify_label": " ",
+      "modify_format": "YYYY-MM-DD HH:mm:ss 更新"
     },
     "page-treeview": {
       "copyright": "Copyright &copy iHTCboy",
       "minHeaderCount": "2",
       "minHeaderDeep": "2"
+    },
+    "add-js-css": {
+      "css": [
+        "./settings/custom.css"
+      ]
     }
   },
   "variables": {

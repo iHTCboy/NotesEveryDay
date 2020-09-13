@@ -5,7 +5,7 @@
 
 #### Cocoapods 报错问题
 
-```shell
+```console
 - ERROR | [iOS] unknown: Encountered an unknown error (Could not find a `ios` simulator (valid values: ). Ensure that Xcode -> Window -> Devices has at least one `ios` simulator listed or otherwise add one.) during validation.
 ```
 
@@ -21,7 +21,7 @@
 
 #### SDWebImage 占位图是GIF处理
 
-```obj-c
+```objc
 [cell.ImageView sd_setImageWithURL:[NSURL URLWithString:ImageUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image == nil) {
             UIImage *img = [UIImage sd_animatedGIFNamed:@"xxx.gif"];
@@ -52,7 +52,7 @@ https://blog.csdn.net/ZuoWeiXiaoDuZuoZuo/article/details/82756116?utm_source=cop
 
 在终端输入以下命令打开Xcode的lib库目录（此目录位安装的默认目录）
 
-```
+```console
 open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib
 ```
 
@@ -63,7 +63,7 @@ open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Deve
 
 在终端输入以下命令打开Xcode的lib库目录（此目录位安装的默认目录）
 
-```
+```console
 open  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib
 ```
 
@@ -90,7 +90,7 @@ open  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platf
 
 #### Xcode 自定义快捷键
 复制文件：
-```bash
+```console
 /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A/Resources/IDETextKeyBindingSet.plist
 ```
 增加自定义配置：
@@ -116,6 +116,54 @@ open  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platf
 
 - [Xcode 自定义快捷键 - 简书](https://www.jianshu.com/p/65299ebe77d4)
 
+
+#### LLDB
+
+LLDB 通用结构的形式如下：
+
+```console
+<command> [<subcommand> [<subcommand>...]] <action> [-options [option-value]] [argument [argument...]]
+```
+
+| 指令  | 全称  | 作用 |
+|---|---|---|
+| | apropos | 帮助命令，通过 apropos + xxx 命令可以找到xxx所有相关的命令信息。 |
+| p | print  | 输出原生类型（boolean、integer、float、etc）的信息  |
+| po | print object | 输出objective-c中对象（objects）的信息. (为 `e -o` 的别名) |
+| e | expression | 可以执行表达式。expression 其实就是 p/print/call、`expression -o` 就是 po 。|
+|   |   |   |
+| b | breakpoint | 设置断点. (可在运行过程中添加) |
+| br li | breakpoint list | 列出所有断点 |
+|   | breakpoint delete | 删除所有断点（可跟组号删除指定组） |
+|   | breakpoint disable/enable | 禁用、启用指定断点 |
+|   | breakpoint set -r some | 遍历整个项目中包含 some 这个字符的所有方法并设置断点 |
+|   |   |   |
+| c | continue |  单步调试 |
+| n | thread step-over/next | 当前线程下一步（以一个完整子函数为一步） |
+| ni | thread step-inst-over | 当前线程下一步（以一个汇编函数为一步） |
+| s | thread step-in/step | 当前线程下一步（遇到子函数就进入并且继续单步执行）|
+| si | thread step-inst-over | 当前线程下一步（遇到汇编函数就进入并且继续单步执行汇编指令） |
+| finish | thread step-out | 退出当前帧栈 |
+|   |   |   |
+|   | image | 可用于寻址，有多个组合命令。常用于寻找栈地址对应的代码位置, 用于查错(能定位出错误代码行数)。 |
+|   | image lookup | `image lookup --address 0x1af8`：在可执行文件或任何共享库中查找原始地址信息。<br> `image lookup -v --address 0x1af8`：查找完整的源代码行信息。<br> `image lookup --type NSString`：根据名称查找对应（NSString）类型的信息。 |
+|   |   |   |
+|   | register read | 显示当前线程的通用寄存器。 |
+|   | register write | `register write rax 123`：将一个新的十进制值“123”写入当前线程寄存器“rax”。|
+|   | memory read | `memory read --size 4 --format x --count 4 0xbffff3c0`：从地址0xbffff3c0读取内存，并显示4个十六进制uint32_t值。 |
+|   |   |   |
+| bt | thread backtrace | 打印调用堆栈 |
+|   | thread backtrace all | 列出所有线程的堆栈 |
+|   | thread list | 列出所有线程 |
+|   | thread return | 可用来控制程序流程, 伪造返回值 |
+|   | frame variable | 获取全部变量值 |
+|   | watchpoint | 监听某个实例的变化. (等同于在Xcode调试变量窗口—>右键某个变量—>Watch xx) 注意: watchpoint是分类型的，包括read，write或者read_write类型. 通过Xcode右键添加的只能是write类型. |
+|   |   |   |
+
+
+- [GDB to LLDB command map — The LLDB Debugger](https://lldb.llvm.org/use/map.html)
+- [Tutorial — The LLDB Debugger](https://lldb.llvm.org/use/tutorial.html)
+- [LLDB 知多少 - 掘金](https://juejin.im/post/6844903805398548493)
 
 ### iOS
 
@@ -145,7 +193,7 @@ ARMv6：iPhone, iPhone 3G, iPod 1G/2G
 
 #### WKWebView如何清除缓存
 
-```obj-c
+```objc
 - (void)deleteWebCache {
     //allWebsiteDataTypes清除所有缓存
     if (@available(iOS 9.0, *)) {
@@ -176,7 +224,7 @@ ARMv6：iPhone, iPhone 3G, iPod 1G/2G
 
 #### 从App里用代码读取证书信息
 
-```obj-c
+```objc
 //取出embedded.mobileprovision这个描述文件的内容进行判断
     NSString *mobileProvisionPath = [[NSBundle mainBundle] pathForResource:@"embedded" ofType:@"mobileprovision"];
     NSData *rawData = [NSData dataWithContentsOfFile:mobileProvisionPath];
@@ -214,7 +262,7 @@ ARMv6：iPhone, iPhone 3G, iPod 1G/2G
 
 #### genstrings命令与字符串本地化
 
-```
+```objc
 #define NSLocalizedString(key, comment) \
 	    [NSBundle.mainBundle localizedStringForKey:(key) value:@"" table:nil]
 
@@ -229,7 +277,7 @@ ARMv6：iPhone, iPhone 3G, iPod 1G/2G
 ```
 
 方法:
-```ios
+```objc
 NSLocalizedString(@"key", @"My comment")
 
 /* My comment */
@@ -238,18 +286,18 @@ NSLocalizedString(@"key", @"My comment")
 
 扫描当前文件夹下所有.m文件的宏，生成Localizable.strings文件并放到en.lproj文件夹下:
 
-```bash
+```console
 $ find . -name \*.m | xargs genstrings -o en.lproj 
 ```
 
 指定的输出目录下生成 `TableName.strings` 文件，然后添加记录和注释:
-```bash
+```objc
 NSLocalizedStringFromTable(@"key", @"TableName", @"My comment")
 ```
 
 下面三句的作用是一样的，都是读取苹果指定名字为 `Localizable.strings` 的内容，其中第三种简化后就是苹果对 `NSLocalizedString` 宏的定义：
 
-```bash
+```objc
 NSLocalizedString(@"key", @"My comment");
 NSLocalizedStringFromTable(@"key", @"Localizable", @"My comment");
 NSLocalizedStringFromTable(@"key", nil, @"My comment");
@@ -338,7 +386,7 @@ NSString *const XUserName = @"iHTCboy";
 
 #### CFAbsoluteTimeGetCurrent() 和 CACurrentMediaTime() 区别
 
-```
+```objc
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -414,39 +462,39 @@ $$ PPI = \frac{\sqrt{750^{2}+1334^{2}}}{4.7} = 325.6 ≈ 326 $$
 #### SDK 库相关命令
 
 查看.a库文件所包含的架构库命令:
-```
+```console
 lipo -info XXXXX.a
 ```
 
 合并多个架构：
-```
+```console
 lipo -create 真机路径 模拟器路径 -output 真机路径
 ```
 
 从fat文件里面分离出来各个架构的库：
-```
+```console
 lipo -thin armv7 XXXXX.a -output XXXXX-armv7.a
 ```
 
 查看库中所包含的文件列表：
-```
+```console
 ar -t armv7.a
 ```
 
 从每个架构的.a文件中删除与其他sdk冲突的.o文件：
-```
+```console
 ar -d -sv XXXXX-armv7.a XXXX.o
 ```
 > 注意：把每个架构的.a文件单独放一个文件夹进行解压命令,因为同一个sdk的不同架构库解压出来的.o文件同名会覆盖掉
 
 目录下所有.o文件(用*.o)打包成.a文件：
-```
+```console
 ar -r *.o libxxx.a
 ```
 
 
 使用 Xcode libtool 合并多个静态库:
-```
+```console
 xcrun -r libtool -no_warning_for_no_symbols -static -o output.a 1.a 2.a 3.a 4.a
 ```
 

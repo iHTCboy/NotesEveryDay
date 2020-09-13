@@ -1,5 +1,9 @@
 # Introduction - 简介
 
+* 作者博客地址：[iHTCboy's blog](https://ihtcboy.com/)
+* 网页在线阅读：[iHTCboy 学习笔记](https://ihtcboy.com/NotesEveryDay/)
+* 有趣思维导图：[OneMindMap - GitHub](https://github.com/iHTCboy/OneMindMap)
+
 ## NotesEveryDay（每日学习笔记）
 > Record daily notes and knowledge, for dev and life ，every something...
 >   
