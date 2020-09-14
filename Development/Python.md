@@ -797,6 +797,25 @@ pur -r requirements.txt
 
 - [alanhamlett/pip-update-requirements](https://github.com/alanhamlett/pip-update-requirements)
 
+
+#### python3 open()函数文件操作模式
+
+| 模式 | 描述 | 
+|---|---|
+| `r` | 打开的文件为只读模式。文件指针位于文件的开头，这是默认模式。 |
+| `rb` | 打开仅用二进制格式读取的文件。文件指针位于文件的开头，这是默认模式。 |
+| `r+` | 打开读写文件。文件指针放在文件的开头。 |
+| `rb+` | 以二进制格式打开一个用于读写文件。文件指针放在文件的开头。 |
+| `w` | 打开仅供写入的文件。 如果文件存在，则覆盖该文件。 如果文件不存在，则创建一个新文件进行写入。 |
+| `wb` | 打开仅用二进制格式写入的文件。如果文件存在，则覆盖该文件。 如果文件不存在，则创建一个新文件进行写入。 |
+| `w+` | 打开写入和取读的文件。如果文件存在，则覆盖现有文件。 如果文件不存在，创建一个新文件进行阅读和写入。 |
+| `wb+` | 打开一个二进制格式的写入和读取文件。 如果文件存在，则覆盖现有文件。 如果文件不存在，创建一个新文件进行阅读和写入。 |
+| `a` | 打开一个文件进行追加。 如果文件存在，则文件指针位于文件末尾。也就是说，文件处于追加模式。如果文件不存在，它将创建一个新文件进行写入。 |
+| `ab` | 打开一个二进制格式的文件。如果文件存在，则文件指针位于文件末尾。 也就是说，文件处于追加模式。如果文件不存在，它将创建一个新文件进行写入。 |
+| `a+` | 打开一个文件，用于追加和阅读。 如果文件存在，则文件指针位于文件末尾。 文件以附加模式打开。 如果文件不存在，它将创建一个新文件进行阅读和写入。 |
+| `ab+` | 打开一个二进制格式的附加和读取文件。 如果文件存在，则文件指针位于文件末尾。文件以附加模式打开。如果文件不存在，它将创建一个新文件进行读取和写入。 |
+
+
 ### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
 
@@ -1389,6 +1408,20 @@ for article in li_list:
 
 
 ### 项目部署
+#### Fabric
+Fabric：官方Fabric，兼容 Python 2 & Python 3，但不兼容Fabric 1.x的fabfile；
+fabric2： 与Fabric相同，仅作为平滑迁移（使用Fabric包安装1.x 版本，使用Fabric2包安装2.x版本，来实现1.x和2.x的共存）；
+Fabric3：是一个基于Fabric 1.x 的fork，兼容Python2 & Python3，兼容 Fabric1.x 的 fabfile；
+
+- [Welcome to Fabric! — Fabric documentation](https://www.fabfile.org/)
+- [欢迎访问 Fabric 中文文档 — Fabric 文档](https://fabric-chs.readthedocs.io/zh_CN/chs/index.html)
+- [Python - Fabric简介 - Anliven - 博客园](https://www.cnblogs.com/anliven/p/9186994.html)
+- [远程部署神器 Fabric，支持 Python3 - Python之禅 - CSDN博客](https://blog.csdn.net/zV3e189oS5c0tSknrBCL/article/details/85271219)
+- [python模块fabric踩坑记录 | 淦](https://tankeryang.github.io/posts/python%E6%A8%A1%E5%9D%97fabric%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/)
+- [python三大神器之fabric（2.0新特性） - 三只松鼠 - 博客园](https://www.cnblogs.com/shenh/p/10060149.html)
+- [Fabric 让 Linux 系统部署变得简单](https://www.ibm.com/developerworks/cn/linux/simplyfy-linux-deployment-with-fabric/index.html)
+
+#### uWSGI 和 Nginx
 
 - [Python/WSGI 应用快速入门 — uWSGI 2.0 文档](https://uwsgi-docs-cn.readthedocs.io/zh_CN/latest/WSGIquickstart.html#django)
 - [使用uWSGI和nginx来设置Django和你的web服务器 — uWSGI 2.0 文档](https://uwsgi-docs-zh.readthedocs.io/zh_CN/latest/tutorials/Django_and_nginx.html)
@@ -1413,23 +1446,8 @@ for article in li_list:
 - [一.阿里云服务器安装部署及第一个Python爬虫代码实现 - 杨秀璋的专栏 - CSDN博客](https://blog.csdn.net/eastmount/article/details/79321822)
 - [如何在阿里云上部署 Django 应用程序 - 阿里云新手学堂](https://www.alibabacloud.com/zh/getting-started/projects/how-to-deploy-django-application-on-alibaba-cloud)
 - [Django + Apache 部署 - - SegmentFault 思否](https://segmentfault.com/a/1190000017150991)
-
-
-Fabric：官方Fabric，兼容 Python 2 & Python 3，但不兼容Fabric 1.x的fabfile；
-fabric2： 与Fabric相同，仅作为平滑迁移（使用Fabric包安装1.x 版本，使用Fabric2包安装2.x版本，来实现1.x和2.x的共存）；
-Fabric3：是一个基于Fabric 1.x 的fork，兼容Python2 & Python3，兼容 Fabric1.x 的 fabfile；
-
-- [Welcome to Fabric! — Fabric documentation](https://www.fabfile.org/)
-- [欢迎访问 Fabric 中文文档 — Fabric 文档](https://fabric-chs.readthedocs.io/zh_CN/chs/index.html)
-- [Python - Fabric简介 - Anliven - 博客园](https://www.cnblogs.com/anliven/p/9186994.html)
-- [远程部署神器 Fabric，支持 Python3 - Python之禅 - CSDN博客](https://blog.csdn.net/zV3e189oS5c0tSknrBCL/article/details/85271219)
-- [python模块fabric踩坑记录 | 淦](https://tankeryang.github.io/posts/python%E6%A8%A1%E5%9D%97fabric%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/)
-- [python三大神器之fabric（2.0新特性） - 三只松鼠 - 博客园](https://www.cnblogs.com/shenh/p/10060149.html)
-- [Fabric 让 Linux 系统部署变得简单](https://www.ibm.com/developerworks/cn/linux/simplyfy-linux-deployment-with-fabric/index.html)
-
-
-[CentOS设定SFTP用户只能访问家目录 - Adairs的个人空间 - OSCHINA](https://my.oschina.net/adairs/blog/847093)
-[Linux 限制SFTP用户只能访问某个目录 - 经验在于积累而不在于年限---dreamboycx - CSDN博客](https://blog.csdn.net/dreamboycx/article/details/78672925)
-[Linux创建用户只能访问某个目录 - 做点儿扯谈的事儿 - CSDN博客](https://blog.csdn.net/u010073893/article/details/52953911)
-[BasicChroot - Community Help Wiki](https://help.ubuntu.com/community/BasicChroot)
-[CentOS 7部署chroot ssh和sftp监牢 - 大别阿郎的个人空间 - OSCHINA](https://my.oschina.net/u/589241/blog/3067416)
+* [CentOS设定SFTP用户只能访问家目录 - Adairs的个人空间 - OSCHINA](https://my.oschina.net/adairs/blog/847093)
+* [Linux 限制SFTP用户只能访问某个目录 - 经验在于积累而不在于年限---dreamboycx - CSDN博客](https://blog.csdn.net/dreamboycx/article/details/78672925)
+* [Linux创建用户只能访问某个目录 - 做点儿扯谈的事儿 - CSDN博客](https://blog.csdn.net/u010073893/article/details/52953911)
+* [BasicChroot - Community Help Wiki](https://help.ubuntu.com/community/BasicChroot)
+* [CentOS 7部署chroot ssh和sftp监牢 - 大别阿郎的个人空间 - OSCHINA](https://my.oschina.net/u/589241/blog/3067416)
