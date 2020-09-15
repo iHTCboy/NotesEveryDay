@@ -38,7 +38,7 @@
     
 * [WeLife（生活）](WeLife/README.md)
     * [ChineseCulture](WeLife/ChineseCulture.md)
-    * [Design](Development/Design.md)
+    * [Design](WeLife/Design.md)
     * [English](WeLife/English.md)
     * [Investment](WeLife/Investment.md)
     * [Office](WeLife/Office.md)
