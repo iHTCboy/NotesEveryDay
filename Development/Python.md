@@ -816,6 +816,35 @@ pur -r requirements.txt
 | `ab+` | 打开一个二进制格式的附加和读取文件。 如果文件存在，则文件指针位于文件末尾。文件以附加模式打开。如果文件不存在，它将创建一个新文件进行读取和写入。 |
 
 
+#### APScheduler
+**组件：**
+* 触发器（`trigger`）：触发器中包含调度逻辑，每个作业都有自己的触发器来决定下次运行时间。除了它们自己初始配置以外，触发器完全是无状态的。
+* 作业存储器（`job store`）：存储被调度的作业，默认的作业存储器只是简单地把作业保存在内存中，其他的作业存储器则是将作业保存在数据库中，当作业被保存在一个持久化的作业存储器中的时候，该作业的数据会被序列化，并在加载时被反序列化，需要说明的是，作业存储器不能共享调度器。
+* 执行器（`executor`）：处理作业的运行，通常通过在作业中提交指定的可调用对象到一个线程或者进程池来进行，当作业完成时，执行器会将通知调度器。
+* 调度器（`scheduler`）：配置作业存储器和执行器可以在调度器中完成。例如添加、修改、移除作业，根据不同的应用场景，可以选择不同的调度器，可选的将在下一小节展示。
+
+**调度器：**
+
+* `BlockingScheduler`：调用start函数后会阻塞当前线程。当调度器是你应用中唯一要运行的东西时（如上例）使用。
+* `BackgroundScheduler`：调用start后主线程不会阻塞。当你不运行任何其他框架时使用，并希望调度器在你应用的后台执行。
+* `AsyncIOScheduler`：当你的程序使用了asyncio（一个异步框架）的时候使用。
+* `GeventScheduler`：当你的程序使用了gevent（高性能的Python并发框架）的时候使用。
+* `TornadoScheduler`：当你的程序基于Tornado（一个web框架）的时候使用。
+* `TwistedScheduler`：当你的程序使用了Twisted（一个异步框架）的时候使用
+* `QtScheduler`：如果你的应用是一个Qt应用的时候可以使用。
+
+**特别参数：**
+* `coalesce`：当由于某种原因导致某个job积攒了好几次没有实际运行（比如说系统挂了5分钟后恢复，有一个任务是每分钟跑一次的，按道理说这5分钟内本来是“计划”运行5次的，但实际没有执行），如果coalesce为True，下次这个job被submit给executor时，只会执行1次，也就是最后这次，如果为False，那么会执行5次（不一定，因为还有其他条件，看后面misfire_grace_time的解释）
+* `max_instance`: 就是说同一个job同一时间最多有几个实例再跑，比如一个耗时10分钟的job，被指定每分钟运行1次，如果我们max_instance值为5，那么在第6~10分钟上，新的运行实例不会被执行，因为已经有5个实例在跑了
+* `misfire_grace_time`：设想和上述coalesce类似的场景，如果一个job本来14:00有一次执行，但是由于某种原因没有被调度上，现在14:01了，这个14:00的运行实例被提交时，会检查它预订运行的时间和当下时间的差值（这里是1分钟），大于我们设置的30秒限制，那么这个运行实例不会被执行。
+
+- [Python定时任务框架apscheduler_小龙在线-CSDN博客](https://blog.csdn.net/lilongsy/article/details/104752847)
+- [APScheduler中两种调度器的区别及使用过程中要注意的问题_ybdesire的专栏-CSDN博客](https://blog.csdn.net/ybdesire/article/details/82228840)
+- [Python进阶 - 定时运行程序 APScheduler_清欢-CSDN博客](https://blog.csdn.net/irving512/article/details/106294306)
+- [Python - APScheduler - 听雨危楼 - 博客园](https://www.cnblogs.com/Neeo/p/10435059.html)
+
+
+
 ### Django
 #### Django: 使用 Q 对象构建复杂的查询语句
 
