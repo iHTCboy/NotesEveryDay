@@ -13,7 +13,6 @@
     * [Cross-Platform](Development/Cross-Platform.md)
     * [DataBase](Development/DataBase.md)
     * [DataStructure](Development/DataStructure.md)
-    * [Design](Development/Design.md)
     * [DesignPatterns](Development/DesignPatterns.md)
     * [Game](Development/Game.md)
     * [Git](Development/Git.md)
@@ -39,7 +38,9 @@
     
 * [WeLife（生活）](WeLife/README.md)
     * [ChineseCulture](WeLife/ChineseCulture.md)
+    * [Design](Development/Design.md)
     * [English](WeLife/English.md)
     * [Investment](WeLife/Investment.md)
     * [Office](WeLife/Office.md)
+    * [Product](WeLife/Product.md)
     * [RuleOfThumb](WeLife/RuleOfThumb.md)
