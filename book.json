@@ -71,7 +71,7 @@
     },
     "localized-footer": {
       "hline": true,
-      "filename": "./FOOTER.md"
+      "filename": "./settings/FOOTER.md"
     },
     "hide-element": {
       "elements": [".gitbook-link", ".treeview__container-title"]
