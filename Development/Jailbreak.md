@@ -1,5 +1,16 @@
 [TOC]
 
+### 越狱
+
+**越狱工具：**
+
+- [checkra1n](https://checkra.in/)：iOS 12.3-13.5
+- [unc0ver](https://unc0ver.dev/)： iOS 11.0 - 13.5
+- [Chimera](https://chimera.sh/): iOS 12 — 12.2 and 12.4
+
+* [iOS系统设备越狱](https://yueyu.cydiami.com/)
+
+
 ### Cydia
 Cydia可以理解为越狱之后的AppStore，在Cydia里面可以通过添加源的方式，来获得软件、插件、补丁、皮肤、字体等等。
 
@@ -101,6 +112,53 @@ mobile:/smx7MYTQIi2M:501:501::0:0:Mobile User:/var/mobile:/bin/sh
 #### 绕过 Apple ID
 
 * [忘记 Apple ID 后如何绕过 iOS 激活锁？_越狱教程_爱思助手](https://www.i4.cn/news_detail_39267.html)
+
+#### Cydia Substrate
+Cydia Substrate有3部分组成：
+* MobileHooker
+* MobileLoader
+* safe mode
+
+**MobileHooker**
+
+MobileHooker用来替换系统函数，这个过程也叫Hooking。有如下的API可以使用：
+
+```objc
+IMP MSHookMessage(Class class, SEL selector, IMP replacement, const char* prefix); // prefix should be NULL.
+
+void MSHookMessageEx(Class class, SEL selector, IMP replacement, IMP *result);
+
+void MSHookFunction(void* function, void* replacement, void** p_original);
+```
+
+* MSHookMessageEx 用来替换 Objective-C的函数
+* MSHookFunction 用来替换C/C++函数。
+
+具体用法参见:
+* [Cydia Substrate - iPhone Development Wiki](http://iphonedevwiki.net/index.php/Cydia_Substrate)
+* [MSHookFunction | Cydia Substrate](http://www.cydiasubstrate.com/api/c/MSHookFunction/)
+* [Cydia Substrate](http://www.cydiasubstrate.com/id/264d6581-a762-4343-9605-729ef12ff0af/)
+
+
+
+**MobileLoader**
+
+MobileLoader 把第3方补丁程序加载进入运行的程序中。 MobileLoader 首先会通过`DYLD_INSERT_LIBRARIES` 把自己加载进入目标程序，然后它会在 `/Library/MobileSubstrate/DynamicLibraries/` 中找到需要加载的动态链接库并加载它们，控制是否加载到目标程序，是通过一个plist文件来控制的。如果需要被加载的动态库的名称叫做foo.dylib，那么这个plist文件就叫做 foo.plist，这个里面有一个字段叫做 filter，里面写明需要hook进的目标程序的 bundle id。
+
+比如，如果只想要foo.dylib加载进入SpringBoard，那么对应的plist文件中的filter就应该这样写：
+
+```xml
+Filter = {
+  Bundles = (com.apple.springboard);
+};”
+```
+
+* 示例：[Simple code injection using DYLD_INSERT_LIBRARIES](https://blog.timac.org/2012/1218-simple-code-injection-using-dyld_insert_libraries/)
+
+**Safe mode**
+
+当编写的扩展导致 SpringBoard crash 的时候，MobileLoader会捕获这个异常，然后让设备进入安全模式。在安全模式中，所有的第3方扩展都会被禁用。
+注：这些 signal 会触发安全模式： `SIGTRAP` `SIGABRT` `SIGILL` `SIGBUS` `SIGSEGV` `SIGSYS`
 
 
 ### 外挂
