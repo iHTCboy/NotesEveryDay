@@ -13,8 +13,8 @@
 #### 第5层 会话层
 **会话层**（Session Layer）负责在数据传输中设置和维护计算机网络中两台计算机之间的通信连接。
 
-#### 第4层 传输
-**传输层**（Transport Layer）把传输表头（TH）加至数据以形成数据包。传输表头包含了所使用的协议等发送信息。例如:传输控制协议（TCP）等。
+#### 第4层 传输层
+**传输层**（Transport Layer）把传输表头（TH，Transport Header）加至数据以形成数据包。传输表头包含了所使用的协议等发送信息。例如:传输控制协议（TCP）等。
 
 #### 第3层 网络层
 **网络层**（Network Layer）决定数据的路径选择和转寄，将网络表头（NH）加至数据包，以形成报文。网络表头包含了网络数据。例如:互联网协议（IP）等。
@@ -69,6 +69,20 @@ Content-Type:
 
 
 - [四种常见的 POST 提交数据方式 | JerryQu 的小站](https://imququ.com/post/four-ways-to-post-data-in-http.html)
+
+### SSL/TLS
+SSL与TLS在传输层与应用层之间对网络连接进行加密。
+
+* SSL：安全套接字协议(Secure Sockets Layer)，及其继任者传输层安全（Transport Layer Security，TLS）是为网络通信提供安全及数据完整性的一种安全协议。
+* TLS：传输层安全性协议(Transport Layer Security)，用于在两个通信应用程序之间提供保密性和数据完整性。
+
+
+#### SSL 证书
+SSL 证书分为三大类，他们的安全性是递增的，当然价格和安全系数成正比。
+
+1. DV（Domain Validation Certificate）：DV证书适合个人网站使用，申请证书时，CA 只验证域名信息。几分钟之内就能签发。
+2. OV（ Organization Validation Certificate）：OV证书需要认证公司的信息。1-2天签发。
+3. EV（ Extended Validation Certificate）：EV证书的认证最为严格，一般会要求提供纸质材料。签发时间也较久。
 
 
 ### VPN
