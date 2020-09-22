@@ -85,7 +85,7 @@ pbpaste | tail -n 5
 pbpaste | expand | pbcopy
 ```
 
-#### macOS 检查MP3，m4a，音频和视频文件的比特率
+#### macOS 检查MP3、m4a音频或视频文件的比特率
 
 ```shell
 afinfo xxx.mp4
@@ -118,6 +118,42 @@ Channel layout: Stereo (L R)
 
 ---
 
+#### macOS 开启或关闭 SIP
+SIP（`System Integrity Protection`，系统完整性保护），是 OS X El Capitan（v10.11） 时开始采用的一项安全技术，SIP 将一些文件目录和系统应用保护了起来。但这会影响我们一些使用或设置，比如：更改系统应用图标、终端操作系统目录文件提示「Operation not permitted」、Finder 无法编辑系统目录里的文件、安装一些工具软件需要将文件拷贝到系统限制更改的文件夹。想要继续操作必须关闭 Mac电脑的“系统完整性保护”（SIP）机制
+
+1. 查看SIP状态
+在终端输入：
+```
+csrutil status
+```
+
+
+2. 关闭SIP
+
+```
+csrutil disable
+```
+因为 SIP 是系统级的权限操作，我们无法直接关闭它，需要前往「macOS 恢复功能」下进行。具体步骤如下：
+
+1、将 Mac 关机再开机时，立即在键盘上按住 Command ⌘ + R，直到看到 Apple 标志或旋转的地球时松开。
+2、屏幕上出现苹果的标志和进度条，进入Recovery模式；
+3、在屏幕最上方的工具栏找到`实用工具`，打开终端，输入：`csrutil disable`；
+4、关掉终端，重启 Mac；
+5、重启以后可以在终端中查看状态确认。
+
+3. 开启SIP
+与关闭的步骤类似，只是在`实用工具`，打开终端后输入
+```
+csrutil enable
+```
+
+> 注：SIP 是避免软件任意修改或覆盖任意系统文件或应用，日常还是建议保持开启状态的。
+
+- [macOS 开启或关闭 SIP - 少数派](https://sspai.com/post/55066)
+
+---
+
+### macOS Develop
 
 #### macOS 代码打开文件和文件夹
 ```
@@ -129,8 +165,6 @@ Channel layout: Stereo (L R)
 
 [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:文件夹路径];
 ```
-
-### macOS Develop
 
 ####  macOS 分享功能
 
