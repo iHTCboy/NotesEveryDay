@@ -84,7 +84,7 @@
 
 | 网站 | 链接 |
 |---|---|
-| Web端 | | 
+| **Web端** | | 
 | W3Schools | [https://www.w3schools.com](https://www.w3schools.com) | 
 | React | [https://reactjs.org](https://reactjs.org) |
 | Vue.js | [https://vuejs.org](https://vuejs.org) |
@@ -93,12 +93,12 @@
 | jQuery | [https://jquery.com](https://jquery.com) |
 | Bootstrap | [https://getbootstrap.com](https://getbootstrap.com) | 
 |  |  | 
-| 移动端 | | 
+| **移动端** | | 
 | Apple Developer | [https://developer.apple.com](https://developer.apple.com) |
 | Android Developers | [https://developer.android.com](https://developer.android.com) |
 | Google Developers | [https://developers.google.com](https://developers.google.com) |
 |  |  | 
-| iOS |   |
+| **iOS** |   |
 | Ray Wenderlich | [https://www.raywenderlich.com](https://www.raywenderlich.com) |
 | objc.io | [https://www.objc.io](https://www.objc.io) |
 | objc 中国 | [https://www.objccn.io](https://www.objccn.io) |
@@ -109,7 +109,7 @@
 | We ❤ Swift | [https://www.weheartswift.com](https://www.weheartswift.com) |
 | Swifter.tips | [https://swifter.tips](https://swifter.tips) |
 |  |  | 
-| 大前端 |   |
+| **大前端** |   |
 | Dart | [https://dart.dev](https://dart.dev) |
 | Flutter | [https://flutter.dev](https://flutter.dev) |
 | React Native | [https://reactnative.dev](https://reactnative.dev) |
@@ -121,11 +121,24 @@
 
 | 网站 | 链接 |
 |---|---|
-| Linux | [https://www.linux.org](https://www.linux.org) |
+| NGINX | [https://nginx.org](https://nginx.org) |
 | Docker | [https://www.docker.com](https://www.docker.com) |
 | Node.js | [https://nodejs.org](https://nodejs.org) |
+| OpenSSH | [https://www.openssh.com](https://www.openssh.com) |
+| OpenSSL |[https://www.openssl.org](https://www.openssl.org) |
 |   |   |
-| 语言 |   |
+| **操作系统**  |   |
+| Linux | [https://www.linux.org](https://www.linux.org) |
+| Linux Kernel | [https://www.kernel.org](https://www.kernel.org) |
+| Debian | [https://www.debian.org](https://www.debian.org) |
+| Ubuntu | [https://ubuntu.com](https://ubuntu.com) |
+| CentOS | [https://www.centos.org](https://www.centos.org) |
+| RedHat | [https://www.redhat.com](https://www.redhat.com) |
+| FreeBSD | [https://www.freebsd.org](https://www.freebsd.org) |
+| OpenBSD | [https://www.openbsd.org](https://www.openbsd.org) |
+| GNU | [https://www.gnu.org](https://www.gnu.org) |
+|   |   |
+| **编程语言** |   |
 | C - 非官网 | [https://zh.cppreference.com/w/c/language](https://zh.cppreference.com/w/c/language) |
 | C++ | [https://www.cplusplus.com](https://www.cplusplus.com) |
 | Go | [https://golang.org](https://golang.org) |
@@ -135,17 +148,27 @@
 | Lua | [https://www.lua.org](https://www.lua.org) |
 | Ruby |  [https://www.ruby-lang.org](https://www.ruby-lang.org) |
 |   |   |
-| 数据库 |   |
+| **数据库** |   |
 | Redis | [https://redis.io](https://redis.io) |
 | MySQL | [https://www.mysql.com](https://www.mysql.com) |
 | MongoDB | [https://www.mongodb.com](https://www.mongodb.com) |
 | PostgreSQL | [https://www.postgresql.org](https://www.postgresql.org) |
 | SQLite | [https://www.sqlite.org](https://www.sqlite.org) |
 |   |   |
-| Python |   |
+| **Python** |   |
 | Python | [https://www.python.org](https://www.python.org) |
 | NumPy | [https://numpy.org](https://numpy.org) |
 | Django | [https://www.djangoproject.com](https://www.djangoproject.com)  |
-| Flask | [http://flask.pocoo.org](http://flask.pocoo.org) |
-|   |   |
+| Flask | [https://flask.palletsprojects.com](https://flask.palletsprojects.com) |
 
+
+> 更多网站：[iHTCboy/HelloWorld](https://github.com/iHTCboy/HelloWorld)
+
+
+#### 快速阅读的秘诀
+1. 有引导
+2. 抓重点
+3. 要默读，不要朗读
+4. 阅读时，视线应与读物成垂直线
+5. 要聚精会神地阅读
+6. 运用要领记忆，有目的地去记
