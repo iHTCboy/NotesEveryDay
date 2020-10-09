@@ -95,16 +95,26 @@ $("#checkbox1").prop("checked") //true
 
 
 ### TS（TypeScript）
-> TypeScript 是一种开源的编程语言，该语言项目由微软进行维护和管理。TypeScript不仅包含 JavaScript 的语法，而且还提供了静态类型检查以及使用看起来像基于类的面向对象编程语法操作 Prototype。
+> TypeScript 是一种开源的编程语言，该语言项目由微软进行维护和管理。TypeScript 不仅包含 JavaScript 的语法，而且还提供了静态类型检查以及使用看起来像基于类的面向对象编程语法操作 Prototype。
+
+#### TypeScript 是什么
+* 简单的说 TypeScript 是 JavaScript 一个超集，能够编译成 JavaScript 代码
+* 其核心能力是在代码编写过程中提供了类型支持，以及在编译过程中进行类型校验
+
+* [TypeScript 核心概念梳理 - 阿里云开发者社区](https://developer.aliyun.com/article/772654)
 
 
 ### jQuery
 
 > 维基百科：jQuery是一套跨浏览器的JavaScript库，简化HTML与JavaScript之间的操作。由约翰·雷西格在2006年1月的BarCamp NYC上发布第一个版本。目前由Dave Methvin领导的团队进行开发。 
 
-
 - [jQuery](https://jquery.com/)
 
+#### 抛弃jQuery，拥抱原生JavaScript
+jQuery 代表着传统的以 DOM 为中心的开发模式，但现在复杂页面开发流行的是以 React 为代表的以数据/状态为中心的开发模式
+
+- [抛弃jQuery，拥抱原生JavaScript - camsong/blog](https://github.com/camsong/blog/issues/4)
+- [You-Dont-Need-jQuery/README.zh-CN.md - nefe/You-Dont-Need-jQuery](https://github.com/nefe/You-Dont-Need-jQuery/blob/master/README.zh-CN.md)
 
 ### Bootstrap
 #### Remove default list-style in Bootstrap
