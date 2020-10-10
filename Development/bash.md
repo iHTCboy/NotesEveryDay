@@ -552,7 +552,8 @@ find / -type f -name "*.md" | xargs grep "iHTCboy"
 ### curl
 #### 获取请求链接的 code
 获取 header：
-```
+
+```bash
 # -I, --head          Show document info only
 curl -I https://www.iHTCboy.com
 
@@ -561,7 +562,8 @@ curl -i https://www.iHTCboy.com
 ```
 
 示例：
-```
+
+```bash
 ➜  ~ curl -I https://www.iHTCboy.com
 HTTP/2 301
 server: GitHub.com
@@ -582,7 +584,7 @@ content-length: 162
 ```
 
 只获取 code：
-```
+```bash
 #  -L, --location      Follow redirects
 
 curl -s -o /dev/null -LI -w "%{http_code}\n" http://www.iHTCboy.com
@@ -592,12 +594,35 @@ curl -LI http://www.iHTCboy.com -o /dev/null -w '%{http_code}\n' -s
 
 示例：
 
-```
+```bash
 ➜  ~ curl -s -o /dev/null -LI -w "%{http_code}\n" http://www.iHTCboy.com
 200
 ```
 
 - [Getting curl to output HTTP status code? - Super User](https://superuser.com/questions/272265/getting-curl-to-output-http-status-code)
+
+* -I
+-I参数向服务器发出 HEAD 请求，然会将服务器返回的 HTTP 标头打印出来。
+
+* -L
+-L参数会让 HTTP 请求跟随服务器的重定向。curl 默认不跟随重定向。
+
+* -o
+-o参数将服务器的回应保存成文件，等同于wget命令。
+
+* -s
+-s参数将不输出错误和进度信息。
+
+- [curl 的用法指南 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
+
+#### curl 获取网页内容
+
+```bash
+curl -sL http://www.iHTCboy.com 2>&1 | grep -Eoi '<title>(.+?)</title>'
+```
+
+- [How to grep the output of cURL?](https://unix.stackexchange.com/questions/166359/how-to-grep-the-output-of-curl)
+
 
 ### vim
 
