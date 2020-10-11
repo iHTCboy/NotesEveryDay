@@ -1,5 +1,18 @@
 [TOC]
 
+### 名言名句
+* To be a better man.
+* Stay hungry. Stay Foolish.
+* Write the Code，Change the World.
+* Talk is cheap, Show me the code!
+* coding every moment and every where.
+* If you want to please everybody, you please nobody.
+* learn something of everything, learn everything of something.
+* Little knowledge is dangerous！
+* Get yourself ready, wait for opportunities！
+* 没梦想跟咸鱼有什么区别！
+
+
 ### 缩写
 
 #### 办公室里各部门的缩写

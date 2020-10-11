@@ -44,6 +44,7 @@
     * [Design](WeLife/Design.md)
     * [English](WeLife/English.md)
     * [Investment](WeLife/Investment.md)
+    * [Management](WeLife/Management.md)
     * [Office](WeLife/Office.md)
     * [Product](WeLife/Product.md)
     * [RuleOfThumb](WeLife/RuleOfThumb.md)
