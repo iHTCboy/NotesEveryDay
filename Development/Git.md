@@ -500,3 +500,28 @@ git config http.postBuffer 524288000
  - `--force-with-lease` : 如果远端有其他人推送了新的提交，那么推送将被拒绝，这种拒绝和没有加 --force 参数时的拒绝是一样的。
  
  - [Git 更安全的强制推送，--force-with-lease_walterlv - 吕毅-CSDN博客](https://blog.csdn.net/WPwalter/article/details/80371264)
+
+ 
+
+## Travis CI
+
+在项目的根目录中创建一个名为 .travis.yml 的文件:
+
+```
+language: objective-c
+osx_image: xcode12.2
+xcode_xcworkspace: iWuBi.xcworkspace
+xcode_scheme: iWuBi
+xcode_sdk: iphonesimulator14.0
+podfile: Podfile
+```
+
+- Objective-c 或 Swift 项目，都是指定 objective-c 值，因为  Travis 也只使用 Xcode 命令行工具 xcodebuild 进行构建。
+- 如果项目是 .xcodeproj 使用 xcode_project 来指定 Xcode 项目文件；如果使用 .xcworkspace 构建项目（CocoaPods 的项目），则需要将 xcode_project 参数替换为 xcode_workspace 并使用 .xcworkspace 文件作为值。
+
+ 
+- [Travis CI - Test and Deploy with Confidence](https://travis-ci.com/)
+- [Building an Objective-C or Swift Project - Travis CI](https://docs.travis-ci.com/user/languages/objective-c/)
+- [Travis CI - 项目持续集成好伴侣 - SwiftCafe 享受代码的乐趣](https://swiftcafe.io/post/travis)
+- [ObjC 中国 - 为 iOS 建立 Travis CI](https://objccn.io/issue-6-5/)
+- [Travis CI 教程：入门 - 简书](https://www.jianshu.com/p/3e24868e8344)
