@@ -70,6 +70,22 @@ A 将原始数据使用 A 的私钥进行 RSA 签名得到 Sign，原始数据�
 - [Java使用RSA加密解密签名及校验 - CSDN博客](https://blog.csdn.net/wangqiuyun/article/details/42143957)
 
 
+#### CA
+
+CA（Certificate Authority，证书授权中心、证书授权机构） 机构给网站颁发证书，浏览器则会通过一些加密、哈希算法验证证书是否有效。
+
+证书一般分成三类： DV、OV 、和 EV ，加密效果都是一样的，区别在于：
+
+DV（Domain Validation），面向个体用户，安全体系相对较弱，验证方式就是向 whois 信息中的邮箱发送邮件，按照邮件内容进行验证即可通过；
+
+OV（Organization Validation），面向企业用户，证书在 DV 证书验证的基础上，还需要公司的授权，CA 通过拨打信息库中公司的电话来确认；
+
+EV（Extended Validation），URL 地址栏展示了注册公司的信息，这类证书的申请除了以上两个确认外，需要公司提供金融机构的开户许可证，要求十分严格。
+
+- [CA 机构是如何保护自己私钥的？ - 知乎](https://www.zhihu.com/question/22260090)
+- [certificates - How do certification authorities store their private root keys? - Information Security Stack Exchange](https://security.stackexchange.com/questions/24896/how-do-certification-authorities-store-their-private-root-keys)
+- [美国联邦政府为加密模组制定了一份69页的技术标准 FIPS 140-2](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-2.pdf)
+- [揭秘 | 巨头怼巨头，谷歌封杀赛门铁克证书背后的恩怨情仇](https://mp.weixin.qq.com/s/MC0q7ipXQ-TjXpaYaGoH1w)
 
 ### 实践
 
