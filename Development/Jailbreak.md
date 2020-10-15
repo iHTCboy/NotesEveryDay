@@ -26,25 +26,29 @@ Cydia可以理解为越狱之后的AppStore，在Cydia里面可以通过添加�
 
 
 #### Cydia 软件源及插件
-* 雷锋源：http://apt.abcydia.com
-* 蚂蚁源：http://apt.cydia.love
-* A Sileo蜜蜂源™：https://apt.cydiami.com/
-* 嗨客中文源（汉化包大部分出自他手）：http://apt.hackcn.net
-* Acreson’s：https://repo.acreson.cn/
-* 小苹果：http://apt.cydiabc.top/
-* 贴吧：http://apt.cydiaba.cn/
-* Netskao：http://repo.netskao.com/
 
+| 名字 | 源地址  | 备注 |
+|---|---|---|
+| 雷锋源  | http://apt.abcydia.com |   |
+| 蚂蚁源  | http://apt.cydia.love  |   |
+| A Sileo 蜜蜂源™  |  https://apt.cydiami.com |   |
+| 嗨客中文源  | http://apt.hackcn.net  | （汉化包大部分出自他手）  |
+| Acreson’s | https://repo.acreson.cn |   |
+| 小苹果 | http://apt.cydiabc.top  |   |
+| 贴吧  | http://apt.cydiaba.cn  |   |
+| Netskao  | http://repo.netskao.com |   |
+| Appsync Unified 插件官方源  | https://cydia.akemi.ai/  |   |
+| iCleaner Pro官方源  | https://ib-soft.net/cydia/beta/  | 此地址为beta版本发布源，目前7.8.0~beta1 已经正式支持 iOS13  |
+| Liberity Lite | https://ryleyangus.com/repo/  | Liberity Lite越狱检测屏蔽插件官方源  |
+| FlyJB  | http://xsf1re.github.io/repo/  | FlyJB 越狱检测屏蔽插件官方源  |
+| 国外知名插件破解网站  | https://repo.hackyouriphone.org  |  国外知名插件破解网站，一些收费插件可以在这找破解版 |
+| P佬源  | http://pulandres.me/repo/  |  P佬源，同为国外知名破解资源集散地 |
+| 国内小苹果源  | http://apt.cydiabc.top/  | 国内小苹果源，未爆出过安全问题  |
+| HackYouriPhone  | http://repo.hackyouriphone.org  |   |
+| kiiimo  | http://cydia.kiiimo.org/  |   |
+| frida  | https://build.frida.re  | Frida 砸壳应用  |
+| CrackerXI  | http://apt.wxhbts.com/  | CrackerXI App脱壳工具  |
 
-* https://cydia.akemi.ai/ （Appsync Unified插件官方源）
-* https://ib-soft.net/cydia/beta/（iCleaner Pro官方源，此地址为beta版本发布源，目前7.8.0~beta1已经正式支持iOS13）
-* https://ryleyangus.com/repo/ （Liberity Lite越狱检测屏蔽插件官方源）
-* http://xsf1re.github.io/repo/ (FlyJB 越狱检测屏蔽插件官方源)
-* https://repo.hackyouriphone.org （国外知名插件破解网站，一些收费插件可以在这找破解版）
-* http://pulandres.me/repo/ （P佬源，同为国外知名破解资源集散地）
-* http://apt.cydiabc.top/ （国内小苹果源，未爆出过安全问题，使用放心）
-* HackYouriPhone http://repo.hackyouriphone.org
-* kiiimo http://cydia.kiiimo.org/
 
 #### Flex
 Flex是John Coates的作品，从推出就被大家视为越狱iOS必装插件之一，至今已经更新到Flex3，支持至最新的系统。通过此插件，你无需太多编程知识，也可以很容易地“操作”系统或App函数，以此来达到修改UI界面和程序功能的目的。
@@ -64,12 +68,14 @@ ssh root@[insert IP Address]
 
 默认密码：`alpine`
 
+更改 root 账号的密码，就终端输入 `passwd` ：
 ```bash
 iPhone-HTC:~ root# passwd
 Changing password for root.
 New password:
 ```
 
+更改 mobile 账号的密码，就终端输入 `passwd mobile` ：
 ```bash
 iPhone-HTC:~ root# passwd mobile
 Changing password for mobile.
@@ -81,7 +87,7 @@ New password:
 
 #### 忘记密码
 
-iPhone 的账号密码存储目录：
+iOS 的账号密码存储目录：
 
 ```bash
 /private/etc/master.password
@@ -101,6 +107,8 @@ mobile:/smx7MYTQIi2M:501:501::0:0:Mobile User:/var/mobile:/bin/sh
 ```
 
 如果想改密码为 `111111` 就可以用 `baGYjKhff2jlo`。
+
+注：可以在电脑上通过助手工具修改，或者直接用越狱的文件管理app 打开 `/private/etc/master.password` 文件直接修改。
 
 * [iOS ssh密码忘记解决办法 - 简书](https://www.jianshu.com/p/10c3e7f7acef)
 * [iOS 越狱机重置ssh密码 - 知乎](https://zhuanlan.zhihu.com/p/60709753)
