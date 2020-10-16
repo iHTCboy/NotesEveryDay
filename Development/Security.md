@@ -87,6 +87,8 @@ EV（Extended Validation），URL 地址栏展示了注册公司的信息，这�
 - [美国联邦政府为加密模组制定了一份69页的技术标准 FIPS 140-2](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-2.pdf)
 - [揭秘 | 巨头怼巨头，谷歌封杀赛门铁克证书背后的恩怨情仇](https://mp.weixin.qq.com/s/MC0q7ipXQ-TjXpaYaGoH1w)
 
+
+
 ### 实践
 
 #### 网易云音乐ncm格式分析
