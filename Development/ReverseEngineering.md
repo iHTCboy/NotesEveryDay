@@ -191,6 +191,48 @@ Filter = {
 
 ### 外挂
 
+### iOS
+
+#### iOS安全体系结构
+
+```
+ +————————————————————————————————+
+ | +————————————————————————————+ |
+ | | +————————————————————————+ | |
+ | | | +————————————————————+ | | |
+ | | | |   Data Protection  | | | |
+ | | | |       Class        | | | | <———— encrypted by per-file key 
+ | | | +————————————————————+ | | |
+ | | |       App Sanbox       | | | <———— permission/MAC/entitlement
+ | | +————————————————————————+ | |
+ | | User Partition (Encrypted) | | <———— encrypted by file system key
+ | +————————————————————————————+ |
+ | +————————————————————————————+ |
+ | |        OS Partition        | | <———— mounted as read-only
+ | +————————————————————————————+ |
+ |          File system           |
+ +————————————————————————————————+  
+              Software 
+                 |       
+        Hardware and Firmware               
+ +————————————————————————————————+  
+ |             Kernel             | <———— trusted, enforcing security measures
+ | +———————————————+  +—————————+ |
+ | |    Secure     |  |  Secure | | <——   coprocessor for crypto operations
+ | |    Enclave    |  | Element | |   <—— Java Card platform for payment
+ | +———————————————+  +—————————+ |   
+ +————————————————————————————————+
+ +————————————————————————————————+  
+ |          Crypto Engine         | <———— hardware AES engine
+ +————————————————————————————————+ 
+ +————————————————————————————————+  
+ |     Device Key,  Group Key     | <———— secret keys for device
+ |     Apple Root Certificate     | <———— root public key from Apple
+ +————————————————————————————————+
+```
+
+- [Security-Course/ios-security.md - Security-Course](https://github.com/lizhi16/Security-Course/blob/master/system-security/ios-security.md)
+
 
 ### macOS
 
@@ -200,10 +242,17 @@ Filter = {
 | `AMFI` | Apple Mobile File Integration，苹果手机文件完整性 | 起源于iOS，它阻止了任何运行未签名代码的尝试。AMFI是内核扩展，最初在iOS中引入。在macOS 10.10 添加到macOS中。就像沙盒一样，它扩展了 MACF（强制性访问控制框架），并且在执行SIP和代码签名方面起着关键作用。 |
 | `MACF` | MAC (Mandatory Access Control) Framework，强制访问控制架构 | 在 Mac OS X 10.5 Leopard（2007年10月26日） 的 SDK 中苹果“错误的”为大家引入了一种新的监控机制 —— Mandatory Access Control Policy Framework。很快苹果公司纠正了这一错误，彻底将这一接口私有化。在文档 [QA1574](https://developer.apple.com/library/content/qa/qa1574/_index.html) 中苹果明确的指出第三方不应该使用 MAC 机制，它不属于 KPI 的一部分。MACF 是苹果从 TrustedBSD 引入的一项强大的安全特性。用户态的视角非常有局限性，只有内核才能可靠地实施这种安全性。当XNU 调用MAC层验证一个操作时，MAC层调用策略模块，然后策略模块负责进行验证。 |
 | `ASLR` | Address Space Layout Randomization，地址空间布局随机化 | 这项技术是在 OS X Mountain Lion（2012年7月25日） 引入的。现在已经成为操作系统想要阻止黑客和恶意软件视图注入代码攻击的必备技术。防御代码注入的主要方法是数据执行阻止(Data Execution Prevention，DEP，在Intel 中也称为W^X或XD，在ARM中也称为XN)，DEP能使得黑客注入代码的企图更加困难。|
+| `W^X` | Write XOR execute | 苹果芯片会强制内存页面的属性要么可以写，要么可以执行，但不能同时为可以写可执行。特别是像JS那种带有JIT功能语言，经常会分配可写可执行的内存页面，苹果因此提供了一个专门的API（pthread_jit_write_protect_np()）用于JIT来做RW和RX内存页面之间的转换。 |
+| `KPP` | Kernel Patch Protection 内核完整性保护 | 与iOS9一起推出的内核完整性保护又称为“KPP”，防止运行时内核被篡改。当内核载入内存以后，苹果芯片会保护内核的内存页面，以防止其被篡改。 |
+| `PAC` | 指针验证 | 指针验证是利用arm架构的特性，在PC进行跳转的时候对指针进行验证，从而可以有效地防止像ROP（返回导向编程）这样的攻击。苹果在iPhone XS和XR中首次部署了这个机制。目前苹果只是对macOS的内核和系统服务做了PAC的防护，我们自己在Mac上编写的app并没有PAC的防护。 |
+| `Device isolation` | 设备内存隔离 | 在intel架构的Mac上，系统上的设备和驱动的内存空间是共享的，但是在arm64架构的Mac上，不同设备和驱动之间的内存是相互隔离的。 |
+| Secure boot | 安全启动 | 新架构的macOS的启动使用了iOS的安全启动模式，苹果芯片会验证每一步加载的固件的签名，以保证其完整性和安全性。同时，在系统安装的时候，用户可以选择是full security（完整安全）模式还是reduce security（低安全）模式。苹果默认会采用完整安全模式，在完整安全模式下，可以认为这台mac和一台iPhone一样，比如无法降级，无法加载第三方的内核扩展。在低安全模式下，用户可以安装任意版本的macOS以及加载内核扩展，关闭SIP（系统完整性保护）等。 |
+
 
 - [macOS 开启或关闭 SIP - 少数派](https://sspai.com/post/55066)
 - [在 macOS 10.15.4 上解锁 Sidecar 需要进行额外步骤 - 知乎](https://zhuanlan.zhihu.com/p/116475208)
 - [深入解析Mac OS X & iOS 操作系统 学习笔记（十五） - 简书](https://www.jianshu.com/p/96837976c1f8)
+- [下一个十年的安全机遇之一：基于Apple Silicon的Mac电脑对安全来说意味着什么？ - 知乎](https://zhuanlan.zhihu.com/p/152126496)
 
 
 #### AMFI
