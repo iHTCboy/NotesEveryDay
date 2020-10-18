@@ -281,33 +281,6 @@ AppleMobileFileIntegrity（.kext），可以使用全名com.apple.driver.AppleMo
 - [深入浅出MachO - PansLabyrinth](https://evilpan.com/2020/09/06/macho-inside-out/)
 
 
-### 漏洞攻击
-#### UAF (Use After Free) 漏洞
-`uaf` 漏洞全称是 `use after free`，free是指函数是在堆上动态分配空间后不再使用该数据从而被回收。但是由于程序的一些不适当的操作或逻辑，会导致攻击者能够操控已经被释放的区域，从而执行一些 byte codes。
-
-- [逆向安全系列：Use After Free漏洞浅析 - 安全客，安全资讯平台](https://www.anquanke.com/post/id/85281)
-- [uaf漏洞原理浅析 - Weizhou的博客](https://hack-big.tech/2019/01/24/uaf%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%AE%9E%E4%BE%8B%E6%B5%85%E6%9E%90/)
-
-#### 0day（zero-day vulnerability、0-day vulnerability，零日漏洞或零时差漏洞）
-“零日漏洞”(zero-day)又叫零时差攻击，是指被发现后立即被恶意利用的安全漏洞。 通俗地讲，即安全补丁与瑕疵曝光的同一日内，相关的恶意程序就出现。 这种攻击往往具有很大的突发性与破坏性。
-
-由原软件发行公司提供修补程序，但此法通常较慢，因此软件公司通常会在最新的病毒代码中提供回避已知零时差攻击的功能，但无法彻底解决漏洞本身。
-
-在电脑领域中，零日漏洞或零时差漏洞通常是指还没有补丁的安全漏洞，而零日攻击或零时差攻击则是指利用这种漏洞进行的攻击。提供该漏洞细节或者利用程序的人通常是该漏洞的发现者。零日漏洞的利用程序对网络安全具有巨大威胁，因此零日漏洞不但是黑客的最爱，掌握多少零日漏洞也成为评价黑客技术水平的一个重要参数。
-
-- [零日攻击 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%9B%B6%E6%97%A5%E6%94%BB%E5%87%BB)
-
-#### HIDS
-`HIDS`：Host-based Intrusion Detection System，基于主机的入侵检测系统。是一种入侵检测系统，类似于基于网络的入侵检测系统的运行方式，它能够监视和分析计算系统的内部以及其网络接口上的网络数据包。这是已设计的第一类入侵检测软件，最初的目标系统是很少进行外部交互的大型计算机。
-
-- [Host-based intrusion detection system - Wikipedia](https://en.wikipedia.org/wiki/Host-based_intrusion_detection_system)
-
-#### AFL
-`AFL`：American Fuzzy Lop，是由安全研究员 Michał Zalewski（@lcamtuf）开发的一款基于覆盖引导（Coverage-guided）的模糊测试工具，它通过记录输入样本的代码覆盖率，从而调整输入样本以提高覆盖率，增加发现漏洞的概率。是一款免费的软件模糊器，它采用遗传算法来有效地增加测试用例的代码覆盖率。到目前为止，它帮助检测了许多主要的自由软件项目中的重大软件错误，包括X.Org Server，PHP，OpenSSL，pngcrush，bash，Firefox，BIND，Qt和SQLite。
-
-- [american fuzzy lop (fuzzer) - Wikipedia](https://en.wikipedia.org/wiki/American_fuzzy_lop_(fuzzer))
-- [AFL漏洞挖掘技术漫谈（一）：用AFL开始你的第一次Fuzzing](https://mp.weixin.qq.com/s/G7l5wBB7oKjXCDGtjuxYTQ)
-
 ### Python
 #### Python 反汇编
 
