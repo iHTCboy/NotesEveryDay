@@ -40,7 +40,7 @@
 ----
     
 * [WeLife（生活）](WeLife/README.md)
-    * [ChineseCulture](WeLife/ChineseCulture.md)
+    * [Culture](WeLife/Culture.md)
     * [Design](WeLife/Design.md)
     * [English](WeLife/English.md)
     * [Investment](WeLife/Investment.md)
