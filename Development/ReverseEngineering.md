@@ -12,6 +12,9 @@
 
 
 ### 越狱（Jailbreak）
+**越狱不等于盗版安装APP**
+以越狱是要获得设备的完全控制权，拿到所有文件的最高管理权限。在美国越狱苹果设备是合法的，其原因是承认用户对设备拥有完全的所有权。 
+
 
 **越狱工具：**
 
@@ -27,15 +30,55 @@
 
 * [iPhone 史诗级漏洞 checkm8 攻击原理浅析](https://paper.seebug.org/1065/)
 * [Technical analysis of the checkm8 exploit / Digital Security / Habr](https://m.habr.com/en/company/dsec/blog/472762/)
-* 
 
+#### 越狱的保持（Jailbreak Persistence） 
+依赖越狱使用的漏洞，越狱的效果可能长期的，也可能在设备关机再开启后消失。为了描述两种不同的越狱，越狱社区把这两种方式叫做 完美越狱（`tethered jailbreak`）和非完美越狱（`untethered jailbreak`）。 
 
+##### 1、非完美越狱（Tethered Jailbreaks） 
+非完美越狱是设备重启后就消失的越狱。越狱后的设备每次重启后需要某种方式的重新越狱。通常意味着每次关机再重新开机时需要重新连接到电脑上。由于这个过程中需要USB线缆连接，这就是tethered的意思。这个词tethered也用于不需要USB连接，但需要访问特定网站或执行特定应用程序的重新越狱， 
+如果漏洞是某些提权代码，一个非完美越狱能只由单个漏洞组成。一个例子是limera1n的bootrom漏洞，被目前的大部分iOS4和iOS5越狱使用。另一个例子是iOS的USB内核驱动程序的漏洞。然而，目前没有类似的公开漏洞。 
+如果没有类似的漏洞可用，进入设备的初始入口可以通过一个应用程序的漏洞来获得很少的权限，如MobileSafari浏览器。然而，单独的这样一个漏洞不能认为是越狱，因为没有附加的内核漏洞，不能禁止所有的安全特性。 所以一个非完美越狱由一个提权代码漏洞组成，或一个非提权代码漏洞结合其他权限提升漏洞。 
+
+##### 2、完美越狱（Untethered Jailbreaks） 
+完美越狱是利用一个设备重启后不会消失的持久漏洞来完成的，完美（untethered）因为设备每次重新启动后不需要重新越狱，所以它是更好的越狱方式。 
+由于完美越狱需要启动环节的非常特殊地方的漏洞，自然更难完成。过去由于在设备硬件里发现了非常强有力的漏洞，允许在设备的启动环节的早期进行破解，使完美越狱可能实现。 但这些漏洞现在已经消失了，而同样品质的漏洞没有出现。 
+
+由于以上原因，完美越狱通常由某种非完美越狱结合附加的允许在设备上保持的漏洞组成。利用开始的非完美越狱来在设备的根目录文件系统上安装附加漏洞。由于首先专有未签名代码必须执行，其次权限要提升以便能对内核打补丁，所以至少需要2个附加的漏洞。 
+
+#### 漏洞类型(Exploit Type) 
+漏洞的存在位置影响你对设备的存取级别。一些允许低级别的硬件存取。另一些受限于沙盒内的许可权限。 
+##### 1、Bootrom级别 
+从越狱者的角度看，Bootrom级别的漏洞是最有力的。bootrom在iPhone的硬件内部，它的漏洞不能通过软件更新推送来修复。相反，只能在下一代的硬件版本里修复。在存在limera1n漏洞的情况下，苹果没有发布iPad1或iPhone4的新产品，直到A5处理器的设备，iPad2和iPhone4S发布前，这个漏洞长期存在并为人所知。 
+Bootrom级别的漏洞不能修复，并且允许对整个启动环节的每个部分进行替换或打补丁（包括内核的启动参数），是最有力的漏洞。由于漏洞在启动环节发生的很早，而且漏洞Payload拥有对硬件的全部读取权限。 如它可以利用AES硬件引擎的GID密码来解密IMG3文件，而IMG3文件允许解密新的iOS更新。 
+
+##### 2、iBoot级别 
+当iBoot里的漏洞达到能提供的特性时，几乎和bootrom里的漏洞一样有力。这些漏洞效果下降是由于iBoot没有固化入硬件，能通过简单的软件升级来修复。 
+除了这点，iBoot漏洞在启动环节任然很早，能提供给内核启动参数，对内核打补丁，或对硬件直接进行GID密码的AES操作。 
+
+##### 3、Userland级别 
+用户层面级别的越狱是完全基于用户层面进程的漏洞的，像JBME3(http://jailbreakme.com)。这些进程如果是系统进程，就拥有超级用户root权限，如果是用户应用程序，就拥有稍低级别的如mobile用户的权限。不管哪种情况，越狱设备至少需要2个漏洞。第一个漏洞用来完成专有代码执行，第二个漏洞用来使内核的安全措施失效，进行权限提升。 
+在以前的iOS版本里，只要破解的进程以root超级用户权限运行，代码签名功能就会失效。现在，内核内存崩溃或执行内核代码需要禁止强制代码签名。 
+
+和bootrom、iBoot级别漏洞相比，用户层面的漏洞更弱一些。因为即使内核代码执行已经可能了，如GID密码的AES引擎的硬件特性依然不能读取。所以苹果公司对用户层面的漏洞更容易修补；并由于远程用户层面的漏洞能用于iPhone恶意软件的注入，所以苹果公司对这些漏洞经常很快进行修补。
+
+* [iOS越狱原理详解 - CSDN博客](https://blog.csdn.net/IDOshi201109/article/details/51008336)
 
 ### Cydia
 Cydia可以理解为越狱之后的AppStore，在Cydia里面可以通过添加源的方式，来获得软件、插件、补丁、皮肤、字体等等。
 
 而Cydia中提供的大部分内容，都是不被苹果官方商店所承认的。而Cydia中也存在收费与免费软件一说。总之我们可以简单理解为，专为越狱用户提供的越狱商店。
  
+Cydia 之父 Jay Freeman（Saurik），起初，Cydia 只是 iPhone OS 1.1 上 Installer.app 的一个开源选择，但在 2008 年 7 月带有 App Store 的 iPhone OS 2.0 推出后，它一跃成为最流行的软件包管理器。
+
+2010 年 9 月，Saurik 的公司宣布收购 Rock Your Phone，即此前仅次于 Cydia 的包管理器软件 Rock.app 的开发商。自此，Cydia Store 成为越狱设备最大的第三方应用提供商。
+
+2018 年 7月，Electra 团队推出了 Cydia 的最后一个版本：Cydia 1.1.30-2。
+
+**Cydia Store != Cydia**
+
+Cydia Store 指代的仅是后端支付系统，“允许用户从 Cydia 的默认存储库购买付费越狱调整，例如BigBoss，MacCiti和ModMyi。它与 Cydia Installer 不同，Cydia Installer 是用户每天与之交互的Cydia应用程序”。
+
+2018年12月14日，Cydia 之父 Jay Freeman（Saurik）于 Reddit 发帖称，考虑在今年年底全面关闭 Cydia Store。早在2017年11月，Cydia 上的两大软件合作来源 ZodTTD&MacCiti 和 ModMyi 相继宣布关闭，Cydia 三大源仅余 BigBoss 一支。
  
  
 #### “AFC2”补丁
@@ -80,6 +123,10 @@ Flex是John Coates的作品，从推出就被大家视为越狱iOS必装插件�
 
 
 ### OpenSSH
+`OpenSSH` 是 `SSH` (Secure Shee) 协议的免费开源的实现。SSH 协议可以用来远程控制或者在计算机之间来传送文件。
+
+* SSH 是一种网络协议，目的是用于计算机之间的加密登录，由芬兰学者设计SSH协议，将登录信息全部加密，成为了互联网安全的一个基本解决方案，目前成为了Linux的标准配置。
+* OpenSSH 是一款软件，应用也是非常广泛。
 
 #### 连接
 ```
@@ -133,13 +180,14 @@ mobile:/smx7MYTQIi2M:501:501::0:0:Mobile User:/var/mobile:/bin/sh
 * [iOS ssh密码忘记解决办法 - 简书](https://www.jianshu.com/p/10c3e7f7acef)
 * [iOS 越狱机重置ssh密码 - 知乎](https://zhuanlan.zhihu.com/p/60709753)
 
+### Theos 和 Tweak
+Theos 是越狱开发的一个工具包, 可以创建Tweak项目，动态的hook第三方程序。
 
+* [theos/theos: A cross-platform suite of tools for building and deploying software for iOS and other platforms.](https://github.com/theos/theos)
+* [Theos](https://theos.dev/)
 
-### 破解
-
-#### 绕过 Apple ID
-
-* [忘记 Apple ID 后如何绕过 iOS 激活锁？_越狱教程_爱思助手](https://www.i4.cn/news_detail_39267.html)
+#### Tweak及工作原理
+`Cydia Substrate` 是越狱后cydia插件/软件(指theos开发的tweak)运行的基础依赖库。它提供了软件运行公开库，用于动态替换内存的代码。所以首先要安装好 Cydia Substrate。
 
 #### Cydia Substrate
 Cydia Substrate有3部分组成：
@@ -188,6 +236,11 @@ Filter = {
 当编写的扩展导致 SpringBoard crash 的时候，MobileLoader会捕获这个异常，然后让设备进入安全模式。在安全模式中，所有的第3方扩展都会被禁用。
 注：这些 signal 会触发安全模式： `SIGTRAP` `SIGABRT` `SIGILL` `SIGBUS` `SIGSEGV` `SIGSYS`
 
+### 破解
+
+#### 绕过 Apple ID
+
+* [忘记 Apple ID 后如何绕过 iOS 激活锁？_越狱教程_爱思助手](https://www.i4.cn/news_detail_39267.html)
 
 ### 外挂
 
@@ -247,7 +300,8 @@ Filter = {
 | `KPP` | Kernel Patch Protection 内核完整性保护 | 与iOS9一起推出的内核完整性保护又称为“KPP”，防止运行时内核被篡改。当内核载入内存以后，苹果芯片会保护内核的内存页面，以防止其被篡改。 |
 | `PAC` | 指针验证 | 指针验证是利用arm架构的特性，在PC进行跳转的时候对指针进行验证，从而可以有效地防止像ROP（返回导向编程）这样的攻击。苹果在iPhone XS和XR中首次部署了这个机制。目前苹果只是对macOS的内核和系统服务做了PAC的防护，我们自己在Mac上编写的app并没有PAC的防护。 |
 | `Device isolation` | 设备内存隔离 | 在intel架构的Mac上，系统上的设备和驱动的内存空间是共享的，但是在arm64架构的Mac上，不同设备和驱动之间的内存是相互隔离的。 |
-| `Secure boot` | 安全启动 | 新架构的macOS的启动使用了iOS的安全启动模式，苹果芯片会验证每一步加载的固件的签名，以保证其完整性和安全性。同时，在系统安装的时候，用户可以选择是full security（完整安全）模式还是reduce security（低安全）模式。苹果默认会采用完整安全模式，在完整安全模式下，可以认为这台mac和一台iPhone一样，比如无法降级，无法加载第三方的内核扩展。在低安全模式下，用户可以安装任意版本的macOS以及加载内核扩展，关闭SIP（系统完整性保护）等。 |
+| `Secure boot` | 安全启动 | 新架构的macOS的启动使用了iOS的安全启动模式，苹果芯片会验证每一步加载的固件的签名，以保证其完整性和安全性。同时，在系统安装的时候，用户可以选择是`full security`（完整安全）模式还是 `reduce security`（低安全）模式。苹果默认会采用完整安全模式，在完整安全模式下，可以认为这台mac和一台iPhone一样，比如无法降级，无法加载第三方的内核扩展。在低安全模式下，用户可以安装任意版本的macOS以及加载内核扩展，关闭SIP（系统完整性保护）等。 |
+| `AFC` | Apple File Conduit，苹果文件连接 | 运行在iOS设备上的文件传送服务，它允许你通过USB连线存取iPhone的 `/var/mobile/Media` 的目录里的文件。AFC 服务由 `lockdownd` 守护进程提供，被命名为 `com.apple.afc`。 |
 
 
 - [macOS 开启或关闭 SIP - 少数派](https://sspai.com/post/55066)
