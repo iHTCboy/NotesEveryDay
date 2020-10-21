@@ -96,8 +96,90 @@ Segfault on innocent-looking code.
 *    Did you clean up the stack properly?
 
 
+### Linux
+#### Linux 进程内存布局
+
+```
++——————————————+ 0xFFFFFFFF (high address)
+| kernel space | 1GB/4GB
++——————————————+ 0xC0000000 == TASK_SIZE
+|    stack     |
++——————————————+<——— stack pointer (%esp)
+|      |       |
+|      v       |
+|      ^       |
+|      |       |
++——————————————+
+|memory mapping|<——— dynamically linked lib (*.so)
++——————————————+ 0x40000000
+|      ^       |
+|      |       |
++——————————————+<——— brk() point
+|     heap     |<——— malloc(), free()
++——————————————+ 
+|   bss seg    |<——— uninitialized data (Block Started by Symbol)
++——————————————+ 
+|  data seg    |<——— initialized static data
++——————————————+ 
+|  text seg    |<——- binary code (*.o), static lib (*.a)
++——————————————+ 0x08048000
+|    unused    |
++——————————————+ 0x00000000 (low address)
+```
+
+字节序 `little-endian`：低字节在前，32比特值B3B2B1B0
+
+```
+  +——+——+——+——+
+  |B0|B1|B2|B3|
+  +——+——+——+——+
+low  —————>  high address
+```
+
+栈帧（stack frame）：函数调用数据结构单元
+
+```
++———————————————————————-+    caller’s stack pointer (old %esp) 
+|        arguments       |               |                   
++———————————————————————-+               |                  
+|     return address     | (old %eip)    v                
++———————————————————————-+<——— callee’s sf (new %ebp)                              
+|  caller’s sf pointer   |———> caller’s sf (old %ebp)
++———————————————————————-+
+|    local variables     |
++————————————————————————+
+|                        |<——— callee’s stack pointer (new %esp)
++———————————————————————-+
+|           |            |
+|           v            |
+```
 
 
+* caller调用者；callee被调用者，即子函数
+* arguments：子函数参数，调用前入栈
+* return address： 子函数调用前将待执行下一条指令地址保存在返回地址中，待函数调用结束后，返回到调用者继续执行
+* `eip` 指令指针指向下一条指令地址
+* stack frame pointer 栈帧指针指向调用者的栈帧基址`ebp`
+* `ebp` 基址指针指向栈帧底（高地址）
+* `esp` 栈指针指向栈顶（低地址）
+* `e` 表示32位，`%` 表示寄存器
+
+* caller（调用者）规则：
+    1. 子函数参数入栈，从右向左
+    2. `call`指令，将下一条指令地址入栈（`push %eip`），并无条件跳转
+    3. 子函数返回，返回值在`eax`中
+
+
+* callee（被调用者）规则：
+
+    1. 保存caller的栈基址，设定callee新的栈基址为当前栈指针（`push %ebp`; `mov %esp, %ebp`）
+    2. 为局部变量分配栈空间（`sub 123,%esp`）
+    3. 执行函数，结果保存在`eax`中
+    4. 执行`leave`复合指令，清除当前栈帧，恢复到调用者栈帧（`mov %ebp, %esp`; `pop %ebp`）
+    5. 执行`ret`指令（`pop %eip`）
+
+
+- [Security-Course/buffer-overflow-1.md - 缓冲区溢出：原理与实验](https://github.com/lizhi16/Security-Course/blob/master/buffer-overflow/buffer-overflow-1.md)
 
 
 
