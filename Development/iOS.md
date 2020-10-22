@@ -505,6 +505,35 @@ xcrun -r libtool -no_warning_for_no_symbols -static -o output.a 1.a 2.a 3.a 4.a
 `xcrun -r libtool`： 使用 Xcode Toolchain 里的 libtool，直接运行 libtool 会使用 $PATH 的路径的
 
 
+#### DFU 和 Recovery 模式
+
+**Recovery模式**
+恢复模式，也称 iBoot 模式，常用的使用场景就是手机需要刷机或者升降级的情况。操作该模式时，手机上会显示iTunes连接数据线的图标。
+
+**DFU模式**
+全称是 Device Firmware Upgrade，意思为固件的强制升降级模式，也叫开发者模式。
+
+DFU模式一般是在手机无法使用Recovery模式（例如无法正常开机或者iTunes无法正常识别）的情况下使用，常见的场景就是我们在升级iOS系统手机出现白苹果或者黑屏的情况。
+
+**进入Recovery模式**
+* 方法一：直接连接iTunes，点击iTunes页面上的更新（升级最新版系统）或者【恢复iPhone】（刷机）；
+* 方法二：给手机进行升降级，刷入已下载的iOS 固件版本：连接iTunes，在电脑上按住【shift】键，同时点击iTunes上的【更新】，然后选择提前下载好的iOS 固件版本进行升降级；
+
+**进入DFU模式**
+1. 把手机接到电脑上。
+2. 把手机关机。
+3. 按住电源键3秒。
+4. 不松开电源键，按住Home键10秒。（无实体 Home 键的用音量减小键）
+5. 松开电源键但保持按住Home键。（无实体 Home 键的用音量减小键）
+6. 5秒钟后松开松开Home键，直到屏幕保持黑屏。（如果屏幕显示“请连接iTunes”，说明你按的时间太长了，需要重新做一遍）
+
+**退出模式**
+同时按住电源键和 Home键（音量减小键），将设备重启即可退出恢复模式或者DFU模式。
+
+> 注意：操作时，建议将手机数据提前进行备份哦！
+
+- [如果您无法更新或恢复 iPhone、iPad 或 iPod touch - Apple 支持](https://support.apple.com/zh-cn/HT201263)
+
 ### 黑科技
 
 #### 刷单、苹果36技术

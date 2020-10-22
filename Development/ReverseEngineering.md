@@ -18,7 +18,7 @@
 
 **越狱工具：**
 
-- [checkra1n](https://checkra.in/)：iOS 12.3-13.5
+- [checkra1n](https://checkra.in/)：iOS 12.0 - 13.7 and 14.0
 - [unc0ver](https://unc0ver.dev/)： iOS 11.0 - 13.5
 - [Chimera](https://chimera.sh/): iOS 12 — 12.2 and 12.4
 
