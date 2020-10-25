@@ -40,10 +40,12 @@
 ----
     
 * [WeLife（生活）](WeLife/README.md)
+    * [Business](WeLife/Business.md)
     * [Culture](WeLife/Culture.md)
     * [Design](WeLife/Design.md)
     * [English](WeLife/English.md)
     * [Investment](WeLife/Investment.md)
+    * [LifeStyle](WeLife/LifeStyle.md)
     * [Management](WeLife/Management.md)
     * [Office](WeLife/Office.md)
     * [Product](WeLife/Product.md)
