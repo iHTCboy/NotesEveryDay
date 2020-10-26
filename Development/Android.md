@@ -14,3 +14,11 @@
 来自 雨寒sgg 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/u011389706/article/details/71512563?utm_source=copy 
 
 - [(Mac)Android studio真机测试](https://www.jianshu.com/p/beb10cba514c)
+
+
+
+### Android Hook
+
+![](https://pic2.zhimg.com/80/v2-58f3800446ebb35fa8f38de1449a6af5_720w.jpg)
+
+- [盘点Android常用Hook技术 - 知乎](https://zhuanlan.zhihu.com/p/109157321)
