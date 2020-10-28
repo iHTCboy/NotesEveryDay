@@ -403,6 +403,66 @@ currentTime: 697112.258945, absoluteTime: 612415143.769868
 * `CACurrentMediaTime()` 方法是QuartzCore框架里的，相对来说比较原子量，比较精确，可以用来测量程序的时间效率。获取到的时间是手机开机后的秒数，在模拟器上运行数值不必计较，算时间差就好。
 * `CACurrentMediaTime()` 方法是 CoreFoundation框架中的，是获取2001年1月1日 00:00开始的秒数。相当于上面的NSDate方法 `[NSDate timeIntervalSinceReferenceDate]` 一样。
 
+#### Block 的 Weak-Strong Dance
+
+1. 为什么 `weak strong dance` 能够避免循环引用？
+2. 为什么不直接使用 weak？
+3. 使用 `weak strong dance` 的正确姿势？
+
+weakSelf+strongSelf:
+
+```
+  __weak typeof(self) weakSelf = self;
+  self.dataBlock = ^(NSString *title) {
+        __strong typeof(self) strongSelf = weakSelf;
+        strongSelf.titleLabel.text = title;   
+    };
+```
+
+`strongSelf` 持有 self 的行为是在 Block 执行的时候进行的，所以多线程中，可能 `weakSelf` 指向的对象会在 Block 执行前被废弃。
+所以，多线程环境下，最好在判断一下 `strongSelf` 不为 nil 在使用：
+
+```
+  __weak typeof(self) weakSelf = self;
+  self.dataBlock = ^(NSString *title) {
+        __strong typeof(self) strongSelf = weakSelf;
+        if(strongSelf) {
+            strongSelf.titleLabel.text = title;   
+        }
+    };
+```
+
+weakify + strongify:
+
+```
+    weakify(self);
+    self.dataBlock = ^(NSString *title) {
+        strongify(self);
+        self.titleLabel.text = title;   
+    };
+```
+
+weakify + strongify 定义：
+```
+#define weakify(var) __weak typeof(var) XYWeak_##var = var;
+#define strongify(var) \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Wshadow\"") \
+__strong typeof(var) var = XYWeak_##var; \
+_Pragma("clang diagnostic pop")
+```
+
+
+- [Why could weak-strong dance break retain cycle?](https://stackoverflow.com/questions/49624689/why-could-weak-strong-dance-break-retain-cycle)
+- [Objective-C Advancements In-Depth - WWDC 2011 - Videos - Apple Developer](https://developer.apple.com/videos/play/wwdc2011/322/)
+- [对 Strong-Weak Dance的思考](https://juejin.im/post/6844903521569996813)
+- [iOS的weakSelf与strongSelf - 简书](https://www.jianshu.com/p/4d7410ad568f)
+- [Swift中的Weak Strong Dance - 戴伟来的博客|DavidDay's Blog](https://daiweilai.github.io/2015/12/23/Swift%E4%B8%AD%E7%9A%84Weak-Strong-Dance/)
+- [ARC与非ARC下的Weak-Strong Dance - okeyang's blog](http://blog.okeyang.com/blog/2013/07/29/arcyu-fei-arcxia-de-weak-strong-dance/)
+- [你真的懂 weak strong dance 吗？ | 冬天的冰激凌](http://blog.hanling.faith/2017/05/18/%E4%BD%A0%E7%9C%9F%E7%9A%84%E6%87%82-weak-strong-dance-%E5%90%97%EF%BC%9F/)
+- [ios - Objective-C ARC: strong vs retain and weak vs assign - Stack Overflow](https://stackoverflow.com/questions/8927727/objective-c-arc-strong-vs-retain-and-weak-vs-assign)
+- [Weak-Strong-Dance真的安全吗？ - 简书](https://www.jianshu.com/p/737999a30544)
+
 #### 宏定义
 
 - [宏定义的黑魔法 - 宏菜鸟起飞手册](https://onevcat.com/2014/01/black-magic-in-macro/)
