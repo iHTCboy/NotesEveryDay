@@ -547,6 +547,13 @@ $ grep –v "查找的字符串" 文件名
 find / -type f -name "*.md" | xargs grep "iHTCboy" 
 ```
 
+#### terminal 终端删除历史命令记录
+
+```
+$history -c
+
+$rm ~/.bash_history
+```
 
 
 ### curl
