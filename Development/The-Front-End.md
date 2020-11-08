@@ -450,7 +450,34 @@ console.log(utc2beijing(utc_datetime));
 
 - [有意思的JSON.parse（）、JSON.stringify（） - 掘金](https://juejin.im/post/5be5b9f8518825512f58ba0e)
 
+### Web
+#### 重排（回流）
 
+`Reflow`(重排)指的是计算页面布局(Layout)。某个节点Reflow时会重新计算节点的尺寸和位置，而且还有可能触发其后代节点Reflow。在这之后再次触发一次Repaint(重绘)。
+
+当Render Tree中的一部分(或全部)因为元素的尺寸、布局、隐藏等改变而需要重新构建。这就称为回流，每个页面至少需要一次回流，就是页面第一次加载的时候。
+
+在Web页面中，很多状况下会导致回流:
+
+    * 调整窗口大小
+    * 改变字体
+    * 增加或者移除样式表
+    * 内容变化
+    * 激活CSS伪类
+    * 操作CSS属性
+    * JavaScript操作DOM
+    * 计算offsetWidth和offsetHeight
+    * 设置style属性的值
+    * CSS3 Animation或Transition
+
+#### 重绘
+
+`Repaint`(重绘)或者Redraw遍历所有节点，检测节点的可见性、颜色、轮廓等可见的样式属性，然后根据检测的结果更新页面的响应部分。
+当 Render Tree 中的一些元素需要更新属性，而这些属性只是影响元素的外观、风格、而不会影响布局的。就是重绘。
+
+将重排和重绘的介绍结合起来，不难发现：**重绘(Repaint)不一定会引起回流(Reflow重排)，但回流必将引起重绘(Repaint)。**
+
+- [调研实现高性能动画 | Relign Blog](https://relign.github.io/Animation/animation-optimize/)
 
 
 
