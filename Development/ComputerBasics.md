@@ -44,3 +44,11 @@ console.log('0.2 的二进制是：' + 0.2.toString(2));
 - [解决JS浮点数运算结果不精确的Bug](https://juejin.im/post/6844903903071322119)
 - [抓住数据的小尾巴 - JS浮点数陷阱及解法 - 知乎](https://zhuanlan.zhihu.com/p/30703042) 
 - [一个函数让你看懂 'Why 0.1+0.2!=0.3'](https://juejin.im/post/6844903789082705934#comment)
+
+
+### 字符编码
+
+
+- [字符编码笔记：ASCII，Unicode 和 UTF-8 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html)
+- [了解ASCII、gb系列、Unicode、UTF-8的区别](https://www.douban.com/note/334994123/)
+- [InputField 限制字数_yangchunnoodles的博客-CSDN博客](https://blog.csdn.net/yangchunnoodles/article/details/52985441)
