@@ -156,12 +156,12 @@ csrutil enable
 ### macOS Develop
 
 #### macOS 代码打开文件和文件夹
-```
-打开文件
+```objc
+#打开文件
 
 [[NSWorkspace sharedWorkspace] openFile:文件路径];
 
-打开文件夹
+#打开文件夹
 
 [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:文件夹路径];
 ```

@@ -375,7 +375,7 @@ NSString *const XUserName = @"iHTCboy";
 - [获取 iOS 设备上安装的应用列表 - Octree](http://octree.me/2016/08/01/get-installed-apps/)
 - [Retriever: 在未越狱的 iOS 设备上查看 app 的 InfoPlist - 知乎](https://zhuanlan.zhihu.com/p/23880229)
 - [IOS 获取安装的app_骑着蜗牛找马儿-CSDN博客](https://blog.csdn.net/skylin19840101/article/details/41805995?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
-- [iOS11/iOS12上通过LSApplicationWorkspace获取应用列表(只能获取带有 plugin 的app) - Blog | 干货分享 - iOSRE](http://iosre.com/t/ios11-ios12-lsapplicationworkspace-plugin-app/13534)
+- [iOS11/iOS12上通过LSApplicationWorkspace获取应用列表(只能获取带有 plugin 的app) - iOSRE](http://iosre.com/t/ios11-ios12-lsapplicationworkspace-plugin-app/13534)
 
 #### Umbrella Framework
 
@@ -401,7 +401,10 @@ currentTime: 697112.258945, absoluteTime: 612415143.769868
 ```
 
 * `CACurrentMediaTime()` 方法是QuartzCore框架里的，相对来说比较原子量，比较精确，可以用来测量程序的时间效率。获取到的时间是手机开机后的秒数，在模拟器上运行数值不必计较，算时间差就好。
-* `CACurrentMediaTime()` 方法是 CoreFoundation框架中的，是获取2001年1月1日 00:00开始的秒数。相当于上面的NSDate方法 `[NSDate timeIntervalSinceReferenceDate]` 一样。
+* `CFAbsoluteTimeGetCurrent()` 方法是 CoreFoundation 框架中的，是获取2001年1月1日 00:00 GMT 开始的秒数。相当于上面的NSDate方法 `[NSDate timeIntervalSinceReferenceDate]` 一样。
+
+- [CACurrentMediaTime() | Apple Developer Documentation](https://developer.apple.com/documentation/quartzcore/1395996-cacurrentmediatime)
+- [CFAbsoluteTimeGetCurrent() | Apple Developer Documentation](https://developer.apple.com/documentation/corefoundation/1543542-cfabsolutetimegetcurrent)
 
 #### Block 的 Weak-Strong Dance
 
@@ -443,6 +446,7 @@ weakify + strongify:
 ```
 
 weakify + strongify 定义：
+
 ```
 #define weakify(var) __weak typeof(var) XYWeak_##var = var;
 #define strongify(var) \
@@ -466,7 +470,7 @@ _Pragma("clang diagnostic pop")
 #### 宏定义
 
 - [宏定义的黑魔法 - 宏菜鸟起飞手册](https://onevcat.com/2014/01/black-magic-in-macro/)
-- 
+
 
 #### 逻辑分辨率和物理分辨率（Physical Resolution vs Logical Resolution）
 **分辨率（Resolution）**
@@ -593,6 +597,82 @@ DFU模式一般是在手机无法使用Recovery模式（例如无法正常开机
 > 注意：操作时，建议将手机数据提前进行备份哦！
 
 - [如果您无法更新或恢复 iPhone、iPad 或 iPod touch - Apple 支持](https://support.apple.com/zh-cn/HT201263)
+
+
+#### NSArray 和 NSMutableArray
+
+* [Exposing NSMutableArray – Bartosz Ciechanowski](https://ciechanow.ski/exposing-nsmutablearray/)
+* [Array](https://ridiculousfish.com/blog/posts/array.html)
+* [实现 CFArray | Garan no dou](https://blog.ibireme.com/2014/02/17/cfarray/)
+* [CFArray 的历史渊源及实现原理](https://xiaozhuanlan.com/topic/6492308157)
+
+#### Toll-Free Bridging
+
+> There are a number of data types in the Core Foundation framework and the Foundation framework that can be used interchangeably. 
+> Core Foundation 框架和 Foundation 框架中有许多数据类型可以互换使用。
+
+可以方便和谐的使用Core Foundation类型的对象和Objective-C类型的对象。
+
+NSCFString 是 NSString 的私有子类，实现了 NSString 的所有方法。为什么要有CFString 呢？
+
+> CFString provides a suite of efficient string-manipulation and string-conversion functions. It offers seamless Unicode support and facilitates the sharing of data between Cocoa and C-based programs
+> CFString提供了一套高效的字符串处理和字符串转换功能。它提供无缝的Unicode支持，并促进可可和基于C的程序之间的数据共享。
+
+
+* `__bridge`（修饰符）
+* `__bridge_retained`（修饰符）和 `CFBridgingRetain`（函数）
+* `__bridge_transfer`（修饰符） 和 `CFBridgingRelease`（函数）
+
+
+**__bridge**
+类型转换时并不改变内存管理方式。只是声明类型转变，但是不做内存管理规则的转变。
+
+```objc
+CFStringRef s1 = (__bridge CFStringRef) [[NSString alloc] initWithFormat:@"Hello, %@!", name];
+```
+
+**__bridge_retained（修饰符） or CFBridgingRetain（函数）**
+
+通过 `__bridge_retained`，在 bridge 的时候，编译器会 retain Core Foundation 端的对象，之后由开发者负责手动管理内存，这样即使 Foundation 的变量被释放，也不会影响 Core Foundation 的变量的使用。
+
+```objc
+NSString *s1 = [[NSString alloc] initWithFormat:@"Hello, %@!", name];
+CFStringRef s2 = (__bridge_retained CFStringRef)s1;
+// do something with s2
+//...
+CFRelease(s2); // 注意要在使用结束后加这个
+```
+
+等同函数：
+
+```objc
+NSString *s1 = [[NSString alloc] initWithFormat:@"Hello, %@!", name];
+CFStringRef s2 = (CFStringRef)CFBridgingRetain(s1);
+// do something with s2
+//...
+CFRelease(s2); // 注意要在使用结束后加这个
+```
+
+**__bridge_transfer（修饰符） or CFBridgingRelease（函数）**
+
+当从 Core Foundation 类型转换为 Foundation 类型时，编译器转移了对象的所有权，开发者不再需要负责 Core Foundation 端对象的内存管理。
+
+```
+CFStringRef result = CFURLCreateStringByAddingPercentEscapes(. . .);
+NSString *s = (__bridge_transfer NSString *)result;
+//or NSString *s = (NSString *)CFBridgingRelease(result);
+// CFStringRef result 不用手动释放了
+```
+
+这里用 `__bridge_transfer` 将result的管理责任交给了ARC来处理，所以就不需要再显式地调用 `CFRelease()` 释放了。
+
+* [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html)
+* [CFString | Apple Developer Documentation](https://developer.apple.com/documentation/corefoundation/cfstring-rfh)
+* [深入理解Toll-Free Bridging_Leo的专栏-CSDN博客](https://blog.csdn.net/Hello_Hwc/article/details/80094632)
+* [iOS开发ARC内存管理技术要点 - 不忘初“辛” - 博客园](https://www.cnblogs.com/flyFreeZn/p/4264220.html)
+
+
+
 
 ### 黑科技
 
