@@ -153,6 +153,19 @@ csrutil enable
 
 ---
 
+
+#### Mac 故障排查的方法汇总
+可以做一些操作进行排除问题：
+
+1. 重置SMC：[如何重置 Mac 上的系统管理控制器 (SMC) - Apple 支持](https://support.apple.com/zh-cn/HT201295)(仅适用于搭载 Intel 处理器的 Mac 电脑。)
+2. 重置NVRAM： [重置 Mac 上的 NVRAM 或 PRAM - Apple 支持](https://support.apple.com/zh-cn/HT204063) (仅适用于搭载 Intel 处理器的 Mac 电脑。)
+3. 运行Apple诊断看是否有报错：[如何在 Mac 上使用“Apple 诊断”](https://support.apple.com/zh-cn/HT202731)
+4. 新建测试帐户：[如何在 Mac 上使用另一个用户帐户测试问题 - Apple 支持](https://support.apple.com/zh-cn/guide/mac-help/mtusr001/mac) (了解是不是您用户帐户中的软件导致了这个问题，为此，请设置一个新的用户帐户，然后登录这个帐户，并尝试用这个帐户重现问题。)
+5. 进安全模式是否正常：[如何在 Mac 上使用安全模式 - Apple 支持](https://support.apple.com/zh-cn/HT201262)
+6. 如果问题未解决建议可致电Apple支持协助或预约检测400-666-8800，或选择自助协助 [联系Apple支持](https://getsupport.apple.com/) 或前往 [Apple Store 商店](https://www.apple.com/cn/retail/) 或 [Apple 授权服务提供商](https://locate.apple.com/cn/zh/) 处检测。
+
+
+
 ### macOS Develop
 
 #### macOS 代码打开文件和文件夹
