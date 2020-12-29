@@ -76,11 +76,17 @@ Inc. 考虑的是公司的“法人”性质，以具体的模式保护股东、
  
 ### 单词 
 #### “Status” vs. “state”
-> state表示一种属性级别的状态，是精确的，客观的，通常可量化的。比如http的readyState：01234精确表示准备就绪，待发送等状态。
+> `state` 表示一种属性级别的状态，是精确的，客观的，通常可量化的。比如http的readyState：01234精确表示准备就绪，待发送等状态。
 
-> status表示一种宽泛的状态，有时可以翻译成状况。比如http的status code：200 206 404之类表示成功了，出问题了，状态码后面还跟着一个消息，比如 200 OK，也可以是200 qi shi bing bu ok，甚至 200 SOS，这是一种宽泛的状态。
+> `status` 表示一种宽泛的状态，有时可以翻译成状况。比如http的status code：200 206 404之类表示成功了，出问题了，状态码后面还跟着一个消息，比如 200 OK，也可以是200 qi shi bing bu ok，甚至 200 SOS，这是一种宽泛的状态。
 
 
 - [meaning - "Status" vs. "state" - English Language & Usage Stack Exchange](https://english.stackexchange.com/questions/12958/status-vs-state)
 - [nomenclature - Naming conventions: "State" versus "Status" - Stack Overflow](https://stackoverflow.com/questions/1162816/naming-conventions-state-versus-status)
  - [程序代码中，怎么区分status和state？ - 知乎](https://www.zhihu.com/question/21994784)
+
+#### RTFM（Read The Fucking Manual）
+ 
+> RTFM，是一个英文缩写，意思是：“去读那些他妈的手册”（Read The Fucking Manual），这句话通常用在回复那些只要查阅文件就可以解决，拿出来提问只是浪费别人时间的问题。而为了避免这个缩写单词，因为用了“fuck”（他妈的）这个单词而攻击性、火药味太重，RTFM也被解释成“去读那些愚蠢的手册”（Read The Foolish Manual）；有的时候也解释成“去读那些友善的手册”（Read The Friendly Manual）或“去读那些写得不错的手册”（Read The Fine Manual）。另外，有时候就干脆把“F”拿掉，直接写成RTM（去读手册，Read The Manual）。
+
+- [RTFM - 维基百科](https://zh.wikipedia.org/wiki/RTFM)
