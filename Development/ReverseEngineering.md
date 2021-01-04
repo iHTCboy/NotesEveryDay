@@ -304,6 +304,7 @@ Filter = {
 | `AFC` | Apple File Conduit，苹果文件连接 | 运行在iOS设备上的文件传送服务，它允许你通过USB连线存取iPhone的 `/var/mobile/Media` 的目录里的文件。AFC 服务由 `lockdownd` 守护进程提供，被命名为 `com.apple.afc`。 |
 
 
+- [Disabling and Enabling System Integrity Protection | Apple Developer Documentation](https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection)
 - [macOS 开启或关闭 SIP - 少数派](https://sspai.com/post/55066)
 - [在 macOS 10.15.4 上解锁 Sidecar 需要进行额外步骤 - 知乎](https://zhuanlan.zhihu.com/p/116475208)
 - [深入解析Mac OS X & iOS 操作系统 学习笔记（十五） - 简书](https://www.jianshu.com/p/96837976c1f8)
@@ -311,11 +312,11 @@ Filter = {
 
 
 #### AMFI
-Apple Mobile File Integrity（AMFI）起源于iOS，它阻止了任何运行未签名代码的尝试。它似乎已迁移到Sierra或之前的macOS中，可能是因为Gatekeeper和2012年的代码签名发生了变化。
+Apple Mobile File Integrity（AMFI）起源于iOS，它阻止了任何运行未签名代码的尝试。它似乎已迁移到 macOS Sierra 或更早的版本，可能是因为 Gatekeeper 和2012年的代码签名发生了变化。
 
-它由两个组件组成：守护程序或服务amfid，从/ usr / libexec / amfid运行。它很小，只有51 KB左右，由/System/Library/LaunchDaemons/com.apple.MobileFileIntegrity.plist作为根启动守护程序运行。它通常在loginwindow和sandbox（相对）之后，syspolicyd和trust（依赖它）之前开始。
+它由两个组件组成：守护程序或服务 amfid，从 `/usr/libexec/amfid` 运行。它很小，只有 51KB 左右，由 `/System/Library/LaunchDaemons/com.apple.MobileFileIntegrity.plist` 作为根启动守护程序运行。它通常在loginwindow 和 sandbox（相对）之后，syspolicyd 和 trust（依赖它）之前开始。
 
-它的客户端是AppleMobileFileIntegrity扩展名（在/ System / Library / Extensions中），该扩展名更大，可执行代码为151 KB。当前版本是1.0.5。
+它的客户端是AppleMobileFileIntegrity扩展名（在 `/System/Library/Extensions` 中），该扩展名更大，可执行代码为 151 KB。当前版本是1.0.5。
 
 - [AMFI: checking file integrity on your Mac – The Eclectic Light Company](https://eclecticlight.co/2018/12/29/amfi-checking-file-integrity-on-your-mac/)
 
