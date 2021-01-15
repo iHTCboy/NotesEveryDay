@@ -90,3 +90,16 @@ Inc. 考虑的是公司的“法人”性质，以具体的模式保护股东、
 > RTFM，是一个英文缩写，意思是：“去读那些他妈的手册”（Read The Fucking Manual），这句话通常用在回复那些只要查阅文件就可以解决，拿出来提问只是浪费别人时间的问题。而为了避免这个缩写单词，因为用了“fuck”（他妈的）这个单词而攻击性、火药味太重，RTFM也被解释成“去读那些愚蠢的手册”（Read The Foolish Manual）；有的时候也解释成“去读那些友善的手册”（Read The Friendly Manual）或“去读那些写得不错的手册”（Read The Fine Manual）。另外，有时候就干脆把“F”拿掉，直接写成RTM（去读手册，Read The Manual）。
 
 - [RTFM - 维基百科](https://zh.wikipedia.org/wiki/RTFM)
+
+
+#### Three wise monkeys
+
+* 🙈 See-No-Evil Monkey
+* 🙊 Speak-No-Evil Monkey
+* 🙉 Hear-No-Evil Monkey
+
+三猿，又称三不猴，是指三個分別用雙手遮住眼睛、耳朵與嘴巴的猴子雕像，而在世界其他地方則被稱為「Three wise monkeys」，顯示了名為「不見、不聞、不言」（日语：見ざる、聞かざる、言わざる）之睿智的三個祕密。
+
+* [🙈 See-No-Evil Monkey Emoji](https://emojipedia.org/see-no-evil-monkey/)
+* [Three wise monkeys - Wikipedia](https://en.wikipedia.org/wiki/Three_wise_monkeys)
+* [三猿 - 维基百科](https://zh.wikipedia.org/zh/%E4%B8%89%E7%8C%BF)
