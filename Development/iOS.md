@@ -671,7 +671,67 @@ NSString *s = (__bridge_transfer NSString *)result;
 * [深入理解Toll-Free Bridging_Leo的专栏-CSDN博客](https://blog.csdn.net/Hello_Hwc/article/details/80094632)
 * [iOS开发ARC内存管理技术要点 - 不忘初“辛” - 博客园](https://www.cnblogs.com/flyFreeZn/p/4264220.html)
 
+#### `__IPHONE_OS_VERSION_MAX_ALLOWED` 、 `__IPHONE_OS_VERSION_MIN_REQUIRED` 和 `__IPHONE_xx_x`
 
+
+* `__IPHONE_OS_VERSION_MAX_ALLOWED` ：当前Xcode的系统SDK版本
+* `__IPHONE_OS_VERSION_MIN_REQUIRED` ： 当前项目支持的最低支持的版本
+
+作用：根据不同的开发环境编译不同的代码
+
+```objc
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    //you can use iOS 8 APIs here because the SDK supports them
+    //but the code may still crash if run on an iOS 7 device
+#else
+    //this code can’t use iOS 8 APIs as the SDK version doesn’t support them
+#endif
+```
+
+
+```objc
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
+    //minimum deployment target is 8.0, so it’s safe to use iOS 8-only code
+#else
+    //you can use iOS8 APIs, but the code will need to be backwards
+    // compatible it will crash when run after or on an iOS 7 device 
+#endif
+```
+
+
+```objc
+#if defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+if ([NSURLSession class] &&
+    [NSURLSessionConfiguration respondsToSelector:@selector(backgroundSessionConfigurationWithIdentifier:)]) {
+    // ...
+}
+#endif
+```
+
+可以使用 `__IPHONE_8_0`、`__IPHONE_14_3` 代替了数字。在 iOS SDK 目录下：`usr/include/AvailabilityVersions.h` 
+
+```c
+#define __IPHONE_13_0    130000
+#define __IPHONE_13_1    130100
+#define __IPHONE_13_2    130200
+#define __IPHONE_13_3    130300
+#define __IPHONE_13_4    130400
+#define __IPHONE_13_5    130500
+#define __IPHONE_13_6    130600
+#define __IPHONE_13_7    130700
+#define __IPHONE_14_0    140000
+#define __IPHONE_14_1    140100
+#define __IPHONE_14_2    140200
+#define __IPHONE_14_3    140300
+```
+
+* [AvailabilityInternal.h](https://opensource.apple.com/source/CarbonHeaders/CarbonHeaders-18.1/AvailabilityInternal.h.auto.html)
+* [AvailabilityVersions.h](https://opensource.apple.com/source/AvailabilityVersions/AvailabilityVersions-69.2/AvailabilityVersions.h.auto.html)
+* [AvailabilityVersions - Open Source](https://opensource.apple.com/source/AvailabilityVersions/)
+* [Swift System Version Checking - NSHipster](https://nshipster.com/swift-system-version-checking/)
+* [Swift System Version Checking - NSHipster - 中文](https://nshipster.cn/swift-system-version-checking/)
+* [Efficient iOS Version Checking | Inside PSPDFKit](https://pspdfkit.com/blog/2016/efficient-ios-version-checking/)
+* [iOS开发之多系统版本兼容](https://blog.devzeng.com/blog/ios-multiple-version-compatible.html)
 
 
 ### 黑科技
