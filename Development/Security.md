@@ -189,6 +189,11 @@ EV（Extended Validation），URL 地址栏展示了注册公司的信息，这�
 - [网易云音乐ncm编解码探究记录 - 简书](https://www.jianshu.com/p/ec5977ef383a)
 - [网易云音乐ncm文件格式解析 | 文章 | BEWINDOWEB](http://www.bewindoweb.com/228.html)
 
+#### CAPTCHA（验证码）
+
+- [AI时代验证码的攻与防](https://juejin.cn/post/6844903860788527118)
+- [验证码的前世今生（今生篇）](https://www.freebuf.com/articles/web/102276.html)
+
 
 ### 安全问题的事件
 
@@ -339,5 +344,5 @@ if ((options == (__WCLONE|__WALL)) && (current->uid = 0))
 
 ##### 缓冲区溢出（buffer overflow）
 
-- 下节课学习 [缓冲区溢出](https://github.com/lizhi16/Security-Course/blob/master/buffer-overflow/buffer-overflow-1.md)
+- [缓冲区溢出](https://github.com/lizhi16/Security-Course/blob/master/buffer-overflow/buffer-overflow-1.md)
 
