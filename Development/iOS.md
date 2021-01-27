@@ -734,6 +734,24 @@ if ([NSURLSession class] &&
 * [iOS开发之多系统版本兼容](https://blog.devzeng.com/blog/ios-multiple-version-compatible.html)
 
 
+#### Apple Worldwide Developer Relations Certification Authority
+
+* Apple Root Certificate Authority
+* Apple Worldwide Developer Relations Certification Authority
+
+Apple Worldwide Developer Relations Certification Authority 的证书虽苹果颁发给iOS开发者的证书的根证书。而 Apple Worldwide Developer Relations Certification Authority 的证书的根证书是 Apple Root Certificate Authority 证书。
+
+AppleWWDRCA.cer 就是开发者证书的根证书。它在安装Xcode的时候自动安装了。如果发现它失效了，需要到苹果公司官网下载并进行安装。
+
+CSR文件： CSR(Certificate Signing Request) 是一个规范
+
+
+- [Apple Worldwide Developer Relations Intermediate Certificate - Support - Apple Developer](https://developer.apple.com/support/wwdr-intermediate-certificate/)
+- [Certificates - Support - Apple Developer](https://developer.apple.com/support/certificates/)
+- [WWDR Intermediate Certificate Expiration - Support - Apple Developer](https://developer.apple.com/support/expiration/)
+- [iOS证书](http://blog.fpliu.com/it/os/ios/certificate)
+
+
 ### 黑科技
 
 #### 刷单、苹果36技术
