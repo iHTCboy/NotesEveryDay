@@ -165,6 +165,23 @@ LLDB 通用结构的形式如下：
 - [Tutorial — The LLDB Debugger](https://lldb.llvm.org/use/tutorial.html)
 - [LLDB 知多少 - 掘金](https://juejin.im/post/6844903805398548493)
 
+#### Xcode xip 快速解压缩安装
+
+如果你确定下载来源很安全的话（不安全的来源有出过事，见 `XcodeGhost` 事件），可以用指令跳过验证，就会快一些：
+
+```bash
+xip -x Xcode_12.4.xip
+```
+
+具体，执行命令后，没有图形界面，就是等：
+```bash
+xip -x /Users/iHTCboy/Downloads/Xcode_12.5_beta.xip 
+xip: signing certificate was "Development Update" (validation not attempted)
+```
+
+- [安裝 Xcode 的正確姿勢](https://www.notion.so/Xcode-dfbe2d934ff84b2d84e34ffceef56fe0)
+
+
 ### iOS
 
 #### iOS 处理器指令集架构 
