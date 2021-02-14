@@ -9,11 +9,10 @@
 - 第二步：设置Android studio 
   打开Android studio工程，”Run->>Edit configurations”如下图位置，选择“Open Select Deployment Target Dialog”,这个是每次在调试时弹出设备选择框。注意：如果直接选择“USB Device”的话，可能调试时会找到不到手机设备. 
 
----------------------
-
-来自 雨寒sgg 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/u011389706/article/details/71512563?utm_source=copy 
 
 - [(Mac)Android studio真机测试](https://www.jianshu.com/p/beb10cba514c)
+
+---------------------
 
 
 #### 项目结构
@@ -89,6 +88,26 @@ src子目录:
 **proguard-rules.pro**
 这个文件用于指定项目代码的混淆规则，当代码开发完成后打开安装包文件，如果不希望代码被别人破解，通常会将代码进行混淆，从而让破解者难以阅读。
 
+
+#### AVD（Android Virtual Device）
+
+安装 apk 时报错：
+```
+The APK failed to install.
+Error: INSTALL_FAILED_NO_MATCHING_ABIS
+```
+
+```
+The APK failed to install.
+Error: Could not parse error string
+```
+
+产生原因：
+为了让AVD获取最佳运行速度，AS在安装AVD时往往会建议使用与你的pc机相同的cpu架构，即默认为x86架构，而apk使用的是ARM架构，这就造成了不兼容。
+
+解决方法：
+1. 在AS中安装一个ARM架构的AVD。
+2. 编译成apk时，可以在选项中将程序修改为x86。
 
 
 ### Android Hook
