@@ -244,6 +244,12 @@ Filter = {
 
 ### 外挂
 
+#### yacd (Yet Another Code Decrypter)
+利用 Psychic Paper 漏洞，可以在 iOS 13.4.1 以下的“未越狱”设备上砸壳并 AirDrop 到 Mac 上。
+
+- [GitHub - DerekSelander/yacd: Decrypts FairPlay applications on iOS 13.4.1 and lower, no jb required](https://github.com/DerekSelander/yacd)
+
+
 ### iOS
 
 #### iOS安全体系结构

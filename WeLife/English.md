@@ -103,3 +103,19 @@ Inc. 考虑的是公司的“法人”性质，以具体的模式保护股东、
 * [🙈 See-No-Evil Monkey Emoji](https://emojipedia.org/see-no-evil-monkey/)
 * [Three wise monkeys - Wikipedia](https://en.wikipedia.org/wiki/Three_wise_monkeys)
 * [三猿 - 维基百科](https://zh.wikipedia.org/zh/%E4%B8%89%E7%8C%BF)
+
+
+#### QPS（Queries Per Second，每秒查询率）
+
+> 从英文翻译而来
+> 每秒查询数是信息检索系统（例如搜索引擎或数据库）在一秒钟内收到的搜索流量的常用度量。该术语更广泛地用于任何请求-响应系统，更准确地说是每秒调用的请求数。高流量的系统必须看他们的QPS，以便知道什么时候扩展系统以处理更大的负载。
+
+
+**TPS：Transactions Per Second（每秒事务处理量）**
+
+即服务器每秒处理的事务数。TPS包括一条消息入和一条消息出，加上一次用户数据库访问。（业务TPS = CAPS × 每个呼叫平均TPS）。TPS是软件测试结果的测量单位。一个事务是指一个客户机向服务器发送请求然后服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数。
+
+一般的，评价系统性能均以每秒钟完成的技术交易的数量来衡量。系统整体处理能力取决于处理能力最低模块的TPS值。一般来说，TPS指每秒钟特定实体执行的原子性操作的次数。 狭义上，该术语通常由数据库管理系统供应商和用户社区用于描述每秒钟的数据库操作数。 最近，这个术语被用来描述加密货币的交易速率，例如运行比特币区块链的分布式网络。能够按需伸缩的事务速率的开发是加密货币技术的一个重要研究领域。
+
+- [Queries per second - Wikipedia](https://en.wikipedia.org/wiki/Queries_per_second)
+- [每秒事务处理量 - 维基百科](https://zh.wikipedia.org/zh-cn/%E6%AF%8F%E7%A7%92%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E9%87%8F)
