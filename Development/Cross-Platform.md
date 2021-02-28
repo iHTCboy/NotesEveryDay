@@ -87,12 +87,66 @@ flutter create myApp
 flutter run
 ```
 
+**Release:**
+```
+flutter run --release
+```
+
 #### 其它命令
 切换到官方master开发主分支：
 ```
 flutter channel master
 ```
 
+#### 发布
+
+
+- [打包并发布 Android 应用 - Flutter 中文文档](https://flutter.cn/docs/deployment/android)
+- [发布应用 | Android 开发者](https://developer.android.google.cn/studio/publish)
+
+
+#### 常见问题
+**键盘弹起时遮挡输入框**
+
+
+1、在TextFiled外面加Padding
+MediaQuery.of(context).viewInsets.bottom是键盘弹起时、获取到的键盘高度：
+
+```flutter
+Padding(
+  padding: EdgeInsets.only(
+    bottom: MediaQuery.of(context).viewInsets.bottom
+  ),
+  child: TextField(
+    controller: _controller,
+  )
+)
+```
+
+2、在 main widget 外加 SingleChildScrollView 及其属性 reverse: true
+body 和 SingleChildScrollView 之间的代码作用是：键盘弹出时，点击页面空白部分、键盘会收起：
+
+```flutter
+body: GestureDetector(
+    behavior: HitTestBehavior.translucent,
+    onTap: () {
+      FocusScope.of(context).requestFocus(FocusNode());
+    },
+    child: SingleChildScrollView(
+      reverse: true,
+      child: ......
+    )
+)
+```
+
+3、在Scaffold 里添加属性 resizeToAvoidBottomInset: false
+
+```flutter
+return Scaffold(
+    resizeToAvoidBottomInset: false,
+    .....
+)
+```
 
 #### 常见错误
 
@@ -182,8 +236,15 @@ buildscript {
 
 - [Dart programming language | Dart](https://dart.dev/)
 - [Dart 中文文档 | Dart](https://dart.cn/)
+- [Dart packages](https://pub.dev/)
 
 
 
 ### React Native（RN）
 
+
+### 资源
+#### Font（字体）
+
+- [Fonts - Google Fonts](https://fonts.google.com)
+- [Iconfont - 阿里巴巴矢量图标库](https://www.iconfont.cn/)
