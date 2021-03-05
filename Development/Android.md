@@ -307,5 +307,17 @@ hw.mainKeys = yes
 | 魅族应用商店 | http://open.flyme.cn/ |
 | 金立软件商店 | http://open.appgionee.com/ |
 | 安智市场 | http://dev.anzhi.com/ |
+| 酷安市场 | https://developer.coolapk.com |
 | 联想乐商店 | http://open.lenovo.com/ |
+| 三星应用开发者平台 | http://support-cn.samsung.com/App/DeveloperChina/Home/Index |
 
+
+#### apk签名
+
+用指定的 keystore 签名apk：
+
+```
+jarsigner -verbose -keystore xxx.jks -signedjar xxx_signed.apk xxx.apk alias_key
+```
+
+注：最后一个参数是 keyalias，也就是该签名文件的别名。
