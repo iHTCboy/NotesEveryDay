@@ -83,7 +83,7 @@ flutter create myApp
 ```
 
 #### 运行
-```
+* ```
 flutter run
 ```
 
@@ -103,6 +103,13 @@ flutter channel master
 
 - [打包并发布 Android 应用 - Flutter 中文文档](https://flutter.cn/docs/deployment/android)
 - [发布应用 | Android 开发者](https://developer.android.google.cn/studio/publish)
+
+
+#### 国际化
+
+* [Flutter Intl - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=localizely.flutter-intl)
+* [Internationalizing Flutter apps - Flutter](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
+* [Flutter 应用里的国际化 - Flutter 中文文档](https://flutter.cn/docs/development/accessibility-and-localization/internationalization)
 
 
 #### 常见问题

@@ -291,25 +291,28 @@ hw.mainKeys = yes
 
 #### 安卓App上架
 
-| 市场	 | 开放平台官网 |
-|---|---|
-| Google Play	| https://play.google.com/apps/publish/?hl=zh-CN |
-| 应用宝	| http://open.qq.com/ |
-| 百度手机助手 | http://app.baidu.com/ |
-| 360 手机助手 | http://dev.360.cn/ |
-| vivo 应用商店	| https://dev.vivo.com.cn/ |
-| OPPO 软件商店（一加）| http://open.oppomobile.com/ |
-| 小米应用商店	| https://dev.mi.com/ |
-| 华为应用市场	| http://developer.huawei.com/consumer/cn/ |
-| 阿里应用分发平台（豌豆荚）| http://open.uc.cn/ |
-| 搜狗手机助手 | http://zhushou.sogou.com/open/ |
-| 锤子应用商店 | http://dev.smartisan.com/ |
-| 魅族应用商店 | http://open.flyme.cn/ |
-| 金立软件商店 | http://open.appgionee.com/ |
-| 安智市场 | http://dev.anzhi.com/ |
-| 酷安市场 | https://developer.coolapk.com |
-| 联想乐商店 | http://open.lenovo.com/ |
-| 三星应用开发者平台 | http://support-cn.samsung.com/App/DeveloperChina/Home/Index |
+| 市场 | 开放平台官网 | 审核条款 | 审核要求 | 费用要求 |
+|---|---|---|--|--|
+| App Store	| https://developer.apple.com |  [App Store 审核指南 - Apple Developer](https://developer.apple.com/cn/app-store/review/guidelines/)  |  不需要《计算机软件著作权》 | 每年年费￥688元 |
+| Google Play	| https://play.google.com/apps/publish/?hl=zh-CN | [政策中心 - Play 管理中心帮助](https://support.google.com/googleplay/android-developer/topic/9858052?hl=zh-Hans)  |  不需要《计算机软件著作权》 | 一次性支付 25 美元的注册费 |
+| 应用宝	| http://open.qq.com/ | [应用上架规则 - 腾讯开放平台](https://wiki.open.qq.com/wiki/%E5%BA%94%E7%94%A8%E4%B8%8A%E6%9E%B6%E8%A7%84%E5%88%99)  | 必须《计算机软件著作权》 | 无 |
+| 百度手机助手 | http://app.baidu.com/ | [审核规范 - 百度移动应用平台](http://app.baidu.com/docs?id=18&frompos=401009)  | 注册不成功，原因：网站bug | 无 |
+| 360 手机助手 | http://dev.360.cn/ | [应用发布规则 - 360移动开放平台](http://dev.360.cn/wiki/index/id/18) | 未知 | 未知 |
+| vivo 应用商店	| https://dev.vivo.com.cn/ | - | 不接受个人开发者注册 | 未知 |
+| OPPO 软件商店（一加）| http://open.oppomobile.com/ |  [OPPO开放平台](https://open.oppomobile.com/wiki/doc#id=10071) | 不接受个人开发者发布应用 | 未知 |
+| 小米应用商店	| https://dev.mi.com/ | [应用审核规范](https://dev.mi.com/console/doc/detail?pId=879) | 不需要《计算机软件著作权》。但应用不得是简单的网站页面打包或套用模板、内容聚合或罗列链接，参考[小米应用商店审核规范](https://dev.mi.com/console/doc/detail?pId=879) | 无 |
+| 华为应用市场	| http://developer.huawei.com/consumer/cn/ | [华为应用市场审核指南](https://developer.huawei.com/consumer/cn/doc/50104) |不需要《计算机软件著作权》 | 无 |
+| 阿里应用分发平台（豌豆荚）| http://open.uc.cn/ | - | 当前市场已存在大量相似的此类应用，如需收录，请补充提交《计算机软件著作权》。 | 无 |
+| 搜狗手机助手 | http://zhushou.sogou.com/open/ | - | 未知 | 未知 |
+| 锤子应用商店 | http://dev.smartisan.com/ | - | 未知 | 无 |
+| 魅族应用商店 | http://open.flyme.cn/ | [审核规范 - 魅族开放平台](http://open-wiki.flyme.cn/doc-wiki/index#id?110) | 不需要《计算机软件著作权》 | 无 |
+| 金立软件商店 | http://open.appgionee.com/ | - | 未知 | 无 |
+| 安智市场 | http://dev.anzhi.com/ | - | 2020年2月起，安智市场不再免费收录软件（包括新软件/下架重新上架），软件必须付费上架或CPD推广且软件需要符合上架审核标准。 | 无 |
+| 酷安市场 | https://developer.coolapk.com | - | 不需要《计算机软件著作权》 | 无 |
+| 联想乐商店 | http://open.lenovo.com/ | - | 未知 | 未知 |
+| 三星应用开发者平台 | http://support-cn.samsung.com/App/DeveloperChina/Home/Index | - | 未知 | 未知 |
+
+注：不得不佩服国内的安卓市场，除了华为应用市场被拒后能回复和申诉，其它市场就是一个消息通知，真的一言难尽！
 
 
 #### apk签名

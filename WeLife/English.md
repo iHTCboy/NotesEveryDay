@@ -119,3 +119,12 @@ Inc. 考虑的是公司的“法人”性质，以具体的模式保护股东、
 
 - [Queries per second - Wikipedia](https://en.wikipedia.org/wiki/Queries_per_second)
 - [每秒事务处理量 - 维基百科](https://zh.wikipedia.org/zh-cn/%E6%AF%8F%E7%A7%92%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E9%87%8F)
+
+
+#### i18n（internationalization）
+
+国际化的英文：internationalization，简称为i18n，取前后两个字母，18表示中间省略字母的个数。
+
+应用国际化开发主要包括：
+* 文本国际化（包括文本的顺序）
+* 显示的国际化（比如显示日期显示的顺序）
