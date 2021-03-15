@@ -13,16 +13,17 @@
 
 ### 越狱（Jailbreak）
 **越狱不等于盗版安装APP**
-以越狱是要获得设备的完全控制权，拿到所有文件的最高管理权限。在美国越狱苹果设备是合法的，其原因是承认用户对设备拥有完全的所有权。 
+越狱是要获得设备的完全控制权，拿到所有文件的最高管理权限。在美国越狱苹果设备是合法的，其原因是承认用户对设备拥有完全的所有权。 
 
 
 **越狱工具：**
 
+- [unc0ver](https://unc0ver.dev/)： iOS 11.0 - 14.3
 - [checkra1n](https://checkra.in/)：iOS 12.0 - 13.7 and 14.0
-- [unc0ver](https://unc0ver.dev/)： iOS 11.0 - 13.5
 - [Chimera](https://chimera.sh/): iOS 12 — 12.2 and 12.4
 
 查看支持的系统版本：
+* [Can I Jailbreak? - Home](https://canijailbreak.com/)
 * [iOS系统设备越狱](https://yueyu.cydiami.com/)
 
 
@@ -35,8 +36,8 @@
 依赖越狱使用的漏洞，越狱的效果可能长期的，也可能在设备关机再开启后消失。为了描述两种不同的越狱，越狱社区把这两种方式叫做 完美越狱（`tethered jailbreak`）和非完美越狱（`untethered jailbreak`）。 
 
 ##### 1、非完美越狱（Tethered Jailbreaks） 
-非完美越狱是设备重启后就消失的越狱。越狱后的设备每次重启后需要某种方式的重新越狱。通常意味着每次关机再重新开机时需要重新连接到电脑上。由于这个过程中需要USB线缆连接，这就是tethered的意思。这个词tethered也用于不需要USB连接，但需要访问特定网站或执行特定应用程序的重新越狱， 
-如果漏洞是某些提权代码，一个非完美越狱能只由单个漏洞组成。一个例子是limera1n的bootrom漏洞，被目前的大部分iOS4和iOS5越狱使用。另一个例子是iOS的USB内核驱动程序的漏洞。然而，目前没有类似的公开漏洞。 
+非完美越狱是设备重启后就消失的越狱。越狱后的设备每次重启后需要某种方式的重新越狱。通常意味着每次关机再重新开机时需要重新连接到电脑上。由于这个过程中需要USB线缆连接，这就是tethered的意思。这个词tethered也用于不需要USB连接，但需要访问特定网站或执行特定应用程序的重新越狱，如果漏洞是某些提权代码，一个非完美越狱能只由单个漏洞组成。一个例子是limera1n的bootrom漏洞，被目前的大部分iOS4和iOS5越狱使用。另一个例子是iOS的USB内核驱动程序的漏洞。然而，目前没有类似的公开漏洞。 
+
 如果没有类似的漏洞可用，进入设备的初始入口可以通过一个应用程序的漏洞来获得很少的权限，如MobileSafari浏览器。然而，单独的这样一个漏洞不能认为是越狱，因为没有附加的内核漏洞，不能禁止所有的安全特性。 所以一个非完美越狱由一个提权代码漏洞组成，或一个非提权代码漏洞结合其他权限提升漏洞。 
 
 ##### 2、完美越狱（Untethered Jailbreaks） 
@@ -47,6 +48,7 @@
 
 #### 漏洞类型(Exploit Type) 
 漏洞的存在位置影响你对设备的存取级别。一些允许低级别的硬件存取。另一些受限于沙盒内的许可权限。 
+
 ##### 1、Bootrom级别 
 从越狱者的角度看，Bootrom级别的漏洞是最有力的。bootrom在iPhone的硬件内部，它的漏洞不能通过软件更新推送来修复。相反，只能在下一代的硬件版本里修复。在存在limera1n漏洞的情况下，苹果没有发布iPad1或iPhone4的新产品，直到A5处理器的设备，iPad2和iPhone4S发布前，这个漏洞长期存在并为人所知。 
 Bootrom级别的漏洞不能修复，并且允许对整个启动环节的每个部分进行替换或打补丁（包括内核的启动参数），是最有力的漏洞。由于漏洞在启动环节发生的很早，而且漏洞Payload拥有对硬件的全部读取权限。 如它可以利用AES硬件引擎的GID密码来解密IMG3文件，而IMG3文件允许解密新的iOS更新。 
@@ -82,8 +84,7 @@ Cydia Store 指代的仅是后端支付系统，“允许用户从 Cydia 的默�
  
  
 #### “AFC2”补丁
-> 如果你需要在电脑端访问您设备的根文件系统，则需要安装afc2补丁，对于iOS 7.1 以下越狱设备， 请安装Afc2add补丁，对于iOS 7.1 ~iOS 10.3.3 的越狱设备， 请安装Apple File Conduit"2"补丁。
-
+> 如果你需要在电脑端访问您设备的根文件系统，则需要安装afc2补丁，对于iOS 7.1 以下越狱设备，请安装Afc2add补丁，对于iOS 7.1 ~iOS 10.3.3 的越狱设备，请安装Apple File Conduit"2"补丁。
 
 * [越狱设备如何安装“AFC2”补丁？_越狱教程_爱思助手](https://www.i4.cn/news_detail_1623.html)
 
@@ -97,7 +98,7 @@ Cydia Store 指代的仅是后端支付系统，“允许用户从 Cydia 的默�
 | A Sileo 蜜蜂源™  |  https://apt.cydiami.com |   |
 | 嗨客中文源  | http://apt.hackcn.net  | （汉化包大部分出自他手）  |
 | Acreson’s | https://repo.acreson.cn |   |
-| 小苹果 | http://apt.cydiabc.top  |   |
+| 小苹果 | http://apt.cydiabc.top  | 国内小苹果源，未爆出过安全问题   |
 | 贴吧  | http://apt.cydiaba.cn  |   |
 | Netskao  | http://repo.netskao.com |   |
 | Appsync Unified 插件官方源  | https://cydia.akemi.ai/  |   |
@@ -106,11 +107,11 @@ Cydia Store 指代的仅是后端支付系统，“允许用户从 Cydia 的默�
 | FlyJB  | http://xsf1re.github.io/repo/  | FlyJB 越狱检测屏蔽插件官方源  |
 | 国外知名插件破解网站  | https://repo.hackyouriphone.org  |  国外知名插件破解网站，一些收费插件可以在这找破解版 |
 | P佬源  | http://pulandres.me/repo/  |  P佬源，同为国外知名破解资源集散地 |
-| 国内小苹果源  | http://apt.cydiabc.top/  | 国内小苹果源，未爆出过安全问题  |
 | HackYouriPhone  | http://repo.hackyouriphone.org  |   |
 | kiiimo  | http://cydia.kiiimo.org/  |   |
 | frida  | https://build.frida.re  | Frida 砸壳应用  |
 | CrackerXI  | http://apt.wxhbts.com/  | CrackerXI App脱壳工具  |
+| 按键精灵  | https://apt.mobileanjian.com/  | 按键精灵官方源  |
 
 
 #### Flex
@@ -121,9 +122,12 @@ Flex是John Coates的作品，从推出就被大家视为越狱iOS必装插件�
 #### AppSync Unified
 安装无签名软件，装修改版软件必备神器。
 
+#### adv-cmds
+用于执行 ps 命令。ps命令是 process status的缩写，使用ps命令可以列出系统当前的进程。
+
 
 ### OpenSSH
-`OpenSSH` 是 `SSH` (Secure Shee) 协议的免费开源的实现。SSH 协议可以用来远程控制或者在计算机之间来传送文件。
+`OpenSSH` 是 `SSH` (Secure Shell) 协议的免费开源的实现。SSH 协议可以用来远程控制或者在计算机之间来传送文件。
 
 * SSH 是一种网络协议，目的是用于计算机之间的加密登录，由芬兰学者设计SSH协议，将登录信息全部加密，成为了互联网安全的一个基本解决方案，目前成为了Linux的标准配置。
 * OpenSSH 是一款软件，应用也是非常广泛。
@@ -179,6 +183,194 @@ mobile:/smx7MYTQIi2M:501:501::0:0:Mobile User:/var/mobile:/bin/sh
 
 * [iOS ssh密码忘记解决办法 - 简书](https://www.jianshu.com/p/10c3e7f7acef)
 * [iOS 越狱机重置ssh密码 - 知乎](https://zhuanlan.zhihu.com/p/60709753)
+
+#### 免密登录
+
+- [iOS逆向-设备ssh免密登录 | 继刚的博客](https://madordie.github.io/post/reverse-ios-ssh/)
+
+
+#### 通过USB连接
+
+**usbmuxd**
+
+usbmuxd 是苹果的一个服务，这个服务主要用于在USB协议上实现多路TCP连接，将USB通信抽象为TCP通信。苹果的iTunes、Xcode，都直接或间接地用到了这个服务
+
+##### 方法一
+1、通过brew来安装usbmuxd：
+
+```shell
+brew install usbmuxd
+```
+
+2、端口映射：
+把 iPhone 的22端口(即SSH端口)映射到 Mac 的10086端口
+
+```
+iproxy 10086 22
+```
+
+3、连接Mac本地的10086端口：
+
+
+```
+ssh -p 10086 root@127.0.0.1
+```
+
+或者：
+
+```
+ssh -p 10086 root@localhost
+```
+
+第一次会要求输入密码，出现 `~ root#` 就代表连接成功了
+
+- [mac连接ios设备的方式 | iKiwi](https://wangdetong.github.io/2016/06/21/20160621mac%E8%BF%9E%E6%8E%A5ios%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B9%E5%BC%8F/)
+
+##### 方法二
+**下载 usbmuxd 1.0.8版本**
+
+> 一定要下载这个 1.0.8 版本，新版本已经不包含这个文件。
+
+在 [usbmuxd - A socket daemon to multiplex connections from and to iOS devices](https://cgit.sukimashita.com/usbmuxd.git/) 下载1.0.8 版本：
+
+- [usbmuxd-1.0.8.tar.gz](https://cgit.sukimashita.com/usbmuxd.git/snapshot/usbmuxd-1.0.8.tar.gz)
+
+解压文件后，有一个 `python-client` 文件夹，可以通过 python 来执行映射：
+
+```
+python tcprelay.py -t 22:10086
+```
+
+然后就可以 ssh 链接：
+
+```
+ssh root@localhost -p 10086
+```
+
+- [通过USB连接线ssh到iOS中 - iOSRE](https://iosre.com/t/usb-ssh-ios/193)
+- [iOS逆向 | 如何通过usbmuxd实现SSH登录](https://juejin.cn/post/6844904185733840904)
+- [对 usbmuxd 的一点研究 · Farlanki](https://reetyo.github.io/2019/04/09/2019-04-09/)
+- [使用usbmuxd服务，通过USB连接与PC端、Mac端实现通信，Peertalk的使用 - 简书](https://www.jianshu.com/p/eba133891ec6)
+
+
+##### 常见错误
+
+使用SSH连接设备时，可能会出现“Host key verification failed.”的提示，是因为之前链接过其它设备导致的，需要删除原来的链接信息。
+
+```
+ssh-keygen -f /Users/iHTCboy/.ssh/known_hosts -R 127.0.0.1
+``` 
+
+或整个文件删除：
+
+```
+rm /Users/iHTCboy/.ssh/known_hosts
+```
+
+### 使用scp传输文件
+scp 是 `secure copy` 的简写，用于在Linux下进行远程拷贝文件的命令，和它类似的命令有cp，不过cp只是在本机进行拷贝不能跨服务器，而且scp传输是加密的，所以速度稍微慢点。
+
+1. 我们需要获得远程服务器上的某个文件，远程服务器既没有配置ftp服务器，没有开启web服务器，也没有做共享，无法通过常规途径获得文件时，只需要通过scp命令便可轻松的达到目的。
+2. 我们需要将本机上的文件上传到远程服务器上，远程服务器没有开启ftp服务器或共享，无法通过常规途径上传是，只需要通过scp命令便可以轻松的达到目的。
+
+
+#### scp 命令使用示例
+从 iOS 复制到 macOS:
+
+```
+scp -P10086 root@localhost:/var/mobile/Documents/CrackerXI/xxx.ipa ~/Desktop/
+```
+
+> 注：-P 一定要大写字母P，不然就报错 `SSH protocol v.1 is no longer supported` 。
+
+从 macOS 复制到 iOS:
+
+```
+scp -P10086 ~/Desktop/xxx.jpg root@localhost:/var/mobile/Documents/
+```
+
+**可能有用的几个参数:**
+
+1. `-r`: 复制目录。
+2. `-v`: 和大多数 linux 命令中的 -v 意思一样, 用来显示进度。可以用来查看连接，认证，或是配置错误等。
+3. `-C`: 使能压缩选项。
+4. `-4`: 强行使用 IPV4 地址。
+5. `-6`: 强行使用 IPV6 地址。
+
+
+### 加壳与脱壳
+iOS端App在上线之前会由苹果商店进行FairPlayDRM数字版权加密保护（称为“加壳”）。要对应用进行分析，就必须先解密（称为“脱壳”），从而得到原始未加密的二进制文件。
+
+#### 检测是否加壳
+用`otool`可以看到二进制文件的信息里有一个`cryptid`字段，`cryptid=1`表示**已加壳**，`cryptid=0` 表示**未加壳**。
+
+```
+otool -l MachO | grep crypt
+```
+
+方法2：
+用查看 MachO 文件格式的软件打开。在“Load Commands”节点，找到“LC_ENCRYPTION_INFO_64” ，可以看到 “Crypt ID” 的值内容判断。
+
+#### 脱壳工具
+脱壳原理：从内存中已解密的数据dump。
+
+1. CrackerXI：一款全自动脱壳工具，傻瓜式App，支持 iOS 11～iOS 14+，添加 http://cydia.iphonecake.com/ 源或者Cydia搜索名称来下载。
+2. [Frida-ios-dump](https://github.com/AloneMonkey/frida-ios-dump)：基于[Frida](http://www.frida.re/)（一个跨平台的轻量级Hook框架）提供的强大功能，通过注入JS实现内存dump，然后利用Python自动复制到macOS生成最终的ipa文件。
+3. [Clutch](https://github.com/KJCracks/Clutch)：一款全自动脱壳工具，其原理是把应用运行时的内存数据按照一定格式导出，并重新打包为ipa文件。
+4. [dumpdecrypted](https://github.com/stefanesser/dumpdecrypted)：开源的，需要先编译、签名，再将其复制到iOS设备中。但非常灵活，效果也很不错。
+5. [bfinject](https://github.com/BishopFox/bfinject)：支持iOS 11～iOS 11.4.1。
+
+### 分析工具
+
+1. [class-dump](https://github.com/nygard/class-dump)：一个命令行工具，它利用Objective-C语言的运行时特性将二进制文件中的类、方法及属性等信息导出为头文件。
+2. [Reveal](https://github.com/zidaneno5/Reveal2Loader)：一款强大的UI调试工具，可以调试iOS应用和tvOS应用。它可以在运行时查看App的界面层级关系，还可以实时修改程序界面，不用重新运行程序就可以看到修改之后的效果，免去了每次修改代码后又重新启动的过程。逆向工程里面通常用Reveal来快速定位感兴趣的控件，进而找到控制器，再用Cycript进行事件分析。
+3. [Cycript](http://www.cycript.org/)：由Cydia创始人Saurik推出的一款脚本语言，它混合了Objective-C与JavaScript语法解释器，能够探测和修改运行中的应用程序。Cycript主要用于注入目标进程来实现运行时调试，它的优点是重启程序后所有的修改都会失效，对原生程序或代码完全无副作用。越狱环境下，直接在Cydia中搜索“Cycript”安装即可。
+
+#### Cycript实战
+
+```
+cycript -p 进程名称
+```
+
+或：
+```
+cycript -p 进程ID
+```
+
+注：
+
+1. 取消输入：Ctrl + C
+2. 退出：Ctrl + D
+3. 取消输入：Command + R
+
+
+**分析视图层次结构**
+苹果系统中的私有函数在正向开发中是不能使用的，但在逆向分析中可以发挥很大的用途，其中有一个`recursiveDescription`函数可以用来递归打印任意视图层次结构，再使用`.toString()`就能输出清晰的格式。
+
+```objc
+[[UIApp keyWindow] recursiveDescription].toString()
+```
+
+在UIWindow里有一个名为 `_autolayoutTrace` 的私有函数，该函数的返回值是一个字符串，这个字符串则包含了UIWindow中整个视图的层次结构。
+```objc
+[[UIApp keyWindow] _autolayoutTrace].toString()
+```
+
+1. nextResponder
+2. allTargets
+3. allControlEvents
+4. actionsForTarget: forControlEvent:
+5. choose(xxx)
+6. dismissViewControllerAnimated: completion:
+
+- [Cycript Manual](http://www.cycript.org/manual/)
+
+
+**iOS文件目录**
+
+- app目录：`/var/containers/Bundle/Application/`
+- 沙盒目录：`/var/mobile/Containers/Data/Application/`
+
 
 ### Theos 和 Tweak
 Theos 是越狱开发的一个工具包, 可以创建Tweak项目，动态的hook第三方程序。
@@ -355,3 +547,12 @@ Python 是一种解释型语言，而 Python 字节码（Python ByteCode）是�
 
 - [如何破解一个Python虚拟机壳并拿走12300元ETH - PansLabyrinth](https://evilpan.com/2020/10/11/protected-python/)
 - [dis — Disassembler for Python bytecode — Python 3.9.0 documentation](https://docs.python.org/3/library/dis.html)
+
+
+### 软件
+
+#### 010 Editor
+010 Editor 是一款功能强大的跨平台十六进制编辑工具，同时支持Windows、Linux及macOS操作系统，它最大的特点是二进制模板技术，能够方便地分析任何二进制文件格式。
+
+- [010 Editor - Pro Text/Hex Editor | Edit 160+ Formats](https://www.sweetscape.com/)
+- [010 Editor - Binary Template Repository - Download Binary Templates](https://www.sweetscape.com/010editor/repository/templates/index.php?sort=)

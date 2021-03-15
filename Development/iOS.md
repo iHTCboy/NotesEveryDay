@@ -769,6 +769,12 @@ CSR文件： CSR(Certificate Signing Request) 是一个规范
 - [iOS证书](http://blog.fpliu.com/it/os/ios/certificate)
 
 
+#### iOS 崩溃
+
+- [iOS奔溃日志分析 - shenfh](https://shenfh.github.io/2017/06/01/logFile/)
+
+
+
 ### 黑科技
 
 #### 刷单、苹果36技术
