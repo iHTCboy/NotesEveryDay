@@ -325,8 +325,11 @@ otool -l MachO | grep crypt
 1. [class-dump](https://github.com/nygard/class-dump)：一个命令行工具，它利用Objective-C语言的运行时特性将二进制文件中的类、方法及属性等信息导出为头文件。
 2. [Reveal](https://github.com/zidaneno5/Reveal2Loader)：一款强大的UI调试工具，可以调试iOS应用和tvOS应用。它可以在运行时查看App的界面层级关系，还可以实时修改程序界面，不用重新运行程序就可以看到修改之后的效果，免去了每次修改代码后又重新启动的过程。逆向工程里面通常用Reveal来快速定位感兴趣的控件，进而找到控制器，再用Cycript进行事件分析。
 3. [Cycript](http://www.cycript.org/)：由Cydia创始人Saurik推出的一款脚本语言，它混合了Objective-C与JavaScript语法解释器，能够探测和修改运行中的应用程序。Cycript主要用于注入目标进程来实现运行时调试，它的优点是重启程序后所有的修改都会失效，对原生程序或代码完全无副作用。越狱环境下，直接在Cydia中搜索“Cycript”安装即可。
+4. FLEXible：FLEX(Flipboard Explorer)是一个iOS应用的内部调试工具。当它加载时，会向目标程序上方添加一个悬浮的工具栏，通过这个工具栏，可以查看和修改视图的层次结构、动态修改类的属性、动态调用实例和方法、动态查看类和框架以及动态修改UI等。与其他调试工具不同，FLEX完全在应用程序内部运行，因此不需要连接到LLDB、Xcode或其他远程调试器，也不需要太多编程知识，仅需手动点几下就能查看很多细节，是一款非常强大的分析工具。FLEXible 是对FLEX的封装，支持iOS 8+ 以上，只需要在Cydia中搜索FLEXible插件即可安装。
+5. [Frida](https://frida.re)：一个跨平台的轻量级Hook框架，支持所有主流操作系统，它可以帮助逆向研究人员对指定的进程进行分析。它主要提供了精简的Python接口和功能丰富的JS接口，除了使用自身的控制台交互以外，还可以利用Python将JS脚本库注入目标进程。使用Frida可以获取进程详细信息、拦截和调用指定函数、注入代码、修改参数、从iOS应用程序中dump类和类方法信息等。Frida源代码托管在[GitHub](https://github.com/frida)。
 
-#### Cycript实战
+
+#### Cycript 实战
 
 ```
 cycript -p 进程名称
@@ -362,6 +365,8 @@ cycript -p 进程ID
 4. actionsForTarget: forControlEvent:
 5. choose(xxx)
 6. dismissViewControllerAnimated: completion:
+7. NSHomeDirectory()
+8. NSTemporaryDirectory()
 
 - [Cycript Manual](http://www.cycript.org/manual/)
 
@@ -370,6 +375,185 @@ cycript -p 进程ID
 
 - app目录：`/var/containers/Bundle/Application/`
 - 沙盒目录：`/var/mobile/Containers/Data/Application/`
+
+
+获取苹果内购收据：
+```
+[[NSString alloc] initWithData:[[NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]] base64EncodedDataWithOptions:0] encoding:NSUTF8StringEncoding];
+```
+
+#### Frida 实战
+**被控端（iOS端）**
+
+在 Cydia 添加软件源：`https://build.frida.re/`，搜索 “Frida” 进行安装，注意的是下载分为三个插件，for 32-bit/ for A12+ / for
+ pre-A12。安装后，重启SpringBoard，在iOS端看到“frida-server”后台程序，说明安装成功，如下所示：
+  
+```
+iHTC:~ root# ps -ax | grep frida
+25780 ??         0:00.05 /usr/sbin/frida-server
+```
+
+**控制端（macOS端）**
+
+推荐使用 python3 安装:
+```
+pip3 install frida-tools
+```
+
+> 注：在 macOS 10.15 以上可能会报错，请自行搜索。
+> 1、[brew installation of Python 3.6.1: SSL: CERTIFICATE_VERIFY_FAILED certificate verify failed](https://stackoverflow.com/questions/44649449/brew-installation-of-python-3-6-1-ssl-certificate-verify-failed-certificate)
+> 2、[Scraping: SSL: CERTIFICATE_VERIFY_FAILED error for http://en.wikipedia.org](https://stackoverflow.com/questions/50236117/scraping-ssl-certificate-verify-failed-error-for-http-en-wikipedia-org)
+
+
+**Frida 实践**
+
+除了主命令 `frida` 以外，frida-tools 里面还提供了五个实用工具：
+
+1. `frida-ls-devices`：用于获取可用设备列表
+2. `frida-ps`：frida-ps与ps命令的功能类似，用于获取进程列表信息
+3. `frida-kill`：用来结束设备上的某个进程
+4. `frida-trace`：用于跟踪函数或方法的调用
+5. `frida-discover`：用于发现程序中内部函数的工具，然后可以使用frida-trace对其进行跟踪。
+
+
+注：如果这5个命令执行时提示 `command not found:`，可以用 `which frida` 查看 frida 所在目录，然后软链接到 `ln /xxx/xxx/frida /usr/local/bin/`。
+
+公共参数：
+`-U`：连接到USB设备。
+`-D`：如果有多个USB设备，可以用该选项指定设备的UDID。
+`-R`/`-H`：连接到远程frida-server，主要用于远程调试。
+
+
+frida-ls-devices 示例：：
+```
+➜  ~ frida-ls-devices
+Id                                        Type    Name
+----------------------------------------  ------  ------------
+local                                     local   Local System
+16b060488c562bfd169d77356bbfeeeb3234e1f4  usb     iPhone
+19a32eb9495810d5e98825ebd0da0010473e0554  usb     iPhone
+socket                                    remote  Local Socket
+```
+
+frida-ps 示例：
+```
+➜  ~ frida-ps -U -a
+  PID  Name        Identifier
+-----  ----------  -----------------------------
+36205  CrackerXI+  com.ipc.crackerxi
+39573  Cydia       com.saurik.Cydia
+```
+
+```
+# Connect Frida to an iPad over USB and list running processes
+$ frida-ps -U
+
+# List running applications
+$ frida-ps -Ua
+
+# List installed applications
+$ frida-ps -Uai
+
+# Connect Frida to the specific device
+$ frida-ps -D 0216027d1d6d3a03
+```
+
+frida-kill 示例：
+```
+$ frida-kill -D <DEVICE-ID> <PID>
+
+# List active applications
+$ frida-ps -D 1d07b5f6a7a72552aca8ab0e6b706f3f3958f63e  -a
+
+# Connect Frida to the device and kill running process
+$ frida-kill -D 1d07b5f6a7a72552aca8ab0e6b706f3f3958f63e 5029
+
+# Check if process has been killed
+$ frida-ps -D 1d07b5f6a7a72552aca8ab0e6b706f3f3958f63e  -a
+```
+
+
+frida-trace 示例：
+```
+# Trace recv* and send* APIs in Safari, insert library names
+# in logging
+$ frida-trace --decorate -i "recv*" -i "send*" Safari
+
+# Trace ObjC method calls in Safari
+$ frida-trace -m "-[NSView drawRect:]" Safari
+
+# Launch SnapChat on your iPhone and trace crypto API calls
+$ frida-trace \
+    -U \
+    -f com.toyopagroup.picaboo \
+    -I "libcommonCrypto*"
+
+# Launch YouTube on your Android device and trace Java methods
+# with “certificate” in their signature (s), ignoring case (i)
+# and only searching in user-defined classes (u)
+$ frida-trace
+    -U \
+    -f com.google.android.youtube \
+    --runtime=v8 \
+    -j '*!*certificate*/isu'
+
+# Trace all JNI functions in Samsung FaceService app on Android
+$ frida-trace -U -i "Java_*" com.samsung.faceservice
+
+# Trace a Windows process's calls to "mem*" functions in msvcrt.dll
+$ frida-trace -p 1372 -i "msvcrt.dll!*mem*"
+
+# Trace all functions matching "*open*" in the process except
+# in msvcrt.dll
+$ frida-trace -p 1372 -i "*open*" -x "msvcrt.dll!*open*"
+
+# Trace an unexported function in libjpeg.so
+$ frida-trace -p 1372 -a "libjpeg.so!0x4793c"
+```
+
+- [frida-ls-devices | Frida](https://frida.re/docs/frida-ls-devices/)
+- [frida-ps | Frida](https://frida.re/docs/frida-ps/)
+- [frida-kill | Frida](https://frida.re/docs/frida-kill/)
+- [frida-trace | Frida](https://frida.re/docs/frida-trace/)
+
+
+**Python交互**
+
+* attach()：附加目标进程
+* spawn()：启动进程，此时进程处于挂起状态，需要配合resume()才能唤醒。
+* resume()：唤醒进程
+* detach()：脱离进程
+* create_script()：创建一个脚本对象
+* load()：方法将脚本载入
+
+
+获取设备信息：
+```python
+import frida
+
+# 获取当前 USB 链接的设备
+print(frida.get_usb_device())
+
+#输出
+>>> Device(id="19a32eb9495810d5e98825ebd0da0010473e0554", name="iPhone", type='usb')
+```
+
+
+启动 Safari浏览器并打开网站：
+```
+import frida
+
+device = frida.get_usb_device()
+device.spawn("com.apple.mobilesafari", url="https://iHTCboy.com")
+```
+
+
+详细API文档：
+- [JavaScript API | Frida](https://frida.re/docs/javascript-api/)
+- [Frida CodeShare](https://codeshare.frida.re/browse)
+
+
+
 
 
 ### Theos 和 Tweak
