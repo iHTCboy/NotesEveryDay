@@ -1370,7 +1370,7 @@ class ProtectedView(TemplateView):
 
 - [怎么给 django class view 增加权限判断 - Huang Huang 的博客](https://mozillazg.com/2015/11/django-check-user-permission-for-class-generic-view.html)
 
-#### Django 中 ur l和 path 的区别
+#### Django 中 url 和 path 的区别
 
 urls.py 在1.x的时候都是采用的url方式。如下
 
@@ -1410,6 +1410,13 @@ app_name = 'test1'
 
 - [URL调度器 | Django 3.0 文档 | Django](https://docs.djangoproject.com/zh-hans/3.0/topics/http/urls/)
 - [django2笔记:路由path语法 | 程序员Barnes的博客](https://kinegratii.github.io/2017/09/25/django2-url-path/)
+
+
+#### Django logging 日志
+
+* [日志 | Django 文档 | Django](https://docs.djangoproject.com/zh-hans/3.1/topics/logging/)* [Django搭建个人博客：日志记录 - 杜赛的博客](https://www.dusaiphoto.com/article/68/)
+* [django进阶之日志功能 - SegmentFault 思否](https://segmentfault.com/a/1190000016068105)
+
 
 ### Excel
 #### openpyxl获取excel中函数公式的结果值
