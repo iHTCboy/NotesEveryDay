@@ -48,7 +48,17 @@ console.log('0.2 的二进制是：' + 0.2.toString(2));
 
 ### 字符编码
 
-
 - [字符编码笔记：ASCII，Unicode 和 UTF-8 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html)
 - [了解ASCII、gb系列、Unicode、UTF-8的区别](https://www.douban.com/note/334994123/)
 - [InputField 限制字数_yangchunnoodles的博客-CSDN博客](https://blog.csdn.net/yangchunnoodles/article/details/52985441)
+
+
+#### 字节顺序（大小端序）
+
+> 字节顺序，又称端序或尾序（英语：Endianness），在计算机科学领域中，指电脑内存中或在数字通信链路中，组成多字节的字的字节的排列顺序。
+> 例如假设上述变量x类型为int，位于地址0x100处，它的值为0x01234567，地址范围为0x100~0x103字节，其内部排列顺序依赖于机器的类型。
+> 大端法从首位开始将是：0x100: 0x01, 0x101: 0x23,..。
+> 而小端法将是：0x100: 0x67, 0x101: 0x45,..
+
+- [字节顺序 - 维基百科](https://zh.wikipedia.org/wiki/%E5%AD%97%E8%8A%82%E5%BA%8F)
+- [字节序 - FantasticLBP/knowledge-kit](https://github.com/FantasticLBP/knowledge-kit/blob/master/Chapter5%20-%20Network/5.3.md)
