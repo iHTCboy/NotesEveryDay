@@ -423,3 +423,33 @@ command+shift+G
 切换侧边栏：`⌘B`
 
 - [Visual Studio Code Tips and Tricks](https://code.visualstudio.com/docs/getstarted/tips-and-tricks)
+
+
+### Kaleidoscope
+
+Kaleidoscope 结合 SourceTree 进行代码对比，配置方式：
+
+ 1. 点击 Kaleidoscope 菜单 –>  `Integration`  –> 把  `Kaleidoscope`  和  `Git`  两个 Tab 中的命令行工具都安装好
+ 2. 打开 SourceTree > Preference > Diff ，配置 External Diff / Merge 选项，Diff 和 Merge 的工具都选择 Custom，然后填入如下配置：
+
+        Diff Command：  `/usr/local/bin/ksdiff` 
+        Arguments：  `--partial-changeset --relative-path "$MERGED" -- "$LOCAL" "$REMOTE"` 
+
+        Merge Command：  `/usr/local/bin/ksdiff` 
+        Arguments：  `--merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot` 
+
+
+ 3. 可以给 SourceTree 加一个自定义动作，快捷键按自己的喜好设置，参数项填  `difftool -y -t sourcetree $SHA`  即可。
+
+**使用方法**
+
+- **比对任意两个 commit 之间的改动**： 按住⌘，选择两个commit，点击刚刚配置的快捷键，即可唤起 Kaleidoscope
+- **查看某个文件的改动**：直接右键单击文件，选择 External Diff（也可以对照上面的方法加个快捷键）
+- **解决冲突**：右键单击冲突的文件，使用外部工具解决冲突(如下图)
+
+
+- [代码比对神器 Kaleidoscope | Punmy](https://punmy.cn/2019/02/28/%E6%95%88%E7%8E%87%E7%A5%9E%E5%99%A8%20Kaleidoscope.html)
+
+
+
+
