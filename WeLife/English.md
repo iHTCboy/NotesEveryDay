@@ -187,6 +187,11 @@ FYI常用于电子邮件、即时通讯以及非正式口语和商务口语对�
 - **E**：英文单词（`Estimated`）第一个首写字母，中文翻译为：预计的。`2020E` 代表2020年的预测数据。
 
 
+#### NDA（Non-Disclosure Agreement）
+
+**NDA**：Non Disclosure Agreement, 即保密协议。
+
+
 
 
 
