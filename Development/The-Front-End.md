@@ -28,6 +28,19 @@ if (name!=null && name!="")
 }
 ```
 
+#### Blob
+
+Blob 对象表示一个不可变、原始数据的类文件对象。它的数据可以按文本或二进制的格式进行读取，也可以转换成 ReadableStream 来用于数据操作。 
+
+> 最早是数据库直接用Blob来存储二进制数据对象，这样就不用关注存储数据的格式了。在web领域，Blob对象表示一个只读原始数据的类文件对象，虽然是二进制原始数据但是类似文件的对象，因此可以像操作文件对象一样操作Blob对象。
+
+
+- [Blob - Web API 接口参考 | MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Blob)
+- [为什么视频网站的视频链接地址是blob？](https://juejin.cn/post/6844903880774385671)
+
+
+
+
 ### CSS（Cascading Style Sheets，层叠样式表）
 > CSS 是一种样式表语言，用来描述 HTML 或 XML（包括如 SVG、MathML、XHTML 之类的 XML 分支语言）文档的呈现。CSS 描述了在屏幕、纸质、音频等其它媒体上的元素应该如何被渲染的问题。
 
