@@ -70,6 +70,19 @@ Content-Type:
 
 - [四种常见的 POST 提交数据方式 | JerryQu 的小站](https://imququ.com/post/four-ways-to-post-data-in-http.html)
 
+
+#### Accept-Language 的 q=0.9 q=0.8 是什么意思？
+
+```
+Accept-Language：zh-CN,zh;q=0.9,en;q=0.8
+```
+表示：“我更喜欢简体中文，但会接受中文(繁体)和其他类型的英语。
+
+这被称为相对品质因子。它从0到1的范围指定用户喜欢的语言，每个语言可以被赋予一个相关的质量值，该质量值表示用户对该范围指定的语言的偏好的估计。质量值的默认为“q=1”。
+
+- [HTTP/1.1: Header Field Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4)
+
+
 ### SSL/TLS
 SSL与TLS在传输层与应用层之间对网络连接进行加密。
 
