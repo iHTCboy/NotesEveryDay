@@ -39,6 +39,24 @@ Blob 对象表示一个不可变、原始数据的类文件对象。它的数据
 - [为什么视频网站的视频链接地址是blob？](https://juejin.cn/post/6844903880774385671)
 
 
+#### URL encoding 空格符: + or %20?
+
+URL的空格有时被编码成: `%20`，有时被编码成加号: `+`
+
+[W3C](http://www.w3.org/Addressing/URL/uri-spec.html) 标准规定，表单数据（用于GET或POST）当 `Content-Type` 为 `application/x-www-form-urlencoded` 时，它指定+空格，URL中查询参数名和参数值中空格要用加号+替代。所以几乎所有使用该规范的浏览器在表单提交后，URL查询参数中空格都会被编成加号+。
+
+遵循 [RFC 2396](https://www.ietf.org/rfc/rfc2396.txt) 标准的应用来说，不接受查询字符串中出现加号 `+`，认为它是非法字符。所以一个安全的举措是URL中统一使用 `%20` 来编码空格字符。
+
+URL被编码为 [RFC 1738](https://www.ietf.org/rfc/rfc1738.txt) 时其中指定 `%20`。
+
+
+- [URL encoding the space character: + or %20?](https://stackoverflow.com/questions/1634271/url-encoding-the-space-character-or-20)
+- [Percent-encoding - Wikipedia](https://en.wikipedia.org/wiki/Percent-encoding)
+- [Forms in HTML documents](https://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.1)
+- [Universal Resource identifiers in WWW](https://www.w3.org/Addressing/URL/uri-spec.html)
+- [RFC 2396](https://www.ietf.org/rfc/rfc2396.txt)
+- [RFC 1738](https://www.ietf.org/rfc/rfc1738.txt)
+
 
 
 ### CSS（Cascading Style Sheets，层叠样式表）
