@@ -36,7 +36,8 @@
 
 #### Xcode10 打SDK库失败
 解决方法，在脚本增加 -UseModernBuildSystem=NO ，原因是Xcode10使用新build系统，导致 xcodebuild 只会编译一个
-相似的反馈：https://github.com/facebook/react-native/issues/19573
+
+相似的反馈：https://github.com/facebook/react-native/issues/19573
 
 好像新build系统速度提升很好，了解更多新build系统：
 https://medium.com/xcblog/xcode-new-build-system-for-speedy-swift-builds-c39ea6596e17
@@ -773,6 +774,35 @@ CSR文件： CSR(Certificate Signing Request) 是一个规范
 
 - [iOS奔溃日志分析 - shenfh](https://shenfh.github.io/2017/06/01/logFile/)
 
+
+#### iOS Swift5 获取某时间段内的所有日期
+```
+    func getDaysDate(startDate: String,
+                             endDate: String,
+                             dateFormat: String = "yyyy-MM-dd HH:mm:ss",
+                             outDateFormat: String = "yyyy/MM/dd") -> [String]
+    {
+        let formatter = DateFormatter()
+        formatter.dateFormat = dateFormat
+        let startTime = formatter.date(from: startDate)! // first date
+        let endTime = formatter.date(from: startDate)! // last date
+        
+        let fmt = DateFormatter()
+        fmt.dateFormat = "yyyy/MM/dd"
+        
+        var dayArray = [String]()
+        var date = startTime 
+        var result = date.compare(endTime)
+        while result != .orderedDescending {
+            let day = fmt.string(from: date)
+            dayArray.append(day)
+            date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
+            result = date.compare(startTime)
+        }
+        
+        return dayArray
+    }
+```
 
 
 ### 黑科技
