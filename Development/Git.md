@@ -501,6 +501,36 @@ git config http.postBuffer 524288000
  
  - [Git 更安全的强制推送，--force-with-lease_walterlv - 吕毅-CSDN博客](https://blog.csdn.net/WPwalter/article/details/80371264)
 
+### Git error: RPC failed;
+
+**现象：** 克隆项目时，如果项目很大，可能会出现错误：
+```
+error: RPC failed; curl 56 Recv failure: Operation timed out
+fatal: The remote end hung up unexpectedly
+fatal: early EOF
+fatal: index-pack failed
+```
+
+**原因：** http缓存不够或者网络不稳定等。
+
+**解决方法：**
+
+1. 查看当前配置命令
+```
+git config -l
+```
+
+2. httpBuffer 缓冲区加大
+```
+git config --global http.postBuffer 524288000
+git config --global https.postBuffer 524288000
+```
+
+3. 设置压缩
+```
+git config --global core.compression -1
+```
+
  
 
 ## Travis CI
