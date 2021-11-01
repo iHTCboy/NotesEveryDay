@@ -1414,8 +1414,68 @@ app_name = 'test1'
 
 #### Django logging 日志
 
-* [日志 | Django 文档 | Django](https://docs.djangoproject.com/zh-hans/3.1/topics/logging/)* [Django搭建个人博客：日志记录 - 杜赛的博客](https://www.dusaiphoto.com/article/68/)
+* [日志 | Django 文档 | Django](https://docs.djangoproject.com/zh-hans/3.1/topics/logging/)
+* [Django搭建个人博客：日志记录 - 杜赛的博客](https://www.dusaiphoto.com/article/68/)
 * [django进阶之日志功能 - SegmentFault 思否](https://segmentfault.com/a/1190000016068105)
+
+### matplotlib
+
+#### macOS 系统 matplotlib 无法显示中文的问题
+
+**方法一：增加字体**
+
+1. 下载你想要的字体（以SimHei.ttf字体为例，网上搜索就有啊）
+2. 查看matplotlib的字体存放目录与查找matplotlibrc文件路径
+
+```python
+import matplotlib
+matplotlib.matplotlib_fname()
+```
+
+得到类型的地址：
+
+```python
+/opt/homebrew/lib/python3.9/site-packages/matplotlib/mpl-data/matplotlibrc
+```
+
+打开这个文件编辑，
+```
+#  去掉#   
+font.family  : sans-serif   
+
+#  去掉#，在冒号后添加 SimHei（根据自己的字段来改）
+font.sans-serif : SimHei, DejaVu Sans, Bitstream Vera Sans, Computer Modern Sans Serif, Lucida Grande, Verdana, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif
+
+#  去掉#，将True改为False，用来正常显示负号
+axes.unicode_minus  : False
+```
+
+然后复制下载好的字体文件到目录 `/mpl-data/fonts/ttf` 下。
+
+
+3. 命令命令将 matplotlib 的字体缓存删除
+
+```
+cd ~/.matplotlib/
+```
+
+如果还不生效，重启电脑吧~
+
+**方法二：代码引用字体**
+
+```python
+from matplotlib.font_manager import FontProperties
+def getChineseFont():  
+    return FontProperties(fname='/System/Library/Fonts/PingFang.ttc',size=15)  
+```
+
+```python
+plt.title("标题", fontproperties=getChineseFont()) 
+plt.xlabel("x坐标", fontproperties=getChineseFont())
+plt.ylabel("y坐标)", fontproperties=getChineseFont())
+```
+
+* [解决macOS下matplotlib无法显示中文的问题](https://www.jianshu.com/p/8ed59ac76c06)
 
 
 ### Excel
