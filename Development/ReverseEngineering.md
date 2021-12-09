@@ -329,6 +329,39 @@ otool -l MachO | grep crypt
 5. [Frida](https://frida.re)：一个跨平台的轻量级Hook框架，支持所有主流操作系统，它可以帮助逆向研究人员对指定的进程进行分析。它主要提供了精简的Python接口和功能丰富的JS接口，除了使用自身的控制台交互以外，还可以利用Python将JS脚本库注入目标进程。使用Frida可以获取进程详细信息、拦截和调用指定函数、注入代码、修改参数、从iOS应用程序中dump类和类方法信息等。Frida源代码托管在[GitHub](https://github.com/frida)。
 
 
+
+#### Reveal
+
+Cydia 安装插件 Reveal2Loader，支持 iOS 14+。
+
+
+* [Reveal2Loader · Cydia](http://cydia.saurik.com/package/com.zidaneno5.reveal2loader/)
+* [GitHub - zidaneno5/Reveal2Loader](https://github.com/zidaneno5/reveal2loader)
+
+
+但是链接到 Mac 调试时，会提示：
+
+ ```
+ The operation couldn’t be completed. The app is link against an older version of the Reveal library. You may need to update the Reveal library in your app.
+ ```
+
+说明当前 macOS Reveal 的 `RevealServer.framework` 与手机上的 `RevealServer.framework` 版本不相同，需要更新手机的 `RevealServer.framework` 才能正常通讯。
+
+**解决办法：**
+
+用 macOS Reveal 中的  RevealServer.framework 替换 `/Library/Frameworks` 目录下的 RevealServer.framework。
+
+> 需要注意的是 Reveal v33 使用的是 `RevealServer.xcframework`，对应的 iOS 目录是：`~/Library/Application\ Support/Reveal/RevealServer/RevealServer.xcframework/ios-arm64_armv7/RevealServer.framework/`。
+
+所以，可以用 macOS 访问设备的 `/Library/Frameworks` 目录替换，或者用 `scp` 进行覆盖。
+
+
+```
+scp -r ~/Library/Application\ Support/Reveal/RevealServer/RevealServer.xcframework/ios-arm64_armv7/RevealServer.framework/ root@localhost/Library/Frameworks
+```
+
+
+
 #### Cycript 实战
 
 ```
