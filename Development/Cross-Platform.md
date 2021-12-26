@@ -100,10 +100,30 @@ flutter channel master
 
 #### 发布
 
+**Android apk**
+
+```
+flutter build apk 
+```
+
+```
+flutter build appbundle
+```
+
+> 方法二：打开 Android Studio 项目并选择 `Build` > `Generate Signed Bundle or APK`
 
 - [打包并发布 Android 应用 - Flutter 中文文档](https://flutter.cn/docs/deployment/android)
 - [发布应用 | Android 开发者](https://developer.android.google.cn/studio/publish)
 
+**iOS ipa**
+
+```
+flutter build ipa
+```
+
+> 方法二：打开 Xcode 项目并选择 `Product` > `Archive`
+
+- [打包并发布 iOS 应用 - Flutter 中文文档 - Flutter 中文资源](https://flutter.cn/docs/deployment/ios)
 
 #### 国际化
 
