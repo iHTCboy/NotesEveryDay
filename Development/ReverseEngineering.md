@@ -661,6 +661,28 @@ Filter = {
 
 ### iOS
 
+#### 降级
+
+**ECID**
+ECID：`Exclusive Chip ID`，唯一芯片 ID。
+
+每一台 iPhone 或 iPad 等 iOS 设备，都会有专属独一无二的 16 位芯片唯一识别码，用来验证设备。
+
+**SHSH**
+
+SHSH：`Signed Hash`，签名散列。
+
+1024 位的 RSA 签名，由苹果根据设备的 ECID 和固件的 Apnonce 随机数（Apnonce 值每次刷机都会变化）生成。在允许执行映像之前，由引导加载程序验证。通常 SHSH 指带有签名的备份文件（“SHSH blobs”）。恢复特定的 iOS 版本需要此签名文件，Apple 仅针对当前可用的 iOS 版本发放签名，不允许安装旧版 iOS。所以，为旧版 iOS 保存 SHSH 文件，就可以使用重播攻击来恢复该旧版本系统。SHSH2 是 iOS9.0 以后的版本。当你刷机的时候，Apple 会连上服务器来验证当前你的刷机版本和 ECID 所产生的 SHSH 和服务器上的是否匹配，如果不匹配，则不能刷机。
+
+**SEP**
+SEP：`Secure Enclave Processor`，安全隔区处理器。
+
+安全隔区处理器为安全隔区提供了主要的计算能力。它有独立的运行系统，每次刷机都会对SEP系统也进行更新，系统与服务器会进行核对，如果降级的 iOS 系统与当前的 SEP 不兼容，那么降级刷机被禁止。
+
+
+* [TSS Saver - SHSH Blobs Saver](https://tsssaver.1conan.com/v2/)
+* [安全隔区 - Apple 支持](https://support.apple.com/zh-cn/guide/security/sec59b0b31ff/web)
+
 #### iOS安全体系结构
 
 ```
