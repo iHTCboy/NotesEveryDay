@@ -18,9 +18,9 @@
 
 **越狱工具：**
 
-- [unc0ver](https://unc0ver.dev/)： iOS 11.0 - 14.3
+- [unc0ver](https://unc0ver.dev/)： iOS 11.0 - 14.8
 - [checkra1n](https://checkra.in/)：iOS 12.0 - 13.7 and 14.0
-- [Chimera](https://chimera.sh/): iOS 12 — 12.2 and 12.4
+- [Chimera](https://chimera.sh/): iOS 12 - 12.5.5
 
 查看支持的系统版本：
 * [Can I Jailbreak? - Home](https://canijailbreak.com/)
