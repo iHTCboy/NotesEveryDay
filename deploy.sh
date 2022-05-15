@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 设置远程仓库的地址
-remote_url="https://github.com/iHTCboy/NotesEveryDay"
+remote_url="git@github.com:iHTCboy/NotesEveryDay.git"
 # 获取当前时间
 cur_date="`date +%Y-%m-%d-%H:%M:%S`" 
 
