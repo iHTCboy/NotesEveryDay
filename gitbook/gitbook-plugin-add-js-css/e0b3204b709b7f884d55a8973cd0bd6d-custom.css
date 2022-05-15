@@ -1,0 +1,32 @@
+
+.book-header {
+    background-color: rgb(255, 255, 255) !important;
+    position: fixed !important;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,.07) !important;
+}
+
+.page-wrapper {
+    padding-top: 55px;
+}
+
+.color-theme-1 .book-header {
+    background-color: #f3eacb !important;
+}
+
+.color-theme-2 .book-header {
+    background-color: #1c1f2b !important;
+}
+
+
+@media (min-width: 600px) {
+
+}
+
+@media (max-width: 600px) {
+
+}
+
+@media (max-width: 1240px) {
+
+}
