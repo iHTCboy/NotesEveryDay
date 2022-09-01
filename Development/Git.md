@@ -531,7 +531,22 @@ git config --global https.postBuffer 524288000
 git config --global core.compression -1
 ```
 
- 
+
+### Git error: tag already exists
+
+```
+Updates were rejected because the tag already exists in the remote.
+```
+
+解决：
+```
+git pull --tags
+```
+
+覆盖本地存在的标签冲突:
+```
+git pull --tags -f
+```
 
 ## Travis CI
 
