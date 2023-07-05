@@ -325,7 +325,7 @@ otool -l MachO | grep crypt
 1. [class-dump](https://github.com/nygard/class-dump)：一个命令行工具，它利用Objective-C语言的运行时特性将二进制文件中的类、方法及属性等信息导出为头文件。
 2. [Reveal](https://github.com/zidaneno5/Reveal2Loader)：一款强大的UI调试工具，可以调试iOS应用和tvOS应用。它可以在运行时查看App的界面层级关系，还可以实时修改程序界面，不用重新运行程序就可以看到修改之后的效果，免去了每次修改代码后又重新启动的过程。逆向工程里面通常用Reveal来快速定位感兴趣的控件，进而找到控制器，再用Cycript进行事件分析。
 3. [Cycript](http://www.cycript.org/)：由Cydia创始人Saurik推出的一款脚本语言，它混合了Objective-C与JavaScript语法解释器，能够探测和修改运行中的应用程序。Cycript主要用于注入目标进程来实现运行时调试，它的优点是重启程序后所有的修改都会失效，对原生程序或代码完全无副作用。越狱环境下，直接在Cydia中搜索“Cycript”安装即可。
-4. FLEXible：FLEX(Flipboard Explorer)是一个iOS应用的内部调试工具。当它加载时，会向目标程序上方添加一个悬浮的工具栏，通过这个工具栏，可以查看和修改视图的层次结构、动态修改类的属性、动态调用实例和方法、动态查看类和框架以及动态修改UI等。与其他调试工具不同，FLEX完全在应用程序内部运行，因此不需要连接到LLDB、Xcode或其他远程调试器，也不需要太多编程知识，仅需手动点几下就能查看很多细节，是一款非常强大的分析工具。FLEXible 是对FLEX的封装，支持iOS 8+ 以上，只需要在Cydia中搜索FLEXible插件即可安装。
+4. [FLEXible](https://github.com/FLEXTool/FLEX)：FLEX(Flipboard Explorer)是一个iOS应用的内部调试工具。当它加载时，会向目标程序上方添加一个悬浮的工具栏，通过这个工具栏，可以查看和修改视图的层次结构、动态修改类的属性、动态调用实例和方法、动态查看类和框架以及动态修改UI等。与其他调试工具不同，FLEX完全在应用程序内部运行，因此不需要连接到LLDB、Xcode或其他远程调试器，也不需要太多编程知识，仅需手动点几下就能查看很多细节，是一款非常强大的分析工具。FLEXible 是对FLEX的封装，支持iOS 8+ 以上，只需要在Cydia中搜索FLEXible插件即可安装。
 5. [Frida](https://frida.re)：一个跨平台的轻量级Hook框架，支持所有主流操作系统，它可以帮助逆向研究人员对指定的进程进行分析。它主要提供了精简的Python接口和功能丰富的JS接口，除了使用自身的控制台交互以外，还可以利用Python将JS脚本库注入目标进程。使用Frida可以获取进程详细信息、拦截和调用指定函数、注入代码、修改参数、从iOS应用程序中dump类和类方法信息等。Frida源代码托管在[GitHub](https://github.com/frida)。
 
 
