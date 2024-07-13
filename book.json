@@ -20,13 +20,11 @@
   "plugins": [
     "edit-link",
     "splitter",
-    "mathjax",
     "ga",
     "disqus",
     "-lunr",
     "-search",
     "search-pro",
-    "sitemap",
     "localized-footer",
     "image-captions",
     "expandable-chapters-small",
@@ -35,8 +33,10 @@
     "hide-element",
     "back-to-top-button",
     "tbfed-pagefooter",
-    "lightbox",
-    "add-js-css"
+    "add-js-css",
+    "mathjax-pro",
+    "sitemap",
+    "lightbox"
   ],
   "pluginsConfig": {
     "edit-link": {
