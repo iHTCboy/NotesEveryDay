@@ -74,3 +74,10 @@ re.sub(r'\B(?=(?:\d{3})+(?!\d))', ',', '1234567890.11')
 ```
 
 - [千位分割符的理解_这个昵称没有被占用吧的博客-CSDN博客](https://blog.csdn.net/csm0912/article/details/90260296)
+
+
+#### Markdown 中 base64 图片链接匹配
+
+```
+\[data:image/png;base64,i.*?\)
+```
